@@ -1,6 +1,7 @@
-
+<?php
+require_once ('header.php');
+?>
 <body>
-<?php echo base_url('assets/css/style.css')?>
 
     <!-- Start your project here-->
     <div style="height: 100px">
