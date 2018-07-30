@@ -1,3 +1,4 @@
+<body>
 <!-- Extended material form grid -->
 <form>
     <!-- Grid row -->
@@ -74,3 +75,5 @@
     <button type="submit" class="btn btn-primary btn-md">Sign in</button>
 </form>
 <!-- Extended material form grid -->
+</body>
+</html>
