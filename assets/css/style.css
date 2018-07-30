@@ -1,1 +1,37 @@
 /* Your custom styles */
+html,
+body,
+header,
+.view {
+	height: 100%;
+}
+
+@media (max-width: 740px) {
+	html,
+	body,
+	header,
+	.view {
+		height: 1000px;
+	}
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+	html,
+	body,
+	header,
+	.view {
+		height: 650px;
+	}
+}
+@media (min-width: 800px) and (max-width: 850px) {
+	.navbar:not(.top-nav-collapse) {
+		background: #1C2331!important;
+	}
+}
+
+.fullpage {
+	display: block;
+	background-image: url('https://mdbootstrap.com/img/Photos/Others/images/78.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
