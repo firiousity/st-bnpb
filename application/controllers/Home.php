@@ -41,8 +41,9 @@ class Home extends CI_Controller {
          	$this->load->view('beranda');
          	$this->load->view('footer');
          } else {
-         	
-         	$this->load->view('login');
+         	echo "<script>         	
+         	alert('password atau username salah!');
+         	window.location.href='index';</script>";
          }
 	}
 }
