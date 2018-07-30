@@ -4,7 +4,7 @@ require_once ('header.php');
 <body>
 
     <!-- Start your project here-->
-    <div style="height: 100px">
+    <div style="height: 100vh">
         <div class="flex-center flex-column">
             <h1 class="animated fadeIn mb-2">Material Design for Bootstrap</h1>
 
