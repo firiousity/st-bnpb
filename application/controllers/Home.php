@@ -46,4 +46,10 @@ class Home extends CI_Controller {
          	window.location.href='index';</script>";
          }
 	}
+
+	public function akun()
+	{
+		$this->load->view('header');
+		$this->load->view('footer');
+	}
 }
