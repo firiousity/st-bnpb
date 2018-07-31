@@ -7,20 +7,30 @@
  */
 $tanggal = date("m");
 $tahun = date("Y");
-$no = count($nomor)+1;
-$nomor = $no."/KADIH/".$tanggal."/".$tahun;
+
+/*
+ *
+ * Get last index of nomor surat
+ */
+$json = json_encode($nomor);
+$json = (int) $json[8];
+$json = $json + 1;
+$nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 
 ?>
 <body>
 	<div class="container">
-		<div class="card" style="margin: 10%">
+		<div class="card" style="margin: 1%">
+			<h1>
+				<?php  echo $json[8]?>
+			</h1>
 			<!-- Default form contact -->
 			<form class="needs-validation" novalidate style="margin: 10%" action="exec_buat_surat" method="post">
 				<div class="form-row">
 					<div class="col-md-4 mb-3">
 						<label for="validationCustom01">Nomor</label>
-						<input type="text" class="form-control" name="nomor" id="validationCustom01" placeholder="<?php echo $nomor ?>"
-							   value="<?php echo $nomor ?>" required>
+						<input type="text" class="form-control" name="nomor" id="validationCustom01" placeholder="<?php echo $nomor_surat ?>"
+							   value="<?php echo $nomor_surat ?>" required>
 					</div>
 					<div class="col-md-4 mb-3">
 						<label for="validationCustom02">Kegiatan</label>
