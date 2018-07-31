@@ -39,6 +39,7 @@ class Home extends CI_Controller {
          if($query->num_rows()> 0) {
          	$this->load->view('header');
          	$this->load->view('beranda');
+         	$this->load->view('navbar');
          	$this->load->view('footer');
          } else {
          	echo "<script>         	
@@ -51,6 +52,12 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('header');
 		$this->load->view('akun');
+		$this->load->view('footer');
+	}
+
+	public function buat_surat () {
+		$this->load->view('header');
+		$this->load->view('buat_surat');
 		$this->load->view('footer');
 	}
 }
