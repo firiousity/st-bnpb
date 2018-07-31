@@ -53,11 +53,12 @@ class Home extends CI_Controller {
          	$this->load->view('beranda');
          	$this->load->view('footer');
     } 	
-    
+
 	public function akun()
 	{
 		$this->load->view('navbar');
 		$this->load->view('header');
+		$this->load->view('akun');
 		$this->load->view('footer');
 	}
 
