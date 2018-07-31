@@ -21,9 +21,9 @@
       <!--Title-->
       <h4 class="card-title">Lihat Surat</h4>
       <!--Text-->
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <p class="card-text">Some quick example text</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <button type="button" class="btn btn-light-blue btn-md">Read more</button>
+      <button type="button" class="btn btn-light-blue btn-md">Lihat</button>
 
     </div>
 
@@ -45,11 +45,11 @@
     <div class="card-body">
 
       <!--Title-->
-      <h4 class="card-title">Card title</h4>
+      <h4 class="card-title">Buat Surat</h4>
       <!--Text-->
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <p class="card-text">Some quick example text</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <button type="button" class="btn btn-light-blue btn-md">Read more</button>
+      <button type="button" class="btn btn-light-blue btn-md">Buat</button>
 
     </div>
 
@@ -71,11 +71,11 @@
     <div class="card-body">
 
       <!--Title-->
-      <h4 class="card-title">Card title</h4>
+      <h4 class="card-title">Pengelolaan</h4>
       <!--Text-->
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <p class="card-text">Mengelola anggaran dan akun pegawai</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <button type="button" class="btn btn-light-blue btn-md">Read more</button>
+      <button type="button" class="btn btn-light-blue btn-md">kelola</button>
 
     </div>
 
