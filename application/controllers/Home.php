@@ -52,4 +52,10 @@ class Home extends CI_Controller {
 		$this->load->view('header');
 		$this->load->view('footer');
 	}
+
+	public function buat_surat () {
+		$this->load->view('header');
+		$this->load->view('buat_surat');
+		$this->load->view('footer');
+	}
 }
