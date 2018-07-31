@@ -28,6 +28,7 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
+		$this->load->view('navbar');
 		$this->load->view('header');
 		$this->load->view('login');
 		$this->load->view('footer');
@@ -46,6 +47,7 @@ class Home extends CI_Controller {
 	}
 
 	public function beranda() {
+		$this->load->view('navbar');
 		$this->load->view('header');
 		$this->load->view('beranda');
 		$this->load->view('footer');
@@ -53,6 +55,7 @@ class Home extends CI_Controller {
 
 	public function akun()
 	{
+		$this->load->view('navbar');
 		$this->load->view('header');
 		$this->load->view('footer');
 	}
@@ -60,6 +63,7 @@ class Home extends CI_Controller {
 	public function buat_surat () {
 		$data['pegawai'] = $this->home_model->get_pegawai();
 		$data['nomor'] = $this->home_model->get_nomor();
+		$this->load->view('navbar');
 		$this->load->view('header');
 		$this->load->view('buat_surat', $data);
 		$this->load->view('footer');
