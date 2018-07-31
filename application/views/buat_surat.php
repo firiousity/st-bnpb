@@ -5,45 +5,93 @@
  * Date: 7/31/2018
  * Time: 8:45 AM
  */
+$tanggal = date("m");
+$tahun = date("Y");
+$no = count($nomor)+1;
+$nomor = $no."/KADIH/".$tanggal."/".$tahun;
+
 ?>
 <body>
 	<div class="container">
-		<!-- Default form contact -->
-		<form class="text-center border border-light p-5" method="post">
+		<div class="card" style="margin: 10%">
+			<!-- Default form contact -->
+			<form class="needs-validation" novalidate style="margin: 10%" action="exec_buat_surat" method="post">
+				<div class="form-row">
+					<div class="col-md-4 mb-3">
+						<label for="validationCustom01">Nomor</label>
+						<input type="text" class="form-control" name="nomor" id="validationCustom01" placeholder="<?php echo $nomor ?>"
+							   value="<?php echo $nomor ?>" required>
+					</div>
+					<div class="col-md-4 mb-3">
+						<label for="validationCustom02">Kegiatan</label>
+						<input type="text" class="form-control" id="validationCustom02" name="kegiatan" placeholder="Nama Kegiatan" required>
 
-			<p class="h4 mb-4">Buat Surat</p>
-			<div class="card">
-				<div class="card-body">
-					<!-- Name -->
-					<input type="text" id="defaultContactFormName" class="form-control mb-4" name="nomor" value="<?php  $nomor_surat ?>">
+					</div>
+					<div class="col-md-4 mb-3">
+						<label for="validationCustomUsername">Tempat</label>
+							<input type="text" class="form-control" id="validationCustom02"
+								   name="tempat" placeholder="Dinas ke..." required>
 
-					<!-- Tempat Dinas -->
-					<input type="text" id="defaultContactFormEmail" class="form-control mb-4" name="tempat" placeholder="Dinas ke...">
-					<!-- Kegiatan -->
-					<input type="text" id="defaultContactFormEmail" class="form-control mb-4" name="kegiatan" placeholder="Kegiatan">
-
-					<!-- Jenis -->
-					<label>Jenis Surat</label>
-					<select class="browser-default custom-select mb-4" name="jenis">
-						<option value="" disabled>Jenis Surat...</option>
-						<option value="1" selected>Uang di Depan</option>
-						<option value="2">Uang di Akhir</option>
-					</select>
-
-					<!-- Start tanggal -->
-					<label>Tanggal Mulai </label>
-					<input placeholder="Mulai" name="awal_tanggal" type="date"  class="form-control datepicker">
-
-					<!-- End tanggal -->
-					<label>Tanggal Akhir</label>
-					<input placeholder="Akhir" name="akhir_tanggal" type="date"  class="form-control datepicker">
-
-					<!-- Send button -->
-					<button class="btn btn-info btn-block" type="submit">Buat</button>
+					</div>
 				</div>
-			</div>
-		</form>
-		<!-- Default form contact -->
+				<div class="form-row">
+					<div class="col-md-4 mb-3">
+						<label>Tanggal Mulai</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-calendar"></i> </span>
+							</div>
+							<input type="date" class="form-control" id="validationCustomTanggalMulai" name="tgl_mulai" placeholder="Tanggal mulai"
+								   aria-describedby="inputGroupPrepend" required>
+						</div>
+					</div>
+					<div class="col-md-4 mb-3">
+						<label >Tanggal Akhir</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-calendar"></i> </span>
+							</div>
+							<input type="date" class="form-control" id="validationCustomTanggalAkhir" name="tgl_akhir" placeholder="Tanggal berakhir"
+								   aria-describedby="inputGroupPrepend" required>
+						</div>
+					</div>
+					<div class="col-md-4 mb-3">
+						<label >Jenis Surat</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fa fa-magic"></i> </span>
+							</div>
+							<select name="jenis" class="custom-select custom-select-lg ">
+								<option selected>Jenis Pembayaran Uang</option>
+								<option value="1">Langsung</option>
+								<option value="2">Reimburse</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="col">
+						<label >Nama Pegawai yang ditugaskan: </label>
+						<div class="input-group">
+							<select multiple="multiple" id="my-select" name="my-select[]">
+								<?php foreach ($pegawai as $row) {
+								echo
+									"<option value='$row->id_pegawai'>$row->nama_pegawai</option>" ;
+								}
+								?>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<button class="btn btn-primary" type="submit">Buat Surat</button>
+			</form>
+		</div>
+
 	</div>
 </body>
+<script type="text/javascript">
+	// Example starter JavaScript for disabling form submissions if there are invalid fields
+	$('#my-select').multiSelect();
+</script>
 
