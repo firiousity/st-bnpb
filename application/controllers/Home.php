@@ -37,15 +37,20 @@ class Home extends CI_Controller {
 		 $sql = "select * from admin where nama = ? and password = ?";
 		 $query = $this->db->query($sql, array($this->input->post('name'), $this->input->post('password')));
          if($query->num_rows()> 0) {
-         	$this->load->view('header');
-         	$this->load->view('beranda');
-         	$this->load->view('navbar');
-         	$this->load->view('footer');
+         	echo "<script>    
+         	window.location.href='beranda';</script>";
          } else {
          	echo "<script>         	
          	alert('password atau username salah!');
          	window.location.href='index';</script>";
          }
+	}
+
+	public function beranda() {
+		    $this->load->view('header');
+         	$this->load->view('navbar');
+         	$this->load->view('beranda');
+         	$this->load->view('footer');
 	}
 
 	public function akun()
@@ -58,6 +63,7 @@ class Home extends CI_Controller {
 
 	public function buat_surat () {
 		$this->load->view('header');
+		$this->load->view('navbar');
 		$this->load->view('buat_surat');
 		$this->load->view('footer');
 	}

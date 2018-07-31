@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark indigo">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <img src="<?php echo base_url('assets/img/logo.png')?>" width="60" height="60">
+    <a class="navbar-brand" href="<?php echo base_url('home/beranda')?>" target="blank">Surat Tugas</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -12,9 +13,6 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
             </li>
         </ul>
     </div>
