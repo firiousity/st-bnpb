@@ -47,4 +47,16 @@ class Home extends CI_Controller {
          	window.location.href='index';</script>";
          }
 	}
+
+	public function akun()
+	{
+		$this->load->view('header');
+		$this->load->view('footer');
+	}
+
+	public function buat_surat () {
+		$this->load->view('header');
+		$this->load->view('buat_surat');
+		$this->load->view('footer');
+	}
 }

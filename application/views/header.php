@@ -30,7 +30,7 @@
 	<!-- Material Design Bootstrap -->
 	<link href="<?php echo base_url('assets/css/mdb.css')?>" rel="stylesheet">
 	<!-- Your custom styles (optional) -->
-	<link href="<?php echo base_url('assets/css/style.css')?>" rel="stylesheet">
+	<link href="<?php echo base_url('assets/css/style.css')?>"  type="text/css" rel="stylesheet">
 
 	<!-- SCRIPTS -->
     <!-- JQuery -->
