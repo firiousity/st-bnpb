@@ -50,6 +50,7 @@ class Home extends CI_Controller {
 	public function akun()
 	{
 		$this->load->view('header');
+		$this->load->view('akun');
 		$this->load->view('footer');
 	}
 }

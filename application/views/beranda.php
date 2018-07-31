@@ -75,7 +75,7 @@
       <!--Text-->
       <p class="card-text">Mengelola anggaran dan akun pegawai</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <button type="button" class="btn btn-indigo btn-md">kelola</button>
+      <a href="akun"><button type="button" class="btn btn-indigo btn-md">kelola</button></a>
 
     </div>
 
