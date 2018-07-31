@@ -5,7 +5,7 @@
 <div class="card-deck">
 
   <!-- Card -->
-  <div class="card mb-8">
+  <div class="card mb-12">
 
     <!--Card image-->
     <div class="view overlay">
@@ -31,7 +31,7 @@
   <!-- Card -->
 
   <!-- Card -->
-  <div class="card mb-1">
+  <div class="card mb-12">
 
     <!--Card image-->
     <div class="view overlay">
@@ -73,9 +73,9 @@
       <!--Title-->
       <h4 class="card-title">Pengelolaan</h4>
       <!--Text-->
-      <p class="card-text">Mengelola anggaran dan akun pegawai</p>
+      <p class="card-text">Mengelola anggaran dan pegawai</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <button type="button" class="btn btn-indigo btn-md">kelola</button>
+      <a href="akun"><button type="button" class="btn btn-indigo btn-md">kelola</button></a>
 
     </div>
 

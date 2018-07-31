@@ -1,16 +1,16 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: MNurilmanBaehaqi
- * Date: 7/30/2018
- * Time: 11:13 AM
- */
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 	<style>
+	.html {
+        position: relative;
+        min-height: 100%;
+    }
+    .body {
+        /* Margin bottom by footer height */
+        margin-bottom: 60px;
+    }
 		.center {
         position: absolute;
         top: 50%;
@@ -18,11 +18,11 @@
         transform: translateX(-50%) translateY(-50%);
     	}
 	</style>
-	<link rel="shortcut icon"  href="<?php echo base_url('assets/img/logo.png')?>">
+	<link rel="shortcut icon" href="<?php echo base_url('assets/img/logo.png')?>">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Pembuatan Surat Tugas</title>
+	<title>Surat Tugas</title>
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
 	<!-- Bootstrap core CSS -->

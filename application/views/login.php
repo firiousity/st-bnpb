@@ -48,18 +48,6 @@ require_once ('header.php');
 <!-- Default form login -->
         </div>
 </div>
-<!-- Footer -->
-<footer class="fixed-bottom page-footer font-small indigo">
-
-  <!-- Copyright -->
-  <div class="footer-copyright py-3" style="padding-left: 50px;">© 2018 Copyright:
-    <a href="https://mdbootstrap.com/bootstrap-tutorial/"> 
- BNPB (Badan Nasional Penanggulangan Bencana) All Right Reserved</a>
-  </div>
-  <!-- Copyright -->
-
-</footer>
-<!-- Footer -->
 </body>
 
 </html>
