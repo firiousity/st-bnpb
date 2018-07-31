@@ -4,11 +4,10 @@ require_once ('header.php');
 <body>
     <section>
         <div class="container center">
-            <div class="col">
                 <div class="card mb-8">
 
                     <div class="card-body">
-                        <h3>Kelola Pegawai</h3><br>
+                        <p style="font-size: 27px;">Kelola Pegawai</p>
                         <div align="center">
                         <table class="table table-hover">
                           <thead class="mdb-color darken-3 white-text">

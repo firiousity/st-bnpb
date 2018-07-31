@@ -3,6 +3,14 @@
 
 <head>
 	<style>
+	.html {
+        position: relative;
+        min-height: 100%;
+    }
+    .body {
+        /* Margin bottom by footer height */
+        margin-bottom: 60px;
+    }
 		.center {
         position: absolute;
         top: 50%;
