@@ -29,6 +29,10 @@
 	<link href="<?php echo base_url('assets/css/bootstrap.css')?>" rel="stylesheet">
 	<!-- Material Design Bootstrap -->
 	<link href="<?php echo base_url('assets/css/mdb.css')?>" rel="stylesheet">
+	<!-- Multiple Selected Item-->
+	<link href="<?php echo base_url('assets/css/multiselect/multi-select.css')?>" rel="stylesheet">
+	<link href="<?php echo base_url('assets/css/multiselect/multi-select.dev.css')?>" rel="stylesheet">
+	<link href="<?php echo base_url('assets/css/multiselect/multi-select.dist.css')?>" rel="stylesheet">
 	<!-- Your custom styles (optional) -->
 	<link href="<?php echo base_url('assets/css/style.css')?>"  type="text/css" rel="stylesheet">
             <!-- Intro Section -->
@@ -51,17 +55,31 @@
             </div>	
 	<!-- SCRIPTS -->
     <!-- JQuery -->
-    <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.2.1.min.js')?>"></script>
+	<script
+		src="https://code.jquery.com/jquery-3.3.1.js"
+		integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+		crossorigin="anonymous"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="<?php echo base_url('assets/css/popper.min.js')?>"></script>
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="<?php echo base_url('assets/css/bootstrap.min.js')?>"></script>
     <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="<?php echo base_url('assets/css//mdb.min.js')?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('assets/css/mdb.min.js')?>"></script>
+	<!--Multiselect JavaScript -->
+	<script type="text/javascript" src="<?php echo base_url('assets/js/jquery.multi-select.js')?>"></script>
     <!-- Initializations -->
-<script>
-  // SideNav Initialization
-  $(".button-collapse").sideNav();
-</script>
+	<!-- Custom js	-->
+	<script type="text/javascript" src="<?php echo base_url('assets/css/custom.js')?>"></script>
+	<script>
+
+	  // Data Picker Initialization
+	  $( document ).ready(function() {
+		  $('.datepicker').pickadate({
+			  selectMonths: true, // Creates a dropdown to control month
+			  selectYears: 3 // Creates a dropdown of 15 years to control year
+		  });
+	  });
+
+	</script>
 </head>
 
