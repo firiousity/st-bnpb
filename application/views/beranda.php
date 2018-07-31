@@ -1,7 +1,7 @@
 <body>
 <section>
 <!-- Card deck -->
-<div class="container" style="margin: 3%">
+<div class="container center" style="margin: 2%;">
 <div class="card-deck">
 
   <!-- Card -->
