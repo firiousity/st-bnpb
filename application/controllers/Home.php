@@ -47,8 +47,8 @@ class Home extends CI_Controller {
 	}
 
 	public function beranda() {
+			$this->load->view('navbar');
 		    $this->load->view('header');
-         	$this->load->view('navbar');
          	$this->load->view('beranda');
          	$this->load->view('footer');
 	}
