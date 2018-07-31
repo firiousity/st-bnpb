@@ -23,7 +23,7 @@
       <!--Text-->
       <p class="card-text">Some quick example text</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <button type="button" class="btn btn-light-blue btn-md">Lihat</button>
+      <button type="button" class="btn btn-indigo btn-md">Lihat</button>
 
     </div>
 
@@ -49,7 +49,7 @@
       <!--Text-->
       <p class="card-text">Some quick example text</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <button type="button" class="btn btn-light-blue btn-md">Buat</button>
+      <button type="button" class="btn btn-indigo btn-md">Buat</button>
 
     </div>
 
@@ -75,7 +75,7 @@
       <!--Text-->
       <p class="card-text">Mengelola anggaran dan akun pegawai</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <button type="button" class="btn btn-light-blue btn-md">kelola</button>
+      <button type="button" class="btn btn-indigo btn-md">kelola</button>
 
     </div>
 
