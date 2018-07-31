@@ -35,3 +35,12 @@ header,
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+
+.img-margin {
+	padding: 50px;
+}
+
+.st-heading {
+	padding-top: 20px;
+	font-weight: bold;
+}

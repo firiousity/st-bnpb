@@ -18,13 +18,32 @@ class Home extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	function __Construct()
+    {
+        parent ::__construct();
+        $this->load->model('home_model');
+        $this->load->library("pagination");
+    }
+
 	public function index()
 	{
-		//$this->load->view('index');
-		$this->load->view('form');
+		$this->load->view('header');
+		$this->load->view('login');
+		$this->load->view('footer');
 	}
 
-	public function form() {
-
+	public function login() {
+		 $sql = "select * from admin where nama = ? and password = ?";
+		 $query = $this->db->query($sql, array($this->input->post('name'), $this->input->post('password')));
+         if($query->num_rows()> 0) {
+         	$this->load->view('header');
+         	$this->load->view('beranda');
+         	$this->load->view('footer');
+         } else {
+         	echo "<script>         	
+         	alert('password atau username salah!');
+         	window.location.href='index';</script>";
+         }
 	}
 }
