@@ -1,7 +1,8 @@
 <body>
+
 <section>
 <!-- Card deck -->
-<div class="container center" style="margin: 2%;">
+<div class="container center">
 <div class="card-deck">
 
   <!-- Card -->
@@ -9,7 +10,7 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top img-fluid" src="https://png.pngtree.com/element_origin_min_pic/16/11/20/66bc9a400310062cf4bc0a380bfdcdcb.jpg" alt="Card image cap">
+      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
       <a href="#!">
         <div class="mask rgba-white-slight"></div>
       </a>
@@ -35,7 +36,7 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top img-fluid" src="http://icons.iconarchive.com/icons/flat-icons.com/square/512/newsletter-icon.png" alt="Card image cap">
+      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/14.jpg" alt="Card image cap">
       <a href="#!">
         <div class="mask rgba-white-slight"></div>
       </a>
@@ -61,7 +62,7 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top img-fluid" src="http://www.ccu.edu/librarymedia/Images/Account.png" alt="Card image cap">
+      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/15.jpg" alt="Card image cap">
       <a href="#!">
         <div class="mask rgba-white-slight"></div>
       </a>

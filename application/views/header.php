@@ -7,6 +7,14 @@
         position: relative;
         min-height: 100%;
     }
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        /* Set the fixed height of the footer here */
+        height: 50px;
+        background-color: #7D80DA;
+    }
     .body {
         /* Margin bottom by footer height */
         margin-bottom: 60px;
@@ -36,7 +44,7 @@
 	<!-- Your custom styles (optional) -->
 	<link href="<?php echo base_url('assets/css/style.css')?>"  type="text/css" rel="stylesheet">
             <!-- Intro Section -->
-            <div class="view hm-black-light jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url(https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg);">
+            <div class="view hm-black-light jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url(https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg); height: 100%">
                 <div class="full-bg-img">
                     <div class="container flex-center">
                         <div class="row pt-5 mt-3">
