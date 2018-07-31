@@ -5,7 +5,7 @@
 <div class="card-deck">
 
   <!-- Card -->
-  <div class="card mb-8">
+  <div class="card mb-12">
 
     <!--Card image-->
     <div class="view overlay">
@@ -31,7 +31,7 @@
   <!-- Card -->
 
   <!-- Card -->
-  <div class="card mb-1">
+  <div class="card mb-12">
 
     <!--Card image-->
     <div class="view overlay">
