@@ -1,11 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: MNurilmanBaehaqi
- * Date: 7/30/2018
- * Time: 11:13 AM
- */
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +14,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Pembuatan Surat Tugas</title>
+	<title>Surat Tugas</title>
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
 	<!-- Bootstrap core CSS -->
