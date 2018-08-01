@@ -270,4 +270,20 @@ class Home extends CI_Controller {
 		$this->alert("Berhasil menghapus");
 		$this->href('home/pegawai');
 	}
+
+	function edit_pegawai($id) {
+		$name = $this->input->post('nama');
+		$nip = $this->input->post('nip');
+		$jabatan = $this->input->post('jabatan');
+		$golongan = $this->input->post('golongan');
+		$data = array(
+			'nama_pegawai' => $name,
+			'nip_pegawai' => $nip,
+			'jabatan_pegawai' => $jabatan,
+			'golongan_pegawai' => $golongan
+		);
+		$this->db->where('id', $id);
+		$this->db->update('pegawai', $data);
+		$this->href('home/pegawai');
+	}
 }
