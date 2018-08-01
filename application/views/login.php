@@ -1,6 +1,3 @@
-<?php
-require_once ('header.php');
-?>
 <body>
 <div class="view hm-black-light jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('<?php echo base_url()."assets/img/2.jpg";?>');height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover; ">
     <div class="full-bg-img">
@@ -12,20 +9,17 @@ require_once ('header.php');
         </div>
     </div>
 </div>
-
-    <!-- Start your project here-->
-    <div style="height: 100vh">
-        <div class="flex-center flex-column">
-            <section>
-                <div class="text-center">
+        <!-- Start your project here-->
+    <div class="container center">
+        
+<section>
+    <div class="flex-center flex-column">
+                <!-- <div class="text-center">
                     <h1 class="animated fadeIn mb-2">Sistem Persuratan</h1>
                     <h5 class="animated fadeIn mb-1">Badan Nasional Penanggulangan Bencana</h5>                    
-                </div>
-            </section>
-            <br>
-<section>
+                </div> -->
 <!-- Default form login -->
-<form class="text-center border border-light p-5" method="post" action="<?php  echo base_url('home/login')?>">
+<form class="text-center p-4" method="post" action="<?php  echo base_url('home/login')?>">
 
     <p class="h4 mb-4">Sign in</p>
 
@@ -40,24 +34,25 @@ require_once ('header.php');
             <!-- Remember me -->
             <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                <label class="custom-control-label" for="defaultLoginFormRemember"><strong>Remember me</strong> </label>
             </div>
         </div>
-        <div>
+        <!-- <div>
             <br>
-            <!-- Forgot password -->
+            Forgot password
             <a href="">Forgot password?</a>
-        </div>
+        </div> -->
     </div>
 
     <!-- Sign in button -->
-    <button class="btn btn-info btn-indigo btn-block my-4">Sign in</button>
+    <button class="btn btn-indigo my-4">Sign in</button>
 
 </form>
 </section>
 <!-- Default form login -->
         </div>
 </div>
+
 </body>
 
 </html>
