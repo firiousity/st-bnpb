@@ -9,7 +9,7 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<form action="" method="post">
+					<form action="<?php  base_url('home/tambah_user')?>" method="post">
 						<div class="modal-body mx-5">
 							<div class="md-form mb-4">
 								<!-- <i class="fa fa-user prefix grey-text"></i> -->
