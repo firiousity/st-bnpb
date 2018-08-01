@@ -17,19 +17,19 @@
                 </div>
                 <div class="md-form mb-4">
                     <!-- <i class="fa fa-address-card prefix grey-text"></i> -->
-                    <input type="email" id="orangeForm-email" class="form-control validate" name="nip">
+                    <input type="text" id="orangeForm-email" class="form-control validate" name="nip">
                     <label data-error="wrong" data-success="right" for="orangeForm-email">NIP</label>
                 </div>
 
                 <div class="md-form mb-4">
                     <!-- <i class="fa fa-lock prefix grey-text"></i> -->
-                    <input type="password" id="orangeForm-pass" class="form-control validate" name="jabatan">
+                    <input type="text" id="orangeForm-pass" class="form-control validate" name="jabatan">
                     <label data-error="wrong" data-success="right" for="orangeForm-pass">Jabatan</label>
                 </div>
 
                 <div class="md-form mb-4">
                     <!-- <i class="fa fa-lock prefix grey-text"></i> -->
-                    <input type="password" id="orangeForm-pass" class="form-control validate" name="gol">
+                    <input type="text" id="orangeForm-pass" class="form-control validate" name="gol">
                     <label data-error="wrong" data-success="right" for="orangeForm-pass">Golongan</label>
                 </div>
 
@@ -106,7 +106,7 @@
                               <td>".$row->jabatan_pegawai."</td>
                               <td>". $row->golongan_pegawai ."</td>
                               <td>
-                                <span class='table-remove'><a href='#'><button type='button' data-toggle='modal' data-target='#modalEditForm' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
+                                <span class='table-remove'><button type='button' data-toggle=\"modal\" data-target=\"#modalEditForm\" class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button>
                                 <span class='table-remove'><a href='".base_url("home/delete_pegawai/$row->id_pegawai")."'><button type='button' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
                                 </td>
                             </tr>
