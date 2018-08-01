@@ -46,8 +46,8 @@ class Home extends CI_Controller {
          }
 	}
 
-	public function beranda() {
-
+	public function beranda()
+	{
 			$this->load->view('navbar');
 		    $this->load->view('header');
          	$this->load->view('beranda');
@@ -62,7 +62,15 @@ class Home extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	public function buat_surat () {
+	public function lihat_surat() {
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('lihat_surat');
+		$this->load->view('footer');
+	}
+
+	public function buat_surat ()
+	{
 		$data['pegawai'] = $this->home_model->get_pegawai();
 		$data['nomor'] = $this->home_model->get_nomor();
 		$this->load->view('nav');
