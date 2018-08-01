@@ -86,10 +86,10 @@
       <p class="card-text">Mengelola anggaran</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
       <div class="btn-group">
-    <button class="btn btn-indigo btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button id="anggaran" data-target="#" href="https://example.com" class="btn btn-indigo btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Pilih
     </button>
-    <div class="dropdown-menu">
+    <div class="dropdown-menu" aria-labelledby="anggaran">
         <a class="dropdown-item" href="#">Biaya Penginapan</a>
         <a class="dropdown-item" href="#">Biaya Transport</a>
         <a class="dropdown-item" href="#">Uang Harian</a>
@@ -135,8 +135,13 @@
 </div>
 <!-- Card deck -->
 
-
+<script>
+$(document).ready(function(){
+    $('.dropdown-toggle').dropdown();
+});
+</script>
 </body>
+
 
 
 </html>
