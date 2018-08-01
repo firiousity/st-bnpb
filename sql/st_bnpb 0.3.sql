@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2018 at 04:14 AM
+-- Generation Time: Aug 01, 2018 at 03:51 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -49,7 +49,7 @@ INSERT INTO `admin` (`nama`, `password`) VALUES
 
 CREATE TABLE `biaya_penginapan` (
   `id` int(5) NOT NULL,
-  `provinsi` text NOT NULL,
+  `provinsi` int(20) NOT NULL,
   `eselon_1` int(10) NOT NULL,
   `eselon_2` int(10) NOT NULL,
   `eselon_3` int(10) NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE `biaya_penginapan` (
 
 CREATE TABLE `biaya_transport` (
   `id` int(5) NOT NULL,
-  `provinsi` text NOT NULL,
+  `provinsi` int(20) NOT NULL,
   `besaran` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -142,7 +142,7 @@ INSERT INTO `surat_dinas` (`id`, `nomor`, `tempat`, `kegiatan`, `tgl_mulai`, `tg
 
 CREATE TABLE `tiket_pesawat` (
   `id` int(5) NOT NULL,
-  `kota` text NOT NULL,
+  `kota` int(20) NOT NULL,
   `biaya_tiket` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -154,7 +154,7 @@ CREATE TABLE `tiket_pesawat` (
 
 CREATE TABLE `uang_harian` (
   `id` int(5) NOT NULL,
-  `provinsi` text NOT NULL,
+  `provinsi` int(20) NOT NULL,
   `luar_kota` int(10) NOT NULL,
   `dalam_kota` int(10) NOT NULL,
   `diklat` int(10) NOT NULL
@@ -168,7 +168,7 @@ CREATE TABLE `uang_harian` (
 
 CREATE TABLE `uang_representasi` (
   `id` int(5) NOT NULL,
-  `uraian` text NOT NULL,
+  `uraian` int(20) NOT NULL,
   `luar_kota` int(10) NOT NULL,
   `dalam_kota` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

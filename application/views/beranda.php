@@ -1,4 +1,4 @@
-<body style="height: 100%; ">
+<body>
 <!-- Intro Section -->
 <div class="view hm-black-light jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('<?php echo base_url()."assets/img/2.jpg";?>');height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover; ">
 	<div class="full-bg-img">
