@@ -62,7 +62,7 @@
 	<!-- Custom js	-->
 	<script type="text/javascript" src="<?php echo base_url('assets/css/custom.js')?>"></script>
 	<script>
-
+	$('.dropdown-toggle').dropdown() 
 	  // Data Picker Initialization
 	  $( document ).ready(function() {
 		  $('.datepicker').pickadate({
@@ -70,7 +70,7 @@
 			  selectYears: 3 // Creates a dropdown of 15 years to control year
 		  });
 	  });
-
 	</script>
+	<script type="text/javascript"></script>
 </head>
 

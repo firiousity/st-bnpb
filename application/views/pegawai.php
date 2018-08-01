@@ -1,6 +1,3 @@
-<?php
-require_once ('header.php');
-?>
 <body>
     <section>
         <div class="container center">
