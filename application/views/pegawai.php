@@ -1,85 +1,90 @@
 <body>
     <section>
-                    <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Tambah Pegawai</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body mx-5">
-                <div class="md-form mb-4">
-                    <!-- <i class="fa fa-user prefix grey-text"></i> -->
-                    <input type="text" id="orangeForm-name" class="form-control validate" name="nama">
-                    <label data-error="wrong" data-success="right" for="orangeForm-name">Nama Lengkap</label>
-                </div>
-                <div class="md-form mb-4">
-                    <!-- <i class="fa fa-address-card prefix grey-text"></i> -->
-                    <input type="text" id="orangeForm-email" class="form-control validate" name="nip">
-                    <label data-error="wrong" data-success="right" for="orangeForm-email">NIP</label>
-                </div>
-
-                <div class="md-form mb-4">
-                    <!-- <i class="fa fa-lock prefix grey-text"></i> -->
-                    <input type="text" id="orangeForm-pass" class="form-control validate" name="jabatan">
-                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Jabatan</label>
-                </div>
-
-                <div class="md-form mb-4">
-                    <!-- <i class="fa fa-lock prefix grey-text"></i> -->
-                    <input type="text" id="orangeForm-pass" class="form-control validate" name="gol">
-                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Golongan</label>
-                </div>
-
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button class="btn btn-indigo">Tambah</button>
-            </div>
-        </div>
-    </div>
-</div>
-              <div class="modal fade" id="#modalEditForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Edit Akun</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body mx-5">
-				<form action="<?php  echo base_url('home/tambah_user')?>" method="post">
-					<div class="md-form mb-4">
-						<!-- <i class="fa fa-user prefix grey-text"></i> -->
-						<input type="text" id="orangeForm-name" class="form-control validate" name="nama">
-						<label data-error="wrong" data-success="right" for="orangeForm-name">Nama Lengkap</label>
+		<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header text-center">
+						<h4 class="modal-title w-100 font-weight-bold">Tambah Pegawai</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
-					<div class="md-form mb-4">
-						<!-- <i class="fa fa-address-card prefix grey-text"></i> -->
-						<input type="text" id="orangeForm-email" class="form-control validate" name="nip">
-						<label data-error="wrong" data-success="right" for="orangeForm-email">NIP</label>
-					</div>
+					<div class="modal-body mx-5">
+						<div class="md-form mb-4">
+							<!-- <i class="fa fa-user prefix grey-text"></i> -->
+							<input type="text" id="orangeForm-name" class="form-control validate" name="nama">
+							<label data-error="wrong" data-success="right" for="orangeForm-name">Nama Lengkap</label>
+						</div>
+						<div class="md-form mb-4">
+							<!-- <i class="fa fa-address-card prefix grey-text"></i> -->
+							<input type="text" id="orangeForm-email" class="form-control validate" name="nip">
+							<label data-error="wrong" data-success="right" for="orangeForm-email">NIP</label>
+						</div>
 
-					<div class="md-form mb-4">
-						<!-- <i class="fa fa-lock prefix grey-text"></i> -->
-						<input type="text" id="orangeForm-pass" class="form-control validate" name="jabatan">
-						<label data-error="wrong" data-success="right" for="orangeForm-pass">Jabatan</label>
-					</div>
+						<div class="md-form mb-4">
+							<!-- <i class="fa fa-lock prefix grey-text"></i> -->
+							<input type="text" id="orangeForm-pass" class="form-control validate" name="jabatan">
+							<label data-error="wrong" data-success="right" for="orangeForm-pass">Jabatan</label>
+						</div>
 
-					<div class="md-form mb-4">
-						<!-- <i class="fa fa-lock prefix grey-text"></i> -->
-						<input type="text" id="orangeForm-pass" class="form-control validate" name="golongan">
-						<label data-error="wrong" data-success="right" for="orangeForm-pass">Golongan</label>
+						<div class="md-form mb-4">
+							<!-- <i class="fa fa-lock prefix grey-text"></i> -->
+							<input type="text" id="orangeForm-pass" class="form-control validate" name="gol">
+							<label data-error="wrong" data-success="right" for="orangeForm-pass">Golongan</label>
+						</div>
+
 					</div>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <a href='".base_url("home/edit/$row->id_pegawai")."'><button class="btn btn-indigo">Simpan</button></a>
-            </div>
-        </div>
-    </div>
-</div>
+					<div class="modal-footer d-flex justify-content-center">
+						<button class="btn btn-indigo">Tambah</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="modal fade" id="modalEditForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header text-center">
+						<h4 class="modal-title w-100 font-weight-bold">Edit Pegawai</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body mx-5">
+						<div class="md-form mb-4">
+							<!-- <i class="fa fa-user prefix grey-text"></i> -->
+							<input type="text" id="orangeForm-name" class="form-control validate" name="nama">
+							<label data-error="wrong" data-success="right" for="orangeForm-name">Nama Lengkap</label>
+						</div>
+						<div class="md-form mb-4">
+							<!-- <i class="fa fa-address-card prefix grey-text"></i> -->
+							<input type="text" id="orangeForm-email" class="form-control validate" name="nip">
+							<label data-error="wrong" data-success="right" for="orangeForm-email">NIP</label>
+						</div>
+
+						<div class="md-form mb-4">
+							<!-- <i class="fa fa-lock prefix grey-text"></i> -->
+							<input type="text" id="orangeForm-pass" class="form-control validate" name="jabatan">
+							<label data-error="wrong" data-success="right" for="orangeForm-pass">Jabatan</label>
+						</div>
+
+						<div class="md-form mb-4">
+							<!-- <i class="fa fa-lock prefix grey-text"></i> -->
+							<input type="text" id="orangeForm-pass" class="form-control validate" name="gol">
+							<label data-error="wrong" data-success="right" for="orangeForm-pass">Golongan</label>
+						</div>
+
+					</div>
+					<div class="modal-footer d-flex justify-content-center">
+						<button class="btn btn-indigo">Edit</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
         <div class="container center">
 
                 <div class="card mb-8">
@@ -106,7 +111,7 @@
                               <td>".$row->jabatan_pegawai."</td>
                               <td>". $row->golongan_pegawai ."</td>
                               <td>
-                                <span class='table-remove'><button type='button' data-toggle=\"modal\" data-target=\"#modalEditForm\" class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button>
+                                <span class='table-remove'><button type='button' data-toggle='modal' data-target='#modalEditForm' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button>
                                 <span class='table-remove'><a href='".base_url("home/delete_pegawai/$row->id_pegawai")."'><button type='button' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
                                 </td>
                             </tr>
@@ -124,7 +129,7 @@
                         <div class="row">
                             <div class="col">
                                 <div align="left">
-                                    <a href="#"><button type="button" data-toggle="modal" data-target="#modalRegisterForm" class="btn btn-indigo btn-md">Tambah Pegawai</button></a>                    
+                                    <a href="#"><button type="button" data-toggle="modal" data-target="#modalRegisterForm" class="btn btn-indigo btn-md">Tambah Pegawai</button></a>
                                 </div>
                               </div> 
                             <div class="col">
