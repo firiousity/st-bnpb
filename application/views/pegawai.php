@@ -4,7 +4,51 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
+<<<<<<< Updated upstream
                 <h4 class="modal-title w-100 font-weight-bold">Tambah Data Pegawai</h4>
+=======
+                <h4 class="modal-title w-100 font-weight-bold">Tambah Akun</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-5">
+                <div class="md-form mb-4">
+                    <!-- <i class="fa fa-user prefix grey-text"></i> -->
+                    <input type="text" id="orangeForm-name" class="form-control validate" name="nama">
+                    <label data-error="wrong" data-success="right" for="orangeForm-name">Nama Lengkap</label>
+                </div>
+                <div class="md-form mb-4">
+                    <!-- <i class="fa fa-address-card prefix grey-text"></i> -->
+                    <input type="email" id="orangeForm-email" class="form-control validate" name="nip">
+                    <label data-error="wrong" data-success="right" for="orangeForm-email">NIP</label>
+                </div>
+
+                <div class="md-form mb-4">
+                    <!-- <i class="fa fa-lock prefix grey-text"></i> -->
+                    <input type="password" id="orangeForm-pass" class="form-control validate" name="jabatan">
+                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Jabatan</label>
+                </div>
+
+                <div class="md-form mb-4">
+                    <!-- <i class="fa fa-lock prefix grey-text"></i> -->
+                    <input type="password" id="orangeForm-pass" class="form-control validate" name="gol">
+                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Golongan</label>
+                </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-indigo">Tambah</button>
+            </div>
+        </div>
+    </div>
+</div>
+              <div class="modal fade" id="#modalEditForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Edit Akun</h4>
+>>>>>>> Stashed changes
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -34,11 +78,18 @@
 						<label data-error="wrong" data-success="right" for="orangeForm-pass">Golongan</label>
 					</div>
 
+<<<<<<< Updated upstream
 				</div>
 				<div class="modal-footer d-flex justify-content-center">
 					<button class="btn btn-deep-orange" type="submit">Tambah</button>
 				</div>
 			</form>
+=======
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <a href='".base_url("home/edit/$row->id_pegawai")."'><button class="btn btn-indigo">Simpan</button></a>
+            </div>
+>>>>>>> Stashed changes
         </div>
     </div>
 </div>
@@ -68,7 +119,7 @@
                               <td>".$row->jabatan_pegawai."</td>
                               <td>". $row->golongan_pegawai ."</td>
                               <td>
-                                <span class='table-remove'><a href='".base_url("home/edit/$row->id_pegawai")."'><button type='button' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
+                                <span class='table-remove'><a href='#'><button type='button' data-toggle='modal' data-target='#modalEditForm' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
                                 <span class='table-remove'><a href='".base_url("home/delete_pegawai/$row->id_pegawai")."'><button type='button' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
                                 </td>
                             </tr>
