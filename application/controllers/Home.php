@@ -250,4 +250,10 @@ class Home extends CI_Controller {
 		$this->load->view('uang_representasi');
 		$this->load->view('footer');
 	}
+
+	public function layout_biaya()
+	{
+		$this->load->view('header');
+		$this->load->view('layout_biaya');
+	}
 }
