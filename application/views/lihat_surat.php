@@ -13,41 +13,31 @@
                               <th scope="col">Nomor Surat</th>
                               <th scope="col">Tempat</th>
                               <th scope="col">PDF</th>
-                              <th scope="col">Golongan</th>
-                              <th scope="col">Hapus</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr>
                               <th scope="row">1</th>
                               <td>Mark Otto</td>
-                              <td>31451517800</td>
-                              <td>Kepala Bidang</td>
-                              <td>III</td>
+                              <td>Surabaya</td>
                               <td><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Hapus</button></span></td>
                             </tr>
                             <tr>
                           <th scope="row">2</th>
                           <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>Kepala Bidang</td>
-                              <td>III</td>
+                          <td>Bandung</td>
                               <td><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Hapus</button></span></td>
                         </tr>
                         <tr>
                           <th scope="row">3</th>
-                          <td> Larry the Bird</td>
-                          <td>@twitter</td>
-                          <td>Kepala Bidang</td>
-                            <td>III</td>
+                          <td>Larry the Bird</td>
+                          <td>Jakarta</td>
                             <td><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Hapus</button></span></td>
                         </tr>
                         <tr>
                           <th scope="row">3</th>
-                          <td> Larry the Bird</td>
-                          <td>@twitter</td>
-                          <td>Kepala Bidang</td>
-                            <td>III</td>
+                          <td>Larry the Bird</td>
+                          <td>Jogja</td>
                             <td><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Hapus</button></span></td>
                         </tr>
 
