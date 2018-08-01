@@ -46,26 +46,35 @@ class Home extends CI_Controller {
          }
 	}
 
-	public function beranda() {
-
+	public function beranda()
+	{
 			$this->load->view('navbar');
 		    $this->load->view('header');
          	$this->load->view('beranda');
          	$this->load->view('footer');
     } 	
 
-	public function akun()
+	public function pegawai()
 	{
-		$this->load->view('navbar');
+		$data['pegawai'] = $this->home_model->get_pegawai();
+		$this->load->view('nav');
 		$this->load->view('header');
-		$this->load->view('akun');
+		$this->load->view('pegawai', $data);
 		$this->load->view('footer');
 	}
 
-	public function buat_surat () {
+	public function lihat_surat() {
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('lihat_surat');
+		$this->load->view('footer');
+	}
+
+	public function buat_surat ()
+	{
 		$data['pegawai'] = $this->home_model->get_pegawai();
 		$data['nomor'] = $this->home_model->get_nomor();
-		$this->load->view('navbar');
+		$this->load->view('nav');
 		$this->load->view('header');
 		$this->load->view('buat_surat', $data);
 		$this->load->view('footer');
@@ -193,5 +202,45 @@ class Home extends CI_Controller {
 	function alert ($message) {
 		echo "<script>         	
          	alert($message);</script>";
+	}
+
+	public function biaya_penginapan()
+	{
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('biaya_penginapan');
+		$this->load->view('footer');
+	}
+
+	public function biaya_transport()
+	{
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('biaya_transport');
+		$this->load->view('footer');
+	}
+
+	public function tiket_pesawat()
+	{
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('tiket_pesawat');
+		$this->load->view('footer');
+	}
+
+	public function uang_harian()
+	{
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('uang_harian');
+		$this->load->view('footer');
+	}
+
+	public function uang_representasi()
+	{
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('uang_representasi');
+		$this->load->view('footer');
 	}
 }

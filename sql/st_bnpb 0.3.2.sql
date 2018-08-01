@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2018 at 05:08 AM
+-- Generation Time: Aug 01, 2018 at 04:28 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -212,25 +212,6 @@ CREATE TABLE `uang_representasi` (
 INSERT INTO `uang_representasi` (`id`, `uraian`, `luar_kota`, `dalam_kota`) VALUES
 (1, 'Pejabat Negara', 250000, 125000),
 (2, 'Pejabat Eselon I', 200000, 100000);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `nama` varchar(20) NOT NULL,
-  `password` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`nama`, `password`) VALUES
-('badan', 'nasional'),
-('penanggulangan', 'bencana');
 
 -- --------------------------------------------------------
 

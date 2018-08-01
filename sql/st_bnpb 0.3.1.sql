@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2018 at 05:08 AM
+-- Generation Time: Aug 01, 2018 at 04:14 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -57,14 +57,6 @@ CREATE TABLE `biaya_penginapan` (
   `eselon_5` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `biaya_penginapan`
---
-
-INSERT INTO `biaya_penginapan` (`id`, `provinsi`, `eselon_1`, `eselon_2`, `eselon_3`, `eselon_4`, `eselon_5`) VALUES
-(1, 'Aceh', 4420000, 3526000, 1294000, 556000, 556000),
-(2, 'Sumatra Utara', 4960000, 1518000, 1100000, 530000, 530000);
-
 -- --------------------------------------------------------
 
 --
@@ -76,14 +68,6 @@ CREATE TABLE `biaya_transport` (
   `provinsi` text NOT NULL,
   `besaran` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `biaya_transport`
---
-
-INSERT INTO `biaya_transport` (`id`, `provinsi`, `besaran`) VALUES
-(1, 'Aceh', 123000),
-(2, 'Sumatra Utara', 232000);
 
 -- --------------------------------------------------------
 
@@ -162,14 +146,6 @@ CREATE TABLE `tiket_pesawat` (
   `biaya_tiket` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tiket_pesawat`
---
-
-INSERT INTO `tiket_pesawat` (`id`, `kota`, `biaya_tiket`) VALUES
-(1, 'Jakarta-Ambon', 7081000),
-(2, 'Jakarta-Balikpapan', 3797000);
-
 -- --------------------------------------------------------
 
 --
@@ -184,14 +160,6 @@ CREATE TABLE `uang_harian` (
   `diklat` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `uang_harian`
---
-
-INSERT INTO `uang_harian` (`id`, `provinsi`, `luar_kota`, `dalam_kota`, `diklat`) VALUES
-(1, 'Aceh', 360000, 140000, 110000),
-(2, 'Sumatra Utara', 370000, 150000, 110000);
-
 -- --------------------------------------------------------
 
 --
@@ -204,33 +172,6 @@ CREATE TABLE `uang_representasi` (
   `luar_kota` int(10) NOT NULL,
   `dalam_kota` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `uang_representasi`
---
-
-INSERT INTO `uang_representasi` (`id`, `uraian`, `luar_kota`, `dalam_kota`) VALUES
-(1, 'Pejabat Negara', 250000, 125000),
-(2, 'Pejabat Eselon I', 200000, 100000);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `nama` varchar(20) NOT NULL,
-  `password` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`nama`, `password`) VALUES
-('badan', 'nasional'),
-('penanggulangan', 'bencana');
 
 -- --------------------------------------------------------
 
@@ -322,13 +263,13 @@ ALTER TABLE `yang_dinas`
 -- AUTO_INCREMENT for table `biaya_penginapan`
 --
 ALTER TABLE `biaya_penginapan`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `biaya_transport`
 --
 ALTER TABLE `biaya_transport`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `kegiatan`
@@ -352,19 +293,19 @@ ALTER TABLE `surat_dinas`
 -- AUTO_INCREMENT for table `tiket_pesawat`
 --
 ALTER TABLE `tiket_pesawat`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `uang_harian`
 --
 ALTER TABLE `uang_harian`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `uang_representasi`
 --
 ALTER TABLE `uang_representasi`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `yang_dinas`
