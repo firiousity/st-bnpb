@@ -15,6 +15,11 @@ class Home_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	function delete_pegawai($where) {
+		$this->db->where($where);
+		$this->db->delete('pegawai');
+	}
+
 
 }
 ?>
