@@ -38,7 +38,7 @@ class Home extends CI_Controller {
 		 $sql = "select * from admin where nama = ? and password = ?";
 		 $query = $this->db->query($sql, array($this->input->post('name'), $this->input->post('password')));
          if($query->num_rows()> 0) {
-         	$this->href("beranda");
+         	$this->href("home/beranda");
          } else {
          	echo "<script>         	
          	alert('password atau username salah!');
@@ -194,12 +194,6 @@ class Home extends CI_Controller {
 		echo $surat_tugas['0']->nomor;
 	}
 
-	function delete_pegawai($id) {
-		$where = array('id_pegawai' => $id );
-		$this->db->delete('pegawai', $where);
-		$this->alert("Berhasil menghapus");
-		$this->href('home/pegawai');
-	}
 
 	function href ($route) {
 		echo "<script>
@@ -255,5 +249,56 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('header');
 		$this->load->view('layout_biaya');
+
+	/*
+	 * User Management
+	 */
+	public function tambah_pegawai() {
+		$name = $this->input->post('nama');
+		$nip = $this->input->post('nip');
+		$jabatan = $this->input->post('jabatan');
+		$golongan = $this->input->post('gol');
+		$data = array(
+			'nama_pegawai' => $name,
+			'nip_pegawai' => $nip,
+			'jabatan_pegawai' => $jabatan,
+			'golongan_pegawai' => $golongan
+		);
+		$this->db->insert('pegawai', $data);
+		$this->href('home/pegawai');
+
+	}
+
+	function delete_pegawai($id) {
+		$where = array('id_pegawai' => $id );
+		$this->db->delete('pegawai', $where);
+		$this->alert("Berhasil menghapus");
+		$this->href('home/pegawai');
+	}
+
+	function edit_pegawai_page($id) {
+		$data = array(
+			'id' => $id
+		);
+		$this->load->view('navbar');
+		$this->load->view('header');
+		$this->load->view('edit_page', $data);
+		$this->load->view('footer');
+	}
+
+	function edit_pegawai($id) {
+		$name = $this->input->post('nama');
+		$nip = $this->input->post('nip');
+		$jabatan = $this->input->post('jabatan');
+		$golongan = $this->input->post('gol');
+		$data = array(
+			'nama_pegawai' => $name,
+			'nip_pegawai' => $nip,
+			'jabatan_pegawai' => $jabatan,
+			'golongan_pegawai' => $golongan
+		);
+		$this->db->where('id_pegawai', $id);
+		$this->db->update('pegawai', $data);
+		$this->href('home/pegawai');
 	}
 }
