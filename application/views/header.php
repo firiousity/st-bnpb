@@ -59,7 +59,6 @@
     <script type="text/javascript" src="<?php echo base_url('assets/js/mdb.min.js')?>"></script>
 	<!--Multiselect JavaScript -->
 	<script type="text/javascript" src="<?php echo base_url('assets/js/jquery.multi-select.js')?>"></script>
-	<script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.2.1.min.js')?>"></script>
     <!-- Initializations -->
 	<!-- Custom js	-->
 <script type=”text/javascript” src=”js/jquery-3.1.1.min.js”></script>
