@@ -116,4 +116,44 @@ class Home extends CI_Controller {
 		echo "<script>         	
          	alert($message);</script>";
 	}
+
+	public function biaya_penginapan()
+	{
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('biaya_penginapan');
+		$this->load->view('footer');
+	}
+
+	public function biaya_transport()
+	{
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('biaya_transport');
+		$this->load->view('footer');
+	}
+
+	public function tiket_pesawat()
+	{
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('tiket_pesawat');
+		$this->load->view('footer');
+	}
+
+	public function uang_harian()
+	{
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('uang_harian');
+		$this->load->view('footer');
+	}
+
+	public function uang_representasi()
+	{
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('uang_representasi');
+		$this->load->view('footer');
+	}
 }
