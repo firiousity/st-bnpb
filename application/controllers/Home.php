@@ -38,7 +38,7 @@ class Home extends CI_Controller {
 		 $sql = "select * from admin where nama = ? and password = ?";
 		 $query = $this->db->query($sql, array($this->input->post('name'), $this->input->post('password')));
          if($query->num_rows()> 0) {
-         	$this->href("beranda");
+         	$this->href("home/beranda");
          } else {
          	echo "<script>         	
          	alert('password atau username salah!');
@@ -252,7 +252,7 @@ class Home extends CI_Controller {
 		$name = $this->input->post('nama');
 		$nip = $this->input->post('nip');
 		$jabatan = $this->input->post('jabatan');
-		$golongan = $this->input->post('golongan');
+		$golongan = $this->input->post('gol');
 		$data = array(
 			'nama_pegawai' => $name,
 			'nip_pegawai' => $nip,
