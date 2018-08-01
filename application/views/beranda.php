@@ -85,7 +85,20 @@
       <!--Text-->
       <p class="card-text">Mengelola anggaran</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <a href="akun"><button type="button" class="btn btn-indigo btn-md">kelola</button></a>
+      <div class="btn-group">
+    <button class="btn btn-indigo btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Pilih
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Biaya Penginapan</a>
+        <a class="dropdown-item" href="#">Biaya Transport</a>
+        <a class="dropdown-item" href="#">Uang Harian</a>
+        <a class="dropdown-item" href="#">Uang Representasi</a>
+        <a class="dropdown-item" href="#">Tiket Pesawat</a>
+
+    </div>
+</div>
+      <!-- <a href="akun"><button type="button" class="btn btn-indigo btn-md">kelola</button></a> -->
 
     </div>
 
@@ -124,5 +137,6 @@
 
 
 </body>
+
 
 </html>
