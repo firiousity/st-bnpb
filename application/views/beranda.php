@@ -81,9 +81,35 @@
     <div class="card-body">
 
       <!--Title-->
-      <h4 class="card-title">Pengelolaan</h4>
+      <h4 class="card-title">Kelola Anggaran</h4>
       <!--Text-->
-      <p class="card-text">Mengelola anggaran dan pegawai</p>
+      <p class="card-text">Mengelola anggaran Pusdatinmas</p>
+      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+      <a href="akun"><button type="button" class="btn btn-indigo btn-md">kelola</button></a>
+
+    </div>
+
+  </div>
+  <!-- Card -->
+
+  <!-- Card -->
+  <div class="card mb-12">
+
+    <!--Card image-->
+    <div class="view overlay">
+      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/15.jpg" alt="Card image cap">
+      <a href="#!">
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
+
+    <!--Card content-->
+    <div class="card-body">
+
+      <!--Title-->
+      <h4 class="card-title">Kelola Pegawai</h4>
+      <!--Text-->
+      <p class="card-text">Mengelola data kepegawaian</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
       <a href="akun"><button type="button" class="btn btn-indigo btn-md">kelola</button></a>
 
