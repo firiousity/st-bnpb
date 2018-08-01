@@ -81,9 +81,9 @@
     <div class="card-body">
 
       <!--Title-->
-      <h4 class="card-title">Kelola Anggaran</h4>
+      <h4 class="card-title">Anggaran</h4>
       <!--Text-->
-      <p class="card-text">Mengelola anggaran Pusdatinmas</p>
+      <p class="card-text">Mengelola anggaran</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
       <a href="akun"><button type="button" class="btn btn-indigo btn-md">kelola</button></a>
 
@@ -107,11 +107,11 @@
     <div class="card-body">
 
       <!--Title-->
-      <h4 class="card-title">Kelola Pegawai</h4>
+      <h4 class="card-title">Pegawai</h4>
       <!--Text-->
       <p class="card-text">Mengelola data kepegawaian</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <a href="akun"><button type="button" class="btn btn-indigo btn-md">kelola</button></a>
+      <a href="pegawai"><button type="button" class="btn btn-indigo btn-md">kelola</button></a>
 
     </div>
 
