@@ -26,7 +26,7 @@
         transform: translateX(-50%) translateY(-50%);
     	}
 	</style>
-	<link rel="shortcut icon" href="<?php echo base_url('assets/img/logo.png')?>">
+	<link rel="shortcut icon" href="<?php echo base_url('assets/img/logo.jpg')?>">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -50,6 +50,7 @@
 		src="https://code.jquery.com/jquery-3.3.1.js"
 		integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 		crossorigin="anonymous"></script>
+		<script type="text/javascript" src="<?php echo base_url('assets/css/mdb.js')?>"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="<?php echo base_url('assets/css/popper.min.js')?>"></script>
     <!-- Bootstrap core JavaScript -->
@@ -62,7 +63,7 @@
 	<!-- Custom js	-->
 	<script type="text/javascript" src="<?php echo base_url('assets/css/custom.js')?>"></script>
 	<script>
-	$('.dropdown-toggle').dropdown() 
+
 	  // Data Picker Initialization
 	  $( document ).ready(function() {
 		  $('.datepicker').pickadate({
@@ -71,6 +72,10 @@
 		  });
 	  });
 	</script>
-	<script type="text/javascript"></script>
+	<script>
+		$(document).ready(function(){
+    	$('.dropdown-toggle').dropdown();
+	});
+</script>
 </head>
 
