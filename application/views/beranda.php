@@ -33,7 +33,7 @@
       <!--Text-->
       <p class="card-text">Some quick example text</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <button type="button" class="btn btn-indigo btn-md">Lihat</button>
+      <a href="lihat_surat"><button type="button" class="btn btn-indigo btn-md">Lihat</button></a>
 
     </div>
 
@@ -59,7 +59,7 @@
       <!--Text-->
       <p class="card-text">Some quick example text</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-		<a href="buat_surat"> <button type="button" class="btn btn-indigo btn-md">Buat</button></a>
+		  <a href="buat_surat"><button type="button" class="btn btn-indigo btn-md">Buat</button></a>
 
     </div>
 
