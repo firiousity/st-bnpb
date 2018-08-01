@@ -35,7 +35,7 @@
 
             </div>
             <div class="modal-footer d-flex justify-content-center">
-                <button class="btn btn-deep-orange">Sign up</button>
+                <button class="btn btn-indigo">Tambah</button>
             </div>
         </div>
     </div>
