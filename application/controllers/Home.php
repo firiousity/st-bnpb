@@ -56,9 +56,10 @@ class Home extends CI_Controller {
 
 	public function pegawai()
 	{
+		$data['pegawai'] = $this->home_model->get_pegawai();
 		$this->load->view('nav');
 		$this->load->view('header');
-		$this->load->view('pegawai');
+		$this->load->view('pegawai', $data);
 		$this->load->view('footer');
 	}
 

@@ -11,11 +11,11 @@
 	</div>
 </div>
 <!-- Card deck -->
-<div class="container center">
+<div class="container" style="position: fixed; top: 45%; left: 50%; transform: translateX(-50%) translateY(-50%);">
 <div class="card-deck">
 
   <!-- Card -->
-  <div class="card mb-12">
+  <div class="card mb-12"  style="margin-top: 0px;">
 
     <!--Card image-->
     <div class="view overlay">
@@ -90,11 +90,11 @@
         Pilih
     </button>
     <div class="dropdown-menu" aria-labelledby="anggaran">
-        <a class="dropdown-item" href="#">Biaya Penginapan</a>
-        <a class="dropdown-item" href="#">Biaya Transport</a>
-        <a class="dropdown-item" href="#">Uang Harian</a>
-        <a class="dropdown-item" href="#">Uang Representasi</a>
-        <a class="dropdown-item" href="#">Tiket Pesawat</a>
+        <a class="dropdown-item" href="biaya_penginapan">Biaya Penginapan</a>
+        <a class="dropdown-item" href="biaya_transport">Biaya Transport</a>
+        <a class="dropdown-item" href="uang_harian">Uang Harian</a>
+        <a class="dropdown-item" href="uang_representasi">Uang Representasi</a>
+        <a class="dropdown-item" href="tiket_pesawat">Tiket Pesawat</a>
 
     </div>
 </div>

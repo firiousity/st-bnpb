@@ -9,48 +9,29 @@
                         <table class="table table-hover">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
-                              <th scope="col">Nomer</th>
                               <th scope="col">Nama</th>
                               <th scope="col">NIP</th>
                               <th scope="col">Jabatan</th>
                               <th scope="col">Golongan</th>
-                              <th scope="col">Hapus</th>
+                              <th scope="col">Aksi</th>
                             </tr>
                           </thead>
                           <tbody>
+                            <?php foreach ($pegawai as $row) {
+                             ?>
                             <tr>
-                              <th scope="row">1</th>
-                              <td>Mark Otto</td>
-                              <td>31451517800</td>
-                              <td>Kepala Bidang</td>
-                              <td>III</td>
-                              <td><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Hapus</button></span></td>
+                              <td><?php $row->nama_pegawai ?></td>
+                              <td><?php $row->nip_pegawai ?></td>
+                              <td><?php $row->jabatan_pegawai ?></td>
+                              <td><?php $row->golongan_pegawai ?></td>
+                              <td>
+                                <span class="table-remove"><a href="<?php echo base_url("home/edit/".$row->id_pegawai)?>"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
+                                <span class="table-remove"><a href="<?php echo base_url("home/delete/".$row->id_pegawai)?>"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0"><i class="fa fa-times" aria-hidden="true"></i></button></span>
+                                </td>
                             </tr>
                             <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>Kepala Bidang</td>
-                              <td>III</td>
-                              <td><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Hapus</button></span></td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td> Larry the Bird</td>
-                          <td>@twitter</td>
-                          <td>Kepala Bidang</td>
-                            <td>III</td>
-                            <td><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Hapus</button></span></td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td> Larry the Bird</td>
-                          <td>@twitter</td>
-                          <td>Kepala Bidang</td>
-                            <td>III</td>
-                            <td><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Hapus</button></span></td>
-                        </tr>
-
+                              <?php  
+                            } ?>
                       </tbody>
                     </table>
                         <div class="row">
