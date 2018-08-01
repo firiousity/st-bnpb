@@ -194,12 +194,6 @@ class Home extends CI_Controller {
 		echo $surat_tugas['0']->nomor;
 	}
 
-	function delete_pegawai($id) {
-		$where = array('id_pegawai' => $id );
-		$this->db->delete('pegawai', $where);
-		$this->alert("Berhasil menghapus");
-		$this->href('home/pegawai');
-	}
 
 	function href ($route) {
 		echo "<script>
@@ -249,5 +243,31 @@ class Home extends CI_Controller {
 		$this->load->view('header');
 		$this->load->view('uang_representasi');
 		$this->load->view('footer');
+	}
+
+	/*
+	 * User Management
+	 */
+	public function tambah_user() {
+		$name = $this->input->post('nama');
+		$nip = $this->input->post('nip');
+		$jabatan = $this->input->post('jabatan');
+		$golongan = $this->input->post('golongan');
+		$data = array(
+			'nama_pegawai' => $name,
+			'nip_pegawai' => $nip,
+			'jabatan_pegawai' => $jabatan,
+			'golongan_pegawai' => $golongan
+		);
+		$this->db->insert('pegawai', $data);
+		$this->href('home/pegawai');
+
+	}
+
+	function delete_pegawai($id) {
+		$where = array('id_pegawai' => $id );
+		$this->db->delete('pegawai', $where);
+		$this->alert("Berhasil menghapus");
+		$this->href('home/pegawai');
 	}
 }
