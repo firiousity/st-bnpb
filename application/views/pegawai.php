@@ -4,10 +4,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-<<<<<<< Updated upstream
-                <h4 class="modal-title w-100 font-weight-bold">Tambah Data Pegawai</h4>
-=======
-                <h4 class="modal-title w-100 font-weight-bold">Tambah Akun</h4>
+                <h4 class="modal-title w-100 font-weight-bold">Tambah Pegawai</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -48,7 +45,6 @@
         <div class="modal-content">
             <div class="modal-header text-center">
                 <h4 class="modal-title w-100 font-weight-bold">Edit Akun</h4>
->>>>>>> Stashed changes
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -77,19 +73,10 @@
 						<input type="text" id="orangeForm-pass" class="form-control validate" name="golongan">
 						<label data-error="wrong" data-success="right" for="orangeForm-pass">Golongan</label>
 					</div>
-
-<<<<<<< Updated upstream
-				</div>
-				<div class="modal-footer d-flex justify-content-center">
-					<button class="btn btn-deep-orange" type="submit">Tambah</button>
-				</div>
-			</form>
-=======
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <a href='".base_url("home/edit/$row->id_pegawai")."'><button class="btn btn-indigo">Simpan</button></a>
             </div>
->>>>>>> Stashed changes
         </div>
     </div>
 </div>
