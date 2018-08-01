@@ -18,20 +18,21 @@
                           </thead>
                           <tbody>
                             <?php foreach ($pegawai as $row) {
-                             ?>
-                            <tr>
-                              <td><?php $row->nama_pegawai ?></td>
-                              <td><?php $row->nip_pegawai ?></td>
-                              <td><?php $row->jabatan_pegawai ?></td>
-                              <td><?php $row->golongan_pegawai ?></td>
+								echo "
+								<tr>
+                              <td>".$row->nama_pegawai."</td>
+                              <td>".$row->nip_pegawai ."</td>
+                              <td>".$row->jabatan_pegawai."</td>
+                              <td>". $row->golongan_pegawai ."</td>
                               <td>
-                                <span class="table-remove"><a href="<?php echo base_url("home/edit/".$row->id_pegawai)?>"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
-                                <span class="table-remove"><a href="<?php echo base_url("home/delete/".$row->id_pegawai)?>"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0"><i class="fa fa-times" aria-hidden="true"></i></button></span>
+                                <span class='table-remove'><a href='".base_url("home/edit/$row->id_pegawai")."'><button type='button' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
+                                <span class='table-remove'><a href='".base_url("home/delete_pegawai/$row->id_pegawai")."'><button type='button' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
                                 </td>
                             </tr>
-                            <tr>
-                              <?php  
-                            } ?>
+                            <tr>";
+
+							}
+                             ?>
                       </tbody>
                     </table>
                         <div class="row">

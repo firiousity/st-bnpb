@@ -194,9 +194,16 @@ class Home extends CI_Controller {
 		echo $surat_tugas['0']->nomor;
 	}
 
+	function delete_pegawai($id) {
+		$where = array('id_pegawai' => $id );
+		$this->db->delete('pegawai', $where);
+		$this->alert("Berhasil menghapus");
+		$this->href('home/pegawai');
+	}
+
 	function href ($route) {
 		echo "<script>
-         	window.location.href='$route';</script>";
+         	window.location.href='".base_url()."$route';</script>";
 	}
 
 	function alert ($message) {
