@@ -2,6 +2,16 @@
 require_once ('header.php');
 ?>
 <body>
+    <div class="view hm-black-light jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url(https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg); height: 100%">
+    <div class="full-bg-img">
+        <div class="container flex-center">
+            <div class="row pt-5 mt-3">
+                <div class="col-md-12">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- Start your project here-->
     <div style="height: 100vh">
