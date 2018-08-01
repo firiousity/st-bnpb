@@ -26,7 +26,7 @@
         transform: translateX(-50%) translateY(-50%);
     	}
 	</style>
-	<link rel="shortcut icon" href="<?php echo base_url('assets/img/logo.jpg')?>">
+	<link rel="shortcut icon" href="<?php echo base_url('assets/img/logo.png')?>">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
