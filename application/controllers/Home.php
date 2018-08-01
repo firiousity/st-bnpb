@@ -248,7 +248,7 @@ class Home extends CI_Controller {
 	/*
 	 * User Management
 	 */
-	public function tambah_user() {
+	public function tambah_pegawai() {
 		$name = $this->input->post('nama');
 		$nip = $this->input->post('nip');
 		$jabatan = $this->input->post('jabatan');
@@ -271,18 +271,28 @@ class Home extends CI_Controller {
 		$this->href('home/pegawai');
 	}
 
+	function edit_pegawai_page($id) {
+		$data = array(
+			'id' => $id
+		);
+		$this->load->view('navbar');
+		$this->load->view('header');
+		$this->load->view('edit_page', $data);
+		$this->load->view('footer');
+	}
+
 	function edit_pegawai($id) {
 		$name = $this->input->post('nama');
 		$nip = $this->input->post('nip');
 		$jabatan = $this->input->post('jabatan');
-		$golongan = $this->input->post('golongan');
+		$golongan = $this->input->post('gol');
 		$data = array(
 			'nama_pegawai' => $name,
 			'nip_pegawai' => $nip,
 			'jabatan_pegawai' => $jabatan,
 			'golongan_pegawai' => $golongan
 		);
-		$this->db->where('id', $id);
+		$this->db->where('id_pegawai', $id);
 		$this->db->update('pegawai', $data);
 		$this->href('home/pegawai');
 	}

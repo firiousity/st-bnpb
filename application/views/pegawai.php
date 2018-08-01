@@ -23,7 +23,7 @@
                               <td>".$row->jabatan_pegawai."</td>
                               <td>". $row->golongan_pegawai ."</td>
                               <td>
-                                <span class='table-remove'><button type='button' data-toggle='modal' data-target='#modalEditForm' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button>
+                                <span class='table-remove'><a href='".base_url("home/edit_pegawai_page/$row->id_pegawai")."'><button type='button'  class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
                                 <span class='table-remove'><a href='".base_url("home/delete_pegawai/$row->id_pegawai")."'><button type='button' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
                                 </td>
                             </tr>
@@ -74,7 +74,7 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<form action="<?php  base_url('home/ena')?>" method="post">
+					<form action="<?php echo base_url('home/tambah_pegawai') ?>" method="post">
 						<div class="modal-body mx-5">
 							<div class="md-form mb-4">
 								<!-- <i class="fa fa-user prefix grey-text"></i> -->
@@ -119,7 +119,7 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<form action="" method="post">
+					<form action="<?php  echo base_url('home/edit_pegawai/')?>" method="post">
 						<div class="modal-body mx-5">
 							<div class="md-form mb-4">
 								<!-- <i class="fa fa-user prefix grey-text"></i> -->
