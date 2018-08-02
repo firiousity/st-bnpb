@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: MNurilmanBaehaqi
- * Date: 7/31/2018
- * Time: 8:45 AM
- */
 $tanggal = date("m");
 $tahun = date("Y");
 
@@ -21,8 +15,8 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 
 ?>
 <body>
-	<div class="container">
-		<div class="card mb-6" style="margin: 5%">
+	<div class="container margin">
+		<div class="card mb-6">
 			<h1>
 				<?php ?>
 			</h1>

@@ -1,9 +1,8 @@
 <body>
-        <div class="container" style="margin: 5%;">
-                <div class="card mb-8">
-
-                    <div class="card-body">
-                        <p style="font-size: 27px;">Surat</p>
+          <div class="container margin">
+                  <div class="card mb-8">
+                      <div class="card-body">
+                          <p style="font-size: 27px;">Surat</p>
                         <div align="center">
                         <table class="table table-hover">
                           <thead class="mdb-color darken-3 white-text">

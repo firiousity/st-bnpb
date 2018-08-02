@@ -72,7 +72,7 @@ class Home extends CI_Controller {
 		$this->load->view('navbar');
 		$this->load->view('header');
         $this->load->view('beranda');
-        $this->load->view('footer');
+        $this->load->view('footer2');
     } 	
 
 	/*
@@ -162,7 +162,7 @@ class Home extends CI_Controller {
 		$this->load->view('nav');
 		$this->load->view('header');
 		$this->load->view('edit_penginapan', $data);
-		$this->load->view('footer');
+		$this->load->view('footer2');
 	}
 
 	function edit_penginapan($id) {
@@ -224,7 +224,7 @@ class Home extends CI_Controller {
 		$this->load->view('nav');
 		$this->load->view('header');
 		$this->load->view('edit_transport', $data);
-		$this->load->view('footer');
+		$this->load->view('footer2');
 	}
 
 	function edit_transport($id) {
@@ -278,7 +278,7 @@ class Home extends CI_Controller {
 		$this->load->view('nav');
 		$this->load->view('header');
 		$this->load->view('edit_tiket', $data);
-		$this->load->view('footer');
+		$this->load->view('footer2');
 	}
 
 	function edit_tiket($id) {
@@ -334,7 +334,7 @@ class Home extends CI_Controller {
 		$this->load->view('nav');
 		$this->load->view('header');
 		$this->load->view('edit_harian', $data);
-		$this->load->view('footer');
+		$this->load->view('footer2');
 	}
 
 	function edit_harian($id) {
@@ -392,8 +392,8 @@ class Home extends CI_Controller {
 		$data['uang_representasi'] = $this->db->get_where('uang_representasi',  array('id' => $id) )->result();
 		$this->load->view('nav');
 		$this->load->view('header');
-		$this->load->view('uang_representasi', $data);
-		$this->load->view('footer');
+		$this->load->view('edit_representasi', $data);
+		$this->load->view('footer2');
 	}
 
 	function edit_representasi($id) {
@@ -469,7 +469,7 @@ class Home extends CI_Controller {
 		$this->load->view('nav');
 		$this->load->view('header');
 		$this->load->view('edit_pegawai', $data);
-		$this->load->view('footer');
+		$this->load->view('footer2');
 	}
 
 	function edit_pegawai($id) {
