@@ -12,8 +12,26 @@ class Home_model extends CI_Model {
 		return $query->result();
 	}
 
+	function get_biaya_penginapan() {
+		$this->db->from('biaya_penginapan');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function get_tiket_pesawat() {
+		$this->db->from('tiket_pesawat');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function get_uang_harian() {
+		$this->db->from('uang_harian');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	function get_nomor() {
-		$this->db->select('id');
+		$this->db->select('nomor');
 		$this->db->from('surat_dinas');
 		$this->db->order_by('id', 'desc');
 		$this->db->limit(1);
