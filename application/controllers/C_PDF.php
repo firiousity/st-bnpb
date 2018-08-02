@@ -37,8 +37,10 @@ class C_PDF extends CI_Controller {
 
 
 
-	function test_pdf($id) {
+	function print($id) {
 		$surat_tugas = $this->db->get_where('surat_dinas', array('id' => $id))->result();
+		$pegawai = $this->db->get_where('pegawai',
+			array('jabatan_pegawai' => 'Kepala Pusat Data Informasi dan Humas'))->result();
 
 		//Define variable
 		$nomor = $surat_tugas['0']->nomor;
@@ -50,6 +52,7 @@ class C_PDF extends CI_Controller {
 		$var_tahun_kegiatan = substr($surat_tugas['0']->tgl_surat, -4);
 		$var_tgl_surat = $surat_tugas['0']->tgl_surat;
 		//$surat_tugas = json_encode($surat_tugas);
+		$kapusdatin = $pegawai['0']->nama_pegawai;
 		$pdf = new FPDF('p','mm','A4');
 
 
@@ -75,7 +78,7 @@ class C_PDF extends CI_Controller {
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(25,6,'Menimbang',0,0);
 		$pdf->Cell(5,6,':',0,0);
-		$pdf->MultiCell(0,6,"Dalam rangka melakukan kegiatan kegiatan di tempat  pada waktu",0,'J');
+		$pdf->MultiCell(0,6,"Dalam rangka melakukan kegiatan $var_kegiatan di $var_tempat",0,'J');
 		//$pdf->Cell(27,6,'Dalam rangka melakukan kegiatan $kegiatan di $tempat  pada $waktu	',0,0);
 		$pdf->Cell(25,6,'Dasar',0,0);
 		$pdf->Cell(5,6,':',0,0);
@@ -118,8 +121,24 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->SetFont('Arial','B',12);
-		$pdf->MultiCell(0,6,"DR. Sutopo Purwo Nugroho, M.Si, APU	",0,'R');
+		$pdf->MultiCell(0,6,$kapusdatin,0,'R');
 
+		//Page ke-2
+		$pdf->AddPage();
+		$pdf->SetFont('Arial','B',12);
+		$pdf->Cell(0,6,"Lampiran Surat Tugas",0,1,'R');
+		$pdf->Cell(0,6,"Nomor: $nomor",0,1,'R');
+		$pdf->Cell(0,6,"Tanggal: $var_tgl_surat",0,1,'R');
+		$pdf->Cell(0,10,"Daftar Nama",0,1,'C');
+		$pdf->SetFont('Arial','',12);
+		$nama = $this->home_model->get_yang_dinas($id);
+		$counter = 1;
+		foreach ($nama as $row) {
+			$pdf->Cell(5,6,"$counter. ",0,0);
+			$pdf->MultiCell(0,6,"$row->nama_pegawai",0,'J');
+			$counter++;
+		}
+		//Cetak gans
 		$pdf->Output();
 
 	}

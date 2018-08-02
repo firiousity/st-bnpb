@@ -12,8 +12,10 @@ $tahun = date("Y");
  *
  * Get last index of nomor surat
  */
-$json = json_encode($nomor);
-$json = (int) $json[11];
+//$json = json_encode($nomor);
+//$json = substr($json, -28,-3)
+$json = $nomor[0]->nomor;
+$json = (int) $json;
 $json = $json + 1;
 $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 

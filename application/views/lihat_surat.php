@@ -15,40 +15,29 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>Mark Otto</td>
-                              <td>Surabaya</td>
-                              <td><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Hapus</button></span></td>
-                            </tr>
-                            <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Bandung</td>
-                              <td><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Hapus</button></span></td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry the Bird</td>
-                          <td>Jakarta</td>
-                            <td><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Hapus</button></span></td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry the Bird</td>
-                          <td>Jogja</td>
-                            <td><span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Hapus</button></span></td>
-                        </tr>
+						  <?php
+						  $i = 1;
+						  foreach ($surat as $row) {
 
-                      </tbody>
-                    </table>
+						  	echo "
+						  	<tr>
+                              <th scope=\"row\">$i</th>
+                              <td>$row->nomor</td>
+                              <td>$row->tempat</td>
+                              <td><span class=\"table-remove\"><a href='".base_url('C_PDF/print/'.$row->id)."' target='_blank'> <button type=\"button\" class=\"btn btn-danger btn-rounded btn-sm my-0\">PRINT</button></a></span></td>
+                            </tr>
+						  	";
+						  	$i++;
+						  }
+						  ?>
+						  </tbody>
+						</table>
                         <div class="row">
                             <div class="col">
                                 <div align="left">
-                                    <a href="#"><button type="button" class="btn btn-indigo btn-md">Tambah Pegawai</button></a>                    
+                                    <a href="<?php  echo base_url('home/buat_surat')?>"><button type="button" class="btn btn-indigo btn-md">Tambah Surat</button></a>
                                 </div>
-                
-            </div> 
+							</div>
                             <div class="col">
                                 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-end">

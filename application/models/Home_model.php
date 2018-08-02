@@ -6,6 +6,12 @@ class Home_model extends CI_Model {
 		return $query->result();
 	}
 
+	function get_surat() {
+		$this->db->from('surat_dinas');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	function get_biaya_transport() {
 		$this->db->from('biaya_transport');
 		$query = $this->db->get();
@@ -42,7 +48,7 @@ class Home_model extends CI_Model {
 		$this->db->order_by('id', 'desc');
 		$this->db->limit(1);
 		$query = $this->db->get();
-		return $query->result_array();
+		return $query->result();
 	}
 
 	function delete_pegawai($where) {
@@ -70,6 +76,18 @@ class Home_model extends CI_Model {
         }
         return false;
    }
+
+   function get_yang_dinas ($id){
+	   //get form db
+	   $this->db->select('*');
+	   $this->db->from('pegawai');
+	   $this->db->join('yang_dinas', 'yang_dinas.id_pegawai = pegawai.id_pegawai', 'inner')->where( array(
+		   'id_surat' => $id
+	   ));
+	   $query = $this->db->get();
+	   return $query->result();
+   }
+
 
 }
 ?>

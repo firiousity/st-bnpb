@@ -79,9 +79,10 @@ class Home extends CI_Controller {
 	 * Surat Management
 	 */
 	public function lihat_surat() {
+		$data['surat'] = $this->home_model->get_surat();
 		$this->load->view('nav');
 		$this->load->view('header');
-		$this->load->view('lihat_surat');
+		$this->load->view('lihat_surat', $data);
 		$this->load->view('footer');
 	}
 
@@ -107,11 +108,12 @@ class Home extends CI_Controller {
 		);
 		$this->db->insert('surat_dinas', $data);
 
-
+		$id_surat_dinas = $this->db->select('id')->get_where('surat_dinas', array('nomor' => $this->input->post('nomor')))->result();
+		$id_surat_dinas = $id_surat_dinas[0];
 		$num_data = count($this->input->post('my-select[]'));
 		for($i=0;$i<$num_data;$i++) {
 			$data_with_nip = array(
-				'id_surat'      => $this->input->post('nomor'),
+				'id_surat'      => $id_surat_dinas->id,
 				'id_pegawai' => $this->input->post('my-select[]')[$i]
 			);
 			$this->db->insert('yang_dinas', $data_with_nip);
@@ -120,7 +122,6 @@ class Home extends CI_Controller {
 		$this->alert("Surat sukses di buat :)");
 		$this->href("home/beranda");
 
-		//$this->db->insert('surat_dinas', $data);
 	}
 
 	/*
