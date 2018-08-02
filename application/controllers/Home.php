@@ -118,7 +118,7 @@ class Home extends CI_Controller {
 		}
 
 		$this->alert("Surat sukses di buat :)");
-		$this->href("beranda");
+		$this->href("home/beranda");
 
 		//$this->db->insert('surat_dinas', $data);
 	}
@@ -211,9 +211,7 @@ class Home extends CI_Controller {
 	}
 
 	function edit_pegawai_page($id) {
-		$data = array(
-			'id' => $id
-		);
+		$data['pegawai'] = $this->db->get_where('pegawai',  array('id_pegawai' => $id) )->result();
 		$this->load->view('navbar');
 		$this->load->view('header');
 		$this->load->view('edit_page', $data);

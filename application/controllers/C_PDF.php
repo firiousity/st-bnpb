@@ -24,7 +24,7 @@ class C_PDF extends CI_Controller {
         parent ::__construct();
         $this->load->model("home_model");
         $this->load->library("pagination");
-		$this->load->controllers("home");
+		include_once ("home.php");
     }
 
 	public function index()
@@ -38,15 +38,20 @@ class C_PDF extends CI_Controller {
 
 
 	function test_pdf($id) {
-//		$this->load->view('navbar');
-//		$this->load->view('header');
-//		$this->load->view('test_pdf');
-//		$this->load->view('footer');
-
-		$tab = "\t \t \t \t \t";
 		$surat_tugas = $this->db->get_where('surat_dinas', array('id' => $id))->result();
+
+		//Define variable
+		$nomor = $surat_tugas['0']->nomor;
+		$var_kegiatan = $surat_tugas['0']->kegiatan;
+		$var_tempat = $surat_tugas['0']->tempat;
+		$var_tgl_mulai = $surat_tugas['0']->tgl_mulai;
+		$var_tgl_akhir = $surat_tugas['0']->tgl_akhir;
+
+		$var_tahun_kegiatan = substr($surat_tugas['0']->tgl_surat, -4);
+		$var_tgl_surat = $surat_tugas['0']->tgl_surat;
 		//$surat_tugas = json_encode($surat_tugas);
 		$pdf = new FPDF('p','mm','A4');
+
 
 		// membuat halaman baru
 		$pdf->AddPage();
@@ -64,7 +69,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Cell(0,3,'SURAT TUGAS',0,1,'C');
 		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(0,10,"NOMOR: ".$surat_tugas['0']->nomor,0,1,'C');
+		$pdf->Cell(0,10,"NOMOR: ".$nomor,0,1,'C');
 		// Memberikan space kebawah agar tidak terlalu rapat
 		$pdf->Cell(10,7,'',0,1);
 		$pdf->SetFont('Arial','',10);
@@ -93,7 +98,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'Untuk',0,0);
 		$pdf->Cell(5,6,':',0,0);
 		$pdf->Cell(5,6,'1.',0,0);
-		$pdf->MultiCell(0,6,"Dinas ke var_tempat dalam rangka mendukung kegiatan var_kegiatan tahun var_tahun, pada tanggal var_tgl_mulai s.d var_tgl_akhir;",0,'J');
+		$pdf->MultiCell(0,6,"Dinas ke ".$var_tempat." dalam rangka mendukung kegiatan ".$var_kegiatan." tahun ".$var_tahun_kegiatan.", pada tanggal ".$var_tgl_mulai." s.d ".$var_tgl_akhir.";",0,'J');
 		$pdf->Cell(25,6,'',0,0);
 		$pdf->Cell(5,6,'',0,0);
 		$pdf->Cell(5,6,'2.',0,0);
@@ -107,7 +112,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(5,6,'2.',0,0);
 		$pdf->MultiCell(0,6,"Apabila terdapat kekeliruan dalam Surat Tugas ini akan dilakukan perbaikan sebagaimana mestinya.",0,'J');
 		$pdf->Ln();
-		$pdf->MultiCell(0,6,"Jakarta, var_tgl-bulan-tahun",0,'R');
+		$pdf->MultiCell(0,6,"Jakarta, ".$var_tgl_surat,0,'R');
 		$pdf->MultiCell(0,6,"Kepala Pusat Data Informasi dan Humas",0,'R');
 		$pdf->Ln();
 		$pdf->Ln();

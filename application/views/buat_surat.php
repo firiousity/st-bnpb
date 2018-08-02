@@ -34,7 +34,7 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 					</div>
 					<div class="col-md-4 mb-3">
 						<label for="validationCustom02">Kegiatan</label>
-						<input type="text" class="form-control" id="validationCustom02" name="kegiatan" placeholder="Nama Kegiatan" required>
+						<input type="text" class="form-control" id="validationCustom02" name="kegiatan" placeholder="Nama Kegiatan" required autofocus>
 
 					</div>
 					<div class="col-md-4 mb-3">
