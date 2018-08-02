@@ -51,16 +51,6 @@ class Home_model extends CI_Model {
 		return $query->result();
 	}
 
-	function delete_pegawai($where) {
-		$this->db->where($where);
-		$this->db->delete('pegawai');
-	}
-
-	function delete_penginapan($where) {
-		$this->db->where($where);
-		$this->db->delete('biaya_penginapan');
-	}
-
 	public function __construct() {
         parent::__construct();
     }

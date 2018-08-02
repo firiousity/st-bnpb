@@ -159,7 +159,7 @@ class Home extends CI_Controller {
 
 	function edit_penginapan_page($id) {
 		$data['biaya_penginapan'] = $this->db->get_where('biaya_penginapan',  array('id' => $id) )->result();
-		$this->load->view('navbar');
+		$this->load->view('nav');
 		$this->load->view('header');
 		$this->load->view('edit_penginapan', $data);
 		$this->load->view('footer');
@@ -221,7 +221,7 @@ class Home extends CI_Controller {
 
 	function edit_transport_page($id) {
 		$data['biaya_transport'] = $this->db->get_where('biaya_transport',  array('id' => $id) )->result();
-		$this->load->view('navbar');
+		$this->load->view('nav');
 		$this->load->view('header');
 		$this->load->view('edit_transport', $data);
 		$this->load->view('footer');
@@ -246,6 +246,10 @@ class Home extends CI_Controller {
 		$this->href('home/biaya_transport');
 	}
 
+	/*
+	 * CRUD Tiket Pesawat
+	 *
+	 * */
 
 	public function tiket_pesawat()
 	{
@@ -255,6 +259,51 @@ class Home extends CI_Controller {
 		$this->load->view('tiket_pesawat', $data);
 		$this->load->view('footer');
 	}
+
+	public function tambah_tiket() {
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('tiket_pesawat', $data);
+		$this->load->view('footer');
+		$data = array(
+			'kota' => $kota,
+			'biaya_tiket' => $biaya_tiket,
+		);
+		$this->db->insert('tiket_pesawat', $data);
+		$this->href('home/tiket_pesawat');
+	}
+
+	function edit_tiket_page($id) {
+		$data['tiket_pesawat'] = $this->db->get_where('tiket_pesawat',  array('id' => $id) )->result();
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('edit_tiket', $data);
+		$this->load->view('footer');
+	}
+
+	function edit_tiket($id) {
+		$kota = $this->input->post('kota');
+		$biaya_tiket = $this->input->post('biaya_tiket');
+		$data = array(
+			'kota' => $kota,
+			'biaya_tiket' => $biaya_tiket,
+		);
+		$this->db->where('id', $id);
+		$this->db->update('tiket_pesawat', $data);
+		$this->href('home/tiket_pesawat');
+	}
+
+	function delete_tiket($id) {
+		$where = array('id' => $id );
+		$this->db->delete('tiket_pesawat', $where);
+		$this->alert("Berhasil menghapus");
+		$this->href('home/tiket_pesawat');
+	}
+
+	/*
+	 * CRUD Uang Harian
+	 *
+	 * */
 
 	public function uang_harian()
 	{
