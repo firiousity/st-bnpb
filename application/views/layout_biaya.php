@@ -1,4 +1,5 @@
-<div class="container">
+<body onload="window.print()">
+  <div class="container">
   <h4 style="text-align: center; margin-top: 30px;"><ins><b>PERINCIAN BIAYA PERJALANAN BISNIS</b></ins></h4>
   <p>Lamp. SPD Nomor      : 78/KADIH/05/2018<br>Tanggal         : 22 Mei 2018</p>
   <table class="table table-bordered">
@@ -67,3 +68,4 @@
     </div>
   </div>
 </div>
+</body>
