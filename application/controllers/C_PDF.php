@@ -151,14 +151,87 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(3,6,':',0,0);
 		$pdf->SetFont('Arial','B',10);
 		$pdf->MultiCell(0,6,$var_tgl_surat,0,'L');
+
 		$pdf->Cell(10,6,'No',1,0,'L');
 		$pdf->Cell(70,6,'Perincian biaya',1,0,'L');
 		$pdf->Cell(40,6,'Jumlah',1,0,'L');
 		$pdf->Cell(50,6,'Keterangan',1,1,'L');
+		$pdf->Cell(10,6,"",0,0,'L');
+		$pdf->Cell(70,6,'RINCIAN PENGELUARAN',0,0,'L');
+		$pdf->Cell(40,6,'',0,0,'L');
+		$pdf->MultiCell(50,6,'',0,'L');
+
+		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(10,6,"1",0,0,'L');
-		$pdf->Cell(70,6,'Uang harian',0,0,'L');
-		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'L');
+		$pdf->Cell(25,6,'Uang harian',0,0,'L');
+		$pdf->Cell(15,6,'5 Hari',0,0,'L');
+		$pdf->Cell(5,6,'x Rp',0,0,'L');
+		$pdf->Cell(25,6,'480.000',0,0,'R');
+		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'C');
 		$pdf->MultiCell(50,6,'Perjalanan Dinas Ke Maluku utara',0,'L');
+
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,6,"2",0,0,'L');
+		$pdf->Cell(25,6,'Uang harian',0,0,'L');
+		$pdf->Cell(15,6,'5 Hari',0,0,'L');
+		$pdf->Cell(5,6,'x Rp',0,0,'L');
+		$pdf->Cell(25,6,'480.000',0,0,'R');
+		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'C');
+		$pdf->MultiCell(50,6,'',0,'L');
+
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,6,"",0,0,'L');
+		$pdf->Cell(25,6,'',0,0,'L');
+		$pdf->Cell(15,6,'',0,0,'L');
+		$pdf->Cell(5,6,'',0,0,'L');
+		$pdf->Cell(25,6,'JUMLAH: ',0,0,'R');
+		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'C');
+		$pdf->MultiCell(50,6,'',0,'L');
+
+		$pdf->Ln();
+
+		$pdf->Cell(10,6,"",0,0,'L');
+		$pdf->Cell(70,6,'YANG TELAH DIBAYARKAN',0,0,'L');
+		$pdf->Cell(40,6,'',0,0,'L');
+		$pdf->MultiCell(50,6,'',0,'L');
+
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,6,"1",0,0,'L');
+		$pdf->Cell(25,6,'Uang harian',0,0,'L');
+		$pdf->Cell(15,6,'5 Hari',0,0,'L');
+		$pdf->Cell(5,6,'x Rp',0,0,'L');
+		$pdf->Cell(25,6,'480.000',0,0,'R');
+		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'C');
+		$pdf->MultiCell(50,6,'Perjalanan Dinas Ke Maluku utara',0,'L');
+
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,6,"2",0,0,'L');
+		$pdf->Cell(25,6,'Uang harian',0,0,'L');
+		$pdf->Cell(15,6,'5 Hari',0,0,'L');
+		$pdf->Cell(5,6,'x Rp',0,0,'L');
+		$pdf->Cell(25,6,'480.000',0,0,'R');
+		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'C');
+		$pdf->MultiCell(50,6,'',0,'L');
+
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,6,"",0,0,'L');
+		$pdf->Cell(25,6,'',0,0,'L');
+		$pdf->Cell(15,6,'',0,0,'L');
+		$pdf->Cell(5,6,'',0,0,'L');
+		$pdf->Cell(25,6,'JUMLAH: ',0,0,'R');
+		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'C');
+		$pdf->MultiCell(50,6,'',0,'L');
+
+		$pdf->Ln();
+		
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,6,"",0,0,'L');
+		$pdf->Cell(25,6,'SISA KURANG',0,0,'L');
+		$pdf->Cell(15,6,'',0,0,'L');
+		$pdf->Cell(5,6,'',0,0,'L');
+		$pdf->Cell(25,6,'JUMLAH: ',0,0,'R');
+		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'C');
+		$pdf->MultiCell(50,6,'',0,'L');
 
 		//Cetak gans
 		$pdf->Output();
