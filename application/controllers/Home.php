@@ -72,7 +72,7 @@ class Home extends CI_Controller {
 		$this->load->view('navbar');
 		$this->load->view('header');
         $this->load->view('beranda');
-        $this->load->view('footer');
+        $this->load->view('footer2');
     } 	
 
 	/*

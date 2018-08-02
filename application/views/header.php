@@ -2,33 +2,9 @@
 <html lang="en">
 
 <head>
-	<style>
-	.html {
-        position: relative;
-        min-height: 100%;
-    }
-    .footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        /* Set the fixed height of the footer here */
-        height: 50px;
-        background-color: #7D80DA;
-    }
-    .body {
-        /* Margin bottom by footer height */
-        margin-bottom: 30px;
-    }
-		.center {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-    	}
-	</style>
 	<link rel="shortcut icon" href="<?php echo base_url('assets/img/logo.png')?>">
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>Surat Tugas</title>
 	<!-- Font Awesome -->
@@ -88,5 +64,33 @@
     	$('.dropdown-toggle').dropdown();
 	});
 </script> -->
+<style>
+	.html {
+        position: relative;
+        min-height: 100%;
+    }
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        /* Set the fixed height of the footer here */
+        height: 50px;
+        background-color: #7D80DA;
+    }
+    .body {
+        /* Margin bottom by footer height */
+        margin-bottom: 60px;
+    }
+	.center {
+    	position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+    .margin{
+    	margin-bottom: 5%;
+    	margin-top: 5%;
+    }
+	</style>
 </head>
 

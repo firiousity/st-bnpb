@@ -1,7 +1,8 @@
 <body>
-<div class="container" style="margin-top: 10%">
-
-	<?php foreach ($pegawai as $row) {
+<div class="container margin">
+	<div class="card mb-4">
+		<div class="card-body">
+			<?php foreach ($pegawai as $row) {
 		$url = "home/edit_pegawai/".$row->id_pegawai;
 		echo "
 			<form action=".base_url($url)." method=\"post\">
@@ -36,6 +37,9 @@
 			</div>
 		</form>";
 	}
-	?>
+	?>	
+		</div>
+	</div>
+	
 </div>
 </body>

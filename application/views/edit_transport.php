@@ -1,7 +1,8 @@
 <body>
-<div class="container" style="margin-top: 10%">
-
-	<?php foreach ($biaya_transport as $row) {
+<div class="container margin">
+	<div class="card mb-4">
+		<div class="card-body">
+			<?php foreach ($biaya_transport as $row) {
 		$url = "home/edit_transport/".$row->id;
 		echo "
 			<form action=".base_url($url)." method=\"post\">
@@ -22,6 +23,9 @@
 			</div>
 		</form>";
 	}
-	?>
+	?>		
+		</div>
+	</div>
+	
 </div>
 </body>
