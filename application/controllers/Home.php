@@ -75,14 +75,9 @@ class Home extends CI_Controller {
         $this->load->view('footer');
     } 	
 
-
-<<<<<<< Updated upstream
 	/*
 	 * Surat Management
 	 */
-
-=======
->>>>>>> Stashed changes
 	public function lihat_surat() {
 		$this->load->view('nav');
 		$this->load->view('header');
