@@ -84,19 +84,19 @@
 							<div class="md-form mb-4">
 								<!-- <i class="fa fa-address-card prefix grey-text"></i> -->
 								<input type="text" id="orangeForm-email" class="form-control validate" name="nip">
-								<label data-error="wrong" data-success="right" for="orangeForm-email">NIP</label>
+								<label data-error="wrong" data-success="right">NIP</label>
 							</div>
 
 							<div class="md-form mb-4">
 								<!-- <i class="fa fa-lock prefix grey-text"></i> -->
 								<input type="text" id="orangeForm-pass" class="form-control validate" name="jabatan">
-								<label data-error="wrong" data-success="right" for="orangeForm-pass">Jabatan</label>
+								<label data-error="wrong" data-success="right">Jabatan</label>
 							</div>
 
 							<div class="md-form mb-4">
 								<!-- <i class="fa fa-lock prefix grey-text"></i> -->
 								<input type="text" id="orangeForm-pass" class="form-control validate" name="gol">
-								<label data-error="wrong" data-success="right" for="orangeForm-pass">Golongan</label>
+								<label data-error="wrong" data-success="right">Golongan</label>
 							</div>
 						</div>
 						<div class="modal-footer d-flex justify-content-center">
