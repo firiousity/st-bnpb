@@ -76,7 +76,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form action="<?php echo base_url('home/tambah_pegawai') ?>" method="post">
+          <form action="<?php echo base_url('home/tambah_harian') ?>" method="post">
             <div class="modal-body mx-5">
               <div class="md-form mb-4">
                 <input type="text" class="form-control" name="provinsi">
