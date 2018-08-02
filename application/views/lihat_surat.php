@@ -1,6 +1,5 @@
 <body>
-    <section>
-        <div class="container center">
+        <div class="container" style="margin-top: 5%;">
                 <div class="card mb-8">
 
                     <div class="card-body">
@@ -76,12 +75,8 @@
                         
                     </div>
                 </div>
-                </div>
-            </div>
-        </div>
-    </section>
-        
-    </div>
+              </div>
+          </div>
 
 </body>
 
