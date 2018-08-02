@@ -6,6 +6,12 @@ class Home_model extends CI_Model {
 		return $query->result();
 	}
 
+	function get_transport() {
+		$this->db->from('uang_harian');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	function get_nomor() {
 		$this->db->select('id');
 		$this->db->from('surat_dinas');

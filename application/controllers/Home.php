@@ -1,4 +1,4 @@
-<?php
+//<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
@@ -60,6 +60,15 @@ class Home extends CI_Controller {
 		$this->load->view('nav');
 		$this->load->view('header');
 		$this->load->view('pegawai', $data);
+		$this->load->view('footer');
+	}
+
+	public function transport()
+	{
+		$data['transport'] = $this->home_model->get_transport();
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('biaya_transport', $data);
 		$this->load->view('footer');
 	}
 
