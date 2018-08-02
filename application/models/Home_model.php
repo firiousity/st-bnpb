@@ -13,7 +13,7 @@ class Home_model extends CI_Model {
 	}
 
 	function get_nomor() {
-		$this->db->select('id');
+		$this->db->select('nomor');
 		$this->db->from('surat_dinas');
 		$this->db->order_by('id', 'desc');
 		$this->db->limit(1);
