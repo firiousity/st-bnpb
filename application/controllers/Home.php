@@ -137,9 +137,10 @@ class Home extends CI_Controller {
 
 	public function biaya_transport()
 	{
+		$data['transport'] = $this->home_model->get_biaya_transport();
 		$this->load->view('nav');
 		$this->load->view('header');
-		$this->load->view('biaya_transport');
+		$this->load->view('biaya_transport', $data);
 		$this->load->view('footer');
 	}
 

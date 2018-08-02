@@ -6,8 +6,8 @@ class Home_model extends CI_Model {
 		return $query->result();
 	}
 
-	function get_transport() {
-		$this->db->from('uang_harian');
+	function get_biaya_transport() {
+		$this->db->from('biaya_transport');
 		$query = $this->db->get();
 		return $query->result();
 	}
