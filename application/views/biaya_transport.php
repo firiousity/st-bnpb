@@ -22,8 +22,8 @@
                               <td> Rp ".$row->besaran."</td>
                               
                               <td>
-                                 <span class='table-remove'><a href='".base_url("home/edit_pegawai_page/$row->id")."'><button type='button'  class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
-                                 <span class='table-remove'><a href='".base_url("home/delete_pegawai/$row->id")."'><button type='button' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
+                                 <span class='table-remove'><a href='".base_url("home/edit_transport_page/$row->id")."'><button type='button'  class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
+                                 <span class='table-remove'><a href='".base_url("home/delete_transport/$row->id")."'><button type='button' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
                               </td>
                             </tr>
                             <tr>";

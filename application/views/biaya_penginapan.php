@@ -27,8 +27,8 @@
                               <td> Rp ".$row->eselon_4."</td>
                               <td> Rp ".$row->eselon_5."</td>
                               <td>
-                                <span class='table-remove'><a href='".base_url("home/edit_pegawai_page/$row->id")."'><button type='button'  class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
-                                <span class='table-remove'><a href='".base_url("home/delete_pegawai/$row->id")."'><button type='button' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
+                                <span class='table-remove'><a href='".base_url("home/edit_penginapan_page/$row->id")."'><button type='button'  class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
+                                <span class='table-remove'><a href='".base_url("home/delete_penginapan/$row->id")."'><button type='button' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
                                 </td>
                             </tr>
                             <tr>";
@@ -78,7 +78,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form action="<?php echo base_url('home/tambah_biaya_penginapan') ?>" method="post">
+          <form action="<?php echo base_url('home/tambah_penginapan') ?>" method="post">
             <div class="modal-body mx-5">
               <div class="md-form mb-4">
                 <input type="text" class="form-control" name="provinsi">

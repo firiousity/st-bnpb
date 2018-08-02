@@ -51,11 +51,6 @@ class Home_model extends CI_Model {
 		return $query->result();
 	}
 
-	function delete_pegawai($where) {
-		$this->db->where($where);
-		$this->db->delete('pegawai');
-	}
-
 	public function __construct() {
         parent::__construct();
     }

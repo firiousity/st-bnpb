@@ -125,7 +125,7 @@ class Home extends CI_Controller {
 	}
 
 	/*
-	 * Anggaran Management
+	 * CRUD Biaya Penginapan
 	 *
 	 * */
 
@@ -137,7 +137,8 @@ class Home extends CI_Controller {
 		$this->load->view('biaya_penginapan', $data);
 		$this->load->view('footer');
 	}
-	public function tambah_biaya_penginapan() {
+
+	public function tambah_penginapan() {
 		$provinsi = $this->input->post('provinsi');
 		$eselon_1 = $this->input->post('eselon_1');
 		$eselon_2 = $this->input->post('eselon_2');
@@ -154,9 +155,47 @@ class Home extends CI_Controller {
 		);
 		$this->db->insert('biaya_penginapan', $data);
 		$this->href('home/biaya_penginapan');
-
 	}
 
+	function edit_penginapan_page($id) {
+		$data['biaya_penginapan'] = $this->db->get_where('biaya_penginapan',  array('id' => $id) )->result();
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('edit_penginapan', $data);
+		$this->load->view('footer');
+	}
+
+	function edit_penginapan($id) {
+		$provinsi = $this->input->post('provinsi');
+		$eselon_1 = $this->input->post('eselon_1');
+		$eselon_2 = $this->input->post('eselon_2');
+		$eselon_3 = $this->input->post('eselon_3');
+		$eselon_4 = $this->input->post('eselon_4');
+		$eselon_5 = $this->input->post('eselon_5');
+		$data = array(
+			'provinsi' => $provinsi,
+			'eselon_1' => $eselon_1,
+			'eselon_2' => $eselon_2,
+			'eselon_3' => $eselon_3,
+			'eselon_4' => $eselon_4,
+			'eselon_5' => $eselon_5,
+		);
+		$this->db->where('id', $id);
+		$this->db->update('biaya_penginapan', $data);
+		$this->href('home/biaya_penginapan');
+	}
+
+	function delete_penginapan($id) {
+		$where = array('id' => $id );
+		$this->db->delete('biaya_penginapan', $where);
+		$this->alert("Berhasil menghapus");
+		$this->href('home/biaya_penginapan');
+	}
+
+	/*
+	 * CRUD Biaya Transport
+	 *
+	 * */
 
 	public function biaya_transport()
 	{
@@ -167,6 +206,51 @@ class Home extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function tambah_transport() {
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('biaya_transport', $data);
+		$this->load->view('footer');
+		$data = array(
+			'provinsi' => $provinsi,
+			'besaran' => $besaran,
+		);
+		$this->db->insert('biaya_transport', $data);
+		$this->href('home/biaya_transport');
+	}
+
+	function edit_transport_page($id) {
+		$data['biaya_transport'] = $this->db->get_where('biaya_transport',  array('id' => $id) )->result();
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('edit_transport', $data);
+		$this->load->view('footer');
+	}
+
+	function edit_transport($id) {
+		$provinsi = $this->input->post('provinsi');
+		$besaran = $this->input->post('besaran');
+		$data = array(
+			'provinsi' => $provinsi,
+			'besaran' => $besaran,
+		);
+		$this->db->where('id', $id);
+		$this->db->update('biaya_transport', $data);
+		$this->href('home/biaya_transport');
+	}
+
+	function delete_transport($id) {
+		$where = array('id' => $id );
+		$this->db->delete('biaya_transport', $where);
+		$this->alert("Berhasil menghapus");
+		$this->href('home/biaya_transport');
+	}
+
+	/*
+	 * CRUD Tiket Pesawat
+	 *
+	 * */
+
 	public function tiket_pesawat()
 	{
 		$data['pesawat'] = $this->home_model->get_tiket_pesawat();
@@ -176,6 +260,51 @@ class Home extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function tambah_tiket() {
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('tiket_pesawat', $data);
+		$this->load->view('footer');
+		$data = array(
+			'kota' => $kota,
+			'biaya_tiket' => $biaya_tiket,
+		);
+		$this->db->insert('tiket_pesawat', $data);
+		$this->href('home/tiket_pesawat');
+	}
+
+	function edit_tiket_page($id) {
+		$data['tiket_pesawat'] = $this->db->get_where('tiket_pesawat',  array('id' => $id) )->result();
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('edit_tiket', $data);
+		$this->load->view('footer');
+	}
+
+	function edit_tiket($id) {
+		$kota = $this->input->post('kota');
+		$biaya_tiket = $this->input->post('biaya_tiket');
+		$data = array(
+			'kota' => $kota,
+			'biaya_tiket' => $biaya_tiket,
+		);
+		$this->db->where('id', $id);
+		$this->db->update('tiket_pesawat', $data);
+		$this->href('home/tiket_pesawat');
+	}
+
+	function delete_tiket($id) {
+		$where = array('id' => $id );
+		$this->db->delete('tiket_pesawat', $where);
+		$this->alert("Berhasil menghapus");
+		$this->href('home/tiket_pesawat');
+	}
+
+	/*
+	 * CRUD Uang Harian
+	 *
+	 * */
+
 	public function uang_harian()
 	{
 		$data['harian'] = $this->home_model->get_uang_harian();
@@ -183,6 +312,52 @@ class Home extends CI_Controller {
 		$this->load->view('header');
 		$this->load->view('uang_harian', $data);
 		$this->load->view('footer');
+	}
+
+	public function tambah_harian() {
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('uang_harian', $data);
+		$this->load->view('footer');
+		$data = array(
+			'provinsi' => $provinsi,
+			'luar_kota' => $luar_kota,
+			'dalam_kota' => $dalam_kota,
+			'diklat' => $diklat,
+		);
+		$this->db->insert('uang_harian', $data);
+		$this->href('home/uang_harian');
+	}
+
+	function edit_harian_page($id) {
+		$data['uang_harian'] = $this->db->get_where('uang_harian',  array('id' => $id) )->result();
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('edit_harian', $data);
+		$this->load->view('footer');
+	}
+
+	function edit_harian($id) {
+		$provinsi = $this->input->post('provinsi');
+		$luar_kota = $this->input->post('luar_kota');
+		$dalam_kota = $this->input->post('dalam_kota');
+		$diklat = $this->input->post('diklat');
+		$data = array(
+			'provinsi' => $provinsi,
+			'luar_kota' => $luar_kota,
+			'dalam_kota' => $dalam_kota,
+			'diklat' => $diklat,
+		);
+		$this->db->where('id', $id);
+		$this->db->update('uang_harian', $data);
+		$this->href('home/uang_harian');
+	}
+
+	function delete_harian($id) {
+		$where = array('id' => $id );
+		$this->db->delete('uang_harian', $where);
+		$this->alert("Berhasil menghapus");
+		$this->href('home/uang_harian');
 	}
 
 	public function uang_representasi()
@@ -239,7 +414,7 @@ class Home extends CI_Controller {
 		$data['pegawai'] = $this->db->get_where('pegawai',  array('id_pegawai' => $id) )->result();
 		$this->load->view('navbar');
 		$this->load->view('header');
-		$this->load->view('edit_page', $data);
+		$this->load->view('edit_pegawai', $data);
 		$this->load->view('footer');
 	}
 
