@@ -423,6 +423,12 @@ class Home extends CI_Controller {
 		$this->load->view('layout_biaya');
 	}
 
+	public function layout_perhitungan()
+	{
+		$this->load->view('header');
+		$this->load->view('layout_perhitungan');
+	}
+
 	/*
 	 * Pegawai Management
 	 */
