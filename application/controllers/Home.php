@@ -120,7 +120,7 @@ class Home extends CI_Controller {
 		}
 
 		$this->alert("Surat sukses di buat :)");
-		$this->href("home/beranda");
+		$this->href("home/lihat_surat");
 
 	}
 
