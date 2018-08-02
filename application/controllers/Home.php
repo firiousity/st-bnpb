@@ -1,4 +1,4 @@
-//<?php
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
@@ -75,11 +75,9 @@ class Home extends CI_Controller {
         $this->load->view('footer');
     } 	
 
-
 	/*
 	 * Surat Management
 	 */
-
 	public function lihat_surat() {
 		$this->load->view('nav');
 		$this->load->view('header');
