@@ -1,12 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: MNurilmanBaehaqi
- * Date: 8/1/2018
- * Time: 3:49 PM
- */
-?>
-
 <body>
 <div class="container" style="margin-top: 10%">
 
