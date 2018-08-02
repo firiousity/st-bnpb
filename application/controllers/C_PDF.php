@@ -138,6 +138,28 @@ class C_PDF extends CI_Controller {
 			$pdf->MultiCell(0,6,"$row->nama_pegawai",0,'J');
 			$counter++;
 		}
+
+		//Page ke-3
+		$pdf->AddPage();
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(0,6,"PERINCIAN BIAYA PERJALANAN DINAS",0,1,'C');
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(34,6,'Lamp. SPD Nomor',0,0);
+		$pdf->Cell(3,6,':',0,0);
+		$pdf->MultiCell(0,6,$nomor,0,'L');
+		$pdf->Cell(34,6,'Tanggal',0,0);
+		$pdf->Cell(3,6,':',0,0);
+		$pdf->SetFont('Arial','B',10);
+		$pdf->MultiCell(0,6,$var_tgl_surat,0,'L');
+		$pdf->Cell(10,6,'No',1,0,'L');
+		$pdf->Cell(70,6,'Perincian biaya',1,0,'L');
+		$pdf->Cell(40,6,'Jumlah',1,0,'L');
+		$pdf->Cell(50,6,'Keterangan',1,1,'L');
+		$pdf->Cell(10,6,"1",0,0,'L');
+		$pdf->Cell(70,6,'Uang harian',0,0,'L');
+		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'L');
+		$pdf->MultiCell(50,6,'Perjalanan Dinas Ke Maluku utara',0,'L');
+
 		//Cetak gans
 		$pdf->Output();
 
