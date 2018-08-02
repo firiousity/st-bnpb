@@ -8,6 +8,7 @@
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
                               <th scope="col">Provinsi</th>
+                              <th scope="col">Satuan</th>
                               <th scope="col">Luar Kota</th>
                               <th scope="col">Dalam Kota</th>
                               <th scope="col">Diklat</th>
@@ -19,12 +20,13 @@
                 echo "
                 <tr>
                               <td>".$row->provinsi."</td>
+                              <td>OH</td>
                               <td> Rp ".$row->luar_kota."</td>
                               <td> Rp ".$row->dalam_kota."</td>
                               <td> Rp ". $row->diklat."</td>
                               <td>
-                                <span class='table-remove'><a href='".base_url("home/edit_pegawai_page/$row->id")."'><button type='button'  class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
-                                <span class='table-remove'><a href='".base_url("home/delete_pegawai/$row->id")."'><button type='button' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
+                                <span class='table-remove'><a href='".base_url("home/edit_harian_page/$row->id")."'><button type='button'  class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
+                                <span class='table-remove'><a href='".base_url("home/delete_harian/$row->id")."'><button type='button' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
                                 </td>
                             </tr>
                             <tr>";

@@ -314,6 +314,52 @@ class Home extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function tambah_harian() {
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('uang_harian', $data);
+		$this->load->view('footer');
+		$data = array(
+			'provinsi' => $provinsi,
+			'luar_kota' => $luar_kota,
+			'dalam_kota' => $dalam_kota,
+			'diklat' => $diklat,
+		);
+		$this->db->insert('uang_harian', $data);
+		$this->href('home/uang_harian');
+	}
+
+	function edit_harian_page($id) {
+		$data['uang_harian'] = $this->db->get_where('uang_harian',  array('id' => $id) )->result();
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('edit_harian', $data);
+		$this->load->view('footer');
+	}
+
+	function edit_harian($id) {
+		$provinsi = $this->input->post('provinsi');
+		$luar_kota = $this->input->post('luar_kota');
+		$dalam_kota = $this->input->post('dalam_kota');
+		$diklat = $this->input->post('diklat');
+		$data = array(
+			'provinsi' => $provinsi,
+			'luar_kota' => $luar_kota,
+			'dalam_kota' => $dalam_kota,
+			'diklat' => $diklat,
+		);
+		$this->db->where('id', $id);
+		$this->db->update('uang_harian', $data);
+		$this->href('home/uang_harian');
+	}
+
+	function delete_harian($id) {
+		$where = array('id' => $id );
+		$this->db->delete('uang_harian', $where);
+		$this->alert("Berhasil menghapus");
+		$this->href('home/uang_harian');
+	}
+
 	public function uang_representasi()
 	{
 		$data['representasi'] = $this->home_model->get_uang_representasi();
