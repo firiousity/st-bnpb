@@ -142,6 +142,17 @@ class C_PDF extends CI_Controller {
 		$pdf->Output();
 
 	}
+
+	function firly() {
+		$pdf = new FPDF('p','mm','A4');
+		$pdf->AddPage();
+		$pdf->SetFont('Arial','B',12);
+		$pdf->MultiCell(0,6,"ENA",0,'J');
+		$pdf->SetFont('Arial','',12);
+
+		//Cetak gans
+		$pdf->Output();
+	}
 	function ena ($id) {
 		$surat_tugas = $this->db->select('nomor')->get_where('surat_dinas', array('id' => $id))->result();
 		echo $surat_tugas['0']->nomor;
