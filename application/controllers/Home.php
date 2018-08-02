@@ -238,16 +238,7 @@ class Home extends CI_Controller {
 		$this->db->update('pegawai', $data);
 		$this->href('home/pegawai');
 	}
-}
-
-//Pagination
-	public function __construct() {
-        parent:: __construct();
-        $this->load->helper("url");
-        $this->load->model("Countries");
-        $this->load->library("pagination");
-    }
-
+    
     public function example1() {
         $config = array();
         $config["base_url"] = base_url() . "welcome/example1";
@@ -264,3 +255,4 @@ class Home extends CI_Controller {
 
         $this->load->view("example1", $data);
     }
+}
