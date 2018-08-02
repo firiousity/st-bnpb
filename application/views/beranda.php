@@ -11,7 +11,7 @@
 	</div>
 </div>
 <!-- Card deck -->
-<div class="container" style="position: fixed; top: 45%; left: 50%; transform: translateX(-50%) translateY(-50%);">
+<div class="container center">
 <div class="card-deck">
 
   <!-- Card -->
