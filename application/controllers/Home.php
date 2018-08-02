@@ -130,9 +130,10 @@ class Home extends CI_Controller {
 
 	public function biaya_penginapan()
 	{
+		$data['penginapan'] = $this->home_model->get_biaya_penginapan();
 		$this->load->view('nav');
 		$this->load->view('header');
-		$this->load->view('biaya_penginapan');
+		$this->load->view('biaya_penginapan', $data);
 		$this->load->view('footer');
 	}
 
@@ -147,17 +148,19 @@ class Home extends CI_Controller {
 
 	public function tiket_pesawat()
 	{
+		$data['pesawat'] = $this->home_model->get_tiket_pesawat();
 		$this->load->view('nav');
 		$this->load->view('header');
-		$this->load->view('tiket_pesawat');
+		$this->load->view('tiket_pesawat', $data);
 		$this->load->view('footer');
 	}
 
 	public function uang_harian()
 	{
+		$data['harian'] = $this->home_model->get_uang_harian();
 		$this->load->view('nav');
 		$this->load->view('header');
-		$this->load->view('uang_harian');
+		$this->load->view('uang_harian', $data);
 		$this->load->view('footer');
 	}
 

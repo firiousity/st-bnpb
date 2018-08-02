@@ -34,7 +34,7 @@
           <div class="row">
             <div class="col">
               <div align="left">
-                <a href="#"><button type="button" data-toggle="modal" data-target="#modalRegisterForm" class="btn btn-indigo btn-md">Tambah Pegawai</button></a>
+                <a href="#"><button type="button" data-toggle="modal" data-target="#modalRegisterForm" class="btn btn-indigo btn-md">Tambah</button></a>
               </div>
             </div>
             <div class="col">

@@ -27,7 +27,6 @@
 
     <!--Card content-->
     <div class="card-body">
-
       <!--Title-->
       <h4 class="card-title">Persuratan</h4>
       <!--Text-->
