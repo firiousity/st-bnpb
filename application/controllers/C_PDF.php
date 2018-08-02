@@ -149,9 +149,10 @@ class C_PDF extends CI_Controller {
 		$pdf->MultiCell(0,6,$nomor,0,'L');
 		$pdf->Cell(34,6,'Tanggal',0,0);
 		$pdf->Cell(3,6,':',0,0);
-		$pdf->SetFont('Arial','B',10);
 		$pdf->MultiCell(0,6,$var_tgl_surat,0,'L');
+		$pdf->Ln();
 
+		$pdf->SetFont('Arial','B',10);
 		$pdf->Cell(10,6,'No',1,0,'L');
 		$pdf->Cell(70,6,'Perincian biaya',1,0,'L');
 		$pdf->Cell(40,6,'Jumlah',1,0,'L');
@@ -179,7 +180,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'C');
 		$pdf->MultiCell(50,6,'',0,'L');
 
-		$pdf->SetFont('Arial','',10);
+		$pdf->SetFont('Arial','B',10);
 		$pdf->Cell(10,6,"",0,0,'L');
 		$pdf->Cell(25,6,'',0,0,'L');
 		$pdf->Cell(15,6,'',0,0,'L');
@@ -204,7 +205,6 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'C');
 		$pdf->MultiCell(50,6,'Perjalanan Dinas Ke Maluku utara',0,'L');
 
-		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(10,6,"2",0,0,'L');
 		$pdf->Cell(25,6,'Uang harian',0,0,'L');
 		$pdf->Cell(15,6,'5 Hari',0,0,'L');
@@ -213,7 +213,6 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'C');
 		$pdf->MultiCell(50,6,'',0,'L');
 
-		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(10,6,"",0,0,'L');
 		$pdf->Cell(25,6,'',0,0,'L');
 		$pdf->Cell(15,6,'',0,0,'L');
@@ -223,8 +222,8 @@ class C_PDF extends CI_Controller {
 		$pdf->MultiCell(50,6,'',0,'L');
 
 		$pdf->Ln();
-		
-		$pdf->SetFont('Arial','',10);
+
+		$pdf->SetFont('Arial','B',10);
 		$pdf->Cell(10,6,"",0,0,'L');
 		$pdf->Cell(25,6,'SISA KURANG',0,0,'L');
 		$pdf->Cell(15,6,'',0,0,'L');
@@ -232,6 +231,42 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'JUMLAH: ',0,0,'R');
 		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'C');
 		$pdf->MultiCell(50,6,'',0,'L');
+
+		$pdf->Ln();
+
+		$pdf->Cell(10,6,"",0,0,'L');
+		$pdf->Cell(25,6,'',0,0,'L');
+		$pdf->Cell(15,6,'',0,0,'L');
+		$pdf->Cell(5,6,'',0,0,'L');
+		$pdf->Cell(25,6,'Terbilang: ',0,0,'R');
+		$pdf->MultiCell(80,6,'Sembilan juta empat puluh satu ribu rupiah',0,'C');
+		//$pdf->MultiCell(50,6,'',0,'L');
+
+		$pdf->Ln();
+
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,6,"",0,0,'L');
+		$pdf->Cell(25,6,'',0,0,'L');
+		$pdf->Cell(15,6,'',0,0,'L');
+		$pdf->Cell(5,6,'',0,0,'L');
+		$pdf->Cell(25,6,'',0,0,'R');
+		$pdf->Cell(40,6,'',0,0,'C');
+		$pdf->MultiCell(50,6,'Jakarta, 27 Februari 2018',0,'R');
+
+		$pdf->Ln();
+		$pdf->Cell(100,6,"Mengetahui \nPejabat Pembuat Komitmen",0, 0,'C');
+		$pdf->MultiCell(70,6,'Yang melakukan perjalanan dinas',0,'R');
+
+		$pdf->Ln();
+		$pdf->Ln();
+
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Ln();
+		$pdf->Cell(100,6,"Linda Lestari, S.Kom",0, 0,'C');
+		$pdf->MultiCell(70,6,'Leonard, S.T',0,'C');
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(100,6,"NIP. 1919191919919191",0, 0,'C');
+		$pdf->MultiCell(70,6,'NIP. 1919191919919191',0,'C');
 
 		//Cetak gans
 		$pdf->Output();
