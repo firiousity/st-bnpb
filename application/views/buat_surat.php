@@ -13,7 +13,7 @@ $tahun = date("Y");
  * Get last index of nomor surat
  */
 $json = json_encode($nomor);
-$json = (int) $json[8];
+$json = (int) $json[11];
 $json = $json + 1;
 $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 
@@ -22,7 +22,7 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 	<div class="container">
 		<div class="card" style="margin: 1%">
 			<h1>
-				<?php  echo $json[8]?>
+				<?php ?>
 			</h1>
 			<!-- Default form contact -->
 			<form class="needs-validation" novalidate style="margin: 10%" action="exec_buat_surat" method="post">
