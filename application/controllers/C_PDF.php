@@ -147,8 +147,17 @@ class C_PDF extends CI_Controller {
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','B',12);
-		$pdf->MultiCell(0,6,"ENA",0,'J');
+		$pdf->Cell(0,6,"",0,1,'C');
+		$pdf->Ln();
+		$pdf->Cell(0,6,"",0,1,'C');
+		$pdf->Ln();
+		$pdf->Ln();
+		$pdf->Cell(0,6,"",0,1,'C');
+		$pdf->Ln();
+		$pdf->MultiCell(0,8,"DAFTAR PENGELUARAN RILL",0,'C');
 		$pdf->SetFont('Arial','',12);
+		$pdf->Cell(10,7,'',0,1);
+		$pdf->MultiCell(0,6,"Yang bertandatangan di bawah ini",0,'C');
 
 		//Cetak gans
 		$pdf->Output();
