@@ -15,32 +15,6 @@
 <div class="card-deck">
 
   <!-- Card -->
-  <div class="card mb-12"  style="margin-top: 0px;">
-
-    <!--Card image-->
-    <div class="view overlay">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
-      <a href="#!">
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-
-    <!--Card content-->
-    <div class="card-body">
-
-      <!--Title-->
-      <h4 class="card-title">Lihat Surat</h4>
-      <!--Text-->
-      <p class="card-text">Some quick example text</p>
-      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <a href="lihat_surat"><button type="button" class="btn btn-indigo btn-md">Lihat</button></a>
-
-    </div>
-
-  </div>
-  <!-- Card -->
-
-  <!-- Card -->
   <div class="card mb-12">
 
     <!--Card image-->
@@ -55,11 +29,19 @@
     <div class="card-body">
 
       <!--Title-->
-      <h4 class="card-title">Buat Surat</h4>
+      <h4 class="card-title">Persuratan</h4>
       <!--Text-->
-      <p class="card-text">Some quick example text</p>
+      <p class="card-text">Lihat dan buat surat</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-		  <a href="buat_surat"><button type="button" class="btn btn-indigo btn-md">Buat</button></a>
+		  <div class="btn-group">
+    <button id="anggaran" data-target="#" href="https://example.com" class="btn btn-indigo btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Pilih
+    </button>
+    <div class="dropdown-menu" aria-labelledby="anggaran">
+        <a class="dropdown-item" href="lihat_surat">Lihat Surat</a>
+        <a class="dropdown-item" href="buat_surat">Buat Surat</a>
+    </div>
+</div>
 
     </div>
 
