@@ -1,6 +1,6 @@
 <body>
   <div class="container">
-    <div class="card mb-8" style="margin-top: 5%;">
+    <div class="card mb-8" style="margin: 5%;">
       <div class="card-body">
         <p style="font-size: 27px;">Uang Harian</p>
         <div align="center">

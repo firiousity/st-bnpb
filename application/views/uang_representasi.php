@@ -1,6 +1,6 @@
 <body>
   <div class="container">
-    <div class="card mb-8" style="margin-top: 5%;">
+    <div class="card mb-8" style="margin: 5%;">
       <div class="card-body">
         <p style="font-size: 27px;">Uang Representasi</p>
         <div align="center">
@@ -14,10 +14,10 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <?php foreach ($harian as $row) {
+                            <?php foreach ($representasi as $row) {
                 echo "
                 <tr>
-                              <td>".$row->provinsi."</td>
+                              <td>".$row->uraian."</td>
                               <td> Rp ".$row->luar_kota."</td>
                               <td> Rp ".$row->dalam_kota."</td>
                               <td>
