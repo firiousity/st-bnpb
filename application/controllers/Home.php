@@ -360,6 +360,11 @@ class Home extends CI_Controller {
 		$this->href('home/uang_harian');
 	}
 
+	/*
+	 * CRUD Uang Harian
+	 *
+	 * */
+
 	public function uang_representasi()
 	{
 		$data['representasi'] = $this->home_model->get_uang_representasi();
@@ -367,6 +372,49 @@ class Home extends CI_Controller {
 		$this->load->view('header');
 		$this->load->view('uang_representasi', $data);
 		$this->load->view('footer');
+	}
+
+	public function tambah_representasi() {
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('uang_representasi', $data);
+		$this->load->view('footer');
+		$data = array(
+			'uraian' => $uraian,
+			'luar_kota' => $luar_kota,
+			'dalam_kota' => $dalam_kota,
+		);
+		$this->db->insert('uang_representasi', $data);
+		$this->href('home/uang_representasi');
+	}
+
+	function edit_representasi_page($id) {
+		$data['uang_representasi'] = $this->db->get_where('uang_representasi',  array('id' => $id) )->result();
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('uang_representasi', $data);
+		$this->load->view('footer');
+	}
+
+	function edit_representasi($id) {
+		$uraian = $this->input->post('uraian');
+		$luar_kota = $this->input->post('luar_kota');
+		$dalam_kota = $this->input->post('dalam_kota');
+		$data = array(
+			'uraian' => $uraian,
+			'luar_kota' => $luar_kota,
+			'dalam_kota' => $dalam_kota,
+		);
+		$this->db->where('id', $id);
+		$this->db->update('uang_representasi', $data);
+		$this->href('home/uang_representasi');
+	}
+
+	function delete_representasi($id) {
+		$where = array('id' => $id );
+		$this->db->delete('uang_representasi', $where);
+		$this->alert("Berhasil menghapus");
+		$this->href('home/uang_representasi');
 	}
 
 	public function layout_biaya()
@@ -412,7 +460,7 @@ class Home extends CI_Controller {
 
 	function edit_pegawai_page($id) {
 		$data['pegawai'] = $this->db->get_where('pegawai',  array('id_pegawai' => $id) )->result();
-		$this->load->view('navbar');
+		$this->load->view('nav');
 		$this->load->view('header');
 		$this->load->view('edit_pegawai', $data);
 		$this->load->view('footer');
