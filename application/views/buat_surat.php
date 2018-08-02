@@ -20,7 +20,7 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 ?>
 <body>
 	<div class="container">
-		<div class="card" style="margin: 1%">
+		<div class="card mb-6" style="margin: 5%">
 			<h1>
 				<?php ?>
 			</h1>
@@ -94,7 +94,7 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 					</div>
 				</div>
 
-				<button class="btn btn-primary" type="submit">Buat Surat</button>
+				<button class="btn btn-indigo" type="submit">Buat Surat</button>
 			</form>
 		</div>
 
