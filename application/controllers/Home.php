@@ -137,6 +137,26 @@ class Home extends CI_Controller {
 		$this->load->view('biaya_penginapan', $data);
 		$this->load->view('footer');
 	}
+	public function tambah_biaya_penginapan() {
+		$provinsi = $this->input->post('provinsi');
+		$eselon_1 = $this->input->post('eselon_1');
+		$eselon_2 = $this->input->post('eselon_2');
+		$eselon_3 = $this->input->post('eselon_3');
+		$eselon_4 = $this->input->post('eselon_4');
+		$eselon_5 = $this->input->post('eselon_5');
+		$data = array(
+			'provinsi' => $provinsi,
+			'eselon_1' => $eselon_1,
+			'eselon_2' => $eselon_2,
+			'eselon_3' => $eselon_3,
+			'eselon_4' => $eselon_4,
+			'eselon_5' => $eselon_5,
+		);
+		$this->db->insert('biaya_penginapan', $data);
+		$this->href('home/biaya_penginapan');
+
+	}
+
 
 	public function biaya_transport()
 	{
