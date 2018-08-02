@@ -2,7 +2,7 @@
   <div class="container">
     <div class="card mb-8" style="margin-top: 5%;">
       <div class="card-body">
-        <p style="font-size: 27px;">Kelola Pegawai</p>
+        <p style="font-size: 27px;">Biaya Transport</p>
         <div align="center">
           <table class="table table-hover">
                           <thead class="mdb-color darken-3 white-text">
@@ -19,7 +19,7 @@
                 <tr>
                               <td>".$row->provinsi."</td>
                               <td>Orang/Kali</td>
-                              <td>".$row->besaran."</td>
+                              <td> Rp ".$row->besaran."</td>
                               
                               <td>
                                  <span class='table-remove'><a href='".base_url("home/edit_pegawai_page/$row->id")."'><button type='button'  class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>

@@ -166,9 +166,10 @@ class Home extends CI_Controller {
 
 	public function uang_representasi()
 	{
+		$data['representasi'] = $this->home_model->get_uang_representasi();
 		$this->load->view('nav');
 		$this->load->view('header');
-		$this->load->view('uang_representasi');
+		$this->load->view('uang_representasi', $data);
 		$this->load->view('footer');
 	}
 
