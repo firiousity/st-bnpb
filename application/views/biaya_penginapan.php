@@ -2,7 +2,7 @@
   <div class="container">
     <div class="card mb-8" style="margin-top: 5%;">
       <div class="card-body">
-        <p style="font-size: 27px;">Kelola Pegawai</p>
+        <p style="font-size: 27px;">Biaya Penginapan</p>
         <div align="center">
           <table class="table table-hover">
                           <thead class="mdb-color darken-3 white-text">
@@ -20,12 +20,12 @@
                             <?php foreach ($penginapan as $row) {
                 echo "
                 <tr>
-                              <td>".$row->provinsi."</td>
-                              <td>".$row->eselon_1."</td>
-                              <td>".$row->eselon_2."</td>
-                              <td>".$row->eselon_3."</td>
-                              <td>".$row->eselon_4."</td>
-                              <td>".$row->eselon_5."</td>
+                              <td> Rp ".$row->provinsi."</td>
+                              <td> Rp ".$row->eselon_1."</td>
+                              <td> Rp ".$row->eselon_2."</td>
+                              <td> Rp ".$row->eselon_3."</td>
+                              <td> Rp ".$row->eselon_4."</td>
+                              <td> Rp ".$row->eselon_5."</td>
                               <td>
                                 <span class='table-remove'><a href='".base_url("home/edit_pegawai_page/$row->id")."'><button type='button'  class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
                                 <span class='table-remove'><a href='".base_url("home/delete_pegawai/$row->id")."'><button type='button' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
