@@ -26,6 +26,38 @@ class Home extends CI_Controller {
         $this->load->library("pagination");
     }
 
+	/*
+     * Helper Function
+     *
+     * */
+
+	function href ($route) {
+		echo "<script>
+         	window.location.href='".base_url()."$route';</script>";
+	}
+
+	function alert ($message) {
+		echo "<script>         	
+         	alert($message);</script>";
+	}
+
+	public function login() {
+		$sql = "select * from admin where nama = ? and password = ?";
+		$query = $this->db->query($sql, array($this->input->post('name'), $this->input->post('password')));
+		if($query->num_rows()> 0) {
+			$this->href("home/beranda");
+		} else {
+			echo "<script>         	
+         	alert('password atau username salah!');
+         	window.location.href='index';</script>";
+		}
+	}
+
+	/*
+	 * Main Funtion Mnagement
+	 *
+	 *  */
+
 	public function index()
 	{
 		$this->load->view('navbar');
@@ -34,17 +66,6 @@ class Home extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	public function login() {
-		 $sql = "select * from admin where nama = ? and password = ?";
-		 $query = $this->db->query($sql, array($this->input->post('name'), $this->input->post('password')));
-         if($query->num_rows()> 0) {
-         	$this->href("home/beranda");
-         } else {
-         	echo "<script>         	
-         	alert('password atau username salah!');
-         	window.location.href='index';</script>";
-         }
-	}
 
 	public function beranda()
 	{
@@ -54,23 +75,10 @@ class Home extends CI_Controller {
         $this->load->view('footer');
     } 	
 
-	public function pegawai()
-	{
-		$data['pegawai'] = $this->home_model->get_pegawai();
-		$this->load->view('nav');
-		$this->load->view('header');
-		$this->load->view('pegawai', $data);
-		$this->load->view('footer');
-	}
 
-	public function transport()
-	{
-		$data['transport'] = $this->home_model->get_transport();
-		$this->load->view('nav');
-		$this->load->view('header');
-		$this->load->view('biaya_transport', $data);
-		$this->load->view('footer');
-	}
+	/*
+	 * Surat Management
+	 */
 
 	public function lihat_surat() {
 		$this->load->view('nav');
@@ -117,15 +125,10 @@ class Home extends CI_Controller {
 		//$this->db->insert('surat_dinas', $data);
 	}
 
-	function href ($route) {
-		echo "<script>
-         	window.location.href='".base_url()."$route';</script>";
-	}
-
-	function alert ($message) {
-		echo "<script>         	
-         	alert($message);</script>";
-	}
+	/*
+	 * Anggaran Management
+	 *
+	 * */
 
 	public function biaya_penginapan()
 	{
@@ -173,9 +176,19 @@ class Home extends CI_Controller {
 		$this->load->view('header');
 		$this->load->view('layout_biaya');
 	}
+
 	/*
-	 * User Management
+	 * Pegawai Management
 	 */
+
+	public function pegawai()
+	{
+		$data['pegawai'] = $this->home_model->get_pegawai();
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('pegawai', $data);
+		$this->load->view('footer');
+	}
 	public function tambah_pegawai() {
 		$name = $this->input->post('nama');
 		$nip = $this->input->post('nip');
