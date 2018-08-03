@@ -318,9 +318,9 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(20,7,'diperoleh bukti-bukti pengeluarannya meliputi :',0,1);
 		$pdf->Ln();
-
 		//here is table
 		$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(15,7,'',0,0);
 		$pdf->Cell(10,6,'No',1,0,'L');
 		$pdf->Cell(70,6,'Perincian biaya',1,0,'L');
 		$pdf->Cell(40,6,'Jumlah',1,0,'L');
