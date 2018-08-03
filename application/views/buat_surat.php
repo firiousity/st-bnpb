@@ -91,7 +91,57 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 					</div>
 				</div>
 				<h2 class="judul">RINCIAN BIAYA</h2>
-				
+				<div class="form-row">
+					<div class="col">
+						<label >Uang Harian: </label>
+						<div class="input-group">
+							<select multiple="multiple" id="my-select-harian" name="my-select-harian[]">
+								<?php foreach ($harian as $row) {
+									echo
+									"<option value='$row->luar_kota'>$row->provinsi</option>" ;
+								}
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="col">
+						<label >Uang Penginapan: </label>
+						<div class="input-group">
+							<select multiple="multiple" id="my-select-penginapan" name="my-select-penginapan[]">
+								<?php foreach ($penginapan as $row) {
+									echo
+									"<option value='$row->eselon_4'>$row->provinsi</option>" ;
+								}
+								?>
+							</select>
+						</div>
+					</div>
+
+					<div class="col">
+						<label >Tiket Pesawat: </label>
+						<div class="input-group">
+							<select multiple="multiple" id="my-select-tiket" name="my-select-tiket[]">
+								<?php foreach ($tiket as $row) {
+									echo
+									"<option value='$row->biaya_tiket'>$row->kota</option>" ;
+								}
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="col">
+						<label >Uang Transportasi: </label>
+						<div class="input-group">
+							<select multiple="multiple" id="my-select-transport" name="my-select-transport[]">
+								<?php foreach ($transport as $row) {
+									echo
+									"<option value='$row->besaran'>$row->provinsi</option>" ;
+								}
+								?>
+							</select>
+						</div>
+					</div>
+				</div>
 
 				<button class="btn btn-indigo" type="submit">Buat Surat</button>
 			</form>
