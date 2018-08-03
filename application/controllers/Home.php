@@ -90,6 +90,10 @@ class Home extends CI_Controller {
 	{
 		$data['pegawai'] = $this->home_model->get_pegawai();
 		$data['nomor'] = $this->home_model->get_nomor();
+		$data['harian'] = $this->home_model->get_uang_harian()
+		$data['penginapan'] = $this->home_model->get_biaya_penginapan()
+		$data['tiket'] = $this->home_model->get_tiket_pesawat()
+		$data['transport'] = $this->home_model->get_biaya_transport()
 		$this->load->view('nav');
 		$this->load->view('header');
 		$this->load->view('buat_surat', $data);

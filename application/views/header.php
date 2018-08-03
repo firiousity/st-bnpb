@@ -91,6 +91,10 @@
     	margin-bottom: 5%;
     	margin-top: 5%;
     }
+
+	.judul {
+		margin: 2%;
+	}
 	</style>
 </head>
 

@@ -21,7 +21,8 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 				<?php ?>
 			</h1>
 			<!-- Default form contact -->
-			<form class="needs-validation" novalidate style="margin: 10%" action="exec_buat_surat" method="post">
+			<form class="needs-validation" novalidate style="margin: 1%" action="exec_buat_surat" method="post">
+				<h2 class="judul">DESKRIPSI UMUM</h2>
 				<div class="form-row">
 					<div class="col-md-4 mb-3">
 						<label for="validationCustom01">Nomor</label>
@@ -89,6 +90,58 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 						</div>
 					</div>
 				</div>
+				<h2 class="judul">RINCIAN BIAYA</h2>
+				<div class="form-row">
+					<div class="col">
+						<label >Uang Harian: </label>
+						<div class="input-group">
+							<select multiple="multiple" id="my-select-harian" name="my-select-harian[]">
+								<?php foreach ($pegawai as $row) {
+									echo
+									"<option value='$row->id_pegawai'>$row->nama_pegawai</option>" ;
+								}
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="col">
+						<label >Uang Penginapan: </label>
+						<div class="input-group">
+							<select multiple="multiple" id="my-select-penginapan" name="my-select-penginapan[]">
+								<?php foreach ($pegawai as $row) {
+									echo
+									"<option value='$row->id_pegawai'>$row->nama_pegawai</option>" ;
+								}
+								?>
+							</select>
+						</div>
+					</div>
+
+					<div class="col">
+						<label >Tiket Pesawat: </label>
+						<div class="input-group">
+							<select multiple="multiple" id="my-select-tiket" name="my-select-tiket[]">
+								<?php foreach ($pegawai as $row) {
+									echo
+									"<option value='$row->id_pegawai'>$row->nama_pegawai</option>" ;
+								}
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="col">
+						<label >Transport: </label>
+						<div class="input-group">
+							<select multiple="multiple" id="my-select-transport" name="my-select-transport[]">
+								<?php foreach ($pegawai as $row) {
+									echo
+									"<option value='$row->id_pegawai'>$row->nama_pegawai</option>" ;
+								}
+								?>
+							</select>
+						</div>
+					</div>
+				</div>
 
 				<button class="btn btn-indigo" type="submit">Buat Surat</button>
 			</form>
@@ -99,5 +152,9 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 <script type="text/javascript">
 	// Example starter JavaScript for disabling form submissions if there are invalid fields
 	$('#my-select').multiSelect();
+	$('#my-select-tiket').multiSelect();
+	$('#my-select-harian').multiSelect();
+	$('#my-select-penginapan').multiSelect();
+	$('#my-select-transport').multiSelect();
 </script>
 
