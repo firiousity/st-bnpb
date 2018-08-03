@@ -53,6 +53,7 @@ class C_PDF extends CI_Controller {
 		$var_tgl_surat = $surat_tugas['0']->tgl_surat;
 		//$surat_tugas = json_encode($surat_tugas);
 		$kapusdatin = $pegawai['0']->nama_pegawai;
+		$tgl_sekarang = date('d')."-".date('m')."-".date('Y');
 		$pdf = new FPDF('p','mm','A4');
 
 
@@ -167,17 +168,17 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'Uang harian',0,0,'L');
 		$pdf->Cell(15,6,'5 Hari',0,0,'L');
 		$pdf->Cell(5,6,'x Rp',0,0,'L');
-		$pdf->Cell(25,6,'480.000',0,0,'R');
-		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'C');
+		$pdf->Cell(25,6,'480000',0,0,'R');
+		$pdf->Cell(40,6,'Rp. 1290000',0,0,'C');
 		$pdf->MultiCell(50,6,'Perjalanan Dinas Ke Maluku utara',0,'L');
 
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(10,6,"2",0,0,'L');
-		$pdf->Cell(25,6,'Uang harian',0,0,'L');
-		$pdf->Cell(15,6,'5 Hari',0,0,'L');
+		$pdf->Cell(25,6,'Tiket Pesawat',0,0,'L');
+		$pdf->Cell(15,6,'',0,0,'L');
 		$pdf->Cell(5,6,'x Rp',0,0,'L');
-		$pdf->Cell(25,6,'480.000',0,0,'R');
-		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'C');
+		$pdf->Cell(25,6,'750.000',0,0,'R');
+		$pdf->Cell(40,6,'Rp. 750000',0,0,'C');
 		$pdf->MultiCell(50,6,'',0,'L');
 
 		$pdf->SetFont('Arial','B',10);
@@ -186,7 +187,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(15,6,'',0,0,'L');
 		$pdf->Cell(5,6,'',0,0,'L');
 		$pdf->Cell(25,6,'JUMLAH: ',0,0,'R');
-		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'C');
+		$pdf->Cell(40,6,'Rp. 2040000',0,0,'C');
 		$pdf->MultiCell(50,6,'',0,'L');
 
 		$pdf->Ln();
@@ -201,16 +202,16 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'Uang harian',0,0,'L');
 		$pdf->Cell(15,6,'5 Hari',0,0,'L');
 		$pdf->Cell(5,6,'x Rp',0,0,'L');
-		$pdf->Cell(25,6,'480.000',0,0,'R');
-		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'C');
-		$pdf->MultiCell(50,6,'Perjalanan Dinas Ke Maluku utara',0,'L');
+		$pdf->Cell(25,6,'-',0,0,'R');
+		$pdf->Cell(40,6,'Rp. 0',0,0,'C');
+		$pdf->MultiCell(50,6,'',0,'L');
 
 		$pdf->Cell(10,6,"2",0,0,'L');
-		$pdf->Cell(25,6,'Uang harian',0,0,'L');
+		$pdf->Cell(25,6,'Uang transport',0,0,'L');
 		$pdf->Cell(15,6,'5 Hari',0,0,'L');
 		$pdf->Cell(5,6,'x Rp',0,0,'L');
-		$pdf->Cell(25,6,'480.000',0,0,'R');
-		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'C');
+		$pdf->Cell(25,6,'-',0,0,'R');
+		$pdf->Cell(40,6,'Rp. 0',0,0,'C');
 		$pdf->MultiCell(50,6,'',0,'L');
 
 		$pdf->Cell(10,6,"",0,0,'L');
@@ -218,7 +219,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(15,6,'',0,0,'L');
 		$pdf->Cell(5,6,'',0,0,'L');
 		$pdf->Cell(25,6,'JUMLAH: ',0,0,'R');
-		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'C');
+		$pdf->Cell(40,6,'Rp. 0',0,0,'C');
 		$pdf->MultiCell(50,6,'',0,'L');
 
 		$pdf->Ln();
@@ -229,7 +230,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(15,6,'',0,0,'L');
 		$pdf->Cell(5,6,'',0,0,'L');
 		$pdf->Cell(25,6,'JUMLAH: ',0,0,'R');
-		$pdf->Cell(40,6,'Rp. 1,290,000',0,0,'C');
+		$pdf->Cell(40,6,'Rp. 2040000',0,0,'C');
 		$pdf->MultiCell(50,6,'',0,'L');
 
 		$pdf->Ln();
@@ -239,7 +240,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(15,6,'',0,0,'L');
 		$pdf->Cell(5,6,'',0,0,'L');
 		$pdf->Cell(25,6,'Terbilang: ',0,0,'R');
-		$pdf->MultiCell(90,6,$this->terbilang(1290000)." rupiah",0,'L');
+		$pdf->MultiCell(90,6,$this->terbilang(2040000)." rupiah",0,'L');
 		//$pdf->MultiCell(50,6,'',0,'L');
 
 		$pdf->Ln();
@@ -251,7 +252,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(5,6,'',0,0,'L');
 		$pdf->Cell(25,6,'',0,0,'R');
 		$pdf->Cell(40,6,'',0,0,'C');
-		$pdf->MultiCell(50,6,'Jakarta, 27 Februari 2018',0,'R');
+		$pdf->MultiCell(50,6,'Jakarta, '.$tgl_sekarang,0,'R');
 
 		$pdf->Ln();
 		$pdf->Cell(100,6,"Mengetahui \nPejabat Pembuat Komitmen",0, 0,'C');
@@ -265,8 +266,8 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(100,6,"Linda Lestari, S.Kom",0, 0,'C');
 		$pdf->MultiCell(70,6,'Leonard, S.T',0,'C');
 		$pdf->SetFont('Arial','',10);
-		$pdf->Cell(100,6,"NIP. 1919191919919191",0, 0,'C');
-		$pdf->MultiCell(70,6,'NIP. 1919191919919191',0,'C');
+		$pdf->Cell(100,6,"NIP. 19790305 200501 2 002",0, 0,'C');
+		$pdf->MultiCell(70,6,'NIP. 19820107 200912 1 002',0,'C');
 
 		//Cetak gans
 		$pdf->Output();
