@@ -8,26 +8,22 @@
 			<form action=".base_url($url)." method=\"post\">
 			<div class=\"modal-body mx-5\">
 			<div class=\"md-form mb-4\">
-			<!-- <i class=\"fa fa-user prefix grey-text\"></i> -->
-			<input type=\"text\" id=\"orangeForm-name\" class=\"form-control validate\" name=\"nama\" value=\"$row->nama_pegawai\">
-			<label data-error=\"wrong\" data-success=\"right\" for=\"orangeForm-name\">Nama Lengkap</label>
+			<input type=\"text\" class=\"form-control\" name=\"nama\" value=\"$row->nama_pegawai\">
+			<label data-error=\"wrong\" data-success=\"right\">Nama Lengkap</label>
 			</div>
 			<div class=\"md-form mb-4\">
-			<!-- <i class=\"fa fa-address-card prefix grey-text\"></i> -->
-			<input type=\"text\" id=\"orangeForm-email\" class=\"form-control validate\" name=\"nip\" value='$row->nip_pegawai'>
-			<label data-error=\"wrong\" data-success=\"right\" for=\"orangeForm-email\">NIP</label>
+			<input type=\"text\" class=\"form-control\" name=\"nip\" value='$row->nip_pegawai'>
+			<label data-error=\"wrong\" data-success=\"right\">NIP</label>
 			</div>
 		
 			<div class=\"md-form mb-4\">
-			<!-- <i class=\"fa fa-lock prefix grey-text\"></i> -->
-			<input type=\"text\" id=\"orangeForm-pass\" class=\"form-control validate\" name=\"jabatan\" value='$row->jabatan_pegawai'>
-			<label data-error=\"wrong\" data-success=\"right\" for=\"orangeForm-pass\">Jabatan</label>
+			<input type=\"text\" class=\"form-control\" name=\"jabatan\" value='$row->jabatan_pegawai'>
+			<label data-error=\"wrong\" data-success=\"right\">Jabatan</label>
 			</div>
 		
 			<div class=\"md-form mb-4\">
-			<!-- <i class=\"fa fa-lock prefix grey-text\"></i> -->
-			<input type=\"text\" id=\"orangeForm-pass\" class=\"form-control validate\" name=\"gol\" value='$row->golongan_pegawai'>
-			<label data-error=\"wrong\" data-success=\"right\" for=\"orangeForm-pass\">Golongan</label>
+			<input type=\"text\" class=\"form-control\" name=\"gol\" value='$row->golongan_pegawai'>
+			<label data-error=\"wrong\" data-success=\"right\">Golongan</label>
 			</div>
 
 			

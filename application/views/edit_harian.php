@@ -23,7 +23,7 @@
 			</div>
 
 			<div class=\"md-form mb-4\">
-			<input type=\"text\" class=\"form-control\" name=\"diklat\" value='$row->luar_kota'>
+			<input type=\"text\" class=\"form-control\" name=\"diklat\" value='$row->diklat'>
 			<label data-error=\"wrong\" data-success=\"right\">Diklat</label>
 			</div>
 
