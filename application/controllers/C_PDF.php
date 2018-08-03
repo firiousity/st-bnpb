@@ -41,7 +41,8 @@ class C_PDF extends CI_Controller {
 		$surat_tugas = $this->db->get_where('surat_dinas', array('id' => $id))->result();
 		$pegawai = $this->db->get_where('pegawai',
 			array('jabatan_pegawai' => 'Kepala Pusat Data Informasi dan Humas'))->result();
-
+		$ppk = $this->db->get_where('pejabat_administratif',
+			array('jabatan' => 'Pejabat Pembuat Komitmen'))->result();
 		//Define variable
 		$nomor = $surat_tugas['0']->nomor;
 		$var_kegiatan = $surat_tugas['0']->kegiatan;
@@ -52,6 +53,8 @@ class C_PDF extends CI_Controller {
 		$var_tahun_kegiatan = substr($surat_tugas['0']->tgl_surat, -4);
 		$var_tgl_surat = $surat_tugas['0']->tgl_surat;
 		//$surat_tugas = json_encode($surat_tugas);
+		$nama_ppk = $ppk['0']->nama;
+		$nip_ppk = $ppk['0']->nip;
 		$kapusdatin = $pegawai['0']->nama_pegawai;
 		$tgl_sekarang = date('d')."-".date('m')."-".date('Y');
 		$pdf = new FPDF('p','mm','A4');
@@ -84,7 +87,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'Dasar',0,0);
 		$pdf->Cell(5,6,':',0,0);
 		$pdf->Cell(5,6,'1.',0,0);
-		$pdf->MultiCell(0,6,"Keputusan Presiden Nomor 72 Tahun 2004 tentang Pelaksanaan Anggaran Pendapatan dan Belanja Negara;",0,'J');
+		$pdf->MultiCell(0,6,"Keputusan Presiden Nomor 72 Tahun 2004 tentang Pelaksanaan AnggaranPendapatan dan Belanja Negara;",0,'J');
 		$pdf->Cell(25,6,'',0,0);
 		$pdf->Cell(5,6,'',0,0);
 		$pdf->Cell(5,6,'2.',0,0);
@@ -92,7 +95,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'',0,0);
 		$pdf->Cell(5,6,'',0,0);
 		$pdf->Cell(5,6,'3.',0,0);
-		$pdf->MultiCell(0,6,"Peraturan Kepala Badan Nasional Penanggulangan Bencana Nomor 1 tahun 2008 tentang Organisasi dan Tata Kerja Badan Nasional Penanggulangan Bencana.",0,'J');
+		$pdf->MultiCell(0,6,"Peraturan Kepala Badan Nasinal Penanggulangan Bencana Nomor 1 tahun 2008 tentang Organisasi dan Tata Kerja Badan Nasional Penanggulangan Bencana",0,'J');
 		$pdf->SetFont('Arial','B',12);
 		$pdf->Cell(0,10,"Memberi tugas",0,1,'C');
 		$pdf->SetFont('Arial','',10);
@@ -106,7 +109,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'',0,0);
 		$pdf->Cell(5,6,'',0,0);
 		$pdf->Cell(5,6,'2.',0,0);
-		$pdf->MultiCell(0,6,"Melaksanakan tugas ini dengan penuh tanggung jawab;",0,'L');
+		$pdf->MultiCell(0,6,"Melaksanakan tugas ini dengan penuh tanggungjawab;",0,'L');
 		$pdf->Cell(25,6,'',0,0);
 		$pdf->Cell(5,6,'',0,0);
 		$pdf->Cell(5,6,'3.',0,0);
@@ -263,10 +266,10 @@ class C_PDF extends CI_Controller {
 
 		$pdf->SetFont('Arial','B',10);
 		$pdf->Ln();
-		$pdf->Cell(100,6,"Linda Lestari, S.Kom",0, 0,'C');
+		$pdf->Cell(100,6,$nama_ppk,0, 0,'C');
 		$pdf->MultiCell(70,6,'Leonard, S.T',0,'C');
 		$pdf->SetFont('Arial','',10);
-		$pdf->Cell(100,6,"NIP. 19790305 200501 2 002",0, 0,'C');
+		$pdf->Cell(100,6,"NIP. ".$nip_ppk ,0, 0,'C');
 		$pdf->MultiCell(70,6,'NIP. 19820107 200912 1 002',0,'C');
 
 		//Cetak gans
@@ -278,35 +281,44 @@ class C_PDF extends CI_Controller {
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(0,6,"",0,1,'C');
 		$pdf->Ln();
-		$pdf->Cell(0,6,"",0,1,'C');
-		$pdf->Ln();
-		$pdf->Ln();
-		$pdf->Cell(0,6,"",0,1,'C');
 		$pdf->Ln();
 		$pdf->MultiCell(0,25,"DAFTAR PENGELUARAN RILL",0,'C');
-		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(10,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(20,7,'',0,0);
 		$pdf->MultiCell(0,6,"Yang bertandatangan di bawah ini",0,'L');
 		$pdf->Ln();
+		$pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(20,7,'Nama',0,0);
 		$pdf->Cell(10,7,':',0,0);
+		$pdf->SetFont('Arial','B',10);
 		$pdf->Cell(20,7,'Leonard',0,1);
+		$pdf->Cell(10,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(20,7,'NIP',0,0);
 		$pdf->Cell(10,7,':',0,0);
+		$pdf->SetFont('Arial','B',10);
 		$pdf->Cell(20,7,'19820107 200912 1 002',0,1);
+		$pdf->Cell(10,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(20,7,'Jabatan',0,0);
 		$pdf->Cell(10,7,':',0,0);
+		$pdf->SetFont('Arial','B',10);
 		$pdf->Cell(20,7,'Staf Bidang Informasi',0,1);
 		$pdf->Ln();
+		$pdf->Cell(10,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(20,7,'Berdasarkan Surat Tugas Nomor:78/KADIH/05/2018 tanggal 22 Mei 2018 dengan ini kami',0,1);
+		$pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(20,7,'menyatakan dengan sesungguhnya bahwa :',0,1);
 		$pdf->Ln();
+		$pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(20,7,'1. Biaya Transport pegawai dan/atau biaya penginapan di bawah ini yang tidak dapat',0,1);
 		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(20,7,'diperoleh bukti-bukti pengeluarannya meliputi :',0,1);
 		$pdf->Ln();
+
 		//here is table
 		$pdf->SetFont('Arial','B',10);
 		$pdf->Cell(10,6,'No',1,0,'L');
@@ -315,17 +327,20 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(50,6,'Keterangan',1,1,'L');
 		$pdf->Ln();
 		//end of table
-		$pdf->SetFont('Arial','',12);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(20,7,'2. Jumlah uang tersebut pada angka 1 di atas benar-benar dikeluarkan untuk pelaksanaan',0,1);
 		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(20,7,'perjalanan dinas dimaksud dan apabila dikemudian hari terdapat kelebihan atas pembayaran,',0,1);
+		$pdf->Cell(10,7,'',0,0);
+		$pdf->Cell(20,7,'perjalanan dinas dimaksud dan apabila dikemudian hari terdapat kelebihan atas,',0,1);
 		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(20,7,'kami bersedia untuk menyetorkan kelebihan tersebut ke Kas Negara.',0,1);
+		$pdf->Cell(10,7,'',0,0);
+		$pdf->Cell(20,7,'pembayaran, kami bersedia untuk menyetorkan kelebihan tersebut ke Kas Negara',0,1);
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->Ln();
 
-		$pdf->SetFont('Arial','',12);
+		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(10,6,"",0,0,'L');
 		$pdf->Cell(25,6,'',0,0,'L');
 		$pdf->Cell(15,6,'',0,0,'L');
@@ -336,7 +351,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->Cell(15,6,'',0,0,'L');
-		$pdf->MultiCell(58,6,'Mengetahui/Menyetujui',0,'R');
+		$pdf->MultiCell(55,6,'Mengetahui/Menyetujui',0,'R');
 		$pdf->Cell(100,6,'Pejabat Pembuat Komitmen Pusat Data',0, 1,'C');
 		$pdf->Cell(100,6,'Informasi dan Humas',0, 0,'C');
 		// $pdf->Cell(0,6,"Mengetahui Pejabat Pembuat Komitmen",0, 0,'C');
@@ -346,11 +361,11 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Ln();
 
-		$pdf->SetFont('Arial','B',12);
+		$pdf->SetFont('Arial','B',10);
 		$pdf->Ln();
 		$pdf->Cell(100,6,"Linda Lestari, S.Kom.",0, 0,'C');
 		$pdf->MultiCell(70,6,'Leonard, S.T.',0,'C');
-		$pdf->SetFont('Arial','',12);
+		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(100,6,"NIP. 1919191919919191",0, 0,'C');
 		$pdf->MultiCell(70,6,'NIP. 1919191919919191',0,'C');
 
