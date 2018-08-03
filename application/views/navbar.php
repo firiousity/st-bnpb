@@ -1,7 +1,7 @@
  <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
     <div class="container">
     <img style="margin-left: 20px;" src="<?php echo base_url('assets/img/logo.png')?>" width="40" height="40"> 
-    <a style="margin-left: 8px;" class="navbar-brand" href="<?php echo base_url('home/beranda')?>"><strong>SURAT TUGAS</strong></a>
+    <a style="margin-left: 8px; color: black" class="navbar-brand" href="<?php echo base_url('home/beranda')?>"><strong>SURAT TUGAS</strong></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -14,7 +14,7 @@
         <span style="margin-right: 20px;">
             <ul class="navbar-nav navbar-right mr-auto mt-lg-0">
         <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
+                <a class="nav-link" style="color: black" href="#"><b>Logout<b></a>
             </li>    
         </ul>    
         </span>
