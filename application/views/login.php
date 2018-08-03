@@ -31,7 +31,7 @@
 						<!-- Remember me -->
 						<div class="custom-control custom-checkbox">
 							<input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-							<label class="custom-control-label" for="defaultLoginFormRemember"><strong>Remember me</strong> </label>
+							<label class="custom-control-label" style="color: white"><strong>Remember me</strong> </label>
 						</div>
 					</div>
 				</div>

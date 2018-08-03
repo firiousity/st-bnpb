@@ -285,10 +285,33 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Cell(0,6,"",0,1,'C');
 		$pdf->Ln();
-		$pdf->MultiCell(0,8,"DAFTAR PENGELUARAN RILL",0,'C');
+		$pdf->MultiCell(0,25,"DAFTAR PENGELUARAN RILL",0,'C');
 		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(10,7,'',0,1);
-		$pdf->MultiCell(0,6,"Yang bertandatangan di bawah ini",0,'C');
+		$pdf->Cell(10,7,'',0,0);
+		$pdf->MultiCell(0,6,"Yang bertandatangan di bawah ini",0,'L');
+		$pdf->Ln();
+		$pdf->Cell(20,7,'Nama',0,0);
+		$pdf->Cell(10,7,':',0,0);
+		$pdf->Cell(20,7,'Leonard',0,1);
+		$pdf->Cell(20,7,'NIP',0,0);
+		$pdf->Cell(10,7,':',0,0);
+		$pdf->Cell(20,7,'19820107 200912 1 002',0,1);
+		$pdf->Cell(20,7,'Jabatan',0,0);
+		$pdf->Cell(10,7,':',0,0);
+		$pdf->Cell(20,7,'Staf Bidang Informasi',0,1);
+		$pdf->Ln();
+		$pdf->Cell(20,7,'Berdasarkan Surat Tugas Nomor:78/KADIH/05/2018 tanggal 22 Mei 2018 dengan ini kami',0,1);
+		$pdf->Cell(20,7,'menyatakan dengan sesungguhnya bahwa :',0,1);
+		$pdf->Ln();
+		$pdf->Cell(20,7,'1. Biaya Transport pegawai dan/atau biaya penginapan di bawah ini yang tidak dapat',0,1);
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(20,7,'diperoleh bukti-bukti pengeluarannya meliputi :',0,1);
+		$pdf->Ln();
+		$pdf->Cell(20,7,'2. Jumlah uang tersebut pada angka 1 di atas benar-benar dikeluarkan untuk pelaksanaan',0,1);
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(20,7,' perjalanan dinas dimaksud dan apabila dikemudian hari terdapat kelebihan atas pembayaran',0,1);
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(20,7,',kami bersedia untuk menyetorkan kelebihan tersebut ke Kas Negara',0,1);
 
 		//Cetak gans
 		$pdf->Output();
