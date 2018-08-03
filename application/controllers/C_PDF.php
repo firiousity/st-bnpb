@@ -307,11 +307,20 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(20,7,'diperoleh bukti-bukti pengeluarannya meliputi :',0,1);
 		$pdf->Ln();
+		//here is table
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(10,6,'No',1,0,'L');
+		$pdf->Cell(70,6,'Perincian biaya',1,0,'L');
+		$pdf->Cell(40,6,'Jumlah',1,0,'L');
+		$pdf->Cell(50,6,'Keterangan',1,1,'L');
+		$pdf->Ln();
+		//end of table
+		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(20,7,'2. Jumlah uang tersebut pada angka 1 di atas benar-benar dikeluarkan untuk pelaksanaan',0,1);
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(20,7,'perjalanan dinas dimaksud dan apabila dikemudian hari terdapat kelebihan atas pembayaran,',0,1);
 		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(20,7,'kami bersedia untuk menyetorkan kelebihan tersebut ke Kas Negara',0,1);
+		$pdf->Cell(20,7,'kami bersedia untuk menyetorkan kelebihan tersebut ke Kas Negara.',0,1);
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->Ln();
@@ -339,8 +348,8 @@ class C_PDF extends CI_Controller {
 
 		$pdf->SetFont('Arial','B',12);
 		$pdf->Ln();
-		$pdf->Cell(100,6,"Linda Lestari, S.Kom",0, 0,'C');
-		$pdf->MultiCell(70,6,'Leonard, S.T',0,'C');
+		$pdf->Cell(100,6,"Linda Lestari, S.Kom.",0, 0,'C');
+		$pdf->MultiCell(70,6,'Leonard, S.T.',0,'C');
 		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(100,6,"NIP. 1919191919919191",0, 0,'C');
 		$pdf->MultiCell(70,6,'NIP. 1919191919919191',0,'C');
