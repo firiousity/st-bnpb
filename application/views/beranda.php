@@ -76,7 +76,6 @@
         <a class="dropdown-item" href="uang_harian">Uang Harian</a>
         <a class="dropdown-item" href="uang_representasi">Uang Representasi</a>
         <a class="dropdown-item" href="tiket_pesawat">Tiket Pesawat</a>
-
     </div>
 </div>
       <!-- <a href="akun"><button type="button" class="btn btn-indigo btn-md">kelola</button></a> -->
