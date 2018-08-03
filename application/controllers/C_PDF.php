@@ -342,10 +342,10 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Cell(15,6,'',0,0,'L');
 		$pdf->MultiCell(55,6,'Mengetahui/Menyetujui',0,'R');
-		$pdf->Cell(100,6,'Pejabat Pembuat Komitmen Pusat Data',0, 1,'C');
-		$pdf->Cell(100,6,'Informasi dan Humas',0, 0,'C');
-		// $pdf->Cell(0,6,"Mengetahui Pejabat Pembuat Komitmen",0, 0,'C');
+		$pdf->Cell(100,6,'Pejabat Pembuat Komitmen Pusat Data',0, 0,'C');
 		$pdf->MultiCell(50,6,'Pelaksana SPD',0,'R');
+		$pdf->Cell(100,6,'Informasi dan Humas',0, 0,'C');
+		
 
 		$pdf->Ln();
 		$pdf->Ln();
@@ -354,10 +354,10 @@ class C_PDF extends CI_Controller {
 		$pdf->SetFont('Arial','B',10);
 		$pdf->Ln();
 		$pdf->Cell(100,6,"Linda Lestari, S.Kom",0, 0,'C');
-		$pdf->MultiCell(70,6,'Leonard, S.T',0,'C');
+		$pdf->MultiCell(72.5,6,'Leonard, S.T',0,'C');
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(100,6,"NIP. 1919191919919191",0, 0,'C');
-		$pdf->MultiCell(70,6,'NIP. 1919191919919191',0,'C');
+		$pdf->MultiCell(72.5,6,'NIP. 1919191919919191',0,'C');
 
 
 		//Cetak gans
