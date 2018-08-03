@@ -70,14 +70,14 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form action="<?php echo base_url('home/tambah_pegawai') ?>" method="post">
+          <form action="<?php echo base_url('home/tambah_tiket') ?>" method="post">
             <div class="modal-body mx-5">
               <div class="md-form mb-4">
                 <input type="text" class="form-control" name="kota">
                 <label data-error="wrong" data-success="right">Kota</label>
               </div>
               <div class="md-form mb-4">
-                <input type="text" class="form-control" name="harga_tiket">
+                <input type="text" class="form-control" name="biaya_tiket">
                 <label data-error="wrong" data-success="right">Harga Tiket</label>
               </div>
 

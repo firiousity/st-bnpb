@@ -207,9 +207,12 @@ class Home extends CI_Controller {
 	}
 
 	public function tambah_transport() {
+		$provinsi = $this->input->post('provinsi');
+		$besaran = $this->input->post('besaran');
+
 		$this->load->view('nav');
 		$this->load->view('header');
-		$this->load->view('biaya_transport', $data);
+		$this->load->view('biaya_transport');
 		$this->load->view('footer');
 		$data = array(
 			'provinsi' => $provinsi,
@@ -261,9 +264,12 @@ class Home extends CI_Controller {
 	}
 
 	public function tambah_tiket() {
+		$kota = $this->input->post('kota');
+		$biaya_tiket = $this->input->post('biaya_tiket');
+
 		$this->load->view('nav');
 		$this->load->view('header');
-		$this->load->view('tiket_pesawat', $data);
+		$this->load->view('tiket_pesawat');
 		$this->load->view('footer');
 		$data = array(
 			'kota' => $kota,
@@ -315,9 +321,14 @@ class Home extends CI_Controller {
 	}
 
 	public function tambah_harian() {
+		$provinsi = $this->input->post('provinsi');
+		$luar_kota = $this->input->post('luar_kota');
+		$dalam_kota = $this->input->post('dalam_kota');
+		$diklat = $this->input->post('diklat');
+
 		$this->load->view('nav');
 		$this->load->view('header');
-		$this->load->view('uang_harian', $data);
+		$this->load->view('uang_harian');
 		$this->load->view('footer');
 		$data = array(
 			'provinsi' => $provinsi,
@@ -361,7 +372,7 @@ class Home extends CI_Controller {
 	}
 
 	/*
-	 * CRUD Uang Harian
+	 * CRUD Uang Representasi
 	 *
 	 * */
 
@@ -375,9 +386,12 @@ class Home extends CI_Controller {
 	}
 
 	public function tambah_representasi() {
+		$uraian = $this->input->post('uraian');
+		$luar_kota = $this->input->post('luar_kota');
+		$dalam_kota = $this->input->post('dalam_kota');
 		$this->load->view('nav');
 		$this->load->view('header');
-		$this->load->view('uang_representasi', $data);
+		$this->load->view('uang_representasi');
 		$this->load->view('footer');
 		$data = array(
 			'uraian' => $uraian,
