@@ -19,7 +19,7 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/14.jpg" alt="Card image cap">
+      <img class="card-img-top" src="http://cdn2.tstatic.net/wartakota/foto/bank/images/20140115akuntansi-administrasi-keuangan.jpg" alt="Card image cap">
       <a href="#!">
         <div class="mask rgba-white-slight"></div>
       </a>
@@ -52,7 +52,7 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/15.jpg" alt="Card image cap">
+      <img class="card-img-top" src="http://cdn2.tstatic.net/kupang/foto/bank/images/ilustrasi-uang-rupiah_20170518_085658.jpg" alt="Card image cap">
       <a href="#!">
         <div class="mask rgba-white-slight"></div>
       </a>
@@ -90,7 +90,7 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/15.jpg" alt="Card image cap">
+      <img class="card-img-top" src="https://www.menpan.go.id/site/images/berita_foto/20180222_BNPB_di_Bali_3.jpeg" alt="Card image cap">
       <a href="#!">
         <div class="mask rgba-white-slight"></div>
       </a>
