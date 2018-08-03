@@ -308,9 +308,42 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Cell(20,7,'2. Jumlah uang tersebut pada angka 1 di atas benar-benar dikeluarkan untuk pelaksanaan',0,1);
 		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(20,7,' perjalanan dinas dimaksud dan apabila dikemudian hari terdapat kelebihan atas pembayaran',0,1);
+		$pdf->Cell(20,7,'perjalanan dinas dimaksud dan apabila dikemudian hari terdapat kelebihan atas pembayaran,',0,1);
 		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(20,7,',kami bersedia untuk menyetorkan kelebihan tersebut ke Kas Negara',0,1);
+		$pdf->Cell(20,7,'kami bersedia untuk menyetorkan kelebihan tersebut ke Kas Negara',0,1);
+		$pdf->Ln();
+		$pdf->Ln();
+		$pdf->Ln();
+
+		$pdf->SetFont('Arial','',12);
+		$pdf->Cell(10,6,"",0,0,'L');
+		$pdf->Cell(25,6,'',0,0,'L');
+		$pdf->Cell(15,6,'',0,0,'L');
+		$pdf->Cell(5,6,'',0,0,'L');
+		$pdf->Cell(25,6,'',0,0,'R');
+		$pdf->Cell(20,6,'',0,0,'C');
+		$pdf->MultiCell(60,6,'Jakarta, 27 Februari 2018',0,'R');
+		$pdf->Ln();
+		$pdf->Ln();
+		$pdf->Cell(15,6,'',0,0,'L');
+		$pdf->MultiCell(58,6,'Mengetahui/Menyetujui',0,'R');
+		$pdf->Cell(100,6,'Pejabat Pembuat Komitmen Pusat Data',0, 1,'C');
+		$pdf->Cell(100,6,'Informasi dan Humas',0, 0,'C');
+		// $pdf->Cell(0,6,"Mengetahui Pejabat Pembuat Komitmen",0, 0,'C');
+		$pdf->MultiCell(50,6,'Pelaksana SPD',0,'R');
+
+		$pdf->Ln();
+		$pdf->Ln();
+		$pdf->Ln();
+
+		$pdf->SetFont('Arial','B',12);
+		$pdf->Ln();
+		$pdf->Cell(100,6,"Linda Lestari, S.Kom",0, 0,'C');
+		$pdf->MultiCell(70,6,'Leonard, S.T',0,'C');
+		$pdf->SetFont('Arial','',12);
+		$pdf->Cell(100,6,"NIP. 1919191919919191",0, 0,'C');
+		$pdf->MultiCell(70,6,'NIP. 1919191919919191',0,'C');
+
 
 		//Cetak gans
 		$pdf->Output();
