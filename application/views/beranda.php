@@ -19,7 +19,7 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top" src="http://cdn2.tstatic.net/wartakota/foto/bank/images/20140115akuntansi-administrasi-keuangan.jpg" alt="Card image cap">
+      <img class="card-img-top" src="https://2.bp.blogspot.com/-5Cjiw_fBupA/VvtLwCJS7RI/AAAAAAAABXI/iHdlxIXLlMkzhHQQq4WwP5PCRSLHi-N9w/s1600/writing.jpg" alt="Card image cap">
       <a href="#!">
         <div class="mask rgba-white-slight"></div>
       </a>
@@ -52,7 +52,7 @@
 
     <!--Card image-->
     <div class="view overlay">
-      <img class="card-img-top" src="http://cdn2.tstatic.net/kupang/foto/bank/images/ilustrasi-uang-rupiah_20170518_085658.jpg" alt="Card image cap">
+      <img class="card-img-top" src="https://si.wsj.net/public/resources/images/BN-CD671_0331AS_G_20140331072802.jpg" alt="Card image cap">
       <a href="#!">
         <div class="mask rgba-white-slight"></div>
       </a>
