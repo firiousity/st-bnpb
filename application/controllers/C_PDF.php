@@ -84,7 +84,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'Dasar',0,0);
 		$pdf->Cell(5,6,':',0,0);
 		$pdf->Cell(5,6,'1.',0,0);
-		$pdf->MultiCell(0,6,"Keputusan Presiden Nomor 72 Tahun 2004 tentang Pelaksanaan AnggaranPendapatan dan Belanja Negara;",0,'J');
+		$pdf->MultiCell(0,6,"Keputusan Presiden Nomor 72 Tahun 2004 tentang Pelaksanaan Anggaran Pendapatan dan Belanja Negara;",0,'J');
 		$pdf->Cell(25,6,'',0,0);
 		$pdf->Cell(5,6,'',0,0);
 		$pdf->Cell(5,6,'2.',0,0);
@@ -92,7 +92,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'',0,0);
 		$pdf->Cell(5,6,'',0,0);
 		$pdf->Cell(5,6,'3.',0,0);
-		$pdf->MultiCell(0,6,"Peraturan Kepala Badan Nasinal Penanggulangan Bencana Nomor 1 tahun 2008 tentang Organisasi dan Tata Kerja Badan Nasional Penanggulangan Bencana",0,'J');
+		$pdf->MultiCell(0,6,"Peraturan Kepala Badan Nasional Penanggulangan Bencana Nomor 1 tahun 2008 tentang Organisasi dan Tata Kerja Badan Nasional Penanggulangan Bencana.",0,'J');
 		$pdf->SetFont('Arial','B',12);
 		$pdf->Cell(0,10,"Memberi tugas",0,1,'C');
 		$pdf->SetFont('Arial','',10);
@@ -106,7 +106,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'',0,0);
 		$pdf->Cell(5,6,'',0,0);
 		$pdf->Cell(5,6,'2.',0,0);
-		$pdf->MultiCell(0,6,"Melaksanakan tugas ini dengan penuh tanggungjawab;",0,'L');
+		$pdf->MultiCell(0,6,"Melaksanakan tugas ini dengan penuh tanggung jawab;",0,'L');
 		$pdf->Cell(25,6,'',0,0);
 		$pdf->Cell(5,6,'',0,0);
 		$pdf->Cell(5,6,'3.',0,0);
