@@ -83,6 +83,12 @@ class Home_model extends CI_Model {
 	   return $query->result();
    }
 
+   function get_ppk() {
+	   $this->db->from('pejabat_administratif');
+	   $query = $this->db->get();
+	   return $query->result();
+   }
+
 
 }
 ?>
