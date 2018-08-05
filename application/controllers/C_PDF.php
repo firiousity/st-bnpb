@@ -336,7 +336,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(20,7,'perjalanan dinas dimaksud dan apabila dikemudian hari terdapat kelebihan atas,',0,1);
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(10,7,'',0,0);
-		$pdf->Cell(20,7,'pembayaran, kami bersedia untuk menyetorkan kelebihan tersebut ke Kas Negara',0,1);
+		$pdf->Cell(20,7,'pembayaran, kami bersedia untuk menyetorkan kelebihan tersebut ke Kas Negara.',0,1);
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->Ln();
@@ -353,9 +353,9 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Cell(15,6,'',0,0,'L');
 		$pdf->MultiCell(55,6,'Mengetahui/Menyetujui',0,'R');
-		$pdf->Cell(100,6,'Pejabat Pembuat Komitmen Pusat Data',0, 0,'C');
+		$pdf->Cell(100,6,'Pejabat Pembuat Komitmen',0, 0,'C');
 		$pdf->MultiCell(50,6,'Pelaksana SPD',0,'R');
-		$pdf->Cell(100,6,'Informasi dan Humas',0, 0,'C');
+		$pdf->Cell(100,6,'Pusat Data Informasi dan Humas',0, 0,'C');
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->Ln();
@@ -364,12 +364,107 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(100,6,"Linda Lestari, S.Kom.",0, 0,'C');
 		$pdf->MultiCell(72.5,6,'Leonard, S.T.',0,'C');
 		$pdf->SetFont('Arial','',10);
-		$pdf->Cell(100,6,"NIP. 1919191919919191",0, 0,'C');
-		$pdf->MultiCell(72.5,6,'NIP. 1919191919919191',0,'C');
+		$pdf->Cell(100,6,"NIP. 19790305 200501 2 001",0, 0,'C');
+		$pdf->MultiCell(72.5,6,'NIP. 19790305 200501 2 001',0,'C');
 
 		//Cetak gans
 		$pdf->Output();
 	}
+
+	//Page Surat Pernyataan
+	function kelik() {
+		$pdf = new FPDF('p','mm','A4');
+		$pdf->AddPage();
+		$pdf->SetFont('Arial','B',12);
+		$pdf->Ln();
+		$pdf->Ln();
+		$pdf->MultiCell(0,25,"SURAT PERNYATAAN",0,'C');
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(20,7,'',0,0);
+		$pdf->MultiCell(0,6,"Yang bertandatangan di bawah ini",0,'L');
+		$pdf->Ln();
+		$pdf->Cell(10,7,'',0,0);
+		$pdf->Cell(20,7,'Nama',0,0);
+		$pdf->Cell(10,7,':',0,0);
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(20,7,'Yanuar Yuda Darmawan, S.Kom.',0,1);
+		$pdf->Cell(10,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(20,7,'NIP',0,0);
+		$pdf->Cell(10,7,':',0,0);
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(20,7,'19800126 201012 1 001',0,1);
+		$pdf->Cell(10,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(20,7,'Jabatan',0,0);
+		$pdf->Cell(10,7,':',0,0);
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(20,7,'Staf Bidang Informasi',0,1);
+		$pdf->Ln();
+		$pdf->Cell(10,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(20,7,'Berdasarkan Surat Tugas Nomor:78/KADIH/05/2018 tanggal 22 Mei 2018 dengan ini kami',0,1);
+		$pdf->Cell(10,7,'',0,0);
+		$pdf->Cell(20,7,'menyatakan dengan sesungguhnya bahwa :',0,1);
+		$pdf->Ln();
+		$pdf->Cell(10,7,'',0,0);
+		$pdf->Cell(20,7,'1. Tiket Jakarta - Aceh (PP) dengan jumlah tiket pesawat di bawah ini melebihi dengan',0,1);
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,7,'',0,0);
+		$pdf->Cell(20,7,'SBU tahun 2018, meliputi :',0,1);
+		$pdf->Ln();
+		//here is table
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(15,7,'',0,0);
+		$pdf->Cell(10,6,'No',1,0,'L');
+		$pdf->Cell(70,6,'Uraian',1,0,'L');
+		$pdf->Cell(40,6,'Nilau SBU',1,0,'L');
+		$pdf->Cell(50,6,'Pengeluaran Rill',1,1,'L');
+		$pdf->Ln();
+		//end of table
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,7,'',0,0);
+		$pdf->Cell(20,7,'2. Bahwa tiker Jakarta - Aceh (PP) dengan jumlah uang tersebut pada angka (1)',0,1);
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,7,'',0,0);
+		$pdf->Cell(20,7,'melebihi jumlah SBU dan benar - benar dikeluarkan dengan bukti rill kuitansi,',0,1);
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,7,'',0,0);
+		$pdf->Cell(20,7,'tiket Perjalanan Dinas dimaksud.',0,1);
+		$pdf->Ln();
+		$pdf->Ln();
+		$pdf->Ln();
+		//Footer Surat
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,6,"",0,0,'L');
+		$pdf->Cell(25,6,'',0,0,'L');
+		$pdf->Cell(15,6,'',0,0,'L');
+		$pdf->Cell(5,6,'',0,0,'L');
+		$pdf->Cell(25,6,'',0,0,'R');
+		$pdf->Cell(20,6,'',0,0,'C');
+		$pdf->MultiCell(60,6,'Jakarta, 4 Juni 2018',0,'R');
+		$pdf->Ln();
+		$pdf->Ln();
+		$pdf->Cell(15,6,'',0,0,'L');
+		$pdf->MultiCell(55,6,'Mengetahui/Menyetujui',0,'R');
+		$pdf->Cell(100,6,'Pejabat Pembuat Komitmen',0, 0,'C');
+		$pdf->MultiCell(50,6,'Pelaksana SPD',0,'R');
+		$pdf->Cell(100,6,' Pusat Data Informasi dan Humas',0, 0,'C');
+		$pdf->Ln();
+		$pdf->Ln();
+		$pdf->Ln();
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Ln();
+		$pdf->Cell(100,6,"Linda Lestari, S.Kom.",0, 0,'C');
+		$pdf->MultiCell(72.5,6,'Yanuar Yuda Darmawan, S.Kom.',0,'C');
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(100,6,"NIP. 19790305 200501 2 001",0, 0,'C');
+		$pdf->MultiCell(72.5,6,'NIP. 19800126 201012 1 001',0,'C');
+
+		//Cetak gans
+		$pdf->Output();
+	}
+
 	function ena ($id) {
 		$surat_tugas = $this->db->select('nomor')->get_where('surat_dinas', array('id' => $id))->result();
 		echo $surat_tugas['0']->nomor;
