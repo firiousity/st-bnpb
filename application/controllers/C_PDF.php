@@ -277,6 +277,7 @@ class C_PDF extends CI_Controller {
 
 	}
 
+	//Page Daftar Pengeluaran Rill
 	function firly() {
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
@@ -339,7 +340,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->Ln();
-
+		//Footer Surat
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(10,6,"",0,0,'L');
 		$pdf->Cell(25,6,'',0,0,'L');
@@ -355,12 +356,9 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(100,6,'Pejabat Pembuat Komitmen Pusat Data',0, 0,'C');
 		$pdf->MultiCell(50,6,'Pelaksana SPD',0,'R');
 		$pdf->Cell(100,6,'Informasi dan Humas',0, 0,'C');
-		
-
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->Ln();
-
 		$pdf->SetFont('Arial','B',10);
 		$pdf->Ln();
 		$pdf->Cell(100,6,"Linda Lestari, S.Kom.",0, 0,'C');
@@ -368,7 +366,6 @@ class C_PDF extends CI_Controller {
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(100,6,"NIP. 1919191919919191",0, 0,'C');
 		$pdf->MultiCell(72.5,6,'NIP. 1919191919919191',0,'C');
-
 
 		//Cetak gans
 		$pdf->Output();
