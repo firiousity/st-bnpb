@@ -432,6 +432,12 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(20,7,'tiket Perjalanan Dinas dimaksud.',0,1);
 		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(20,7,'Demikian pernyataan ini kami buat dengan sebenarnya, untuk dipergunakan',0,1);
+		$pdf->Cell(10,7,'',0,0);
+		$pdf->Cell(20,7,'sebagaimana mestinya.',0,1);
 		$pdf->Ln();
 		$pdf->Ln();
 		//Footer Surat
