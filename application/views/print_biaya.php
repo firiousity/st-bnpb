@@ -2,34 +2,30 @@
           <div class="container margin">
                   <div class="card mb-8">
                       <div class="card-body">
-                          <p style="font-size: 27px;">Surat</p>
+                          <p style="font-size: 27px;">Surat Detail</p>
                         <div align="center">
                         <table class="table table-hover">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
                               <th scope="col">No</th>
-                              <th scope="col">Nomor Surat</th>
-                              <th scope="col">Tempat</th>
+                              <th scope="col">No Surat</th>
+								<th scope="col">Nama</th>
                               <th scope="col">PDF</th>
                             </tr>
                           </thead>
                           <tbody>
 						  <?php
 						  $i = 1;
-						  foreach ($surat as $row) {
+						  foreach ($nama as $row) {
 
 						  	echo "
 						  	<tr>
                               <th scope=\"row\">$i</th>
-                              <td>$row->nomor</td>
-                              <td>$row->tempat</td>
+                              <td>$row->nama_pegawai</td>
                               <td>
-                              <span><a href='".base_url('C_PDF/print/'.$row->id)."' target='_blank'> 
-                              <button type=\"button\" class=\"btn btn-primary btn-rounded btn-sm my-0\">PRINT SURAT DINAS
+                              <span><a href='".base_url('C_PDF/form_biaya/'.$row->id_pegawai)."' target='_blank'> 
+                              <button type=\"button\" class=\"btn btn-primary btn-rounded btn-sm my-0\">PRINT BIAYA
                               </button></a></span>
-                              <a href='".base_url('C_PDF/print_biaya/'.$row->id)."' target='_blank'> 
-                              <button type=\"button\" class=\"btn btn-primary btn-rounded btn-sm my-0\">PRINT ANGGARAN BIAYA
-                              </button></a>
                               
                               </td>
                             </tr>
