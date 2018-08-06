@@ -332,8 +332,17 @@ class C_PDF extends CI_Controller {
         $pdf->Cell(10,7,'',0,0);
         $pdf->SetFont('Arial','',10);
 		//$pdf->Cell(40,5,'Solid Here','LR',0,'C',0);  // cell with left and right borders
-		$pdf->Cell(10,5,'1','LRB',0,'R',0);
-		$pdf->Cell(100,5,'Transport Jakarta','RB',0,'L',0);
+		$pdf->Cell(10,5,'1','LR',0,'R',0);
+		$pdf->Cell(70,5,'Transport Bandara Jakarta (PP)','L',0,'L',0);
+		$pdf->Cell(30,5,'2 x 256.000','R',0,'R',0);
+		$pdf->Cell(40,5,'942.000,00','LR',0,'R',0);
+        $pdf->Ln();
+        $pdf->Cell(5,7,'',0,0);
+        $pdf->Cell(10,7,'',0,0);
+        $pdf->SetFont('Arial','',10);
+        $pdf->Cell(10,5,'2','LRB',0,'R',0);
+		$pdf->Cell(70,5,'Transport Bandara Bali (PP)','B',0,'L',0);
+		$pdf->Cell(30,5,'2 x 256.000','B',0,'R',0);
 		$pdf->Cell(40,5,'942.000,00','LRB',0,'R',0);
         $pdf->Ln();
         $pdf->Cell(5,7,'',0,0);
@@ -344,9 +353,8 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(100,5,'Jumlah','RB',0,'C',0);
 		$pdf->Cell(40,5,'942.000,00','LRB',0,'R',0);
         $pdf->Ln();
-
+        //end of table
 		$pdf->Ln();
-		//end of table
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(20,7,'2. Jumlah uang tersebut pada angka 1 di atas benar-benar dikeluarkan untuk pelaksanaan',0,1);
@@ -433,14 +441,35 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(20,7,'SBU tahun 2018, meliputi :',0,1);
 		$pdf->Ln();
 		//here is table
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,7,'',0,0);
 		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(10,6,'No',1,0,'L');
-		$pdf->Cell(70,6,'Uraian',1,0,'L');
-		$pdf->Cell(40,6,'Nilau SBU',1,0,'L');
-		$pdf->Cell(50,6,'Pengeluaran Rill',1,1,'L');
-		$pdf->Ln();
+		//$pdf->Cell(40,5,' ','LTR',0,'L',0);   // empty cell with left,top, and right borders
+		$pdf->Cell(10,5,'No.',1,0,'C',0);
+		$pdf->Cell(70,5,'Uraian',1,0,'C',0);
+		$pdf->Cell(40,5,'Nilai SBU',1,0,'C',0);
+		$pdf->Cell(40,5,'Pengeluaran Rill',1,0,'C',0);
+        $pdf->Ln();
+        $pdf->Cell(5,7,'',0,0);
+        $pdf->Cell(10,7,'',0,0);
+        $pdf->SetFont('Arial','',12);
+		//$pdf->Cell(40,5,'Solid Here','LR',0,'C',0);  // cell with left and right borders
+		$pdf->Cell(10,5,'1','LRB',0,'R',0);
+		$pdf->Cell(70,5,'Tiket Pesawat Jakarta - Aceh (PP)','LB',0,'L',0);
+		$pdf->Cell(40,5,'Rp 4.492.000,00','LRB',0,'R',0);
+		$pdf->Cell(40,5,'Rp 5.092.000,00','LRB',0,'R',0);
+        $pdf->Ln();
+        $pdf->Cell(5,7,'',0,0);
+        $pdf->Cell(10,7,'',0,0);
+        $pdf->SetFont('Arial','B',12);
+		//$pdf->Cell(40,5,'','LBR',0,'L',0);   // empty cell with left,bottom, and right borders
+		$pdf->Cell(10,5,'','LB',0,'L',0);
+		$pdf->Cell(70,5,'Jumlah','RB',0,'C',0);
+		$pdf->Cell(40,5,'Rp 4.492.000,00','LRB',0,'R',0);
+		$pdf->Cell(40,5,'Rp 5.092.000,00','LRB',0,'R',0);
+        $pdf->Ln();
 		//end of table
+		$pdf->Ln();
 		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(20,7,'2. Bahwa tiker Jakarta - Aceh (PP) dengan jumlah uang tersebut pada angka (1)',0,1);
@@ -533,14 +562,35 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(20,7,'melebihi dengan SBU tahun 2018, meliputi :',0,1);
 		$pdf->Ln();
 		//here is table
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,7,'',0,0);
 		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(10,6,'No',1,0,'L');
-		$pdf->Cell(70,6,'Uraian',1,0,'L');
-		$pdf->Cell(40,6,'Nilau SBU',1,0,'L');
-		$pdf->Cell(50,6,'Pengeluaran Rill',1,1,'L');
-		$pdf->Ln();
+		//$pdf->Cell(40,5,' ','LTR',0,'L',0);   // empty cell with left,top, and right borders
+		$pdf->Cell(10,5,'No.',1,0,'C',0);
+		$pdf->Cell(70,5,'Uraian',1,0,'C',0);
+		$pdf->Cell(40,5,'Nilai SBU',1,0,'C',0);
+		$pdf->Cell(40,5,'Pengeluaran Rill',1,0,'C',0);
+        $pdf->Ln();
+        $pdf->Cell(5,7,'',0,0);
+        $pdf->Cell(10,7,'',0,0);
+        $pdf->SetFont('Arial','',12);
+		//$pdf->Cell(40,5,'Solid Here','LR',0,'C',0);  // cell with left and right borders
+		$pdf->Cell(10,5,'1','LRB',0,'R',0);
+		$pdf->Cell(70,5,'Tiket Pesawat Jakarta - Denpasar','LB',0,'L',0);
+		$pdf->Cell(40,5,'Rp 1.631.000,00','LRB',0,'R',0);
+		$pdf->Cell(40,5,'Rp 1.001.000,00','LRB',0,'R',0);
+        $pdf->Ln();
+        $pdf->Cell(5,7,'',0,0);
+        $pdf->Cell(10,7,'',0,0);
+        $pdf->SetFont('Arial','B',12);
+		//$pdf->Cell(40,5,'','LBR',0,'L',0);   // empty cell with left,bottom, and right borders
+		$pdf->Cell(10,5,'','LB',0,'L',0);
+		$pdf->Cell(70,5,'Jumlah','RB',0,'C',0);
+		$pdf->Cell(40,5,'Rp 1.631.000,00','LRB',0,'R',0);
+		$pdf->Cell(40,5,'Rp 1.001.000,00','LRB',0,'R',0);
+        $pdf->Ln();
 		//end of table
+		$pdf->Ln();
 		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(20,7,'2. Boarding Pass Jakarta - Aceh hilang dengan jumlah uang tersebut pada angka',0,1);
