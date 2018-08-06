@@ -6,7 +6,7 @@
 		$url = "home/edit_representasi/".$row->id;
 		echo "
 			<form action=".base_url($url)." method=\"post\">
-			<div class=\"modal-body mx-5\">
+			<div class=\"card-body mx-5\">
 			<div class=\"md-form mb-4\">
 			<input type=\"text\" class=\"form-control\" name=\"uraian\" value=\"$row->uraian\">
 			<label data-error=\"wrong\" data-success=\"right\">Uraian</label>
@@ -23,7 +23,7 @@
 			</div>
 
 			</div>
-			<div class=\"modal-footer d-flex justify-content-center\">
+			<div class=\"d-flex justify-content-center\">
 			<button class=\"btn btn-indigo\">Edit</button>
 			</div>
 		</form>";
@@ -31,6 +31,6 @@
 	?>
 		</div>
 	</div>
-	
+	<a href="../uang_representasi"><button class="btn btn-indigo">Kembali</button></a>
 </div>
 </body>
