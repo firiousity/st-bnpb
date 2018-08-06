@@ -639,11 +639,11 @@ class C_PDF extends CI_Controller {
 		$pdf->Output();
 	}
 
-	function dinda() {
+	function spd_rampung() {
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(0,6,"PERINCIAN BIAYA PERJALANAN DINAS",0,1,'C');
+		$pdf->Cell(0,6,"RINICIAN PERHITUNGAN SPD RAMPUNG",0,1,'C');
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(34,6,'Lamp. SPD Nomor',0,0);
 		$pdf->Cell(3,6,':',0,0);
@@ -679,21 +679,21 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,6,'2','L',0,'C',0);
 		$pdf->Cell(75,6,'Penginapan','LR',0,'L',0);
 		$pdf->Cell(40,6,'Rp 3.000.000,00','R',0,'R',0);
-		$pdf->Cell(55,6,'','R',0,'L',0);
+		$pdf->Cell(55,6,'Ke Provinsi Bali','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(10,6,'3','L',0,'C',0);
 		$pdf->Cell(75,6,'Tiket Pesawat','LR',0,'L',0);
 		$pdf->Cell(40,6,'Rp 2.811.000,00','R',0,'R',0);
-		$pdf->Cell(55,6,'','R',0,'L',0);
+		$pdf->Cell(55,6,'(selama 5 hari)','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(10,6,'4','L',0,'C',0);
 		$pdf->Cell(75,6,'Transport','LR',0,'L',0);
 		$pdf->Cell(40,6,'Rp 830.000,00','R',0,'R',0);
-		$pdf->Cell(55,6,'','R',0,'L',0);
+		$pdf->Cell(55,6,'Tanggal 19 s.d 23 Februari 2018','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->SetFont('Arial','B',10);
@@ -763,7 +763,114 @@ class C_PDF extends CI_Controller {
 		$pdf->SetFont('Arial','B',10);
 		$pdf->Cell(10,6,'','LB',0,'C',0);
 		$pdf->Cell(75,6,'Terbilang :','LBR',0,'R',0);
-		$pdf->Cell(95,6,$this->terbilang(9041000)." rupiah",'BR',0,'L',0);
+		$pdf->Cell(95,6,$this->Terbilang(9041000)." rupiah",'BR',0,'L',0);
+		$pdf->Ln();
+		//end of table
+		$pdf->Ln();
+
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,6,"",0,0,'L');
+		$pdf->Cell(25,6,'',0,0,'L');
+		$pdf->Cell(15,6,'',0,0,'L');
+		$pdf->Cell(5,6,'',0,0,'L');
+		$pdf->Cell(25,6,'',0,0,'R');
+		$pdf->Cell(40,6,'',0,0,'C');
+		$pdf->MultiCell(50,6,'Jakarta, ',0,'R');
+
+		$pdf->Ln();
+		$pdf->Cell(100,6,"Mengetahui \nPejabat Pembuat Komitmen",0, 0,'C');
+		$pdf->MultiCell(70,6,'Yang melakukan perjalanan dinas',0,'R');
+
+		$pdf->Ln();
+		$pdf->Ln();
+
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Ln();
+		$pdf->Cell(100,6,'$nama_ppk',0, 0,'C');
+		$pdf->MultiCell(70,6,'Leonard, S.T',0,'C');
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(100,6,'NIP.'  ,0, 0,'C');
+		$pdf->MultiCell(70,6,'NIP. 19820107 200912 1 002',0,'C');
+
+		//Cetak gans
+		$pdf->Output();
+	}
+
+	function biaya() {
+		$pdf = new FPDF('p','mm','A4');
+		$pdf->AddPage();
+		$pdf->SetFont('Arial','B',12);
+		$pdf->Cell(0,6,"PERINCIAN BIAYA PERJALANAN DINAS",0,1,'C');
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(34,6,'Lamp. SPD Nomor',0,0);
+		$pdf->Cell(3,6,':',0,0);
+		$pdf->MultiCell(0,6,'$nomor',0,'L');
+		$pdf->Cell(34,6,'Tanggal',0,0);
+		$pdf->Cell(3,6,':',0,0);
+		$pdf->MultiCell(0,6,'$var_tgl_surat',0,'L');
+		$pdf->Ln();
+		//here is table
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(10,6,'No',1,0,'C',0);
+		$pdf->Cell(75,6,'Perincian biaya',1,0,'C',0);
+		$pdf->Cell(40,6,'Jumlah',1,0,'C',0);
+		$pdf->Cell(55,6,'Keterangan',1,0,'C',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,6,'1','L',0,'C',0);
+		$pdf->Cell(75,6,'Uang Harian','LR',0,'L',0);
+		$pdf->Cell(40,6,'Rp 2.400.000,00','R',0,'R',0);
+		$pdf->Cell(55,6,'Perjalanan dinas ke :','R',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,6,'2','L',0,'C',0);
+		$pdf->Cell(75,6,'Penginapan','LR',0,'L',0);
+		$pdf->Cell(40,6,'Rp 3.640.000,00','R',0,'R',0);
+		$pdf->Cell(55,6,'Ke Provinsi Bali','R',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,6,'3','L',0,'C',0);
+		$pdf->Cell(75,6,'Tiket Pesawat','LR',0,'L',0);
+		$pdf->Cell(40,6,'Rp 3.262.000,00','R',0,'R',0);
+		$pdf->Cell(55,6,'(selama 5 hari)','R',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,6,'4','L',0,'C',0);
+		$pdf->Cell(75,6,'Transport','LR',0,'L',0);
+		$pdf->Cell(40,6,'Rp 830.000,00','R',0,'R',0);
+		$pdf->Cell(55,6,'Tanggal 19 s.d 23 Februari 2018','R',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,6,'','L',0,'C',0);
+		$pdf->Cell(75,6,'','LR',0,'L',0);
+		$pdf->Cell(40,6,'','R',0,'R',0);
+		$pdf->Cell(55,6,'','R',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(10,6,'','L',0,'C',0);
+		$pdf->Cell(75,6,'Jumlah','LR',0,'L',0);
+		$pdf->Cell(40,6,'Rp 10.132.000,00','TR',0,'R',0);
+		$pdf->Cell(55,6,'','R',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,6,'','LB',0,'C',0);
+		$pdf->Cell(75,6,'','LBR',0,'L',0);
+		$pdf->Cell(40,6,'','BR',0,'R',0);
+		$pdf->Cell(55,6,'','BR',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(10,6,'','LB',0,'C',0);
+		$pdf->Cell(75,6,'Terbilang :','LBR',0,'R',0);
+		$pdf->Cell(95,6,$this->Terbilang(10132000)." rupiah",'BR',0,'L',0);
 		$pdf->Ln();
 		//end of table
 		$pdf->Ln();
