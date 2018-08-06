@@ -320,12 +320,31 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(20,7,'diperoleh bukti-bukti pengeluarannya meliputi :',0,1);
 		$pdf->Ln();
 		//here is table
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,7,'',0,0);
 		$pdf->SetFont('Arial','B',10);
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(10,6,'No',1,0,'L');
-		$pdf->Cell(70,6,'Perincian biaya',1,0,'L');
-		$pdf->Cell(40,6,'Jumlah',1,0,'L');
-		$pdf->Cell(50,6,'Keterangan',1,1,'L');
+		//$pdf->Cell(40,5,' ','LTR',0,'L',0);   // empty cell with left,top, and right borders
+		$pdf->Cell(10,5,'No.',1,0,'C',0);
+		$pdf->Cell(100,5,'Uraian',1,0,'C',0);
+		$pdf->Cell(40,5,'Jumlah',1,0,'C',0);
+        $pdf->Ln();
+        $pdf->Cell(5,7,'',0,0);
+        $pdf->Cell(10,7,'',0,0);
+        $pdf->SetFont('Arial','',10);
+		//$pdf->Cell(40,5,'Solid Here','LR',0,'C',0);  // cell with left and right borders
+		$pdf->Cell(10,5,'1','LRB',0,'R',0);
+		$pdf->Cell(100,5,'Transport Jakarta','RB',0,'L',0);
+		$pdf->Cell(40,5,'942.000,00','LRB',0,'R',0);
+        $pdf->Ln();
+        $pdf->Cell(5,7,'',0,0);
+        $pdf->Cell(10,7,'',0,0);
+        $pdf->SetFont('Arial','B',10);
+		//$pdf->Cell(40,5,'','LBR',0,'L',0);   // empty cell with left,bottom, and right borders
+		$pdf->Cell(10,5,'','LB',0,'L',0);
+		$pdf->Cell(100,5,'Jumlah','RB',0,'C',0);
+		$pdf->Cell(40,5,'942.000,00','LRB',0,'R',0);
+        $pdf->Ln();
+
 		$pdf->Ln();
 		//end of table
 		$pdf->SetFont('Arial','',10);
@@ -375,37 +394,37 @@ class C_PDF extends CI_Controller {
 	function kelik() {
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
-		$pdf->SetFont('Arial','B',12);
+		$pdf->SetFont('Arial','B',14);
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->MultiCell(0,25,"SURAT PERNYATAAN",0,'C');
-		$pdf->SetFont('Arial','',10);
+		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(20,7,'',0,0);
-		$pdf->MultiCell(0,6,"Yang bertandatangan di bawah ini",0,'L');
+		$pdf->MultiCell(0,6,"Yang bertandatangan di bawah ini :",0,'L');
 		$pdf->Ln();
 		$pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(20,7,'Nama',0,0);
 		$pdf->Cell(10,7,':',0,0);
-		$pdf->SetFont('Arial','B',10);
+		$pdf->SetFont('Arial','B',12);
 		$pdf->Cell(20,7,'Yanuar Yuda Darmawan, S.Kom.',0,1);
 		$pdf->Cell(10,7,'',0,0);
-		$pdf->SetFont('Arial','',10);
+		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(20,7,'NIP',0,0);
 		$pdf->Cell(10,7,':',0,0);
-		$pdf->SetFont('Arial','B',10);
+		$pdf->SetFont('Arial','B',12);
 		$pdf->Cell(20,7,'19800126 201012 1 001',0,1);
 		$pdf->Cell(10,7,'',0,0);
-		$pdf->SetFont('Arial','',10);
+		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(20,7,'Jabatan',0,0);
 		$pdf->Cell(10,7,':',0,0);
-		$pdf->SetFont('Arial','B',10);
+		$pdf->SetFont('Arial','B',12);
 		$pdf->Cell(20,7,'Staf Bidang Informasi',0,1);
 		$pdf->Ln();
 		$pdf->Cell(10,7,'',0,0);
-		$pdf->SetFont('Arial','',10);
-		$pdf->Cell(20,7,'Berdasarkan Surat Tugas Nomor:78/KADIH/05/2018 tanggal 22 Mei 2018 dengan ini kami',0,1);
+		$pdf->SetFont('Arial','',12);
+		$pdf->Cell(20,7,'Berdasarkan Surat Tugas Nomor:78/KADIH/05/2018 tanggal 22 Mei 2018 dengan',0,1);
 		$pdf->Cell(10,7,'',0,0);
-		$pdf->Cell(20,7,'menyatakan dengan sesungguhnya bahwa :',0,1);
+		$pdf->Cell(20,7,'sesungguhnya bahwa :',0,1);
 		$pdf->Ln();
 		$pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(20,7,'1. Tiket Jakarta - Aceh (PP) dengan jumlah tiket pesawat di bawah ini melebihi dengan',0,1);
@@ -414,7 +433,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(20,7,'SBU tahun 2018, meliputi :',0,1);
 		$pdf->Ln();
 		//here is table
-		$pdf->SetFont('Arial','B',10);
+		$pdf->SetFont('Arial','B',12);
 		$pdf->Cell(15,7,'',0,0);
 		$pdf->Cell(10,6,'No',1,0,'L');
 		$pdf->Cell(70,6,'Uraian',1,0,'L');
@@ -422,7 +441,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(50,6,'Pengeluaran Rill',1,1,'L');
 		$pdf->Ln();
 		//end of table
-		$pdf->SetFont('Arial','',10);
+		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(20,7,'2. Bahwa tiker Jakarta - Aceh (PP) dengan jumlah uang tersebut pada angka (1)',0,1);
 		$pdf->Cell(5,7,'',0,0);
@@ -434,14 +453,14 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(10,7,'',0,0);
-		$pdf->SetFont('Arial','',10);
+		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(20,7,'Demikian pernyataan ini kami buat dengan sebenarnya, untuk dipergunakan',0,1);
 		$pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(20,7,'sebagaimana mestinya.',0,1);
 		$pdf->Ln();
 		$pdf->Ln();
 		//Footer Surat
-		$pdf->SetFont('Arial','',10);
+		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(10,6,"",0,0,'L');
 		$pdf->Cell(25,6,'',0,0,'L');
 		$pdf->Cell(15,6,'',0,0,'L');
@@ -459,11 +478,11 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->Ln();
-		$pdf->SetFont('Arial','B',10);
+		$pdf->SetFont('Arial','B',12);
 		$pdf->Ln();
 		$pdf->Cell(100,6,"Linda Lestari, S.Kom.",0, 0,'C');
 		$pdf->MultiCell(72.5,6,'Yanuar Yuda Darmawan, S.Kom.',0,'C');
-		$pdf->SetFont('Arial','',10);
+		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(100,6,"NIP. 19790305 200501 2 001",0, 0,'C');
 		$pdf->MultiCell(72.5,6,'NIP. 19800126 201012 1 001',0,'C');
 
@@ -475,34 +494,34 @@ class C_PDF extends CI_Controller {
 	function moxpoy() {
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
-		$pdf->SetFont('Arial','B',12);
+		$pdf->SetFont('Arial','B',14);
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->MultiCell(0,25,"SURAT PERNYATAAN",0,'C');
-		$pdf->SetFont('Arial','',10);
+		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(20,7,'',0,0);
-		$pdf->MultiCell(0,6,"Yang bertandatangan di bawah ini",0,'L');
+		$pdf->MultiCell(0,6,"Yang bertandatangan di bawah ini :",0,'L');
 		$pdf->Ln();
 		$pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(20,7,'Nama',0,0);
 		$pdf->Cell(10,7,':',0,0);
-		$pdf->SetFont('Arial','B',10);
+		$pdf->SetFont('Arial','B',12);
 		$pdf->Cell(20,7,'Dyah Rusmiasih, S.T., M.Kom., MDMa.',0,1);
 		$pdf->Cell(10,7,'',0,0);
-		$pdf->SetFont('Arial','',10);
+		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(20,7,'NIP',0,0);
 		$pdf->Cell(10,7,':',0,0);
-		$pdf->SetFont('Arial','B',10);
+		$pdf->SetFont('Arial','B',12);
 		$pdf->Cell(20,7,'19660902 198903 2 001',0,1);
 		$pdf->Cell(10,7,'',0,0);
-		$pdf->SetFont('Arial','',10);
+		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(20,7,'Jabatan',0,0);
 		$pdf->Cell(10,7,':',0,0);
-		$pdf->SetFont('Arial','B',10);
+		$pdf->SetFont('Arial','B',12);
 		$pdf->Cell(20,7,'Kepala Sub Bidang Pemeliharaan Sistem Jaringan',0,1);
 		$pdf->Ln();
 		$pdf->Cell(10,7,'',0,0);
-		$pdf->SetFont('Arial','',10);
+		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(20,7,'Berdasarkan Surat Tugas Nomor: 18/KADIH/05/2018 tanggal 15 Februari 2018 dengan',0,1);
 		$pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(20,7,'sesungguhnya bahwa :',0,1);
@@ -514,7 +533,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(20,7,'melebihi dengan SBU tahun 2018, meliputi :',0,1);
 		$pdf->Ln();
 		//here is table
-		$pdf->SetFont('Arial','B',10);
+		$pdf->SetFont('Arial','B',12);
 		$pdf->Cell(15,7,'',0,0);
 		$pdf->Cell(10,6,'No',1,0,'L');
 		$pdf->Cell(70,6,'Uraian',1,0,'L');
@@ -522,7 +541,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(50,6,'Pengeluaran Rill',1,1,'L');
 		$pdf->Ln();
 		//end of table
-		$pdf->SetFont('Arial','',10);
+		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(20,7,'2. Boarding Pass Jakarta - Aceh hilang dengan jumlah uang tersebut pada angka',0,1);
 		$pdf->Cell(5,7,'',0,0);
@@ -539,14 +558,14 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(10,7,'',0,0);
-		$pdf->SetFont('Arial','',10);
+		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(20,7,'Demikian pernyataan ini kami buat dengan sebenarnya, untuk dipergunakan',0,1);
 		$pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(20,7,'sebagaimana mestinya.',0,1);
 		$pdf->Ln();
 		$pdf->Ln();
 		//Footer Surat
-		$pdf->SetFont('Arial','',10);
+		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(10,6,"",0,0,'L');
 		$pdf->Cell(25,6,'',0,0,'L');
 		$pdf->Cell(15,6,'',0,0,'L');
@@ -564,11 +583,11 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->Ln();
-		$pdf->SetFont('Arial','B',10);
+		$pdf->SetFont('Arial','B',12);
 		$pdf->Ln();
 		$pdf->Cell(100,6,"Linda Lestari, S.Kom.",0, 0,'C');
 		$pdf->MultiCell(72.5,6,'Dyah Rusmiasih, S.T., M.Kom., MDMa',0,'C');
-		$pdf->SetFont('Arial','',10);
+		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(100,6,"NIP. 19790305 200501 2 001",0, 0,'C');
 		$pdf->MultiCell(72.5,6,'NIP. 196600902 198903 2 001',0,'C');
 
