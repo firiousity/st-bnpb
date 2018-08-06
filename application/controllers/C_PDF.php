@@ -600,6 +600,13 @@ class C_PDF extends CI_Controller {
 		echo $surat_tugas['0']->nomor;
 	}
 
+	function print_biaya($id) {
+		$data['surat'] = $this->home_model->get_surat();
+		$this->load->view('navbar');
+		$this->load->view('header');
+		$this->load->view('print_biaya');
+		$this->load->view('footer');
+	}
 
 	function terbilang($bilangan) {
 
