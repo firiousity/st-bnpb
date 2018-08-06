@@ -893,6 +893,28 @@ class C_PDF extends CI_Controller {
 		$pdf->Output();
 	}
 
+	function perintah() {
+		$pdf = new FPDF('p','mm','A4');
+		$pdf->AddPage();
+		$pdf->SetFont('Arial','B',9);
+		$pdf->Cell(0,6,"BADAN NASIONAL PENANGGULANGAN BENCANA",0,1,'L');
+		$pdf->SetFont('Arial','B',8);
+		$pdf->Cell(0,6,"Jl. Pramuka Kav. 38 - Jakarta Timur 13120",0,1,'L');
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(34,6,'Lamp. SPD Nomor',0,0);
+		$pdf->Cell(3,6,':',0,0);
+		$pdf->MultiCell(0,6,'$nomor',0,'L');
+		$pdf->Cell(34,6,'Tanggal',0,0);
+		$pdf->Cell(3,6,':',0,0);
+		$pdf->MultiCell(0,6,'$var_tgl_surat',0,'L');
+		$pdf->Ln();
+		$pdf->SetFont('Arial','B',12);
+		$pdf->Cell(0,10,"Daftar Nama",0,1,'C');
+
+		//Cetak gans
+		$pdf->Output();
+	}
+
 	function ena ($id) {
 		$surat_tugas = $this->db->select('nomor')->get_where('surat_dinas', array('id' => $id))->result();
 		echo $surat_tugas['0']->nomor;
