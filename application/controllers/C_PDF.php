@@ -381,7 +381,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->Ln();
-		$pdf->SetFont('Arial','B',10);
+		$pdf->SetFont('Arial','BU',10);
 		$pdf->Ln();
 		$pdf->Cell(100,6,"Linda Lestari, S.Kom.",0, 0,'C');
 		$pdf->MultiCell(72.5,6,'Leonard, S.T.',0,'C');
@@ -498,7 +498,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->Ln();
-		$pdf->SetFont('Arial','B',12);
+		$pdf->SetFont('Arial','BU',12);
 		$pdf->Ln();
 		$pdf->Cell(100,6,"Linda Lestari, S.Kom.",0, 0,'C');
 		$pdf->MultiCell(72.5,6,'Yanuar Yuda Darmawan, S.Kom.',0,'C');
@@ -617,7 +617,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->Ln();
-		$pdf->SetFont('Arial','B',12);
+		$pdf->SetFont('Arial','BU',12);
 		$pdf->Ln();
 		$pdf->Cell(85,6,"Linda Lestari, S.Kom.",0, 0,'C');
 		$pdf->MultiCell(105,6,'Dyah Rusmiasih, S.T., M.Kom., MDMa',0,'C');
@@ -632,7 +632,7 @@ class C_PDF extends CI_Controller {
 	function spd_rampung() {
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
-		$pdf->SetFont('Arial','B',12);
+		$pdf->SetFont('Arial','BU',12);
 		$pdf->Cell(0,6,"RINICIAN PERHITUNGAN SPD RAMPUNG",0,1,'C');
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(34,6,'Lamp. SPD Nomor',0,0);
@@ -774,7 +774,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Ln();
 
-		$pdf->SetFont('Arial','B',10);
+		$pdf->SetFont('Arial','BU',10);
 		$pdf->Ln();
 		$pdf->Cell(100,6,'$nama_ppk',0, 0,'C');
 		$pdf->MultiCell(70,6,'Leonard, S.T',0,'C');
@@ -891,7 +891,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Ln();
 
-		$pdf->SetFont('Arial','B',10);
+		$pdf->SetFont('Arial','BU',10);
 		$pdf->Ln();
 		$pdf->Cell(100,6,'Murliana',0, 0,'C');
 		$pdf->MultiCell(74,6,'Leonard, S.T',0,'C');
@@ -917,7 +917,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(150,6,"",0,0,'L');
 		$pdf->Cell(25,6,'Nomor : ',0,0,'L');
 		$pdf->Ln();
-		$pdf->SetFont('Arial','B',12);
+		$pdf->SetFont('Arial','BU',12);
 		$pdf->Cell(0,10,"SURAT PERINTAH DINAS",0,1,'C');
 		$pdf->Cell(10,7,'',0,0);
 		$pdf->SetFont('Arial','',10);
