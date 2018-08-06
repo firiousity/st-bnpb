@@ -37,10 +37,10 @@
         Buat
     </button>
     <div class="dropdown-menu" aria-labelledby="anggaran">
-        <a class="dropdown-item" href="buat_surat">Satu Tempat</a>
-        <a class="dropdown-item" href="buat_surat2">Banyak Tempat</a>
+        <a class="dropdown-item" href="<?php echo base_url('home/buat_surat')?>">Satu Tempat</a>
+        <a class="dropdown-item" href="<?php echo base_url('home/buat_surat2')?>">Banyak Tempat</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="lihat_surat">Daftar Surat</a>
+        <a class="dropdown-item" href="<?php echo base_url('home/lihat_surat')?>">Daftar Surat</a>
 
     </div>
 </div>

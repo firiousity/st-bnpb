@@ -651,10 +651,17 @@ class C_PDF extends CI_Controller {
 	}
 
 	function print_biaya($id) {
-		$data['surat'] = $this->home_model->get_surat();
+		$data['nama'] = $this->home_model->get_yang_dinas($id);
 		$this->load->view('navbar');
 		$this->load->view('header');
-		$this->load->view('print_biaya');
+		$this->load->view('print_biaya', $data);
+		$this->load->view('footer');
+	}
+	function form_biaya($id) {
+		$data['nama'] = $this->home_model->get_yang_dinas($id);
+		$this->load->view('navbar');
+		$this->load->view('header');
+		$this->load->view('form_biaya', $data);
 		$this->load->view('footer');
 	}
 
