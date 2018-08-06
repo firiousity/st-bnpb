@@ -37,8 +37,8 @@
         Pilih
     </button>
     <div class="dropdown-menu" aria-labelledby="anggaran">
-        <a class="dropdown-item" href="lihat_surat">Lihat Surat</a>
-        <a class="dropdown-item" href="buat_surat">Buat Surat</a>
+        <a class="dropdown-item" href="<?php  echo base_url('home/lihat_surat')?>">Lihat Surat</a>
+        <a class="dropdown-item" href="<?php  echo base_url('home/buat_surat')?>">Buat Surat</a>
     </div>
 </div>
 
