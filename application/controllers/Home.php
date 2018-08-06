@@ -166,7 +166,7 @@ class Home extends CI_Controller {
 		$this->load->view('nav');
 		$this->load->view('header');
 		$this->load->view('edit_penginapan', $data);
-		$this->load->view('footer2');
+		$this->load->view('footer');
 	}
 
 	function edit_penginapan($id) {
@@ -349,7 +349,7 @@ class Home extends CI_Controller {
 		$this->load->view('nav');
 		$this->load->view('header');
 		$this->load->view('edit_harian', $data);
-		$this->load->view('footer2');
+		$this->load->view('footer');
 	}
 
 	function edit_harian($id) {
@@ -487,7 +487,7 @@ class Home extends CI_Controller {
 		$this->load->view('nav');
 		$this->load->view('header');
 		$this->load->view('edit_pegawai', $data);
-		$this->load->view('footer2');
+		$this->load->view('footer');
 	}
 
 	function edit_pegawai($id) {

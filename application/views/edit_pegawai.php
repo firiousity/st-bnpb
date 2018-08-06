@@ -6,7 +6,7 @@
 		$url = "home/edit_pegawai/".$row->id_pegawai;
 		echo "
 			<form action=".base_url($url)." method=\"post\">
-			<div class=\"modal-body mx-5\">
+			<div class=\"card-body mx-5\">
 			<div class=\"md-form mb-4\">
 			<input type=\"text\" class=\"form-control\" name=\"nama\" value=\"$row->nama_pegawai\">
 			<label data-error=\"wrong\" data-success=\"right\">Nama Lengkap</label>
@@ -28,7 +28,7 @@
 
 			
 			</div>
-			<div class=\"modal-footer d-flex justify-content-center\">
+			<div class=\"d-flex justify-content-center\">
 			<button class=\"btn btn-indigo\">Edit</button>
 			</div>
 		</form>";
@@ -36,6 +36,7 @@
 	?>	
 		</div>
 	</div>
+	<a href="../pegawai"><button class="btn btn-indigo">Kembali</button></a>
 	
 </div>
 </body>

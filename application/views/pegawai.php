@@ -78,24 +78,24 @@
 						<div class="modal-body mx-5">
 							<div class="md-form mb-4">
 								<!-- <i class="fa fa-user prefix grey-text"></i> -->
-								<input type="text" id="orangeForm-name" class="form-control validate" name="nama">
-								<label data-error="wrong" data-success="right" for="orangeForm-name">Nama Lengkap</label>
+								<input type="text" class="form-control" name="nama">
+								<label data-error="wrong" data-success="right">Nama Lengkap</label>
 							</div>
 							<div class="md-form mb-4">
 								<!-- <i class="fa fa-address-card prefix grey-text"></i> -->
-								<input type="text" id="orangeForm-email" class="form-control validate" name="nip">
+								<input type="text" class="form-control" name="nip">
 								<label data-error="wrong" data-success="right">NIP</label>
 							</div>
 
 							<div class="md-form mb-4">
 								<!-- <i class="fa fa-lock prefix grey-text"></i> -->
-								<input type="text" id="orangeForm-pass" class="form-control validate" name="jabatan">
+								<input type="text" class="form-control" name="jabatan">
 								<label data-error="wrong" data-success="right">Jabatan</label>
 							</div>
 
 							<div class="md-form mb-4">
 								<!-- <i class="fa fa-lock prefix grey-text"></i> -->
-								<input type="text" id="orangeForm-pass" class="form-control validate" name="gol">
+								<input type="text" class="form-control" name="gol">
 								<label data-error="wrong" data-success="right">Golongan</label>
 							</div>
 						</div>
