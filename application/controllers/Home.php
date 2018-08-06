@@ -44,8 +44,13 @@ class Home extends CI_Controller {
 	public function login() {
 		$sql = "select * from admin where nama = ? and password = ?";
 		$query = $this->db->query($sql, array($this->input->post('name'), $this->input->post('password')));
+		$result = $query->result();
 		if($query->num_rows()> 0) {
-			$this->href("home/beranda");
+			if ($result[0]->nama = 'pusdatin') {
+				$this->href("home/lihat_surat");
+			} else {
+				$this->href("home/beranda");
+			}
 		} else {
 			echo "<script>         	
          	alert('password atau username salah!');

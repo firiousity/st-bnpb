@@ -13,7 +13,7 @@
         <span style="margin-right: 20px;">
             <ul class="navbar-nav navbar-right mr-auto mt-lg-0">
         <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
+                <a class="nav-link" href="<?php echo  base_url()?>">Logout</a>
             </li>    
         </ul>    
         </span>

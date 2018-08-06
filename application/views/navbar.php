@@ -14,7 +14,7 @@
         <span style="margin-right: 20px;">
             <ul class="navbar-nav navbar-right mr-auto mt-lg-0">
         <li class="nav-item">
-                <a class="nav-link" style="color: black" href="#"><b>Logout<b></a>
+                <a class="nav-link" style="color: black" href="<?php echo  base_url()?>"><b>Logout<b></a>
             </li>    
         </ul>    
         </span>
