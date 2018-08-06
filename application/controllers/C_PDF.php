@@ -881,18 +881,19 @@ class C_PDF extends CI_Controller {
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','B',8);
-		$pdf->Cell(150,6,"BADAN NASIONAL PENANGGULANGAN BENCANA",0,0,'L');
+		$pdf->Cell(150,3,'BADAN NASIONAL PENANGGULANGAN BENCANA',0,0,'L');
 		$pdf->SetFont('Arial','',7);
-		$pdf->Cell(25,6,"Lembar ke : ",0,'L');
+		$pdf->Cell(25,3,'Lembar ke : ',0,'L');
 		$pdf->Ln();
-		$pdf->Cell(150,6,"Jl. Pramuka Kav. 38 - Jakarta Timur 13120",0,0,'L');
-		$pdf->Cell(25,6,'Kode No. : ',0,'L');
+		$pdf->Cell(150,3,'Jl. Pramuka Kav. 38 - Jakarta Timur 13120',0,0,'L');
+		$pdf->Cell(25,3,'Kode No. : ',0,'L');
 		$pdf->Ln();
-		$pdf->Cell(150,6,"",0,0,'L');
-		$pdf->Cell(25,6,'Nomor : ',0,0,'L');
+		$pdf->Cell(150,3,'',0,0,'L');
+		$pdf->Cell(25,3,'Nomor : ',0,0,'L');
+		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->SetFont('Arial','BU',12);
-		$pdf->Cell(0,10,"SURAT PERINTAH DINAS",0,1,'C');
+		$pdf->Cell(0,10,'SURAT PERINTAH DINAS',0,1,'C');
 		//this is the table
 		$pdf->Cell(10,7,'',0,0);
 		$pdf->SetFont('Arial','',8);
@@ -1044,8 +1045,34 @@ class C_PDF extends CI_Controller {
         $pdf->Ln();
         //end of table
         $pdf->Cell(10,7,'',0,0);
-		$pdf->Cell(70,5,'Coret yang tidak perlu',0,'L');
-
+		$pdf->Cell(70,6,'Coret yang tidak perlu',0,0,'L');
+		$pdf->Ln();
+		$pdf->Cell(112,7,'',0,0);
+		$pdf->Cell(30,5,'Dikeluarkan di :',0,0,'L');
+		$pdf->Cell(20,5,'Jakarta',0,0,'L');
+		$pdf->Ln();
+		$pdf->SetFont('Arial','',8);
+		$pdf->Cell(112,7,'',0,0);
+		$pdf->Cell(30,5,'Pada tanggal :','B',0,'L');
+		$pdf->Cell(20,5,'22 Mei 2018','B',0,'L');
+		$pdf->Ln();
+		$pdf->Ln();
+		$pdf->Cell(116.5,7,'',0,0);
+		$pdf->Cell(40,4,'Pejabat Pembuat Komitmen',0,0,'C');
+		$pdf->Ln();
+		$pdf->Cell(116.5,7,'',0,0);
+		$pdf->Cell(40,4,'Pusat Data Informasi dan Humas',0,0,'C');
+		$pdf->Ln();
+		$pdf->Ln();
+		$pdf->Ln();
+		$pdf->Ln();
+		$pdf->SetFont('Arial','U',8);
+		$pdf->Cell(116.5,6,'',0,0);
+		$pdf->Cell(40,4,'Linda Lestari, S.Kom.',0,0,'C');
+		$pdf->Ln();
+		$pdf->SetFont('Arial','',8);
+		$pdf->Cell(116.5,6,'',0,0);
+		$pdf->Cell(40,4,'NIP. 19790305 200501 2 001',0,0,'C');
 
 		//Cetak gans
 		$pdf->Output();
