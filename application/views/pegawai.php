@@ -14,6 +14,7 @@
                               <th scope="col">Aksi</th>
                             </tr>
                           </thead>
+
                           <tbody>
                             <?php foreach ($pegawai as $row) {
 								echo "

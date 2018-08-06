@@ -34,11 +34,12 @@
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 		  <div class="btn-group">
     <button id="anggaran" data-target="#" href="https://example.com" class="btn btn-indigo btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Pilih
+        Buat
     </button>
     <div class="dropdown-menu" aria-labelledby="anggaran">
-        <a class="dropdown-item" href="<?php  echo base_url('home/lihat_surat')?>">Lihat Surat</a>
-        <a class="dropdown-item" href="<?php  echo base_url('home/buat_surat')?>">Buat Surat</a>
+        <a class="dropdown-item" href="lihat_surat">Daftar surat</a>
+        <a class="dropdown-item" href="buat_surat">Satu Tempat</a>
+        <a class="dropdown-item" href="">Banyak Tempat</a>
     </div>
 </div>
 
