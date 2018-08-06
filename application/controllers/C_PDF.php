@@ -434,7 +434,6 @@ class C_PDF extends CI_Controller {
 		//here is table
 		$pdf->Cell(20,7,'',0,0);
 		$pdf->SetFont('Arial','B',12);
-		//$pdf->Cell(40,5,' ','LTR',0,'L',0);   // empty cell with left,top, and right borders
 		$pdf->Cell(10,5,'No.',1,0,'C',0);
 		$pdf->Cell(70,5,'Uraian',1,0,'C',0);
 		$pdf->Cell(40,5,'Nilai SBU',1,0,'C',0);
@@ -546,7 +545,6 @@ class C_PDF extends CI_Controller {
 		//here is table
 		$pdf->Cell(20,7,'',0,0);
 		$pdf->SetFont('Arial','B',12);
-		//$pdf->Cell(40,5,' ','LTR',0,'L',0);   // empty cell with left,top, and right borders
 		$pdf->Cell(10,5,'No.',1,0,'C',0);
 		$pdf->Cell(70,5,'Uraian',1,0,'C',0);
 		$pdf->Cell(40,5,'Nilai SBU',1,0,'C',0);
@@ -554,7 +552,6 @@ class C_PDF extends CI_Controller {
         $pdf->Ln();
         $pdf->Cell(20,7,'',0,0);
         $pdf->SetFont('Arial','',12);
-		//$pdf->Cell(40,5,'Solid Here','LR',0,'C',0);  // cell with left and right borders
 		$pdf->Cell(10,5,'1','LB',0,'R',0);
 		$pdf->Cell(70,5,'Tiket Pesawat Jakarta - Denpasar','LRB',0,'L',0);
 		$pdf->Cell(40,5,'Rp 1.631.000,00','RB',0,'R',0);
@@ -562,7 +559,6 @@ class C_PDF extends CI_Controller {
         $pdf->Ln();
         $pdf->Cell(20,7,'',0,0);
         $pdf->SetFont('Arial','B',12);
-		//$pdf->Cell(40,5,'','LBR',0,'L',0);   // empty cell with left,bottom, and right borders
 		$pdf->Cell(10,5,'','LB',0,'L',0);
 		$pdf->Cell(70,5,'Jumlah','LRB',0,'C',0);
 		$pdf->Cell(40,5,'Rp 1.631.000,00','RB',0,'R',0);
@@ -619,6 +615,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Output();
 	}
 
+	//Page Rincian Perhitungan SPD Rampung
 	function spd_rampung() {
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
@@ -765,6 +762,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Output();
 	}
 
+	//Page Perincian Biaya Perjalanan Dinas
 	function biaya() {
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
@@ -878,6 +876,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Output();
 	}
 
+	//Page Surat Perintah Dinas
 	function perintah() {
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
