@@ -869,25 +869,35 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,6,"",0,0,'L');
 		$pdf->Cell(25,6,'',0,0,'L');
 		$pdf->Cell(15,6,'',0,0,'L');
-		$pdf->Cell(5,6,'',0,0,'L');
+		$pdf->Cell(10,6,'',0,0,'L');
 		$pdf->Cell(25,6,'',0,0,'R');
 		$pdf->Cell(40,6,'',0,0,'C');
-		$pdf->MultiCell(50,6,'Jakarta, ',0,'R');
-
+		$pdf->MultiCell(50,6,'Jakarta, 15 Februari 2018 ',0,'R');
+		$pdf->Cell(15,6,'',0,0,'L');
+		$pdf->Cell(10,6,'Telah dibayar sejumlah',0,0,'L');
+		$pdf->Cell(29,6,'',0,0,'R');
+		$pdf->Cell(40,6,'',0,0,'C');
+		$pdf->MultiCell(80,6,'Telah menerima jumlah uang sebesar',0,'R');
+		$pdf->Cell(15,6,'',0,0,'L');
+		$pdf->Cell(10,6,'Rp 0.00',0,0,'L');
+		$pdf->Cell(40,6,'',0,0,'R');
+		$pdf->Cell(48,6,'',0,0,'C');
+		$pdf->MultiCell(80,6,'Rp 0.00',0,'L');
 		$pdf->Ln();
-		$pdf->Cell(100,6,"Mengetahui \nPejabat Pembuat Komitmen",0, 0,'C');
-		$pdf->MultiCell(70,6,'Yang melakukan perjalanan dinas',0,'R');
+		$pdf->Ln();
+		$pdf->Cell(100,6,"Bendahara Pengeluaran Pembantu",0, 0,'C');
+		$pdf->MultiCell(50,6,'Yang menerima',0,'R');
 
 		$pdf->Ln();
 		$pdf->Ln();
 
 		$pdf->SetFont('Arial','B',10);
 		$pdf->Ln();
-		$pdf->Cell(100,6,'$nama_ppk',0, 0,'C');
-		$pdf->MultiCell(70,6,'Leonard, S.T',0,'C');
+		$pdf->Cell(100,6,'Murliana',0, 0,'C');
+		$pdf->MultiCell(74,6,'Leonard, S.T',0,'C');
 		$pdf->SetFont('Arial','',10);
-		$pdf->Cell(100,6,'NIP.'  ,0, 0,'C');
-		$pdf->MultiCell(70,6,'NIP. 19820107 200912 1 002',0,'C');
+		$pdf->Cell(100,6,'NIP. 19820107 200912 1 002'  ,0, 0,'C');
+		$pdf->MultiCell(74,6,'NIP. 19820107 200912 1 002',0,'C');
 
 		//Cetak gans
 		$pdf->Output();
@@ -921,10 +931,17 @@ class C_PDF extends CI_Controller {
 	}
 
 	function print_biaya($id) {
-		$data['surat'] = $this->home_model->get_surat();
+		$data['nama'] = $this->home_model->get_yang_dinas($id);
 		$this->load->view('navbar');
 		$this->load->view('header');
-		$this->load->view('print_biaya');
+		$this->load->view('print_biaya', $data);
+		$this->load->view('footer');
+	}
+	function form_biaya($id) {
+		$data['nama'] = $this->home_model->get_yang_dinas($id);
+		$this->load->view('navbar');
+		$this->load->view('header');
+		$this->load->view('form_biaya', $data);
 		$this->load->view('footer');
 	}
 
