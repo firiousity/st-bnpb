@@ -37,9 +37,11 @@
         Buat
     </button>
     <div class="dropdown-menu" aria-labelledby="anggaran">
-        <a class="dropdown-item" href="lihat_surat">Daftar surat</a>
         <a class="dropdown-item" href="buat_surat">Satu Tempat</a>
-        <a class="dropdown-item" href="">Banyak Tempat</a>
+        <a class="dropdown-item" href="buat_surat2">Banyak Tempat</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="lihat_surat">Daftar Surat</a>
+
     </div>
 </div>
 
