@@ -331,18 +331,18 @@ class C_PDF extends CI_Controller {
         $pdf->Cell(10,7,'',0,0);
         $pdf->SetFont('Arial','',10);
 		//$pdf->Cell(40,5,'Solid Here','LR',0,'C',0);  // cell with left and right borders
-		$pdf->Cell(10,5,'1','LR',0,'R',0);
+		$pdf->Cell(10,5,'1','L',0,'R',0);
 		$pdf->Cell(70,5,'Transport Bandara Jakarta (PP)','L',0,'L',0);
 		$pdf->Cell(30,5,'2 x 256.000','R',0,'R',0);
-		$pdf->Cell(40,5,'942.000,00','LR',0,'R',0);
+		$pdf->Cell(40,5,'942.000,00','R',0,'R',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
         $pdf->Cell(10,7,'',0,0);
         $pdf->SetFont('Arial','',10);
-        $pdf->Cell(10,5,'2','LRB',0,'R',0);
-		$pdf->Cell(70,5,'Transport Bandara Bali (PP)','B',0,'L',0);
-		$pdf->Cell(30,5,'2 x 256.000','B',0,'R',0);
-		$pdf->Cell(40,5,'942.000,00','LRB',0,'R',0);
+        $pdf->Cell(10,5,'2','LB',0,'R',0);
+		$pdf->Cell(70,5,'Transport Bandara Bali (PP)','LB',0,'L',0);
+		$pdf->Cell(30,5,'2 x 256.000','RB',0,'R',0);
+		$pdf->Cell(40,5,'942.000,00','RB',0,'R',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
         $pdf->Cell(10,7,'',0,0);
@@ -350,7 +350,7 @@ class C_PDF extends CI_Controller {
 		//$pdf->Cell(40,5,'','LBR',0,'L',0);   // empty cell with left,bottom, and right borders
 		$pdf->Cell(10,5,'','LB',0,'L',0);
 		$pdf->Cell(100,5,'Jumlah','RB',0,'C',0);
-		$pdf->Cell(40,5,'942.000,00','LRB',0,'R',0);
+		$pdf->Cell(40,5,'942.000,00','RB',0,'R',0);
         $pdf->Ln();
         //end of table
 		$pdf->Ln();
@@ -448,18 +448,18 @@ class C_PDF extends CI_Controller {
         $pdf->Cell(20,7,'',0,0);
         $pdf->SetFont('Arial','',12);
 		//$pdf->Cell(40,5,'Solid Here','LR',0,'C',0);  // cell with left and right borders
-		$pdf->Cell(10,5,'1','LRB',0,'R',0);
-		$pdf->Cell(70,5,'Tiket Pesawat Jakarta - Aceh (PP)','LB',0,'L',0);
-		$pdf->Cell(40,5,'Rp 4.492.000,00','LRB',0,'R',0);
-		$pdf->Cell(40,5,'Rp 5.092.000,00','LRB',0,'R',0);
+		$pdf->Cell(10,5,'1','LB',0,'R',0);
+		$pdf->Cell(70,5,'Tiket Pesawat Jakarta - Aceh (PP)','LRB',0,'L',0);
+		$pdf->Cell(40,5,'Rp 4.492.000,00','RB',0,'R',0);
+		$pdf->Cell(40,5,'Rp 5.092.000,00','RB',0,'R',0);
         $pdf->Ln();
         $pdf->Cell(20,7,'',0,0);
         $pdf->SetFont('Arial','B',12);
 		//$pdf->Cell(40,5,'','LBR',0,'L',0);   // empty cell with left,bottom, and right borders
 		$pdf->Cell(10,5,'','LB',0,'L',0);
-		$pdf->Cell(70,5,'Jumlah','RB',0,'C',0);
-		$pdf->Cell(40,5,'Rp 4.492.000,00','LRB',0,'R',0);
-		$pdf->Cell(40,5,'Rp 5.092.000,00','LRB',0,'R',0);
+		$pdf->Cell(70,5,'Jumlah','LRB',0,'C',0);
+		$pdf->Cell(40,5,'Rp 4.492.000,00','RB',0,'R',0);
+		$pdf->Cell(40,5,'Rp 5.092.000,00','RB',0,'R',0);
         $pdf->Ln();
 		//end of table
 		$pdf->Ln();
@@ -564,18 +564,18 @@ class C_PDF extends CI_Controller {
         $pdf->Cell(20,7,'',0,0);
         $pdf->SetFont('Arial','',12);
 		//$pdf->Cell(40,5,'Solid Here','LR',0,'C',0);  // cell with left and right borders
-		$pdf->Cell(10,5,'1','LRB',0,'R',0);
-		$pdf->Cell(70,5,'Tiket Pesawat Jakarta - Denpasar','LB',0,'L',0);
-		$pdf->Cell(40,5,'Rp 1.631.000,00','LRB',0,'R',0);
-		$pdf->Cell(40,5,'Rp 1.001.000,00','LRB',0,'R',0);
+		$pdf->Cell(10,5,'1','LB',0,'R',0);
+		$pdf->Cell(70,5,'Tiket Pesawat Jakarta - Denpasar','LRB',0,'L',0);
+		$pdf->Cell(40,5,'Rp 1.631.000,00','RB',0,'R',0);
+		$pdf->Cell(40,5,'Rp 1.001.000,00','RB',0,'R',0);
         $pdf->Ln();
         $pdf->Cell(20,7,'',0,0);
         $pdf->SetFont('Arial','B',12);
 		//$pdf->Cell(40,5,'','LBR',0,'L',0);   // empty cell with left,bottom, and right borders
 		$pdf->Cell(10,5,'','LB',0,'L',0);
-		$pdf->Cell(70,5,'Jumlah','RB',0,'C',0);
-		$pdf->Cell(40,5,'Rp 1.631.000,00','LRB',0,'R',0);
-		$pdf->Cell(40,5,'Rp 1.001.000,00','LRB',0,'R',0);
+		$pdf->Cell(70,5,'Jumlah','LRB',0,'C',0);
+		$pdf->Cell(40,5,'Rp 1.631.000,00','RB',0,'R',0);
+		$pdf->Cell(40,5,'Rp 1.001.000,00','RB',0,'R',0);
         $pdf->Ln();
 		//end of table
 
@@ -745,7 +745,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->SetFont('Arial','B',10);
 		$pdf->Cell(10,6,'','LB',0,'C',0);
-		$pdf->Cell(75,6,'Jumlah','LBR',0,'L',0);
+		$pdf->Cell(75,6,'Jumlah :','LBR',0,'R',0);
 		$pdf->Cell(40,6,'Rp 9.041.000,00','BR',0,'R',0);
 		$pdf->Cell(55,6,'','BR',0,'L',0);
 		$pdf->Ln();
@@ -845,7 +845,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->SetFont('Arial','B',10);
 		$pdf->Cell(10,6,'','L',0,'C',0);
-		$pdf->Cell(75,6,'Jumlah','LR',0,'L',0);
+		$pdf->Cell(75,6,'Jumlah :','LR',0,'R',0);
 		$pdf->Cell(40,6,'Rp 10.132.000,00','TR',0,'R',0);
 		$pdf->Cell(55,6,'','R',0,'L',0);
 		$pdf->Ln();
@@ -978,6 +978,42 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,5,'5','LB',0,'C',0);
 		$pdf->Cell(70,5,'Alat angkutan yang dipergunakan','LBR',0,'L',0);
 		$pdf->Cell(90,5,'udara','BR',0,'L',0);
+        $pdf->Ln();
+        $pdf->Cell(10,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,5,'6.','L',0,'C',0);
+		$pdf->Cell(70,5,'a. Tempat berangkat','LR',0,'L',0);
+		$pdf->Cell(90,5,'a. Jakarta','R',0,'L',0);
+        $pdf->Ln();
+        $pdf->Cell(10,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,5,'','LB',0,'C',0);
+		$pdf->Cell(70,5,'b. Tempat tujuan','LBR',0,'L',0);
+		$pdf->Cell(90,5,'b. Provinsi Maluku Utara','BR',0,'L',0);
+        $pdf->Ln();
+        $pdf->Cell(10,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,5,'7.','L',0,'C',0);
+		$pdf->Cell(70,5,'a. Lamanya perjalanan Dinas','LR',0,'L',0);
+		$pdf->Cell(90,5,'a. 3 (Tiga) Hari','R',0,'L',0);
+        $pdf->Ln();
+        $pdf->Cell(10,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,5,'','L',0,'C',0);
+		$pdf->Cell(70,5,'b. Tanggal berangkat','LR',0,'L',0);
+		$pdf->Cell(90,5,'b. 30 Mei 2018','R',0,'L',0);
+        $pdf->Ln();
+        $pdf->Cell(10,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,5,'','L',0,'C',0);
+		$pdf->Cell(70,5,'c. Tanggal harus kembali /','LR',0,'L',0);
+		$pdf->Cell(90,5,'c. 1 Juni 2018','R',0,'L',0);
+        $pdf->Ln();
+        $pdf->Cell(10,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,5,'','LB',0,'C',0);
+		$pdf->Cell(70,5,'    Tiba di tempat baru','LBR',0,'L',0);
+		$pdf->Cell(90,5,'','BR',0,'L',0);
         $pdf->Ln();
 
 
