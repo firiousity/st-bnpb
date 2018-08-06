@@ -65,7 +65,7 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('navbar');
+		$this->load->view('navlogin');
 		$this->load->view('header');
 		$this->load->view('login');
 		$this->load->view('footer');
