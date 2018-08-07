@@ -10,6 +10,7 @@
                               <th scope="col">No</th>
                               <th scope="col">Nomor Surat</th>
                               <th scope="col">Tempat</th>
+								<th scope="col">Tipe</th>
                               <th scope="col">PDF</th>
                             </tr>
                           </thead>
@@ -23,12 +24,13 @@
                               <th scope=\"row\">$i</th>
                               <td>$row->nomor</td>
                               <td>$row->tempat</td>
+                              <td>$row->tipe</td>
                               <td>
                               <span><a href='".base_url('C_PDF/print/'.$row->id)."' target='_blank'> 
                               <button type=\"button\" class=\"btn btn-primary btn-rounded btn-sm my-0\">PRINT SURAT DINAS
                               </button></a></span>
-                              <a href='".base_url('C_PDF/print_biaya/'.$row->id)."' target='_blank'> 
-                              <button type=\"button\" class=\"btn btn-primary btn-rounded btn-sm my-0\">PRINT ANGGARAN BIAYA
+                              <a href='".base_url('C_PDF/print_biaya/'.$row->id)."'> 
+                              <button type=\"button\" class=\"btn btn-primary btn-rounded btn-sm my-0\">LIHAT RINCIAN BIAYA
                               </button></a>
                               
                               </td>

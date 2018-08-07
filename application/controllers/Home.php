@@ -99,6 +99,7 @@ class Home extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+
 	public function buat_surat2 ()
 	{
 		$data['pegawai'] = $this->home_model->get_pegawai();
