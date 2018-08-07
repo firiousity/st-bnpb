@@ -38,19 +38,11 @@
     <!-- Initializations -->
 	<!-- Custom js	-->
 <script type=”text/javascript” src=”js/jquery-3.1.1.min.js”></script>
-
 <script type=”text/javascript” src=”js/popper.min.js”></script>
-
 <script type=”text/javascript” src=”js/bootstrap.min.js”></script>
-
 <script type=”text/javascript” src=”js/mdb.min.js”></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/css/custom.js')?>"></script>
-
-
 	<script>
-
-
-
 	  // Data Picker Initialization
 	  $( document ).ready(function() {
 		  $('.datepicker').pickadate({
@@ -59,11 +51,6 @@
 		  });
 	  });
 	</script>
-	<!-- <script>
-		$(document).ready(function(){
-    	$('.dropdown-toggle').dropdown();
-	});
-</script> -->
 <style>
 	.html {
         position: relative;
