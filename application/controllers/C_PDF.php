@@ -1245,7 +1245,8 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(65,6,'','LBR',0,'C',0);
 		$pdf->Cell(50,6,'','BR',0,'C',0);
 		$pdf->Ln();
-
+		//end of the table
+		
 		//Cetak gans
 		$pdf->Output();
 	}
