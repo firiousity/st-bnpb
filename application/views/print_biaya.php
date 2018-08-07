@@ -23,7 +23,7 @@
                               <th scope=\"row\">$i</th>
                               <td>$row->nama_pegawai</td>
                               <td>
-                              <span><a href='".base_url('C_PDF/form_biaya/'.$row->id_pegawai)."' target='_blank'> 
+                              <span><a href='".base_url('C_PDF/form_biaya/'.$row->id_surat."_".$row->id_pegawai)."' target='_blank'> 
                               <button type=\"button\" class=\"btn btn-primary btn-rounded btn-sm my-0\">PRINT BIAYA
                               </button></a></span>
                               
@@ -36,11 +36,7 @@
 						  </tbody>
 						</table>
                         <div class="row">
-                            <div class="col">
-                                <div align="left">
-                                    <a href="<?php  echo base_url('home/buat_surat')?>"><button type="button" class="btn btn-indigo btn-md">Tambah Surat</button></a>
-                                </div>
-							</div>
+
                             <div class="col">
                                 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-end">
