@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_PDF extends CI_Controller {
 
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -35,30 +36,33 @@ class C_PDF extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-
+	/* PRINT SURAT DINAS (2 LEMBAR) */
 
 	function print($id) {
-		$surat_tugas = $this->db->get_where('surat_dinas', array('id' => $id))->result();
-		$pegawai = $this->db->get_where('pegawai',
+		/* DEFINE VARIABLE WE WILL USED */
+
+		$surat_tugas	= $this->db->get_where('surat_dinas',
+			array('id' => $id))->result();
+		$pegawai 		= $this->db->get_where('pegawai',
 			array('jabatan_pegawai' => 'Kepala Pusat Data Informasi dan Humas'))->result();
-		$ppk = $this->db->get_where('pejabat_administratif',
+		$ppk 			= $this->db->get_where('pejabat_administratif',
 			array('jabatan' => 'Pejabat Pembuat Komitmen'))->result();
-		//Define variable
-		$nomor = $surat_tugas['0']->nomor;
-		$var_kegiatan = $surat_tugas['0']->kegiatan;
-		$var_tempat = $surat_tugas['0']->tempat;
-		$var_tgl_mulai = $surat_tugas['0']->tgl_mulai;
-		$var_tgl_akhir = $surat_tugas['0']->tgl_akhir;
 
-		$var_tahun_kegiatan = substr($surat_tugas['0']->tgl_surat, -4);
-		$var_tgl_surat = $surat_tugas['0']->tgl_surat;
-		//$surat_tugas = json_encode($surat_tugas);
-		$nama_ppk = $ppk['0']->nama;
-		$nip_ppk = $ppk['0']->nip;
-		$kapusdatin = $pegawai['0']->nama_pegawai;
-		$tgl_sekarang = date('d')."-".date('m')."-".date('Y');
+		$nomor 			= $surat_tugas['0']->nomor;
+		$var_kegiatan 	= $surat_tugas['0']->kegiatan;
+		$var_tempat 	= $surat_tugas['0']->tempat;
+		$var_tgl_mulai 	= $surat_tugas['0']->tgl_mulai;
+		$var_tgl_akhir 	= $surat_tugas['0']->tgl_akhir;
+
+		$var_tahun_kegiatan 	= substr($surat_tugas['0']->tgl_surat, -4);
+		$var_tgl_surat 			= $surat_tugas['0']->tgl_surat;
+
+		$nama_ppk 				= $ppk['0']->nama;
+		$nip_ppk 				= $ppk['0']->nip;
+		$kapusdatin 			= $pegawai['0']->nama_pegawai;
+		$tgl_sekarang 			= date('d')."-".date('m')."-".date('Y');
+
 		$pdf = new FPDF('p','mm','A4');
-
 
 		// membuat halaman baru
 		$pdf->AddPage();
@@ -145,6 +149,30 @@ class C_PDF extends CI_Controller {
 			$counter++;
 		}
 
+		//Cetak gans
+		$pdf->Output();
+
+	}
+
+	//Rincian Pengeluaran Biaya Perjalanan
+	function rincian_biaya_perjalanan($id) {
+		/* DEFINE VARIABLE WE WILL USED */
+
+		$surat_tugas	= $this->db->get_where('surat_dinas',
+			array('id' => $id))->result();
+		$pegawai 		= $this->db->get_where('pegawai',
+			array('jabatan_pegawai' => 'Kepala Pusat Data Informasi dan Humas'))->result();
+		$ppk 			= $this->db->get_where('pejabat_administratif',
+			array('jabatan' => 'Pejabat Pembuat Komitmen'))->result();
+
+		$nomor 			= $surat_tugas['0']->nomor;
+		$var_tgl_surat 			= $surat_tugas['0']->tgl_surat;
+
+		$nama_ppk 				= $ppk['0']->nama;
+		$nip_ppk 				= $ppk['0']->nip;
+		$tgl_sekarang 			= date('d')."-".date('m')."-".date('Y');
+
+		$pdf = new FPDF('p', 'mm', 'A4');
 		//Page ke-3
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','B',10);
@@ -274,9 +302,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(100,6,"NIP. ".$nip_ppk ,0, 0,'C');
 		$pdf->MultiCell(70,6,'NIP. 19820107 200912 1 002',0,'C');
 
-		//Cetak gans
 		$pdf->Output();
-
 	}
 
 	//Page Daftar Pengeluaran Rill
