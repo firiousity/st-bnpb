@@ -77,7 +77,10 @@
 				$mulai = $_POST['mulai_input'];
 				$akhir = $_POST['akhir_input'];
 
-				foreach ($nama as $key => $j) {
+				var_dump($nama, $tempat, $mulai, $akhir);
+				echo  implode('-', array_reverse(explode('-', $mulai[0])));
+
+				/*foreach ($nama as $key => $j) {
 					echo "<p>" . $j . "</p>";
 				}
 				foreach ($tempat as $key => $j) {
@@ -88,7 +91,7 @@
 				}
 				foreach ($akhir as $key => $j) {
 					echo "<p>" . $j . "</p>";
-				}
+				}*/
 			}
 			?>
 		</p>
