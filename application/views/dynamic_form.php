@@ -78,7 +78,7 @@
 				$akhir = $_POST['akhir_input'];
 
 				var_dump($nama, $tempat, $mulai, $akhir);
-				echo  implode('-', array_reverse(explode('-', $mulai[0])));
+
 
 				/*foreach ($nama as $key => $j) {
 					echo "<p>" . $j . "</p>";

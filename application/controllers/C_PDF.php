@@ -105,7 +105,9 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'Untuk',0,0);
 		$pdf->Cell(5,6,':',0,0);
 		$pdf->Cell(5,6,'1.',0,0);
-		$pdf->MultiCell(0,6,"Dinas ke ".$var_tempat." dalam rangka mendukung kegiatan ".$var_kegiatan." tahun ".$var_tahun_kegiatan.", pada tanggal ".$var_tgl_mulai." s.d ".$var_tgl_akhir.";",0,'J');
+		$pdf->MultiCell(0,6,"Dinas ke ".$var_tempat." dalam rangka mendukung kegiatan ".$var_kegiatan." tahun ".$var_tahun_kegiatan.", pada tanggal "
+			.$this->tanggal_indo($var_tgl_mulai,'-')." s.d "
+			.$this->tanggal_indo($var_tgl_akhir,'-').";",0,'J');
 		$pdf->Cell(25,6,'',0,0);
 		$pdf->Cell(5,6,'',0,0);
 		$pdf->Cell(5,6,'2.',0,0);
@@ -119,7 +121,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(5,6,'2.',0,0);
 		$pdf->MultiCell(0,6,"Apabila terdapat kekeliruan dalam Surat Tugas ini akan dilakukan perbaikan sebagaimana mestinya.",0,'J');
 		$pdf->Ln();
-		$pdf->MultiCell(0,6,"Jakarta, ".$var_tgl_surat,0,'R');
+		$pdf->MultiCell(0,6,"Jakarta, ".$this->tanggal_indo($var_tgl_surat,'/'),0,'R');
 		$pdf->MultiCell(0,6,"Kepala Pusat Data Informasi dan Humas",0,'R');
 		$pdf->Ln();
 		$pdf->Ln();
@@ -1098,7 +1100,7 @@ class C_PDF extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	function tanggal_indo($tanggal)
+	function tanggal_indo($tanggal, $delimiter)
 	{
 		$bulan = array (1 =>   'Januari',
 			'Februari',
@@ -1113,8 +1115,13 @@ class C_PDF extends CI_Controller {
 			'November',
 			'Desember'
 		);
-		$split = explode('-', $tanggal);
-		return $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
+		$split = explode($delimiter, $tanggal);
+		if ($delimiter == '/') {
+			return $split[0] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[2];
+		} elseif ($delimiter == '-') {
+			return $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
+		}
+
 		//echo tanggal_indo('2016-03-20'); // 20 Maret 2016
 	}
 
