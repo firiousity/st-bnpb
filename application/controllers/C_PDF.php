@@ -1084,11 +1084,18 @@ class C_PDF extends CI_Controller {
 	function jadwal() {
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
-		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(0,6,"Lampiran Surat Tugas",0,1,'R');
-		$pdf->Cell(0,6,"Nomor: nomor",0,1,'R');
-		$pdf->Cell(0,6,"Tanggal: var_tgl_surat",0,1,'R');
+		$pdf->SetFont('Arial','B',11);
+		$pdf->Cell(115,5,'',0,0,'L');
+		$pdf->Cell(25,5,'Lampiran Surat Tugas ',0,'L');
 		$pdf->Ln();
+		$pdf->Cell(115,5,'',0,0,'L');
+		$pdf->Cell(25,5,'Nomor   :  /KADIH/05/2018',0,'L');
+		$pdf->Ln();
+		$pdf->Cell(115,5,'',0,0,'L');
+		$pdf->Cell(25,5,'Tanggal :  Mei 2018',0,0,'L');
+		$pdf->Ln();
+		$pdf->Ln();
+		$pdf->SetFont('Arial','B',12);
 		$pdf->Cell(0,10,"Jadwal",0,1,'C');
 
 		//here is the table
