@@ -113,7 +113,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'',0,0);
 		$pdf->Cell(5,6,'',0,0);
 		$pdf->Cell(5,6,'3.',0,0);
-		$pdf->MultiCell(0,6,"Segala biaya yang dikeluarkan untuk tugas tersebut di atas dibebankan kepada DIPA BNPB TA 2018, Pos Kegiatan Melakukan Monitoring dan Evaluasi Teknologi Informasi dan Komunikasi;",0,'J');
+		$pdf->MultiCell(0,6,"Segala biaya yang dikeluarkan untuk tugas tersebut di atas dibebankan kepada DIPA BNPB TA ". date('Y') .", Pos Kegiatan Melakukan Monitoring dan Evaluasi Teknologi Informasi dan Komunikasi;",0,'J');
 		$pdf->Cell(25,6,'',0,0);
 		$pdf->Cell(5,6,'',0,0);
 		$pdf->Cell(5,6,'2.',0,0);
@@ -1096,6 +1096,30 @@ class C_PDF extends CI_Controller {
 		$this->load->view('header');
 		$this->load->view('form_biaya', $data);
 		$this->load->view('footer');
+	}
+
+	function tanggal_indo($tanggal)
+	{
+		$bulan = array (1 =>   'Januari',
+			'Februari',
+			'Maret',
+			'April',
+			'Mei',
+			'Juni',
+			'Juli',
+			'Agustus',
+			'September',
+			'Oktober',
+			'November',
+			'Desember'
+		);
+		$split = explode('-', $tanggal);
+		return $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
+		//echo tanggal_indo('2016-03-20'); // 20 Maret 2016
+	}
+
+	function reverse_tanggal($tanggal) {
+		implode('-', array_reverse(explode('-', $tanggal[0])));
 	}
 
 	function terbilang($bilangan) {
