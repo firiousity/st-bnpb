@@ -4,7 +4,7 @@
 			<div class="card-body">
 				<p style="font-size: 27px;">Kelola Pegawai</p>
 				<div align="center">
-					<table class="table table-hover">
+					<table id="pegawai" class="table table-hover">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
                               <th scope="col">Nama</th>
@@ -113,6 +113,10 @@
 							
 
 </body>
-
+<script>
+	$(document).ready( function () {
+    $('#pegawai').DataTable( {
+    	autoFill: true} );
+} );</script>
 </html>
 
