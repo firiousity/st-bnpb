@@ -25,8 +25,13 @@ class C_PDF extends CI_Controller {
         parent ::__construct();
         $this->load->model("home_model");
         $this->load->library("pagination");
-		include_once ("home.php");
+		//$this->load->library('../controllers/home');
     }
+
+    function href($route) {
+		echo "<script>
+         	window.location.href='".base_url()."$route';</script>";
+	}
 
 	public function index()
 	{
@@ -1330,12 +1335,43 @@ class C_PDF extends CI_Controller {
 		$this->load->view('print_biaya', $data);
 		$this->load->view('footer');
 	}
-	function form_biaya($id) {
-		$data['nama'] = $this->home_model->get_yang_dinas($id);
+	function form_biaya($slug) {
+		$arr_slug = explode('_', $slug);
+		$id_surat = $arr_slug[0];
+		$id_pegawai = $arr_slug[1];
+		$data['slug'] = array('slug' => $slug);
+		$data['nama'] = $this->home_model->get_yang_dinas($id_surat);
+		$data['pegawai'] = $this->home_model->get_pegawai();
+		$data['nomor'] = $this->home_model->get_nomor();
+		$data['harian'] = $this->home_model->get_uang_harian();
+		$data['penginapan'] = $this->home_model->get_biaya_penginapan();
+		$data['tiket'] = $this->home_model->get_tiket_pesawat();
+		$data['transport'] = $this->home_model->get_biaya_transport();
+
 		$this->load->view('navbar');
 		$this->load->view('header');
 		$this->load->view('form_biaya', $data);
 		$this->load->view('footer');
+	}
+
+	function print_rincian($slug) {
+		$arr_slug = explode('_', $slug);
+		$id_surat = $arr_slug[0];
+		$id_pegawai = $arr_slug[1];
+		//SAVE TO DATABASE
+		$data = array(
+			'id_surat'      => $id_surat,
+			'id_pegawai'         => $id_pegawai,
+			'transport'         => $this->input->post('my-select-transport[]')[0],
+			'penginapan'          => $this->input->post('my-select-penginapan[]')[0],
+			'harian'        => $this->input->post('my-select-harian[]')[0],
+			'tiket'        =>  $this->input->post('my-select-tiket[]')[0],
+		);
+		$this->db->insert('rincian_biaya', $data);
+		//$this->href("home/lihat_surat");
+
+
+		//PRINT USING FPDF
 	}
 
 	function tanggal_indo($tanggal, $delimiter)
