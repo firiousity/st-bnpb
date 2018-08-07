@@ -695,7 +695,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(10,6,'4','L',0,'C',0);
-		$pdf->Cell(30,6,'Transport','LR',0,'L',0);
+		$pdf->Cell(30,6,'Transport','L',0,'L',0);
 		$pdf->Cell(45,6,'Rp 830.000,00','R',0,'R',0);
 		$pdf->Cell(40,6,'Rp 830.000,00','R',0,'R',0);
 		$pdf->Cell(55,6,'Tanggal 19 s.d 23 Februari 2018','R',0,'L',0);
