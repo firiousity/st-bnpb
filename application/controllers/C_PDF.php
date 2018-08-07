@@ -105,7 +105,9 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'Untuk',0,0);
 		$pdf->Cell(5,6,':',0,0);
 		$pdf->Cell(5,6,'1.',0,0);
-		$pdf->MultiCell(0,6,"Dinas ke ".$var_tempat." dalam rangka mendukung kegiatan ".$var_kegiatan." tahun ".$var_tahun_kegiatan.", pada tanggal ".$var_tgl_mulai." s.d ".$var_tgl_akhir.";",0,'J');
+		$pdf->MultiCell(0,6,"Dinas ke ".$var_tempat." dalam rangka mendukung kegiatan ".$var_kegiatan." tahun ".$var_tahun_kegiatan.", pada tanggal "
+			.$this->tanggal_indo($var_tgl_mulai,'-')." s.d "
+			.$this->tanggal_indo($var_tgl_akhir,'-').";",0,'J');
 		$pdf->Cell(25,6,'',0,0);
 		$pdf->Cell(5,6,'',0,0);
 		$pdf->Cell(5,6,'2.',0,0);
@@ -119,7 +121,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(5,6,'2.',0,0);
 		$pdf->MultiCell(0,6,"Apabila terdapat kekeliruan dalam Surat Tugas ini akan dilakukan perbaikan sebagaimana mestinya.",0,'J');
 		$pdf->Ln();
-		$pdf->MultiCell(0,6,"Jakarta, ".$var_tgl_surat,0,'R');
+		$pdf->MultiCell(0,6,"Jakarta, ".$this->tanggal_indo($var_tgl_surat,'/'),0,'R');
 		$pdf->MultiCell(0,6,"Kepala Pusat Data Informasi dan Humas",0,'R');
 		$pdf->Ln();
 		$pdf->Ln();
@@ -766,12 +768,15 @@ class C_PDF extends CI_Controller {
 	function biaya() {
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
-		$pdf->SetFont('Arial','B',12);
+		$pdf->SetFont('Arial','BU',12);
 		$pdf->Cell(0,6,"PERINCIAN BIAYA PERJALANAN DINAS",0,1,'C');
+		$pdf->Ln();
 		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(34,6,'Lamp. SPD Nomor',0,0);
 		$pdf->Cell(3,6,':',0,0);
 		$pdf->MultiCell(0,6,'$nomor',0,'L');
+		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(34,6,'Tanggal',0,0);
 		$pdf->Cell(3,6,':',0,0);
 		$pdf->MultiCell(0,6,'$var_tgl_surat',0,'L');
@@ -873,7 +878,39 @@ class C_PDF extends CI_Controller {
 		$pdf->MultiCell(74,6,'NIP. 19820107 200912 1 002',0,'C');
 		$pdf->Ln();
 		$pdf->Cell(187,6,'','B',0,'C');
-
+		$pdf->Ln();$pdf->Ln();
+		$pdf->SetFont('Arial','BU',10);
+		$pdf->Cell(0,6,"PERINCIAN BIAYA PERJALANAN DINAS",0,1,'C');
+		$pdf->Ln();
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(15,6,'',0,0,'L');
+		$pdf->Cell(10,6,"Ditetapkan sejumlah",0, 0,'L');
+		$pdf->Cell(40,6,'',0,0,'L');
+		$pdf->Cell(80,6,".............................................. : Rp 9.659.500,00",0, 0,'L');
+		$pdf->Ln();
+		$pdf->Cell(15,6,'',0,0,'L');
+		$pdf->Cell(10,6,"Yang telah dibayarkan semula",0, 0,'L');
+		$pdf->Cell(40,6,'',0,0,'L');
+		$pdf->Cell(80,6,".............................................. : Rp 9.856.000,00",0, 0,'L');
+		$pdf->Ln();
+		$pdf->Cell(15,6,'',0,0,'L');
+		$pdf->Cell(10,6,"Sisa Lebih",0, 0,'L');
+		$pdf->Cell(40,6,'',0,0,'L');
+		$pdf->Cell(80,6,".............................................. : Rp 196.500,00",0, 0,'L');
+		$pdf->Ln();$pdf->Ln();$pdf->Ln();
+		$pdf->Cell(115,6,'',0, 0,'C');
+		$pdf->MultiCell(50,6,'SETUJU DIBAYAR',0,'C');
+		$pdf->Cell(115,6,'',0, 0,'C');
+		$pdf->MultiCell(50,6,'Pejabat Pembuat Komitmen',0,'C');
+		$pdf->Cell(110,6,'',0, 0,'C');
+		$pdf->MultiCell(60,6,'Pusat Data Informasi dan Humas',0,'C');
+		$pdf->SetFont('Arial','BU',10);
+		$pdf->Ln();$pdf->Ln();$pdf->Ln();
+		$pdf->Cell(115,6,'',0, 0,'C');
+		$pdf->MultiCell(50,6,'Leonard, S.T',0,'C');
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(115,6,'',0, 0,'C');
+		$pdf->Cell(50,6,'NIP. 19820107 200912 1 002'  ,0, 0,'C');
 
 		//Cetak gans
 		$pdf->Output();
@@ -1271,7 +1308,7 @@ class C_PDF extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	function tanggal_indo($tanggal)
+	function tanggal_indo($tanggal, $delimiter)
 	{
 		$bulan = array (1 =>   'Januari',
 			'Februari',
@@ -1286,8 +1323,13 @@ class C_PDF extends CI_Controller {
 			'November',
 			'Desember'
 		);
-		$split = explode('-', $tanggal);
-		return $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
+		$split = explode($delimiter, $tanggal);
+		if ($delimiter == '/') {
+			return $split[0] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[2];
+		} elseif ($delimiter == '-') {
+			return $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
+		}
+
 		//echo tanggal_indo('2016-03-20'); // 20 Maret 2016
 	}
 
