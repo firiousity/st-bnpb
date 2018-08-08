@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class C_PDF extends CI_Controller {
+class C_PDF_Backup extends CI_Controller {
 
 
 	/**
@@ -832,30 +832,46 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(10,6,'1','L',0,'C',0);
-		$pdf->Cell(30,6,'Uang Harian','L',0,'L',0);
-		$pdf->Cell(45,6,'5 Hari x Rp 480.000,00','R',0,'R',0);
-		$pdf->Cell(40,6,'Rp 2.400.000,00','R',0,'R',0);
+		$pdf->Cell(25,6,'Uang Harian','L',0,'L',0);
+		$pdf->Cell(10,6,'5 Hari',0,0,'L',0);
+		$pdf->Cell(10,6,'x',0,0,'R',0);
+		$pdf->Cell(5,6,'Rp',0,0,'L',0);
+		$pdf->Cell(25,6,'480.000,00','R',0,'R',0);
+		$pdf->Cell(10,6,'Rp',0,0,'L',0);
+		$pdf->Cell(30,6,'2.400.000,00','R',0,'R',0);
 		$pdf->Cell(55,6,'Perjalanan dinas ke :','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(10,6,'2','L',0,'C',0);
-		$pdf->Cell(30,6,'Penginapan','L',0,'L',0);
-		$pdf->Cell(45,6,'4 Malam x Rp 910.000,00','R',0,'R',0);
-		$pdf->Cell(40,6,'Rp 3.640.000,00','R',0,'R',0);
+		$pdf->Cell(25,6,'Penginapan','L',0,'L',0);
+		$pdf->Cell(10,6,'4 Malam',0,0,'L',0);
+		$pdf->Cell(10,6,'x',0,0,'R',0);
+		$pdf->Cell(5,6,'Rp',0,0,'L',0);
+		$pdf->Cell(25,6,'910.000,00','R',0,'R',0);
+		$pdf->Cell(10,6,'Rp',0,0,'L',0);
+		$pdf->Cell(30,6,'3.640.000,00','R',0,'R',0);
 		$pdf->Cell(55,6,'Ke Provinsi Bali','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(10,6,'3','L',0,'C',0);
-		$pdf->Cell(30,6,'Tiket Pesawat','L',0,'L',0);
-		$pdf->Cell(45,6,'Rp 3.262.000,00','R',0,'R',0);
-		$pdf->Cell(40,6,'Rp 3.262.000,00','R',0,'R',0);
+		$pdf->Cell(25,6,'Tiket Pesawat','L',0,'L',0);
+		$pdf->Cell(10,6,'',0,0,'L',0);
+		$pdf->Cell(10,6,'',0,0,'R',0);
+		$pdf->Cell(5,6,'Rp',0,0,'L',0);
+		$pdf->Cell(25,6,'3.262.000,00','R',0,'R',0);
+		$pdf->Cell(10,6,'Rp',0,0,'L',0);
+		$pdf->Cell(30,6,'3.262.000,00','R',0,'R',0);
 		$pdf->Cell(55,6,'(selama 5 hari)','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(10,6,'4','L',0,'C',0);
-		$pdf->Cell(30,6,'Transport','L',0,'L',0);
-		$pdf->Cell(45,6,'Rp 830.000,00','R',0,'R',0);
-		$pdf->Cell(40,6,'Rp 830.000,00','R',0,'R',0);
+		$pdf->Cell(25,6,'Transport','L',0,'L',0);
+		$pdf->Cell(10,6,'',0,0,'L',0);
+		$pdf->Cell(10,6,'',0,0,'R',0);
+		$pdf->Cell(5,6,'Rp',0,0,'L',0);
+		$pdf->Cell(25,6,'830.000,00','R',0,'R',0);
+		$pdf->Cell(10,6,'Rp',0,0,'L',0);
+		$pdf->Cell(30,6,'830.000,00','R',0,'R',0);
 		$pdf->Cell(55,6,'Tanggal 19 s.d 23 Februari 2018','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
@@ -868,7 +884,8 @@ class C_PDF extends CI_Controller {
 		$pdf->SetFont('Arial','B',10);
 		$pdf->Cell(10,6,'','L',0,'C',0);
 		$pdf->Cell(75,6,'Jumlah :','LR',0,'R',0);
-		$pdf->Cell(40,6,'Rp 10.132.000,00','TR',0,'R',0);
+		$pdf->Cell(10,6,'Rp',0,0,'L',0);
+		$pdf->Cell(30,6,'10.132.000,00','TR',0,'R',0);
 		$pdf->Cell(55,6,'','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
