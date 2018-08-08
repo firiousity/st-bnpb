@@ -49,7 +49,6 @@
     </div>
   </div>
 
-
   <section>
     <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -83,7 +82,6 @@
     </div>
   </section>
 </body>
-
 <script>
 $(document).ready(function () {
   $('#tiket_pesawat').DataTable();

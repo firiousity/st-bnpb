@@ -1,16 +1,24 @@
 <body>
   <div class="container margin">
-    <div class="card mb-8">
-      <div class="card-body">
-        <p style="font-size: 27px;">Biaya Transport</p>
-        <div align="center">
-          <table class="table table-hover">
+        <p style="font-size: 27px; text-align: center;">Biaya Transport</p>
+          <table id="biaya_transport" class="table table-hover" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
-                              <th scope="col">Provinsi</th>
-                              <th scope="col">Satuan</th>
-                              <th scope="col">Besaran</th>
-								<th scope="col">Aksi</th>
+                              <th class="th-sm" scope="col">Provinsi
+                                <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                              </th>
+                              <th class="th-sm" scope="col">Satuan
+                                <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                              </th>
+                              <th class="th-sm" scope="col">Besaran
+                                <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                              </th>
+                              <th class="th-sm" scope="col">Edit
+                                <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                              </th>
+                              <th class="th-sm" scope="col">Delete
+                                <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                              </th>
                             </tr>
                           </thead>
                           <tbody>
@@ -22,45 +30,22 @@
                               <td> Rp ".$row->besaran."</td>
                               
                               <td>
-                                 <span class='table-remove'><a href='".base_url("home/edit_transport_page/$row->id")."'><button type='button'  class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
-                                 <span class='table-remove'><a href='".base_url("home/delete_transport/$row->id")."'><button type='button' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
+                                 <span class='table-remove'><a href='".base_url("home/edit_transport_page/$row->id")."'><button type='button'  class='btn btn-warning btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
+                              </td>
+                              <td>
+                                 <span class='table-remove'><a href='".base_url("home/delete_transport/$row->id")."'><button type='button' class='btn btn-danger btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
                               </td>
                             </tr>
-                            <tr>";
+                            ";
               }
                              ?>
                       </tbody>
                     </table>
-          <div class="row">
-            <div class="col">
               <div align="left">
                 <a href="#"><button type="button" data-toggle="modal" data-target="#modalRegisterForm" class="btn btn-indigo btn-md">Tambah</button></a>
               </div>
-            </div>
-            <div class="col">
-              <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-end">
-                  <!--Previous-->
-                  <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                  </li>
-                  <!--Numbers-->
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <!--Next-->
-                  <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
-
 
   <section>
     <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -94,8 +79,12 @@
     </div>
   </section>
 
-  
 </body>
-
+<script>
+$(document).ready(function () {
+  $('#biaya_transport').DataTable();
+  $('.dataTables_length').addClass('bs-select');
+});
+</script>
 </html>
 
