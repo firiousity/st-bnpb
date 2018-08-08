@@ -41,24 +41,11 @@
 	<script type="text/javascript" src="<?php echo base_url('assets/js/jquery.multi-select.js')?>"></script>
     <!-- Initializations -->
 	<!-- Custom js	-->
-<script type=”text/javascript” src=”js/jquery-3.1.1.min.js”></script>
-
-<script type=”text/javascript” src=”js/popper.min.js”></script>
-
-<script type=”text/javascript” src=”js/bootstrap.min.js”></script>
-
-<script type=”text/javascript” src=”js/mdb.min.js”></script>
-	<script type="text/javascript" src="<?php echo base_url('assets/css/custom.js')?>">
-	</script>
-	<script>
-	  // Data Picker Initialization
-	  $( document ).ready(function() {
-		  $('.datepicker').pickadate({
-			  selectMonths: true, // Creates a dropdown to control month
-			  selectYears: 3 // Creates a dropdown of 15 years to control year
-		  });
-	  });
-	</script>
+	<script type=”text/javascript” src=”js/popper.min.js”></script>
+	<script type=”text/javascript” src=”js/bootstrap.min.js”></script>
+	<script type=”text/javascript” src=”js/mdb.min.js”></script>
+	<script type="text/javascript" src="<?php echo base_url('assets/js/custom.js')?>"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 	<script>
 		var i = 1;
 		function additem() {
