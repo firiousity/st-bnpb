@@ -519,5 +519,4 @@ class Home extends CI_Controller {
 		$this->db->update('pegawai', $data);
 		$this->href('home/pegawai');
 	}
-    
 }

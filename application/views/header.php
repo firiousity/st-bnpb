@@ -30,7 +30,8 @@
 		  integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
 		  crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-		<script type="text/javascript" src="<?php echo base_url('assets/js/mdb.js')?>"></script>
+	
+	<script type="text/javascript" src="<?php echo base_url('assets/js/mdb.js')?>"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="<?php echo base_url('assets/js/popper.min.js')?>"></script>
     <!-- Bootstrap core JavaScript -->
