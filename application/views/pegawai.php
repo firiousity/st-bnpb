@@ -1,10 +1,8 @@
 <body>
-  <div class="container-fluid margin">
-    <div class="card mb-8"> 
-      <div class="card-body">
+  <div class="container margin">
         <p style="font-size: 27px; text-align: center;">Kelola Pegawai</p>
         <table id="pegawai" class="table table-responsive table-hover" cellspacing="0" width="100%">
-  <thead>
+  <thead class="mdb-color darken-3 white-text">
     <tr>
       <th class="th-sm" scope="col">No
         <i class="fa fa-sort float-right" aria-hidden="true"></i>
@@ -101,7 +99,6 @@
     </div>
   </section>
 </body>
-
 <script>
 $(document).ready(function () {
   $('#pegawai').DataTable();
