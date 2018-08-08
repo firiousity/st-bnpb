@@ -68,11 +68,11 @@
         Pilih
     </button>
     <div class="dropdown-menu" aria-labelledby="anggaran">
-        <a class="dropdown-item" href="biaya_penginapan">Biaya Penginapan</a>
-        <a class="dropdown-item" href="biaya_transport">Biaya Transport</a>
-        <a class="dropdown-item" href="uang_harian">Uang Harian</a>
-        <a class="dropdown-item" href="uang_representasi">Uang Representasi</a>
-        <a class="dropdown-item" href="tiket_pesawat">Tiket Pesawat</a>
+        <a class="dropdown-item" href="<?php echo base_url('home/biaya_penginapan')?>">Biaya Penginapan</a>
+        <a class="dropdown-item" href="<?php echo base_url('home/biaya_transport')?>">Biaya Transport</a>
+        <a class="dropdown-item" href="<?php echo base_url('home/uang_harian')?>">Uang Harian</a>
+        <a class="dropdown-item" href="<?php echo base_url('home/uang_representasi')?>">Uang Representasi</a>
+        <a class="dropdown-item" href="<?php echo base_url('home/tiket_pesawat')?>">Tiket Pesawat</a>
     </div>
 </div>
       <!-- <a href="akun"><button type="button" class="btn btn-indigo btn-md">kelola</button></a> -->
@@ -101,7 +101,7 @@
       <!--Text-->
       <p class="card-text">Mengelola data kepegawaian</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <a href="pegawai"><button type="button" class="btn btn-indigo btn-md">kelola</button></a>
+      <a href="<?php echo base_url('home/pegawai')?>"><button type="button" class="btn btn-indigo btn-md">kelola</button></a>
 
     </div>
 
