@@ -13,7 +13,10 @@
                               <th class="th-sm" scope="col">Dalam Kota
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
-                              <th class="th-sm" scope="col">Aksi
+                              <th class="th-sm" scope="col">Edit
+                                <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                              </th>
+                              <th class="th-sm" scope="col">Hapus
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
                             </tr>
@@ -26,8 +29,10 @@
                               <td> Rp ".$row->luar_kota."</td>
                               <td> Rp ".$row->dalam_kota."</td>
                               <td>
-                                <span class='table-remove'><a href='".base_url("home/edit_representasi_page/$row->id")."'><button type='button'  class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
-                                <span class='table-remove'><a href='".base_url("home/delete_representasi/$row->id")."'><button type='button' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
+                                <span class='table-remove'><a href='".base_url("home/edit_representasi_page/$row->id")."'><button type='button'  class='btn btn-warning btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
+                              </td>
+                              <td>
+                                <span class='table-remove'><a href='".base_url("home/delete_representasi/$row->id")."'><button type='button' class='btn btn-danger btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
                                 </td>
                             </tr>
                             ";
