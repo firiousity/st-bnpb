@@ -7,6 +7,7 @@
 					<table id="pegawai" class="table table-hover">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
+                            	<th scope="col">No</th>
                               <th scope="col">Nama</th>
                               <th scope="col">NIP</th>
                               <th scope="col">Jabatan</th>
@@ -18,7 +19,7 @@
                           <tbody>
                             <?php foreach ($pegawai as $row) {
 								echo "
-								<tr>
+							  	<tr>
                               <td>".$row->nama_pegawai."</td>
                               <td>".$row->nip_pegawai ."</td>
                               <td>".$row->jabatan_pegawai."</td>
@@ -26,11 +27,11 @@
                               <td>
                                 <span class='table-remove'><a href='".base_url("home/edit_pegawai_page/$row->id_pegawai")."'><button type='button'  class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
                                 <span class='table-remove'><a href='".base_url("home/delete_pegawai/$row->id_pegawai")."'><button type='button' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
-                                </td>
+                              </td>
                             </tr>
-                            <tr>";
-							}
+                            <tr>";}
                              ?>
+
                       </tbody>
                     </table>
 					<div class="row">
@@ -62,8 +63,6 @@
 			</div>
 		</div>
 	</div>
-
-
 	<section>
 		<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -105,13 +104,9 @@
 						</div>
 					</form>
 				</div>
-
 			</div>
-
 		</div>
 	</section>
-							
-
 </body>
 <script>
 	$(document).ready( function () {
