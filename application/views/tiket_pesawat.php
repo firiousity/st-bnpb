@@ -7,15 +7,19 @@
           <table class="table table-hover">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
+                              <th scope="col">No</th>
                               <th scope="col">Kota</th>
                               <th scope="col">Harga Tiket</th>
                               <th scope="col">Aksi</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <?php foreach ($pesawat as $row) {
-                echo "
-                <tr>
+                            <?php 
+                            $counter = 1;
+                            foreach ($pesawat as $row) {
+                              echo "
+                              <tr>
+                              <td>".$counter."</td>
                               <td>".$row->kota."</td>
                               <td> Rp ".$row->biaya_tiket."</td>
                               <td>
@@ -24,7 +28,7 @@
                                 </td>
                             </tr>
                             <tr>";
-              }
+                              $counter++;}
                              ?>
                       </tbody>
                     </table>
