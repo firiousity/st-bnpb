@@ -68,18 +68,27 @@ class Home_model extends CI_Model {
 	   return $query->result();
    }
 
-   function get_harian($slug) {
+  /* function get_harian($slug) {
 	   $arr_slug = explode('_', $slug);
 	   $id_surat = $arr_slug[0];
 	   $id_pegawai = $arr_slug[1];
 	   $this->db->select('*');
 	   $this->db->from('rincian_biaya');
-	   $this->db->join('uang_harian', 'uang_harian.id = rincian_biaya.harian', 'inner')->where( array(
-		   'id_pegawai' => $id_pegawai
-	   ));
+	   $this->db->join('uang_harian', 'uang_harian.id = rincian_biaya.harian', 'inner')->where('uang_harian.id', 'rincian_biaya.harian' );
 	   $query = $this->db->get();
 	   return $query->result();
-   }
+   }*/
+
+	function get_harian($slug) {
+		$arr_slug = explode('_', $slug);
+		$id_surat = $arr_slug[0];
+		$id_pegawai = $arr_slug[1];
+		$this->db->select('*');
+		$this->db->from('rincian_biaya');
+		$this->db->join('uang_harian', 'uang_harian.id = rincian_biaya.harian', 'inner')->where('id_pegawai', $id_pegawai);
+		$query = $this->db->get();
+		return $query->result();
+	}
 
 	function get_penginapan($slug) {
 		$arr_slug = explode('_', $slug);
@@ -87,9 +96,8 @@ class Home_model extends CI_Model {
 		$id_pegawai = $arr_slug[1];
 		$this->db->select('*');
 		$this->db->from('rincian_biaya');
-		$this->db->join('biaya_penginapan', 'biaya_penginapan.id = rincian_biaya.penginapan', 'inner')->where( array(
-			'id_pegawai' => $id_pegawai
-		));
+		$this->db->join('biaya_penginapan', 'biaya_penginapan.id = rincian_biaya.penginapan', 'inner')
+			->where('id_pegawai', $id_pegawai);
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -100,9 +108,8 @@ class Home_model extends CI_Model {
 		$id_pegawai = $arr_slug[1];
 		$this->db->select('*');
 		$this->db->from('rincian_biaya');
-		$this->db->join('tiket_pesawat', 'tiket_pesawat.id = rincian_biaya.tiket', 'inner')->where( array(
-			'id_pegawai' => $id_pegawai
-		));
+		$this->db->join('tiket_pesawat', 'tiket_pesawat.id = rincian_biaya.tiket', 'inner')
+			->where('id_pegawai', $id_pegawai);
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -113,12 +120,12 @@ class Home_model extends CI_Model {
 		$id_pegawai = $arr_slug[1];
 		$this->db->select('*');
 		$this->db->from('rincian_biaya');
-		$this->db->join('biaya_transport', 'biaya_transport.id = rincian_biaya.transport', 'inner')->where( array(
-			'id_pegawai' => $id_pegawai
-		));
+		$this->db->join('biaya_transport', 'biaya_transport.id = rincian_biaya.transport', 'inner')
+			->where('id_pegawai', $id_pegawai);
 		$query = $this->db->get();
 		return $query->result();
 	}
+
 
 
 }
