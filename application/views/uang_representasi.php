@@ -1,22 +1,27 @@
 <body>
   <div class="container margin">
-    <div class="card mb-8">
-      <div class="card-body">
-        <p style="font-size: 27px;">Uang Representasi</p>
-        <div align="center">
-          <table class="table table-hover">
+        <p style="font-size: 27px; text-align: center;">Uang Representasi</p>
+              <table id="uang_representasi" class="table table-hover" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
-                              <th scope="col">Uraian</th>
-                              <th scope="col">Luar Kota</th>
-                              <th scope="col">Dalam Kota</th>
-                              <th scope="col">Aksi</th>
+                              <th class="th-sm" scope="col">Uraian
+                                <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                              </th>
+                              <th class="th-sm" scope="col">Luar Kota
+                                <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                              </th>
+                              <th class="th-sm" scope="col">Dalam Kota
+                                <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                              </th>
+                              <th class="th-sm" scope="col">Aksi
+                                <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                              </th>
                             </tr>
                           </thead>
                           <tbody>
                             <?php foreach ($representasi as $row) {
-                echo "
-                <tr>
+                              echo "
+                            <tr>
                               <td>".$row->uraian."</td>
                               <td> Rp ".$row->luar_kota."</td>
                               <td> Rp ".$row->dalam_kota."</td>
@@ -25,13 +30,11 @@
                                 <span class='table-remove'><a href='".base_url("home/delete_representasi/$row->id")."'><button type='button' class='btn btn-danger btn-rounded btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
                                 </td>
                             </tr>
-                            <tr>";
+                            ";
               }
                              ?>
                       </tbody>
                     </table>
-          <div class="row">
-            <div class="col">
               <div align="left">
                 <a href="#"><button type="button" data-toggle="modal" data-target="#modalRegisterForm" class="btn btn-indigo btn-md">Tambah</button></a>
               </div>
@@ -144,6 +147,11 @@
     </div>
   </section>
 </body>
-
+<script>
+$(document).ready(function () {
+  $('#uang_representasi').DataTable();
+  $('.dataTables_length').addClass('bs-select');
+});
+</script>
 </html>
 
