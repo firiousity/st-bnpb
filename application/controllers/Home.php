@@ -520,4 +520,8 @@ class Home extends CI_Controller {
 		$this->href('home/pegawai');
 	}
     
+    function data(){
+		$this->load->view('header');
+        $this->load->view('data');
+    }
 }
