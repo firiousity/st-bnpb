@@ -106,7 +106,20 @@
 			};
 
 			i++;
+		};
+		function showMe {
+			var chboxs = document.getElementById("isReimburse");
+			var vis = "none";
+			for(var i=0;i<chboxs.length;i++) {
+				if(chboxs[i].checked){
+					vis = "block";
+					break;
+				}
+			}
+			document.getElementById('sudahbayar').style.display = vis;
+
 		}
+
 	</script>
 <style>
 	.html {

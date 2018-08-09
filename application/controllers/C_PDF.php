@@ -35,10 +35,10 @@ class C_PDF extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('navbar');
-		$this->load->view('header');
+		$this->load->view('layouts/navbar');
+		$this->load->view('layouts/header');
 		$this->load->view('login');
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 
 	/* PRINT SURAT DINAS (2 LEMBAR) */
@@ -1114,10 +1114,10 @@ class C_PDF extends CI_Controller {
 
 	function print_biaya($id) {
 		$data['nama'] = $this->home_model->get_yang_dinas($id);
-		$this->load->view('navbar');
-		$this->load->view('header');
+		$this->load->view('layouts/navbar');
+		$this->load->view('layouts/header');
 		$this->load->view('print_biaya', $data);
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 	function form_biaya($slug) {
 		$arr_slug = explode('_', $slug);
@@ -1132,10 +1132,10 @@ class C_PDF extends CI_Controller {
 		$data['tiket'] = $this->home_model->get_tiket_pesawat();
 		$data['transport'] = $this->home_model->get_biaya_transport();
 
-		$this->load->view('navbar');
-		$this->load->view('header');
+		$this->load->view('layouts/navbar');
+		$this->load->view('layouts/header');
 		$this->load->view('form_biaya', $data);
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 
 	function print_rincian($slug) {
@@ -1198,6 +1198,19 @@ class C_PDF extends CI_Controller {
 		$total_harian = $hari*$harian;
 		$total_penginapan = $malam*$penginapan;
 		$total_biaya = $total_harian + $total_penginapan + $tiket + $transport;
+
+		$pembayaran_result = $this->home_model->get_pembayaran_awal($slug);
+		$semula = $pembayaran_result['0']->total;
+
+		$sisa = $total_biaya - $semula;
+		$keterangan = "";
+		if($sisa<0) {
+			$keterangan = "Kurang";
+		} elseif ($sisa>0) {
+			$keterangan = "Lebih";
+		} else {
+			$keterangan = "";
+		}
 		//PRINT USING FPDF
 		$pdf = new FPDF('p','mm','A4');
 
@@ -1298,7 +1311,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(40,6,'',0,0,'C');
 		$pdf->MultiCell(80,3,'Telah menerima jumlah uang sebesar',0,'R');
 		$pdf->Cell(15,6,'',0,0,'L');
-		$pdf->Cell(10,6,'Rp 0.00',0,0,'L');
+		$pdf->Cell(10,6,'Rp. '.$semula,0,0,'L');
 		$pdf->Cell(40,6,'',0,0,'R');
 		$pdf->Cell(48,6,'',0,0,'C');
 		$pdf->MultiCell(80,6,'Rp 0.00',0,'L');
@@ -1320,26 +1333,26 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(187,6,'','B',0,'C');
 		$pdf->Ln();$pdf->Ln();
 		$pdf->SetFont('Arial','BU',10);
-		$pdf->Cell(0,6,"PERINCIAN BIAYA PERJALANAN DINAS",0,1,'C');
+		$pdf->Cell(0,6,"PERHITUNGAN SPD RAMPUNG",0,1,'C');
 		$pdf->Ln();
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(15,6,'',0,0,'L');
 		$pdf->Cell(10,5,"Ditetapkan sejumlah",0, 0,'L');
 		$pdf->Cell(45,5,'',0,0,'L');
 		$pdf->Cell(80,5,".............................................. : Rp",0, 0,'L');
-		$pdf->Cell(7,5,"9.856.000,00",0, 0,'R');
+		$pdf->Cell(7,5,$total_biaya,0, 0,'R');
 		$pdf->Ln();
 		$pdf->Cell(15,6,'',0,0,'L');
 		$pdf->Cell(10,5,"Yang telah dibayarkan semula",0, 0,'L');
 		$pdf->Cell(45,5,'',0,0,'L');
 		$pdf->Cell(80,5,".............................................. : Rp",0, 0,'L');
-		$pdf->Cell(7,5,"9.856.000,00",0, 0,'R');
+		$pdf->Cell(7,5,$semula,0, 0,'R');
 		$pdf->Ln();
 		$pdf->Cell(15,6,'',0,0,'L');
-		$pdf->Cell(10,5,"Sisa Lebih",0, 0,'L');
+		$pdf->Cell(10,5,"Sisa ".$keterangan,0, 0,'L');
 		$pdf->Cell(45,5,'',0,0,'L');
 		$pdf->Cell(80,5,".............................................. : Rp",0, 0,'L');
-		$pdf->Cell(7,5,"856.000,00",0, 0,'R');
+		$pdf->Cell(7,5,$sisa,0, 0,'R');
 		$pdf->Ln();$pdf->Ln();$pdf->Ln();$pdf->Ln();
 		$pdf->Cell(115,6,'',0, 0,'C');
 		$pdf->MultiCell(50,5,'SETUJU DIBAYAR',0,'C');
@@ -1364,10 +1377,10 @@ class C_PDF extends CI_Controller {
 		$data = array(
 			'slug' => $slug
 		);
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('rampung_form', $data);
-		$this->load->view('footer2');
+		$this->load->view('layouts/footer2');
 	}
 
 	function print_rampung ($slug) {
@@ -1422,6 +1435,7 @@ class C_PDF extends CI_Controller {
 			'harian' => $harian,
 			'transport' => $transport,
 			'tiket' => $tiket,
+			'total' => $total
 		);
 		$this->db->insert('spd_rampung', $data);
 		$data_yang_sudah_dibayar = array(
@@ -1431,9 +1445,18 @@ class C_PDF extends CI_Controller {
 			'harian' => $s_harian,
 			'transport' => $s_transport,
 			'tiket' => $s_tiket,
+			'total' => $s_total
 		);
 		$this->db->insert('pembayaran_awal', $data_yang_sudah_dibayar);
 
+		$keterangan = "";
+		if ($total>$s_total) {
+			$keterangan = "KURANG";
+		} elseif (($total>$s_total)) {
+			$keterangan = "LEBIH";
+		} else {
+			$keterangan = "";
+		}
 		//Print PDF
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
@@ -1576,7 +1599,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(10,6,'','L',0,'C',0);
-		$pdf->Cell(75,6,'SISA ','LR',0,'L',0);
+		$pdf->Cell(75,6,'SISA '.$keterangan,'LR',0,'L',0);
 		$pdf->Cell(40,6,'','R',0,'R',0);
 		$pdf->Cell(55,6,'','R',0,'L',0);
 		$pdf->Ln();
