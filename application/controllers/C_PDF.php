@@ -584,7 +584,7 @@ class C_PDF extends CI_Controller {
 	}
 
 	//Page Surat Pernyataan Kehilangan Boarding
-	function moxpoy() {
+	function hilang($slug) {
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','B',14);
