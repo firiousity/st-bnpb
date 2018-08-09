@@ -584,7 +584,7 @@ class C_PDF extends CI_Controller {
 	}
 
 	//Page Surat Pernyataan Kehilangan Boarding
-	function moxpoy() {
+	function hilang($slug) {
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','B',14);
@@ -1115,6 +1115,7 @@ class C_PDF extends CI_Controller {
 	function print_biaya($id) {
 		$surat_tugas  = $this->db->get_where('surat_dinas',
       		array('id' => $id))->result();
+		$nomor = $surat_tugas['0']->nomor;
 		$data['nomor'] = $nomor;
 		$data['nama'] = $this->home_model->get_yang_dinas($id);
 		$this->load->view('layouts/navbar');
