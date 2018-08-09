@@ -1483,6 +1483,7 @@ class C_PDF extends CI_Controller {
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','BU',12);
 		$pdf->Cell(0,6,"RINCIAN PERHITUNGAN SPD RAMPUNG",0,1,'C');
+		$pdf->Ln();
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(34,6,'Lamp. SPD Nomor',0,0);
 		$pdf->Cell(3,6,':',0,0);
@@ -1548,7 +1549,13 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,$transport,'R',0,'R',0);
 		$pdf->Cell(10,6,'Rp',0,0,'L',0);
 		$pdf->Cell(30,6,$transport,'R',0,'R',0);
-		$pdf->Cell(55,6,$var_tgl_mulai.' s.d '.$var_tgl_akhir,'R',0,'L',0);
+		$pdf->Cell(55,6,'Tanggal '.$var_tgl_mulai.' s.d ','R',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,6,'','L',0,'C',0);
+		$pdf->Cell(75,6,'','LR',0,'L',0);
+		$pdf->Cell(40,6,'','R',0,'R',0);
+		$pdf->Cell(55,6,$var_tgl_akhir,'R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->SetFont('Arial','B',10);
@@ -1633,9 +1640,8 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(10,6,'','LB',0,'C',0);
-		$pdf->Cell(75,6,'Terbilang :','LBR',0,'R',0);
-
-		$pdf->Cell(95,6,$this->Terbilang(abs($sisa))." rupiah",'BR',0,'L',0);
+		$pdf->Cell(20,6,'Terbilang :','LBR',0,'L',0);
+		$pdf->Cell(150,6,$this->Terbilang(abs($sisa))." rupiah",'BR',0,'L',0);
 		$pdf->Ln();
 		//end of table
 		$pdf->Ln();
