@@ -35,10 +35,10 @@ class C_PDF extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('navbar');
-		$this->load->view('header');
+		$this->load->view('layouts/navbar');
+		$this->load->view('layouts/header');
 		$this->load->view('login');
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 
 	/* PRINT SURAT DINAS (2 LEMBAR) */
@@ -1295,10 +1295,10 @@ class C_PDF extends CI_Controller {
 		$data['tiket'] = $this->home_model->get_tiket_pesawat();
 		$data['transport'] = $this->home_model->get_biaya_transport();
 
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('form_biaya', $data);
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 
 	function print_rincian($slug) {

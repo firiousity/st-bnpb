@@ -150,10 +150,10 @@ class Home extends CI_Controller {
 	public function biaya_penginapan()
 	{
 		$data['penginapan'] = $this->home_model->get_biaya_penginapan();
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('biaya_penginapan', $data);
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 
 	public function tambah_penginapan() {
@@ -177,10 +177,10 @@ class Home extends CI_Controller {
 
 	function edit_penginapan_page($id) {
 		$data['biaya_penginapan'] = $this->db->get_where('biaya_penginapan',  array('id' => $id) )->result();
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('edit_penginapan', $data);
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 
 	function edit_penginapan($id) {
@@ -218,20 +218,20 @@ class Home extends CI_Controller {
 	public function biaya_transport()
 	{
 		$data['transport'] = $this->home_model->get_biaya_transport();
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('biaya_transport', $data);
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 
 	public function tambah_transport() {
 		$provinsi = $this->input->post('provinsi');
 		$besaran = $this->input->post('besaran');
 
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('biaya_transport');
-		$this->load->view('footer');
+		$this->load->view('layoutsfooter');
 		$data = array(
 			'provinsi' => $provinsi,
 			'besaran' => $besaran,
@@ -242,10 +242,10 @@ class Home extends CI_Controller {
 
 	function edit_transport_page($id) {
 		$data['biaya_transport'] = $this->db->get_where('biaya_transport',  array('id' => $id) )->result();
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('edit_transport', $data);
-		$this->load->view('footer2');
+		$this->load->view('layouts/footer2');
 	}
 
 	function edit_transport($id) {
@@ -275,20 +275,20 @@ class Home extends CI_Controller {
 	public function tiket_pesawat()
 	{
 		$data['pesawat'] = $this->home_model->get_tiket_pesawat();
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('tiket_pesawat', $data);
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 
 	public function tambah_tiket() {
 		$rute = $this->input->post('rute');
 		$biaya_tiket = $this->input->post('biaya_tiket');
 
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('tiket_pesawat');
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 		$data = array(
 			'rute' => $rute,
 			'biaya_tiket' => $biaya_tiket,
@@ -299,10 +299,10 @@ class Home extends CI_Controller {
 
 	function edit_tiket_page($id) {
 		$data['tiket_pesawat'] = $this->db->get_where('tiket_pesawat',  array('id' => $id) )->result();
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('edit_tiket', $data);
-		$this->load->view('footer2');
+		$this->load->view('layouts/footer2');
 	}
 
 	function edit_tiket($id) {
@@ -332,10 +332,10 @@ class Home extends CI_Controller {
 	public function uang_harian()
 	{
 		$data['harian'] = $this->home_model->get_uang_harian();
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('uang_harian', $data);
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 
 	public function tambah_harian() {
@@ -344,10 +344,10 @@ class Home extends CI_Controller {
 		$dalam_kota = $this->input->post('dalam_kota');
 		$diklat = $this->input->post('diklat');
 
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('uang_harian');
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 		$data = array(
 			'provinsi' => $provinsi,
 			'luar_kota' => $luar_kota,
@@ -360,10 +360,10 @@ class Home extends CI_Controller {
 
 	function edit_harian_page($id) {
 		$data['uang_harian'] = $this->db->get_where('uang_harian',  array('id' => $id) )->result();
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('edit_harian', $data);
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 
 	function edit_harian($id) {
@@ -397,20 +397,20 @@ class Home extends CI_Controller {
 	public function uang_representasi()
 	{
 		$data['representasi'] = $this->home_model->get_uang_representasi();
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('uang_representasi', $data);
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 
 	public function tambah_representasi() {
 		$uraian = $this->input->post('uraian');
 		$luar_kota = $this->input->post('luar_kota');
 		$dalam_kota = $this->input->post('dalam_kota');
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('uang_representasi');
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 		$data = array(
 			'uraian' => $uraian,
 			'luar_kota' => $luar_kota,
@@ -422,10 +422,10 @@ class Home extends CI_Controller {
 
 	function edit_representasi_page($id) {
 		$data['uang_representasi'] = $this->db->get_where('uang_representasi',  array('id' => $id) )->result();
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('edit_representasi', $data);
-		$this->load->view('footer2');
+		$this->load->view('layouts/footer2');
 	}
 
 	function edit_representasi($id) {
@@ -451,13 +451,13 @@ class Home extends CI_Controller {
 
 	public function layout_biaya()
 	{
-		$this->load->view('header');
+		$this->load->view('/layouts/header');
 		$this->load->view('layout_biaya');
 	}
 
 	public function layout_perhitungan()
 	{
-		$this->load->view('header');
+		$this->load->view('layouts/header');
 		$this->load->view('layout_perhitungan');
 	}
 
@@ -468,10 +468,10 @@ class Home extends CI_Controller {
 	public function pegawai()
 	{
 		$data['pegawai'] = $this->home_model->get_pegawai();
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('pegawai', $data);
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 	public function tambah_pegawai() {
 		$name = $this->input->post('nama');
@@ -498,10 +498,10 @@ class Home extends CI_Controller {
 
 	function edit_pegawai_page($id) {
 		$data['pegawai'] = $this->db->get_where('pegawai',  array('id_pegawai' => $id) )->result();
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('edit_pegawai', $data);
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 
 	function edit_pegawai($id) {
