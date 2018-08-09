@@ -48,13 +48,9 @@
 						  ?>
 						  </tbody>
 						</table>
-                        <div class="row">
-                            <div class="col">
-                                <div align="left">
+                    <div align="left">
                                     <a href="<?php  echo base_url('home/buat_surat')?>"><button type="button" class="btn btn-indigo btn-md">Tambah Surat</button></a>
-                                </div>
-							</div>
-              </div>
+                    </div>
           </div>
 
 </body>

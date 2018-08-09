@@ -1272,8 +1272,12 @@ class C_PDF extends CI_Controller {
 	}
 
 	function print_biaya($id) {
+		$surat_tugas	= $this->db->get_where('surat_dinas',
+			array('id' => $id))->result();
+		$nomor = $surat_tugas['0']->nomor;
+		$data['nomor'] = $nomor;
 		$data['nama'] = $this->home_model->get_yang_dinas($id);
-		$this->load->view('navbar');
+		$this->load->view('nav');
 		$this->load->view('header');
 		$this->load->view('print_biaya', $data);
 		$this->load->view('footer');
@@ -1291,7 +1295,7 @@ class C_PDF extends CI_Controller {
 		$data['tiket'] = $this->home_model->get_tiket_pesawat();
 		$data['transport'] = $this->home_model->get_biaya_transport();
 
-		$this->load->view('navbar');
+		$this->load->view('nav');
 		$this->load->view('header');
 		$this->load->view('form_biaya', $data);
 		$this->load->view('footer');
