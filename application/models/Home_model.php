@@ -126,6 +126,17 @@ class Home_model extends CI_Model {
 		return $query->result();
 	}
 
+	function get_pembayaran_awal($slug) {
+		$arr_slug = explode('_', $slug);
+		$id_surat = $arr_slug[0];
+		$id_pegawai = $arr_slug[1];
+		$data = array (
+			'id_surat' => $id_surat, 'id_pegawai' => $id_pegawai
+		);
+		$query = $this->db->get_where('pembayaran_awal', $data);
+		return $query->result();
+	}
+
 
 
 }

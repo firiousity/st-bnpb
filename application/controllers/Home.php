@@ -63,7 +63,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/navlogin');
 		$this->load->view('layouts/header');
 		$this->load->view('login');
-		$this->load->view('layouts/footer3');
+		$this->load->view('layouts/footer');
 	}
 
 	public function beranda()
@@ -111,7 +111,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('buat_surat2', $data);
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 
 	public function exec_buat_surat() {
@@ -126,8 +126,28 @@ class Home extends CI_Controller {
 		);
 		$this->db->insert('surat_dinas', $data);
 
-		$id_surat_dinas = $this->db->select('id')->get_where('surat_dinas', array('nomor' => $this->input->post('nomor')))->result();
+		$nomor_result = $this->db->from('surat_dinas')->order_by('id', 'desc')->limit(1)->get()->result();
+		$nomor = $nomor_result['0']->id;
+
+		//SAVE TO DATABASE
+
+		$num_data = count($this->input->post('my-select[]'));
+		for($i=0;$i<$num_data;$i++) {
+			$data_rinci = array(
+				'id_surat'      => $nomor,
+				'id_pegawai' => $this->input->post('my-select[]')[$i],
+				'transport'         => $this->input->post('my-select-transport[]')[0],
+				'penginapan'          => $this->input->post('my-select-penginapan[]')[0],
+				'harian'        => $this->input->post('my-select-harian[]')[0],
+				'tiket'        =>  $this->input->post('my-select-tiket[]')[0],
+			);
+			$this->db->insert('rincian_biaya', $data_rinci);
+		}
+
+		$id_surat_dinas = $this->db->select('id')->get_where('surat_dinas',
+			array('nomor' => $this->input->post('nomor')))->result();
 		$id_surat_dinas = $id_surat_dinas[0];
+
 		$num_data = count($this->input->post('my-select[]'));
 		for($i=0;$i<$num_data;$i++) {
 			$data_with_nip = array(
@@ -231,7 +251,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('biaya_transport');
-		$this->load->view('layoutsfooter');
+		$this->load->view('layouts/footer');
 		$data = array(
 			'provinsi' => $provinsi,
 			'besaran' => $besaran,
@@ -282,7 +302,7 @@ class Home extends CI_Controller {
 	}
 
 	public function tambah_tiket() {
-		$rute = $this->input->post('rute');
+		$kota = $this->input->post('kota');
 		$biaya_tiket = $this->input->post('biaya_tiket');
 
 		$this->load->view('layouts/nav');
@@ -290,7 +310,7 @@ class Home extends CI_Controller {
 		$this->load->view('tiket_pesawat');
 		$this->load->view('layouts/footer');
 		$data = array(
-			'rute' => $rute,
+			'rute' => $kota,
 			'biaya_tiket' => $biaya_tiket,
 		);
 		$this->db->insert('tiket_pesawat', $data);
@@ -306,10 +326,10 @@ class Home extends CI_Controller {
 	}
 
 	function edit_tiket($id) {
-		$rute = $this->input->post('rute');
+		$kota = $this->input->post('kota');
 		$biaya_tiket = $this->input->post('biaya_tiket');
 		$data = array(
-			'rute' => $rute,
+			'kota' => $kota,
 			'biaya_tiket' => $biaya_tiket,
 		);
 		$this->db->where('id', $id);
@@ -344,10 +364,10 @@ class Home extends CI_Controller {
 		$dalam_kota = $this->input->post('dalam_kota');
 		$diklat = $this->input->post('diklat');
 
-		$this->load->view('layouts/nav');
-		$this->load->view('layouts/header');
+		$this->load->view('nav');
+		$this->load->view('header');
 		$this->load->view('uang_harian');
-		$this->load->view('layouts/footer');
+		$this->load->view('footer');
 		$data = array(
 			'provinsi' => $provinsi,
 			'luar_kota' => $luar_kota,
@@ -451,7 +471,7 @@ class Home extends CI_Controller {
 
 	public function layout_biaya()
 	{
-		$this->load->view('/layouts/header');
+		$this->load->view('layouts/header');
 		$this->load->view('layout_biaya');
 	}
 
