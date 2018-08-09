@@ -63,7 +63,7 @@ class Home extends CI_Controller {
 		$this->load->view('navlogin');
 		$this->load->view('header');
 		$this->load->view('login');
-		$this->load->view('footer');
+		$this->load->view('footer3');
 	}
 
 	public function beranda()

@@ -1,6 +1,6 @@
 <body>
       <div class="container margin">
-            <p style="font-size: 27px;">Surat Detail</p>
+            <p style="font-size: 27px; text-align: center;">Surat Detail</p>
                   <table id="print_biaya" class="table table-hover" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
@@ -41,41 +41,12 @@
 						  ?>
 						  </tbody>
 						</table>
-                        <div class="row">
-
-                            <div class="col">
-                                <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-end">
-        <!--Previous-->
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-        </li>
-
-        <!--Numbers-->
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-
-        <!--Next-->
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-        </li>
-    </ul>
-</nav>
-                            </div>
-                    </div>
-                    </div>
-                    <div>
-                        
-                    </div>
-                </div>
-              </div>
           </div>
 
 </body>
 <script>
 $(document).ready(function () {
-  $('#lihat_surat').DataTable();
+  $('#print_biaya').DataTable();
   $('.dataTables_length').addClass('bs-select');
 });
 </script>
