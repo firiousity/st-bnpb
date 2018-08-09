@@ -8,8 +8,8 @@
 			<form action=".base_url($url)." method=\"post\">
 			<div class=\"card-body mx-5\">
 			<div class=\"md-form mb-4\">
-			<input type=\"text\" class=\"form-control\" name=\"kota\" value=\"$row->rute\">
-			<label data-error=\"wrong\" data-success=\"right\">Kota</label>
+			<input type=\"text\" class=\"form-control\" name=\"rute\" value=\"$row->rute\">
+			<label data-error=\"wrong\" data-success=\"right\">Rute</label>
 			</div>
 
 			<div class=\"md-form mb-4\">
