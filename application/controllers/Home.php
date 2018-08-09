@@ -60,18 +60,18 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('navlogin');
-		$this->load->view('header');
+		$this->load->view('layouts/navlogin');
+		$this->load->view('layouts/header');
 		$this->load->view('login');
-		$this->load->view('footer3');
+		$this->load->view('layouts/footer3');
 	}
 
 	public function beranda()
 	{
-		$this->load->view('navbar');
-		$this->load->view('header');
+		$this->load->view('layouts/navbar');
+		$this->load->view('layouts/header');
         $this->load->view('beranda');
-        $this->load->view('footer2');
+        $this->load->view('layouts/footer2');
     } 	
 
 	/*
@@ -79,10 +79,10 @@ class Home extends CI_Controller {
 	 */
 	public function lihat_surat() {
 		$data['surat'] = $this->home_model->get_surat();
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('lihat_surat', $data);
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 
 	public function buat_surat ()
@@ -93,10 +93,10 @@ class Home extends CI_Controller {
 		$data['penginapan'] = $this->home_model->get_biaya_penginapan();
 		$data['tiket'] = $this->home_model->get_tiket_pesawat();
 		$data['transport'] = $this->home_model->get_biaya_transport();
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('buat_surat', $data);
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 
 
@@ -108,8 +108,8 @@ class Home extends CI_Controller {
 		$data['penginapan'] = $this->home_model->get_biaya_penginapan();
 		$data['tiket'] = $this->home_model->get_tiket_pesawat();
 		$data['transport'] = $this->home_model->get_biaya_transport();
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('buat_surat2', $data);
 		$this->load->view('footer');
 	}
