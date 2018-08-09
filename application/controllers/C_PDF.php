@@ -699,192 +699,7 @@ class C_PDF extends CI_Controller {
 
 	//Page Rincian Perhitungan SPD Rampung
 	function spd_rampung() {
-		$pdf = new FPDF('p','mm','A4');
-		$pdf->AddPage();
-		$pdf->SetFont('Arial','BU',12);
-		$pdf->Cell(0,6,"RINICIAN PERHITUNGAN SPD RAMPUNG",0,1,'C');
-		$pdf->SetFont('Arial','',10);
-		$pdf->Cell(34,6,'Lamp. SPD Nomor',0,0);
-		$pdf->Cell(3,6,':',0,0);
-		$pdf->MultiCell(0,6,'$nomor',0,'L');
-		$pdf->Cell(34,6,'Tanggal',0,0);
-		$pdf->Cell(3,6,':',0,0);
-		$pdf->MultiCell(0,6,'$var_tgl_surat',0,'L');
-		$pdf->Ln();
-		//here is table
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->SetFont('Arial','B',10);
-		$pdf->Cell(10,6,'No',1,0,'C',0);
-		$pdf->Cell(75,6,'Perincian biaya',1,0,'C',0);
-		$pdf->Cell(40,6,'Jumlah',1,0,'C',0);
-		$pdf->Cell(55,6,'Keterangan',1,0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','L',0,'L',0);
-		$pdf->Cell(75,6,'RINCIAN PENGELUARAN','LR',0,'L',0);
-		$pdf->Cell(40,6,'','R',0,'C',0);
-		$pdf->Cell(55,6,'','R',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->SetFont('Arial','',10);
-		$pdf->Cell(10,6,'1','L',0,'C',0);
-		$pdf->Cell(25,6,'Uang Harian','L',0,'L',0);
-		$pdf->Cell(10,6,'5 Hari',0,0,'L',0);
-		$pdf->Cell(10,6,'x',0,0,'R',0);
-		$pdf->Cell(5,6,'Rp',0,0,'L',0);
-		$pdf->Cell(25,6,'480.000,00','R',0,'R',0);
-		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,'2.400.000,00','R',0,'R',0);
-		$pdf->Cell(55,6,'Perjalanan dinas ke :','R',0,'L',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'2','L',0,'C',0);
-		$pdf->Cell(25,6,'Penginapan','L',0,'L',0);
-		$pdf->Cell(10,6,'4 Malam',0,0,'L',0);
-		$pdf->Cell(10,6,'x',0,0,'R',0);
-		$pdf->Cell(5,6,'Rp',0,0,'L',0);
-		$pdf->Cell(25,6,'750.000,00','R',0,'R',0);
-		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,'3.000.000,00','R',0,'R',0);
-		$pdf->Cell(55,6,'Ke Provinsi Bali','R',0,'L',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'3','L',0,'C',0);
-		$pdf->Cell(25,6,'Tiket Pesawat','L',0,'L',0);
-		$pdf->Cell(10,6,'',0,0,'L',0);
-		$pdf->Cell(10,6,'',0,0,'R',0);
-		$pdf->Cell(5,6,'Rp',0,0,'L',0);
-		$pdf->Cell(25,6,'2.811.000,00','R',0,'R',0);
-		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,'2.811.000,00','R',0,'R',0);
-		$pdf->Cell(55,6,'(selama 5 hari)','R',0,'L',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'4','L',0,'C',0);
-		$pdf->Cell(25,6,'Transport','L',0,'L',0);
-		$pdf->Cell(10,6,'',0,0,'L',0);
-		$pdf->Cell(10,6,'',0,0,'R',0);
-		$pdf->Cell(5,6,'Rp',0,0,'L',0);
-		$pdf->Cell(25,6,'830.000,00','R',0,'R',0);
-		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,'830.000,00','R',0,'R',0);
-		$pdf->Cell(55,6,'Tanggal 19 s.d 23 Februari 2018','R',0,'L',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->SetFont('Arial','B',10);
-		$pdf->Cell(10,6,'','L',0,'C',0);
-		$pdf->Cell(75,6,'Jumlah :','LR',0,'R',0);
-		$pdf->Cell(7,6,'Rp',0,0,'L',0);
-		$pdf->Cell(33,6,'9.041.000,00','TR',0,'R',0);
-		$pdf->Cell(55,6,'','R',0,'L',0);
-		$pdf->Ln();
 
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','L',0,'C',0);
-		$pdf->Cell(75,6,'YANG TELAH DIBAYARKAN :','LR',0,'L',0);
-		$pdf->Cell(40,6,'','R',0,'R',0);
-		$pdf->Cell(55,6,'','R',0,'L',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->SetFont('Arial','',10);
-		$pdf->Cell(10,6,'1','L',0,'C',0);
-		$pdf->Cell(25,6,'Uang Harian','L',0,'L',0);
-		$pdf->Cell(10,6,'5 Hari',0,0,'L',0);
-		$pdf->Cell(10,6,'x',0,0,'R',0);
-		$pdf->Cell(5,6,'Rp',0,0,'L',0);
-		$pdf->Cell(25,6,'-','R',0,'R',0);
-		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,'0,00','R',0,'R',0);
-		$pdf->Cell(55,6,'','R',0,'L',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'2','L',0,'C',0);
-		$pdf->Cell(25,6,'Penginapan','L',0,'L',0);
-		$pdf->Cell(10,6,'4 Malam',0,0,'L',0);
-		$pdf->Cell(10,6,'x',0,0,'R',0);
-		$pdf->Cell(5,6,'Rp',0,0,'L',0);
-		$pdf->Cell(25,6,'-','R',0,'R',0);
-		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,'0,00','R',0,'R',0);
-		$pdf->Cell(55,6,'','R',0,'L',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'3','L',0,'C',0);
-		$pdf->Cell(25,6,'Tiket Pesawat','L',0,'L',0);
-		$pdf->Cell(10,6,'',0,0,'L',0);
-		$pdf->Cell(10,6,'',0,0,'R',0);
-		$pdf->Cell(5,6,'',0,0,'L',0);
-		$pdf->Cell(25,6,'','R',0,'R',0);
-		$pdf->Cell(10,6,'',0,0,'L',0);
-		$pdf->Cell(30,6,'','R',0,'R',0);
-		$pdf->Cell(55,6,'','R',0,'L',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'4','L',0,'C',0);
-		$pdf->Cell(25,6,'Transport','L',0,'L',0);
-		$pdf->Cell(10,6,'',0,0,'L',0);
-		$pdf->Cell(10,6,'',0,0,'R',0);
-		$pdf->Cell(5,6,'',0,0,'L',0);
-		$pdf->Cell(25,6,'','R',0,'R',0);
-		$pdf->Cell(10,6,'',0,0,'L',0);
-		$pdf->Cell(30,6,'','R',0,'R',0);
-		$pdf->Cell(55,6,'','R',0,'L',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->SetFont('Arial','B',10);
-		$pdf->Cell(10,6,'','L',0,'C',0);
-		$pdf->Cell(75,6,'Jumlah :','LR',0,'R',0);
-		$pdf->Cell(7,6,'Rp',0,0,'L',0);
-		$pdf->Cell(33,6,'0,00','TR',0,'R',0);
-		$pdf->Cell(55,6,'','R',0,'L',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','L',0,'C',0);
-		$pdf->Cell(75,6,'SISA KURANG','LR',0,'L',0);
-		$pdf->Cell(40,6,'','R',0,'R',0);
-		$pdf->Cell(55,6,'','R',0,'L',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','LB',0,'C',0);
-		$pdf->Cell(75,6,'Jumlah :','LBR',0,'R',0);
-		$pdf->Cell(10,6,'Rp','B',0,'L',0);
-		$pdf->Cell(30,6,'9.041.000,00','BR',0,'R',0);
-		$pdf->Cell(55,6,'','BR',0,'L',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','LB',0,'C',0);
-		$pdf->Cell(75,6,'Terbilang :','LBR',0,'R',0);
-		$pdf->Cell(95,6,$this->Terbilang(9041000)." rupiah",'BR',0,'L',0);
-		$pdf->Ln();
-		//end of table
-		$pdf->Ln();
-
-		$pdf->SetFont('Arial','',10);
-		$pdf->Cell(10,6,"",0,0,'L');
-		$pdf->Cell(25,6,'',0,0,'L');
-		$pdf->Cell(15,6,'',0,0,'L');
-		$pdf->Cell(5,6,'',0,0,'L');
-		$pdf->Cell(25,6,'',0,0,'R');
-		$pdf->Cell(40,6,'',0,0,'C');
-		$pdf->MultiCell(50,6,'Jakarta, ',0,'R');
-
-		$pdf->Ln();
-		$pdf->Cell(100,6,"Mengetahui \nPejabat Pembuat Komitmen",0, 0,'C');
-		$pdf->MultiCell(70,6,'Yang melakukan perjalanan dinas',0,'R');
-
-		$pdf->Ln();
-		$pdf->Ln();
-
-		$pdf->SetFont('Arial','BU',10);
-		$pdf->Ln();
-		$pdf->Cell(100,6,'$nama_ppk',0, 0,'C');
-		$pdf->MultiCell(70,6,'Leonard, S.T',0,'C');
-		$pdf->SetFont('Arial','',10);
-		$pdf->Cell(100,6,'NIP.'  ,0, 0,'C');
-		$pdf->MultiCell(70,6,'NIP. 19820107 200912 1 002',0,'C');
-
-		//Cetak gans
-		$pdf->Output();
 	}
 
 	//Page Perincian Biaya Perjalanan Dinas
@@ -894,7 +709,33 @@ class C_PDF extends CI_Controller {
 	}
 
 	//Page Surat Perintah Dinas
-	function perintah() {
+	function spd($slug) {
+		$arr_slug		= explode('_', $slug);
+		$pegawai_result = $this->db->get_where('pegawai', array('id_pegawai' => $arr_slug[1]))->result();
+		$pegawai 		= $pegawai_result['0']->nama_pegawai;
+		$jabatan		= $pegawai_result['0']->jabatan_pegawai;
+		$golongan 		= $pegawai_result['0']->golongan_pegawai;
+		$surat_result 	= $this->db->get_where('surat_dinas', array('id' => $arr_slug[0]))->result();
+		$nomor 			= $surat_result['0']->nomor;
+		$kegiatan 		= $surat_result['0']->kegiatan;
+
+		$tiket_result 	= $this->home_model->get_tiket($slug);
+		$rute			= $tiket_result['0']->rute;
+		$rute_arr		= explode('-', $rute);
+		$berangkat		= $rute_arr[0];
+		$tujuan			= $rute_arr[1];
+
+		$ppk 			= $this->db->get_where('pejabat_administratif',
+			array('jabatan' => 'Pejabat Pembuat Komitmen'))->result();
+
+		$nama_ppk 				= $ppk['0']->nama;
+		$nip_ppk 				= $ppk['0']->nip;
+
+		$var_tgl_mulai 	= $this->tanggal_indo($surat_result['0']->tgl_mulai, '-');
+		$var_tgl_akhir 	= $this->tanggal_indo($surat_result['0']->tgl_akhir, '-');
+		$var_tgl_surat 	= $this->tanggal_indo($surat_result['0']->tgl_surat,'/');
+		$jumlah_hari	= $this->hitung_hari($surat_result['0']->tgl_mulai, $surat_result['0']->tgl_akhir);
+
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','B',8);
@@ -903,7 +744,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,3,'Lembar ke : ',0,'L');
 		$pdf->Ln();
 		$pdf->Cell(150,3,'Jl. Pramuka Kav. 38 - Jakarta Timur 13120',0,0,'L');
-		$pdf->Cell(25,3,'Kode No. : ',0,'L');
+		$pdf->Cell(25,3,'Kode No. : '.$nomor,0,'L');
 		$pdf->Ln();
 		$pdf->Cell(150,3,'',0,0,'L');
 		$pdf->Cell(25,3,'Nomor : ',0,0,'L');
@@ -926,7 +767,7 @@ class C_PDF extends CI_Controller {
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'2.','L',0,'C',0);
 		$pdf->Cell(70,5,'Nama Pegawai yang','LR',0,'L',0);
-		$pdf->Cell(90,5,'Leonard,S.T.','R',0,'L',0);
+		$pdf->Cell(90,5,$pegawai,'R',0,'L',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'','LB',0,'C',0);
@@ -936,12 +777,12 @@ class C_PDF extends CI_Controller {
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'3.','L',0,'C',0);
 		$pdf->Cell(70,5,'a. Pangkat dan golongan','LR',0,'L',0);
-		$pdf->Cell(90,5,'a. III','R',0,'L',0);
+		$pdf->Cell(90,5,'a. '.$golongan,'R',0,'L',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'','L',0,'C',0);
 		$pdf->Cell(70,5,'b. Jabatan / Instansi','LR',0,'L',0);
-		$pdf->Cell(90,5,'b. ','R',0,'L',0);
+		$pdf->Cell(90,5,'b. '.$jabatan,'R',0,'L',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'','LB',0,'C',0);
@@ -951,12 +792,12 @@ class C_PDF extends CI_Controller {
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'4','L',0,'C',0);
 		$pdf->Cell(70,5,'Maksud perjalanan Dinas','LR',0,'L',0);
-		$pdf->Cell(90,5,'Melakukan penyelesaian hibah final pusdatinmas BNPB kepada BPBD','R',0,'L',0);
+		$pdf->Cell(90,5,'Melakukan kegiatan '.$kegiatan,'R',0,'L',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'','LB',0,'C',0);
 		$pdf->Cell(70,5,'','LBR',0,'L',0);
-		$pdf->Cell(90,5,'Provinsi, Kabupaten dan Kota','BR',0,'L',0);
+		$pdf->Cell(90,5,'','BR',0,'L',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'5','LB',0,'C',0);
@@ -966,27 +807,27 @@ class C_PDF extends CI_Controller {
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'6.','L',0,'C',0);
 		$pdf->Cell(70,5,'a. Tempat berangkat','LR',0,'L',0);
-		$pdf->Cell(90,5,'a. Jakarta','R',0,'L',0);
+		$pdf->Cell(90,5,'a. '.$berangkat,'R',0,'L',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'','LB',0,'C',0);
 		$pdf->Cell(70,5,'b. Tempat tujuan','LBR',0,'L',0);
-		$pdf->Cell(90,5,'b. Provinsi Maluku Utara','BR',0,'L',0);
+		$pdf->Cell(90,5,'b. '.$tujuan,'BR',0,'L',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'7.','L',0,'C',0);
 		$pdf->Cell(70,5,'a. Lamanya perjalanan Dinas','LR',0,'L',0);
-		$pdf->Cell(90,5,'a. 3 (Tiga) Hari','R',0,'L',0);
+		$pdf->Cell(90,5,'a. '. $jumlah_hari .' ('. $this->terbilang($jumlah_hari) .') Hari','R',0,'L',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'','L',0,'C',0);
 		$pdf->Cell(70,5,'b. Tanggal berangkat','LR',0,'L',0);
-		$pdf->Cell(90,5,'b. 30 Mei 2018','R',0,'L',0);
+		$pdf->Cell(90,5,'b. '.$var_tgl_mulai,'R',0,'L',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'','L',0,'C',0);
 		$pdf->Cell(70,5,'c. Tanggal harus kembali /','LR',0,'L',0);
-		$pdf->Cell(90,5,'c. 1 Juni 2018','R',0,'L',0);
+		$pdf->Cell(90,5,'c. '.$var_tgl_akhir,'R',0,'L',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'','LB',0,'C',0);
@@ -1071,7 +912,7 @@ class C_PDF extends CI_Controller {
 		$pdf->SetFont('Arial','',8);
 		$pdf->Cell(112,7,'',0,0);
 		$pdf->Cell(30,5,'Pada tanggal :','B',0,'L');
-		$pdf->Cell(20,5,'22 Mei 2018','B',0,'L');
+		$pdf->Cell(20,5,$var_tgl_surat,'B',0,'L');
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->Cell(116.5,7,'',0,0);
@@ -1085,11 +926,11 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->SetFont('Arial','U',8);
 		$pdf->Cell(116.5,6,'',0,0);
-		$pdf->Cell(40,4,'Linda Lestari, S.Kom.',0,0,'C');
+		$pdf->Cell(40,4,$nama_ppk,0,0,'C');
 		$pdf->Ln();
 		$pdf->SetFont('Arial','',8);
 		$pdf->Cell(116.5,6,'',0,0);
-		$pdf->Cell(40,4,'NIP. 19790305 200501 2 001',0,0,'C');
+		$pdf->Cell(40,4,'NIP. '.$nip_ppk,0,0,'C');
 
 		//Cetak gans
 		$pdf->Output();
@@ -1302,17 +1143,14 @@ class C_PDF extends CI_Controller {
 		$id_surat = $arr_slug[0];
 		$id_pegawai = $arr_slug[1];
 		//SAVE TO DATABASE
-		$data = array(
+		/*$data = array(
 			'id_surat'      => $id_surat,
 			'id_pegawai'         => $id_pegawai,
 			'transport'         => $this->input->post('my-select-transport[]')[0],
 			'penginapan'          => $this->input->post('my-select-penginapan[]')[0],
 			'harian'        => $this->input->post('my-select-harian[]')[0],
 			'tiket'        =>  $this->input->post('my-select-tiket[]')[0],
-		);
-		//$this->db->insert('rincian_biaya', $data);
-		//$this->href("home/lihat_surat");
-
+		);*/
 
 		$surat_tugas	= $this->db->get_where('surat_dinas',
 			array('id' => $id_surat))->result();
@@ -1320,6 +1158,11 @@ class C_PDF extends CI_Controller {
 			array('id_pegawai' => $id_pegawai))->result();
 		$bendahara 			= $this->db->get_where('pejabat_administratif',
 			array('jabatan' => 'Bendahara Pengeluaran Pembantu'))->result();
+		$ppk 			= $this->db->get_where('pejabat_administratif',
+			array('jabatan' => 'Pejabat Pembuat Komitmen'))->result();
+
+		$nama_ppk 				= $ppk['0']->nama;
+		$nip_ppk 				= $ppk['0']->nip;
 		$malam = $this->hitung_hari($surat_tugas['0']->tgl_mulai, $surat_tugas['0']->tgl_akhir);
 		$hari = $malam + 1;
 
@@ -1409,13 +1252,13 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(30,6,'Transport','L',0,'L',0);
 		$pdf->Cell(45,6,'Rp '. $transport,'R',0,'R',0);
 		$pdf->Cell(40,6,'Rp '. $transport,'R',0,'R',0);
-		$pdf->Cell(55,6,'Tanggal '.$var_tgl_mulai.' s.d '.$var_tgl_akhir,'R',0,'L',0);
+		$pdf->Cell(55,6,'Tanggal '.$var_tgl_mulai.' s.d ','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(10,6,'','L',0,'C',0);
 		$pdf->Cell(75,6,'','LR',0,'L',0);
 		$pdf->Cell(40,6,'','R',0,'R',0);
-		$pdf->Cell(55,6,'','R',0,'L',0);
+		$pdf->Cell(55,6,$var_tgl_akhir,'R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->SetFont('Arial','B',10);
@@ -1507,14 +1350,280 @@ class C_PDF extends CI_Controller {
 		$pdf->SetFont('Arial','BU',10);
 		$pdf->Ln();$pdf->Ln();$pdf->Ln();
 		$pdf->Cell(115,6,'',0, 0,'C');
-		$pdf->MultiCell(50,5,'Leonard, S.T',0,'C');
+		$pdf->MultiCell(50,5,$nama_ppk,0,'C');
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(115,6,'',0, 0,'C');
-		$pdf->Cell(50,6,'NIP. 19820107 200912 1 002'  ,0, 0,'C');
+		$pdf->Cell(50,6,'NIP. '.$nip_ppk  ,0, 0,'C');
+
+		//Cetak gans
+		$pdf->Output();
+
+	}
+
+	function rampung ($slug) {
+		$data = array(
+			'slug' => $slug
+		);
+		$this->load->view('nav');
+		$this->load->view('header');
+		$this->load->view('rampung_form', $data);
+		$this->load->view('footer2');
+	}
+
+	function print_rampung ($slug) {
+		$arr_slug = explode('_', $slug);
+		$id_surat = $arr_slug[0];
+		$id_pegawai = $arr_slug[1];
+		$penginapan = $this->input->post('penginapan');
+		$harian = $this->input->post('harian');
+		$transport = $this->input->post('transport');
+		$tiket = $this->input->post('tiket');
+
+		//div yang sudah dibayarkan
+		$s_penginapan = $this->input->post('s_penginapan');
+		$s_harian = $this->input->post('s_harian');
+		$s_transport = $this->input->post('s_transport');
+		$s_tiket = $this->input->post('s_tiket');
+
+		//Get pegawai
+		$pegawai_result = $this->db->get_where('pegawai', array('id_pegawai' => $id_pegawai))->result();
+		$nama_dinas 		= $pegawai_result['0']->nama_pegawai;
+		$nip_dinas		= $pegawai_result['0']->nip_pegawai;
+
+		//Get ppk
+		$ppk 			= $this->db->get_where('pejabat_administratif',
+			array('jabatan' => 'Pejabat Pembuat Komitmen'))->result();
+		$nama_ppk 				= $ppk['0']->nama;
+		$nip_ppk 				= $ppk['0']->nip;
+
+		//Get surat_dinas with id = is_surat
+		$surat_result =$this->db->get_where('surat_dinas',
+			array('id' => $id_surat))->result();
+		$nomor = $surat_result['0']->nomor;
+		$tempat = $surat_result['0']->tempat;
+		$var_tgl_mulai = $this->tanggal_indo($surat_result['0']->tgl_mulai, '-');
+		$var_tgl_akhir = $this->tanggal_indo($surat_result['0']->tgl_akhir, '-');
+		$var_tgl_surat = $this->tanggal_indo($surat_result['0']->tgl_surat, '/');
+		$var_tgl_skrg = $this->tanggal_indo(date('Y').'-'.date('m').'-'.date('d'), '-');
+		$malam = $this->hitung_hari($surat_result['0']->tgl_mulai, $surat_result['0']->tgl_akhir);
+		$hari = $malam + 1;
+		$jml_harian = $harian*$hari;
+		$jml_penginapan = $malam*$penginapan;
+		$jml_s_harian = $s_harian*$hari;
+		$jml_s_penginapan = $s_penginapan*$malam;
+		$s_total = $jml_s_harian+$jml_s_penginapan+$s_tiket+$s_transport;
+		$total = $jml_harian+$jml_penginapan+$tiket+$transport;
+		$sisa = $s_total - $total;
+
+		$data = array(
+			'id_surat' => $id_surat,
+			'id_pegawai' => $id_pegawai,
+			'penginapan' => $penginapan,
+			'harian' => $harian,
+			'transport' => $transport,
+			'tiket' => $tiket,
+		);
+		$this->db->insert('spd_rampung', $data);
+		$data_yang_sudah_dibayar = array(
+			'id_surat' => $id_surat,
+			'id_pegawai' => $id_pegawai,
+			'penginapan' => $s_penginapan,
+			'harian' => $s_harian,
+			'transport' => $s_transport,
+			'tiket' => $s_tiket,
+		);
+		$this->db->insert('pembayaran_awal', $data_yang_sudah_dibayar);
+
+		//Print PDF
+		$pdf = new FPDF('p','mm','A4');
+		$pdf->AddPage();
+		$pdf->SetFont('Arial','BU',12);
+		$pdf->Cell(0,6,"RINCIAN PERHITUNGAN SPD RAMPUNG",0,1,'C');
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(34,6,'Lamp. SPD Nomor',0,0);
+		$pdf->Cell(3,6,':',0,0);
+		$pdf->MultiCell(0,6,$nomor,0,'L');
+		$pdf->Cell(34,6,'Tanggal',0,0);
+		$pdf->Cell(3,6,':',0,0);
+		$pdf->MultiCell(0,6,$var_tgl_surat,0,'L');
+		$pdf->Ln();
+		//here is table
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(10,6,'No',1,0,'C',0);
+		$pdf->Cell(75,6,'Perincian biaya',1,0,'C',0);
+		$pdf->Cell(40,6,'Jumlah',1,0,'C',0);
+		$pdf->Cell(55,6,'Keterangan',1,0,'C',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,6,'','L',0,'L',0);
+		$pdf->Cell(75,6,'RINCIAN PENGELUARAN','LR',0,'L',0);
+		$pdf->Cell(40,6,'','R',0,'C',0);
+		$pdf->Cell(55,6,'','R',0,'C',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,6,'1','L',0,'C',0);
+		$pdf->Cell(25,6,'Uang Harian','L',0,'L',0);
+		$pdf->Cell(10,6,$hari.' Hari',0,0,'L',0);
+		$pdf->Cell(10,6,'x',0,0,'R',0);
+		$pdf->Cell(5,6,'Rp',0,0,'L',0);
+		$pdf->Cell(25,6,$harian,'R',0,'R',0);
+		$pdf->Cell(10,6,'Rp',0,0,'L',0);
+		$pdf->Cell(30,6,$jml_harian,'R',0,'R',0);
+		$pdf->Cell(55,6,'Perjalanan dinas ke :','R',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,6,'2','L',0,'C',0);
+		$pdf->Cell(25,6,'Penginapan','L',0,'L',0);
+		$pdf->Cell(10,6,$malam.' Malam',0,0,'L',0);
+		$pdf->Cell(10,6,'x',0,0,'R',0);
+		$pdf->Cell(5,6,'Rp',0,0,'L',0);
+		$pdf->Cell(25,6,$penginapan,'R',0,'R',0);
+		$pdf->Cell(10,6,'Rp',0,0,'L',0);
+		$pdf->Cell(30,6,$jml_penginapan,'R',0,'R',0);
+		$pdf->Cell(55,6,'Ke '.$tempat,'R',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,6,'3','L',0,'C',0);
+		$pdf->Cell(25,6,'Tiket Pesawat','L',0,'L',0);
+		$pdf->Cell(10,6,'',0,0,'L',0);
+		$pdf->Cell(10,6,'',0,0,'R',0);
+		$pdf->Cell(5,6,'Rp',0,0,'L',0);
+		$pdf->Cell(25,6,$tiket,'R',0,'R',0);
+		$pdf->Cell(10,6,'Rp',0,0,'L',0);
+		$pdf->Cell(30,6,$tiket,'R',0,'R',0);
+		$pdf->Cell(55,6,'(selama '.$hari.' hari)','R',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,6,'4','L',0,'C',0);
+		$pdf->Cell(25,6,'Transport','L',0,'L',0);
+		$pdf->Cell(10,6,'',0,0,'L',0);
+		$pdf->Cell(10,6,'',0,0,'R',0);
+		$pdf->Cell(5,6,'Rp',0,0,'L',0);
+		$pdf->Cell(25,6,$transport,'R',0,'R',0);
+		$pdf->Cell(10,6,'Rp',0,0,'L',0);
+		$pdf->Cell(30,6,$transport,'R',0,'R',0);
+		$pdf->Cell(55,6,$var_tgl_mulai.' s.d '.$var_tgl_akhir,'R',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(10,6,'','L',0,'C',0);
+		$pdf->Cell(75,6,'Jumlah :','LR',0,'R',0);
+		$pdf->Cell(7,6,'Rp',0,0,'L',0);
+		$pdf->Cell(33,6,$total,'TR',0,'R',0);
+		$pdf->Cell(55,6,'','R',0,'L',0);
+		$pdf->Ln();
+
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,6,'','L',0,'C',0);
+		$pdf->Cell(75,6,'YANG TELAH DIBAYARKAN :','LR',0,'L',0);
+		$pdf->Cell(40,6,'','R',0,'R',0);
+		$pdf->Cell(55,6,'','R',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,6,'1','L',0,'C',0);
+		$pdf->Cell(25,6,'Uang Harian','L',0,'L',0);
+		$pdf->Cell(10,6,$hari.' Hari',0,0,'L',0);
+		$pdf->Cell(10,6,'x',0,0,'R',0);
+		$pdf->Cell(5,6,'Rp ',0,0,'L',0);
+		$pdf->Cell(25,6,$s_harian,'R',0,'R',0);
+		$pdf->Cell(10,6,'Rp',0,0,'L',0);
+		$pdf->Cell(30,6,$jml_s_harian,'R',0,'R',0);
+		$pdf->Cell(55,6,'','R',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,6,'2','L',0,'C',0);
+		$pdf->Cell(25,6,'Penginapan','L',0,'L',0);
+		$pdf->Cell(10,6,$malam.' Malam',0,0,'L',0);
+		$pdf->Cell(10,6,'x',0,0,'R',0);
+		$pdf->Cell(5,6,'Rp ',0,0,'L',0);
+		$pdf->Cell(25,6,$s_penginapan,'R',0,'R',0);
+		$pdf->Cell(10,6,'Rp ',0,0,'L',0);
+		$pdf->Cell(30,6,$jml_s_penginapan,'R',0,'R',0);
+		$pdf->Cell(55,6,'','R',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,6,'3','L',0,'C',0);
+		$pdf->Cell(25,6,'Tiket Pesawat','L',0,'L',0);
+		$pdf->Cell(10,6,'',0,0,'L',0);
+		$pdf->Cell(10,6,'',0,0,'R',0);
+		$pdf->Cell(5,6,'',0,0,'L',0);
+		$pdf->Cell(25,6,$s_tiket,'R',0,'R',0);
+		$pdf->Cell(10,6,'',0,0,'L',0);
+		$pdf->Cell(30,6,$s_tiket,'R',0,'R',0);
+		$pdf->Cell(55,6,'','R',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,6,'4','L',0,'C',0);
+		$pdf->Cell(25,6,'Transport','L',0,'L',0);
+		$pdf->Cell(10,6,'',0,0,'L',0);
+		$pdf->Cell(10,6,'',0,0,'R',0);
+		$pdf->Cell(5,6,'',0,0,'L',0);
+		$pdf->Cell(25,6,$s_transport,'R',0,'R',0);
+		$pdf->Cell(10,6,'',0,0,'L',0);
+		$pdf->Cell(30,6,$s_transport,'R',0,'R',0);
+		$pdf->Cell(55,6,'','R',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->SetFont('Arial','B',10);
+		$pdf->Cell(10,6,'','L',0,'C',0);
+		$pdf->Cell(75,6,'Jumlah :','LR',0,'R',0);
+		$pdf->Cell(7,6,'Rp',0,0,'L',0);
+		$pdf->Cell(33,6,$s_total,'TR',0,'R',0);
+		$pdf->Cell(55,6,'','R',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,6,'','L',0,'C',0);
+		$pdf->Cell(75,6,'SISA ','LR',0,'L',0);
+		$pdf->Cell(40,6,'','R',0,'R',0);
+		$pdf->Cell(55,6,'','R',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,6,'','LB',0,'C',0);
+		$pdf->Cell(75,6,'Jumlah :','LBR',0,'R',0);
+		$pdf->Cell(10,6,'Rp','B',0,'L',0);
+		$pdf->Cell(30,6,$sisa,'BR',0,'R',0);
+		$pdf->Cell(55,6,'','BR',0,'L',0);
+		$pdf->Ln();
+		$pdf->Cell(5,7,'',0,0);
+		$pdf->Cell(10,6,'','LB',0,'C',0);
+		$pdf->Cell(75,6,'Terbilang :','LBR',0,'R',0);
+
+		$pdf->Cell(95,6,$this->Terbilang(abs($sisa))." rupiah",'BR',0,'L',0);
+		$pdf->Ln();
+		//end of table
+		$pdf->Ln();
+
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(10,6,"",0,0,'L');
+		$pdf->Cell(25,6,'',0,0,'L');
+		$pdf->Cell(15,6,'',0,0,'L');
+		$pdf->Cell(5,6,'',0,0,'L');
+		$pdf->Cell(25,6,'',0,0,'R');
+		$pdf->Cell(40,6,'',0,0,'C');
+		$pdf->MultiCell(50,6,'Jakarta, '.$var_tgl_skrg,0,'R');
+
+		$pdf->Ln();
+		$pdf->Cell(100,6,"Mengetahui \nPejabat Pembuat Komitmen",0, 0,'C');
+		$pdf->MultiCell(70,6,'Yang melakukan perjalanan dinas',0,'R');
+
+		$pdf->Ln();
+		$pdf->Ln();
+
+		$pdf->SetFont('Arial','BU',10);
+		$pdf->Ln();
+		$pdf->Cell(100,6,$nama_ppk,0, 0,'C');
+		$pdf->MultiCell(70,6,$nama_dinas,0,'C');
+		$pdf->SetFont('Arial','',10);
+		$pdf->Cell(100,6,'NIP.'.$nip_ppk  ,0, 0,'C');
+		$pdf->MultiCell(70,6,'NIP. '.$nip_dinas,0,'C');
 
 		//Cetak gans
 		$pdf->Output();
 	}
+
 
 	function tanggal_indo($tanggal, $delimiter)
 	{
