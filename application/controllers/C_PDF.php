@@ -1115,6 +1115,7 @@ class C_PDF extends CI_Controller {
 	function print_biaya($id) {
 		$surat_tugas  = $this->db->get_where('surat_dinas',
       		array('id' => $id))->result();
+		$nomor = $surat_tugas['0']->nomor;
 		$data['nomor'] = $nomor;
 		$data['nama'] = $this->home_model->get_yang_dinas($id);
 		$this->load->view('layouts/navbar');
@@ -1283,7 +1284,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(5,6,'Rp',0,0,'L',0);
 		$pdf->Cell(25,6,$transport,'R',0,'R',0);
 		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,'Rp '. $transport,'R',0,'R',0);
+		$pdf->Cell(30,6,$transport,'R',0,'R',0);
 		$pdf->Cell(55,6,'Tanggal '.$var_tgl_mulai.' s.d ','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
