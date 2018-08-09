@@ -1444,8 +1444,8 @@ class C_PDF extends CI_Controller {
 		$jml_harian = $harian*$hari;
 		$jml_penginapan = $malam*$penginapan;
 		$jml_s_harian = $s_harian*$hari;
-		$jml_s_penginapan = $s_penginapan*$malam;
-		$s_total = $jml_s_harian+$jml_s_penginapan+$s_tiket+$s_transport;
+  		$jml_s_penginapan = $s_penginapan*$malam;
+  		$s_total = $jml_s_harian+$jml_s_penginapan+$s_tiket+$s_transport;
 		$total = $jml_harian+$jml_penginapan+$tiket+$transport;
 		$sisa = $s_total - $total;
 
@@ -1458,7 +1458,7 @@ class C_PDF extends CI_Controller {
 			'tiket' => $tiket,
 			'total' => $total
 		);
-		$this->db->insert('spd_rampung', $data);
+		//$this->db->insert('spd_rampung', $data);
 		$data_yang_sudah_dibayar = array(
 			'id_surat' => $id_surat,
 			'id_pegawai' => $id_pegawai,
@@ -1468,7 +1468,7 @@ class C_PDF extends CI_Controller {
 			'tiket' => $s_tiket,
 			'total' => $s_total
 		);
-		$this->db->insert('pembayaran_awal', $data_yang_sudah_dibayar);
+		//$this->db->insert('pembayaran_awal', $data_yang_sudah_dibayar);
 
 		$keterangan = "";
 		if ($total>$s_total) {

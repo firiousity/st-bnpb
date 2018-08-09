@@ -41,23 +41,23 @@
 					<div class="col-md-4 mb-3">
 						<label for="validationCustom01">Uang Harian</label>
 						<input type="number" class="form-control" name="s_harian" id="s_harian" placeholder="Rp. "
-							   required  autofocus>
+							   required  value="0">
 					</div>
 					<div class="col-md-4 mb-3">
 						<label for="validationCustom02">Uang Penginapan</label>
 						<input type="number" class="form-control" id="s_penginapan" name="s_penginapan"
-							   placeholder="Rp. " required>
+							   placeholder="Rp. " required value="0">
 
 					</div>
 					<div class="col-md-4 mb-3">
 						<label for="validationCustom01">Uang Transport</label>
 						<input type="number" class="form-control" name="s_transport" id="s_transport" placeholder="Rp. "
-							   required  autofocus>
+							   required  autofocus value="0">
 					</div>
 					<div class="col-md-4 mb-3">
 						<label for="validationCustom02">Tiket Pesawat</label>
 						<input type="number" class="form-control" id="s_tiket" name="s_tiket"
-							   placeholder="Rp. " required>
+							   placeholder="Rp. " value="0" required>
 
 					</div>
 				</div>
