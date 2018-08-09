@@ -97,7 +97,7 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;*/
 							<select multiple="multiple" id="my-select-tiket" name="my-select-tiket[]">
 								<?php foreach ($tiket as $row) {
 									echo
-									"<option value='$row->biaya_tiket'>$row->kota</option>" ;
+									"<option value='$row->biaya_tiket'>$row->rute</option>" ;
 								}
 								?>
 							</select>

@@ -7,7 +7,7 @@
                               <th class="th-sm" scope="col">No
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
-                              <th class="th-sm" scope="col">Kota
+                              <th class="th-sm" scope="col">Rute
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
                               <th class="th-sm" scope="col">Harga Tiket
@@ -28,7 +28,7 @@
                               echo "
                               <tr>
                               <td>".$counter."</td>
-                              <td>".$row->kota."</td>
+                              <td>".$row->rute."</td>
                               <td> Rp ".$row->biaya_tiket."</td>
                               <td>
                                 <span class='table-remove'><a href='".base_url("home/edit_tiket_page/$row->id")."'><button type='button' class='btn btn-warning btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></span>
@@ -63,8 +63,8 @@
           <form action="<?php echo base_url('home/tambah_tiket') ?>" method="post">
             <div class="modal-body mx-5">
               <div class="md-form mb-4">
-                <input type="text" class="form-control" name="kota">
-                <label data-error="wrong" data-success="right">Kota</label>
+                <input type="text" class="form-control" name="rute">
+                <label data-error="wrong" data-success="right">Rute</label>
               </div>
               <div class="md-form mb-4">
                 <input type="text" class="form-control" name="biaya_tiket">

@@ -35,10 +35,10 @@ class C_PDF_Backup extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('navbar');
-		$this->load->view('header');
+		$this->load->view('layouts/navbar');
+		$this->load->view('layouts/header');
 		$this->load->view('login');
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 
 	/* PRINT SURAT DINAS (2 LEMBAR) */
@@ -1395,8 +1395,12 @@ class C_PDF_Backup extends CI_Controller {
 	}
 
 	function print_biaya($id) {
+		$surat_tugas	= $this->db->get_where('surat_dinas',
+			array('id' => $id))->result();
+		$nomor = $surat_tugas['0']->nomor;
+		$data['nomor'] = $nomor;
 		$data['nama'] = $this->home_model->get_yang_dinas($id);
-		$this->load->view('navbar');
+		$this->load->view('nav');
 		$this->load->view('header');
 		$this->load->view('print_biaya', $data);
 		$this->load->view('footer');
@@ -1414,10 +1418,10 @@ class C_PDF_Backup extends CI_Controller {
 		$data['tiket'] = $this->home_model->get_tiket_pesawat();
 		$data['transport'] = $this->home_model->get_biaya_transport();
 
-		$this->load->view('navbar');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('form_biaya', $data);
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 	}
 
 	function print_rincian($slug) {
