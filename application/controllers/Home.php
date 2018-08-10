@@ -302,7 +302,7 @@ class Home extends CI_Controller {
 	}
 
 	public function tambah_tiket() {
-		$kota = $this->input->post('kota');
+		$rute = $this->input->post('rute');
 		$biaya_tiket = $this->input->post('biaya_tiket');
 
 		$this->load->view('layouts/nav');
@@ -310,7 +310,7 @@ class Home extends CI_Controller {
 		$this->load->view('tiket_pesawat');
 		$this->load->view('layouts/footer');
 		$data = array(
-			'rute' => $kota,
+			'rute' => $rute,
 			'biaya_tiket' => $biaya_tiket,
 		);
 		$this->db->insert('tiket_pesawat', $data);
@@ -326,10 +326,10 @@ class Home extends CI_Controller {
 	}
 
 	function edit_tiket($id) {
-		$kota = $this->input->post('kota');
+		$rute = $this->input->post('rute');
 		$biaya_tiket = $this->input->post('biaya_tiket');
 		$data = array(
-			'kota' => $kota,
+			'rute' => $rute,
 			'biaya_tiket' => $biaya_tiket,
 		);
 		$this->db->where('id', $id);

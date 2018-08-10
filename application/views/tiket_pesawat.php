@@ -7,7 +7,7 @@
                               <th class="th-sm" scope="col">No
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
-                              <th class="th-sm" scope="col">Kota
+                              <th class="th-sm" scope="col">Rute
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
                               <th class="th-sm" scope="col">Harga Tiket
@@ -63,7 +63,7 @@
           <form action="<?php echo base_url('home/tambah_tiket') ?>" method="post">
             <div class="modal-body mx-5">
               <div class="md-form mb-4">
-                <input type="text" class="form-control" name="kota">
+                <input type="text" class="form-control" name="rute">
                 <label data-error="wrong" data-success="right">Rute:  (Misal Jakarta: Balikpapan)</label>
               </div>
               <div class="md-form mb-4">
