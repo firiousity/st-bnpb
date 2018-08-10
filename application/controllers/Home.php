@@ -364,10 +364,10 @@ class Home extends CI_Controller {
 		$dalam_kota = $this->input->post('dalam_kota');
 		$diklat = $this->input->post('diklat');
 
-		$this->load->view('nav');
-		$this->load->view('header');
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
 		$this->load->view('uang_harian');
-		$this->load->view('footer');
+		$this->load->view('layouts/footer');
 		$data = array(
 			'provinsi' => $provinsi,
 			'luar_kota' => $luar_kota,
