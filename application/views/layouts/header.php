@@ -19,9 +19,14 @@
 	<link href="<?php echo base_url('assets/css/multiselect/multi-select.dist.css')?>" rel="stylesheet">
 	<!-- Your custom styles (optional) -->
 	<link href="<?php echo base_url('assets/css/style.css')?>"  type="text/css" rel="stylesheet">
-
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" 
+			integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+   			crossorigin=""/>
 	<!-- SCRIPTS -->
     <!-- JQuery -->
+	<script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" 
+			integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+		   	crossorigin=""></script>
 	<script
 		src="https://code.jquery.com/jquery-3.3.1.js"
 		integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -151,6 +156,10 @@
 
 	.judul {
 		margin: 2%;
+	}
+
+	.mapid {
+		height: 400px;
 	}
 	</style>
 </head>
