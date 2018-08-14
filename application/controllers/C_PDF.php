@@ -46,6 +46,8 @@ class C_PDF extends CI_Controller {
 	function print($id) {
 		/* DEFINE VARIABLE WE WILL USED */
 
+		$data_rinci	= $this->db->get_where('data_rinci',
+			array('id' => $id))->limit(1)->result();
 		$surat_tugas	= $this->db->get_where('surat_dinas',
 			array('id' => $id))->result();
 		$pegawai 		= $this->db->get_where('pegawai',

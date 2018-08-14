@@ -16,6 +16,16 @@ class Surat extends CI_Controller
 		$this->load->library("pagination");
 	}
 
+	/*
+     * Helper Function
+     *
+     * */
+
+	function href ($route) {
+		echo "<script>
+         	window.location.href='".base_url()."$route';</script>";
+	}
+
 	function buat_surat_dinas() {
 		$data['pegawai'] = $this->home_model->get_pegawai();
 		$data['nomor'] = $this->home_model->get_nomor();
@@ -43,6 +53,9 @@ class Surat extends CI_Controller
 				'opsi' => $opsi
 			);
 			$this->db->insert('surat_dinas', $data_surat);
+			$nomor_result = $this->db->from('surat_dinas')->order_by('id', 'desc')->limit(1)->get()->result();
+			$nomor = $nomor_result['0']->id;
+			$tgl_surat = date('d')."/".date('m')."/".date('Y');
 
 			if(!isset($_POST['check'])) {
 				//Proses banyak nama untuk satu tempat
@@ -58,7 +71,7 @@ class Surat extends CI_Controller
 				$num_data = count($this->input->post('my-select[]'));
 				for($i=0;$i<$num_data;$i++) {
 					$data_rinci = array(
-						'id' => $i,
+						'id_surat' => $nomor, 'tgl_surat' => $tgl_surat,
 						'nomor' => $nomor, 'kegiatan' => $kegiatan, 'jenis' => $jenis,
 						'opsi' => $opsi, 'id_pegawai' => $my_select[$i], 'tgl_mulai' => $mulai,
 						'tgl_akhir' => $akhir, 'tempat' => $tempat, 'id_harian' => $harian,
@@ -85,6 +98,7 @@ class Surat extends CI_Controller
 				for($key=0;$key<$num_data;$key++) {
 
 					$data_rinci = array(
+						'id_surat' => $nomor, 'tgl_surat' => $tgl_surat,
 						'nomor' => $nomor, 'kegiatan' => $kegiatan, 'jenis' => $jenis,
 						'opsi' => $opsi, 'id_pegawai' => $d_pegawai[$key], 'tgl_mulai' => $mulai[$key],
 						'tgl_akhir' => $akhir[$key], 'tempat' => $tempat[$key], 'id_harian' => $d_harian[$key],
@@ -93,6 +107,7 @@ class Surat extends CI_Controller
 					$this->db->insert('data_rinci', $data_rinci);
 				}
 			}
+			$this->href("home/lihat_surat");
 		}
 	}
 }

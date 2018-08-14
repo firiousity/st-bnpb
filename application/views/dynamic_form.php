@@ -20,7 +20,7 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 <div class="row-fluid">
 	<div class="card">
 		<div class="span6">
-			<form action="<?php echo base_url('testing/exec_surat') ?>" method="post">
+			<form action="<?php echo base_url('surat/exec_surat') ?>" method="post">
 				<table class="table table-responsive">
 					<!-- BAGIAN SURAT YANG TIDAK BERUBAH -->
 					<tr>
