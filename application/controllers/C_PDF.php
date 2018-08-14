@@ -123,13 +123,14 @@ class C_PDF extends CI_Controller {
 			foreach ($nama_result as $row) {
 				$pdf->Cell(5,6,"$counterr. ",0,0);
 				$pdf->MultiCell(0,6,"$row->nama_pegawai",0,'J');
+				$pdf->Cell(30,6,"",0,0);
 				$counterr++;
 			}
-		} else {
+		} else if($num_pegawai>3) {
 			$pdf->MultiCell(0,6,"Daftar Terlampir",0,'L');
 		}
 
-		$pdf->MultiCell(0,6,"Daftar Terlampir",0,'L');
+		$pdf->MultiCell(0,6,"",0,'L');
 		$pdf->Cell(25,6,'Untuk',0,0);
 		$pdf->Cell(5,6,':',0,0);
 		$pdf->Cell(5,6,'1.',0,0);
@@ -158,18 +159,20 @@ class C_PDF extends CI_Controller {
 		$pdf->MultiCell(0,6,$kapusdatin,0,'R');
 
 		//Page ke-2
-		$pdf->AddPage();
-		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(0,6,"Lampiran Surat Tugas",0,1,'R');
-		$pdf->Cell(0,6,"Nomor: $nomor",0,1,'R');
-		$pdf->Cell(0,6,"Tanggal: ". $this->tanggal_indo($var_tgl_surat,'/'),0,1,'R');
-		$pdf->Cell(0,10,"Daftar Nama",0,1,'C');
-		$pdf->SetFont('Arial','',12);
-		$counter = 1;
-		foreach ($nama_result as $row) {
-			$pdf->Cell(5,6,"$counter. ",0,0);
-			$pdf->MultiCell(0,6,"$row->nama_pegawai",0,'J');
-			$counter++;
+		if($num_pegawai>3) {
+			$pdf->AddPage();
+			$pdf->SetFont('Arial','B',12);
+			$pdf->Cell(0,6,"Lampiran Surat Tugas",0,1,'R');
+			$pdf->Cell(0,6,"Nomor: $nomor",0,1,'R');
+			$pdf->Cell(0,6,"Tanggal: ". $this->tanggal_indo($var_tgl_surat,'/'),0,1,'R');
+			$pdf->Cell(0,10,"Daftar Nama",0,1,'C');
+			$pdf->SetFont('Arial','',12);
+			$counter = 1;
+			foreach ($nama_result as $row) {
+				$pdf->Cell(5,6,"$counter. ",0,0);
+				$pdf->MultiCell(0,6,"$row->nama_pegawai",0,'J');
+				$counter++;
+			}
 		}
 
 		//Cetak gans
