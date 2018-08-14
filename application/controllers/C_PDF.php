@@ -53,7 +53,11 @@ class C_PDF extends CI_Controller {
 		$nomor 			= $surat_tugas['0']->nomor;
 		$var_kegiatan 	= $surat_tugas['0']->kegiatan;
 
+		//Get data only one from data_rinci table
 		$data_rinci	= $this->db->limit(1)->get_where('data_rinci',
+			array('id_surat' => $id))->result();
+		//Get all data from data_rinci table
+		$data_rinci_all	= $this->db->get_where('data_rinci',
 			array('id_surat' => $id))->result();
 
 		$var_tempat 	= $data_rinci['0']->tempat;
@@ -142,7 +146,7 @@ class C_PDF extends CI_Controller {
 		$pdf->SetFont('Arial','B',12);
 		$pdf->Cell(0,6,"Lampiran Surat Tugas",0,1,'R');
 		$pdf->Cell(0,6,"Nomor: $nomor",0,1,'R');
-		$pdf->Cell(0,6,"Tanggal: $var_tgl_surat",0,1,'R');
+		$pdf->Cell(0,6,"Tanggal: ". $this->tanggal_indo($var_tgl_surat,'/'),0,1,'R');
 		$pdf->Cell(0,10,"Daftar Nama",0,1,'C');
 		$pdf->SetFont('Arial','',12);
 		$nama = $this->home_model->get_yang_dinas($id);

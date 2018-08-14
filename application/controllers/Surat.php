@@ -53,8 +53,8 @@ class Surat extends CI_Controller
 				'opsi' => $opsi
 			);
 			$this->db->insert('surat_dinas', $data_surat);
-			$nomor_result = $this->db->from('surat_dinas')->order_by('id', 'desc')->limit(1)->get()->result();
-			$nomor = $nomor_result['0']->id;
+			$surat_result = $this->db->from('surat_dinas')->order_by('id', 'desc')->limit(1)->get()->result();
+			$id_surat = $surat_result['0']->id;
 			$tgl_surat = date('d')."/".date('m')."/".date('Y');
 
 			if(!isset($_POST['check'])) {
@@ -71,12 +71,17 @@ class Surat extends CI_Controller
 				$num_data = count($this->input->post('my-select[]'));
 				for($i=0;$i<$num_data;$i++) {
 					$data_rinci = array(
-						'id_surat' => $nomor, 'tgl_surat' => $tgl_surat,
+						'id_surat' => $id_surat, 'tgl_surat' => $tgl_surat,
 						'nomor' => $nomor, 'kegiatan' => $kegiatan, 'jenis' => $jenis,
 						'opsi' => $opsi, 'id_pegawai' => $my_select[$i], 'tgl_mulai' => $mulai,
 						'tgl_akhir' => $akhir, 'tempat' => $tempat, 'id_harian' => $harian,
 						'id_penginapan' => $penginapan, 'id_tiket' => $tiket, 'id_transport' => $transport
 					);
+					$data_with_nip = array(
+						'id_surat'      => $id_surat,
+						'id_pegawai' =>$my_select[$i]
+					);
+					$this->db->insert('yang_dinas', $data_with_nip);
 					$this->db->insert('data_rinci', $data_rinci);
 				}
 
@@ -98,12 +103,17 @@ class Surat extends CI_Controller
 				for($key=0;$key<$num_data;$key++) {
 
 					$data_rinci = array(
-						'id_surat' => $nomor, 'tgl_surat' => $tgl_surat,
+						'id_surat' => $id_surat, 'tgl_surat' => $tgl_surat,
 						'nomor' => $nomor, 'kegiatan' => $kegiatan, 'jenis' => $jenis,
 						'opsi' => $opsi, 'id_pegawai' => $d_pegawai[$key], 'tgl_mulai' => $mulai[$key],
 						'tgl_akhir' => $akhir[$key], 'tempat' => $tempat[$key], 'id_harian' => $d_harian[$key],
 						'id_penginapan' => $d_penginapan[$key], 'id_tiket' => $d_tiket[$key], 'id_transport' => $d_transport[$key]
 					);
+					$data_with_nip = array(
+						'id_surat'      => $id_surat,
+						'id_pegawai' => $d_pegawai[$key]
+					);
+					$this->db->insert('yang_dinas', $data_with_nip);
 					$this->db->insert('data_rinci', $data_rinci);
 				}
 			}
