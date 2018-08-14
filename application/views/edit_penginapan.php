@@ -1,5 +1,5 @@
 <body>
-<div class="container margin">
+<div class="container margin" style="padding-top: 50px;">
 	<div class="card mb-4">
 		<div class="card-body">
 			<?php foreach ($biaya_penginapan as $row) {

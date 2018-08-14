@@ -1,6 +1,6 @@
 <body>
   <div class="container margin">
-        <p style="font-size: 27px; text-align: center;">Uang Representasi</p>
+        <p style="font-size: 27px; text-align: center; padding-top: 50px;">Uang Representasi</p>
               <table id="uang_representasi" class="table table-hover" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
@@ -43,9 +43,6 @@
               <div align="left">
                 <a href="#"><button type="button" data-toggle="modal" data-target="#modalRegisterForm" class="btn btn-indigo btn-md">Tambah</button></a>
               </div>
-            <div id="mapid" class="mapid">
-              
-            </div>
     </div>
   </div>
 
@@ -137,30 +134,6 @@ $(document).ready(function () {
   $('#uang_representasi').DataTable();
   $('.dataTables_length').addClass('bs-select');
 });
-
-  var mymap = L.map('mapid').setView([-6.192076, 106.869150], 15);
-
-  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYmFkbTRuIiwiYSI6ImNqa3Jvb3g4YjA3ZmgzcW1yazh2anBxd3QifQ.bpeA6asfyhBtKDTG4RGOOw', {
-    maxZoom: 18,
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-      '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-      'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    id: 'mapbox.streets'
-  }).addTo(mymap);
-
-  L.marker([-6.171395, 106.90844]).addTo(mymap)
-    .bindPopup("<b>Data Bantuan:</b><br />Makanan 1000").openPopup();
-
-  var popup = L.popup();
-
-  function onMapClick(e) {
-    popup
-      .setLatLng(e.latlng)
-      .setContent("You clicked the map at " + e.latlng.toString())
-      .openOn(mymap);
-  }
-
-  mymap.on('click', onMapClick);
 </script>
 </html>
 

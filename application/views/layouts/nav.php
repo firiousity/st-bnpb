@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark indigo scrolling-navbar">
+<nav class="navbar navbar-expand-lg navbar-dark indigo scrolling-navbar fixed-top">
     <div class="container">
     <img style="margin-left: 20px;" src="<?php echo base_url('assets/img/logo.png')?>" width="40" height="40"> 
     <a style="margin-left: 8px;" class="navbar-brand" href="<?php echo base_url('home/beranda')?>"><Strong>SURAT TUGAS</Strong></a>

@@ -1,6 +1,6 @@
 <body>
 <!-- Intro Section -->
-<div class="view hm-black-light jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('<?php echo base_url()."assets/img/2.jpg";?>');height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover; ">
+<div class="view hm-black-light jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('<?php echo base_url()."assets/img/2.jpg";?>');background-repeat: no-repeat; background-size: cover; ">
 	<div class="full-bg-img">
 		<div class="container flex-center">
 			<div class="row pt-5 mt-3">

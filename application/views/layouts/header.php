@@ -139,10 +139,6 @@
         height: 50px;
         background-color: #7D80DA;
     }
-    .body {
-        /* Margin bottom by footer height */
-        margin-bottom: 60px;
-    }
 	.center {
     	position: absolute;
         top: 50%;
@@ -157,6 +153,10 @@
 	.judul {
 		margin: 2%;
 	}
+	.body {
+        /* Margin bottom by footer height */
+        margin-bottom: 60px;
+    }
 
 	.mapid {
 		height: 400px;

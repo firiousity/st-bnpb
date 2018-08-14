@@ -1,7 +1,5 @@
 <body>
-<div class="view hm-black-light jarallax" data-jarallax='{"speed": 0.2}'
-	 style="background-image: url('https://cdn.dribbble.com/users/720472/screenshots/2177275/gif.gif');
-	 height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover; ">
+<div class="view hm-black-light jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('https://cdn.dribbble.com/users/720472/screenshots/2177275/gif.gif'); height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover; ">
     <div class="full-bg-img">
         <div class="container flex-center">
             <div class="row pt-5 mt-3">

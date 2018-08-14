@@ -1,6 +1,6 @@
 <body>
   <div class="container margin">
-        <p style="font-size: 27px; text-align: center;">Tiket Pesawat</p>
+        <p style="font-size: 27px; text-align: center; padding-top: 50px;">Tiket Pesawat</p>
                   <table id="tiket_pesawat" class="table table-hover" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
