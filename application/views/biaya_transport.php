@@ -1,6 +1,6 @@
 <body>
   <div class="container margin">
-        <p style="font-size: 27px; text-align: center;">Biaya Transport</p>
+        <p style="font-size: 27px; text-align: center; padding-top: 50px;">Biaya Transport</p>
           <table id="biaya_transport" class="table table-hover" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>

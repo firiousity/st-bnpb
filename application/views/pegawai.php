@@ -1,6 +1,6 @@
 <body>
   <div class="container margin">
-        <p style="font-size: 27px; text-align: center;">Kelola Pegawai</p>
+        <p style="font-size: 27px; text-align: center; padding-top: 50px;">Kelola Pegawai</p>
         <table id="pegawai" class="table table-responsive table-hover" cellspacing="0" width="100%">
   <thead class="mdb-color darken-3 white-text">
     <tr>
