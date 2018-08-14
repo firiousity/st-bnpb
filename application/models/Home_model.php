@@ -62,6 +62,17 @@ class Home_model extends CI_Model {
 	   return $query->result();
    }
 
+   function get_data_rinci_pegawai($id) {
+	   //get form db
+	   $this->db->select('*');
+	   $this->db->from('pegawai');
+	   $this->db->join('data_rinci', 'data_rinci.id_pegawai = pegawai.id_pegawai', 'inner')->where( array(
+		   'id_surat' => $id
+	   ));
+	   $query = $this->db->get();
+	   return $query->result();
+   }
+
    function get_ppk() {
 	   $this->db->from('pejabat_administratif');
 	   $query = $this->db->get();

@@ -59,9 +59,13 @@ class C_PDF extends CI_Controller {
 		//Get all data from data_rinci table
 		$data_rinci_all	= $this->db->get_where('data_rinci',
 			array('id_surat' => $id))->result();
-		//Get pegawai from join table
-		$nama_result = $this->home_model->get_yang_dinas($id);
+		//Get pegawai from join table with yang_dinas
+		$nama_result = $this->home_model->get_data_rinci_pegawai($id);
 		$num_pegawai = count($nama_result);
+
+
+		//get type of pegawai
+		$opsi = $data_rinci['0']->opsi;
 
 		$var_tempat 	= $data_rinci['0']->tempat;
 		$var_tgl_mulai 	= $data_rinci['0']->tgl_mulai;
@@ -100,7 +104,7 @@ class C_PDF extends CI_Controller {
 		$pdf->MultiCell(0,6,"Dalam rangka melakukan kegiatan $var_kegiatan di $var_tempat",0,'J');
 		//$pdf->Cell(27,6,'Dalam rangka melakukan kegiatan $kegiatan di $tempat  pada $waktu	',0,0);
 		$pdf->Cell(25,6,'Dasar',0,0);
-		$pdf->Cell(5,6,':',0,0);
+		$pdf->Cell(5,6,'',0,0);
 		$pdf->Cell(5,6,'1.',0,0);
 		$pdf->MultiCell(0,6,"Keputusan Presiden Nomor 72 Tahun 2004 tentang Pelaksanaan Anggaran Pendapatan dan Belanja Negara;",0,'J');
 		$pdf->Cell(25,6,'',0,0);
@@ -118,7 +122,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(5,6,':',0,0);
 
 		//kalo jumlah pegawai yg ditugaskan kurang dari 4
-		if($num_pegawai<4) {
+		if($num_pegawai < 4 && $opsi == "0") {
 			$counterr = 1;
 			foreach ($nama_result as $row) {
 				$pdf->Cell(5,6,"$counterr. ",0,0);
@@ -126,7 +130,7 @@ class C_PDF extends CI_Controller {
 				$pdf->Cell(30,6,"",0,0);
 				$counterr++;
 			}
-		} else if($num_pegawai>3) {
+		} else  {
 			$pdf->MultiCell(0,6,"Daftar Terlampir",0,'L');
 		}
 
@@ -159,20 +163,60 @@ class C_PDF extends CI_Controller {
 		$pdf->MultiCell(0,6,$kapusdatin,0,'R');
 
 		//Page ke-2
-		if($num_pegawai>3) {
-			$pdf->AddPage();
-			$pdf->SetFont('Arial','B',12);
-			$pdf->Cell(0,6,"Lampiran Surat Tugas",0,1,'R');
-			$pdf->Cell(0,6,"Nomor: $nomor",0,1,'R');
-			$pdf->Cell(0,6,"Tanggal: ". $this->tanggal_indo($var_tgl_surat,'/'),0,1,'R');
-			$pdf->Cell(0,10,"Daftar Nama",0,1,'C');
-			$pdf->SetFont('Arial','',12);
-			$counter = 1;
-			foreach ($nama_result as $row) {
-				$pdf->Cell(5,6,"$counter. ",0,0);
-				$pdf->MultiCell(0,6,"$row->nama_pegawai",0,'J');
-				$counter++;
+		if ($opsi == '0') {
+			if($num_pegawai>3) {
+				$pdf->AddPage();
+				$pdf->SetFont('Arial','B',12);
+				$pdf->Cell(0,6,"Lampiran Surat Tugas",0,1,'R');
+				$pdf->Cell(0,6,"Nomor: $nomor",0,1,'R');
+				$pdf->Cell(0,6,"Tanggal: ". $this->tanggal_indo($var_tgl_surat,'/'),0,1,'R');
+				$pdf->Cell(0,10,"Daftar Nama",0,1,'C');
+				$pdf->SetFont('Arial','',12);
+				$counter = 1;
+				foreach ($nama_result as $row) {
+					$pdf->Cell(5,6,"$counter. ",0,0);
+					$pdf->MultiCell(0,6,"$row->nama_pegawai",0,'J');
+					$counter++;
+				}
 			}
+		} else if ($opsi == "1") {
+			//Print Multiple Tempat
+			$pdf->AddPage();
+			$pdf->SetFont('Arial','B',11);
+			$pdf->Cell(115,5,'',0,0,'L');
+			$pdf->Cell(25,5,'Lampiran Surat Tugas ',0,'L');
+			$pdf->Ln();
+			$pdf->Cell(115,5,'',0,0,'L');
+			$pdf->Cell(25,5,'Nomor   : '. $nomor,0,'L');
+			$pdf->Ln();
+			$pdf->Cell(115,5,'',0,0,'L');
+			$pdf->Cell(25,5,'Tanggal :  '.$var_tgl_surat,0,0,'L');
+			$pdf->Ln();
+			$pdf->Ln();
+			$pdf->SetFont('Arial','B',12);
+			$pdf->Cell(0,10,"Jadwal",0,1,'C');
+
+			//here is the table
+			$pdf->SetFont('Arial','B',12);
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,'No.',1,0,'C',0);
+			$pdf->Cell(50,6,'Nama',1,0,'C',0);
+			$pdf->Cell(65,6,'Tempat',1,0,'C',0);
+			$pdf->Cell(50,6,'Tanggal',1,0,'C',0);
+			$pdf->SetFont('Arial','',12);
+			$counterrr = 1;
+			foreach ($nama_result as $row) {
+				$pdf->Ln();
+				$pdf->Cell(5,7,'',0,0);
+				$pdf->Cell(10,6,$counterrr. '. ',0,0,'C',0);
+				$pdf->Cell(50,6,$row->nama_pegawai,0,0,'L',0);
+				$pdf->Cell(65,6,$row->tempat,0,0,'C',0);
+				$pdf->MultiCell(50,6,$this->tanggal_indo($row->tgl_mulai,'-').' s.d '
+					.$this->tanggal_indo($row->tgl_akhir,'-'),0,'L');
+				$counterrr++;
+			}
+
+			//end of the table
 		}
 
 		//Cetak gans
