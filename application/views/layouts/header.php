@@ -153,6 +153,10 @@
 	.judul {
 		margin: 2%;
 	}
+	.body {
+        /* Margin bottom by footer height */
+        margin-bottom: 60px;
+    }
 
 	.mapid {
 		height: 400px;

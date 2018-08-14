@@ -1,4 +1,4 @@
- <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+<!--  <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
     <div class="container">
     <img style="margin-left: 20px;" src="<?php echo base_url('assets/img/logo.png')?>" width="40" height="40"> 
     <a style="margin-left: 8px; color: black" class="navbar-brand" href="<?php echo base_url('home/beranda')?>"><strong>SURAT TUGAS</strong></a>
@@ -13,4 +13,4 @@
         </ul>
     </div>
     </div>
-</nav>
+</nav> -->
