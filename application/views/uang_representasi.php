@@ -118,10 +118,6 @@
                 <input type="text" id="orangeForm-pass" class="form-control validate" name="gol">
                 <label data-error="wrong" data-success="right" for="orangeForm-pass">Golongan</label>
               </div>
-
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-              <button class="btn btn-indigo">Edit</button>
             </div>
           </form>
         </div>
