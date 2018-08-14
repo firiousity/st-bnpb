@@ -59,6 +59,9 @@ class C_PDF extends CI_Controller {
 		//Get all data from data_rinci table
 		$data_rinci_all	= $this->db->get_where('data_rinci',
 			array('id_surat' => $id))->result();
+		//Get pegawai from join table
+		$nama_result = $this->home_model->get_yang_dinas($id);
+		$num_pegawai = count($nama_result);
 
 		$var_tempat 	= $data_rinci['0']->tempat;
 		$var_tgl_mulai 	= $data_rinci['0']->tgl_mulai;
@@ -113,6 +116,19 @@ class C_PDF extends CI_Controller {
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(25,6,'Kepada',0,0);
 		$pdf->Cell(5,6,':',0,0);
+
+		//kalo jumlah pegawai yg ditugaskan kurang dari 4
+		if($num_pegawai<4) {
+			$counterr = 1;
+			foreach ($nama_result as $row) {
+				$pdf->Cell(5,6,"$counterr. ",0,0);
+				$pdf->MultiCell(0,6,"$row->nama_pegawai",0,'J');
+				$counterr++;
+			}
+		} else {
+			$pdf->MultiCell(0,6,"Daftar Terlampir",0,'L');
+		}
+
 		$pdf->MultiCell(0,6,"Daftar Terlampir",0,'L');
 		$pdf->Cell(25,6,'Untuk',0,0);
 		$pdf->Cell(5,6,':',0,0);
@@ -149,9 +165,8 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(0,6,"Tanggal: ". $this->tanggal_indo($var_tgl_surat,'/'),0,1,'R');
 		$pdf->Cell(0,10,"Daftar Nama",0,1,'C');
 		$pdf->SetFont('Arial','',12);
-		$nama = $this->home_model->get_yang_dinas($id);
 		$counter = 1;
-		foreach ($nama as $row) {
+		foreach ($nama_result as $row) {
 			$pdf->Cell(5,6,"$counter. ",0,0);
 			$pdf->MultiCell(0,6,"$row->nama_pegawai",0,'J');
 			$counter++;
