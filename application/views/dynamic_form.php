@@ -11,8 +11,8 @@
 <head>
 	<title>BUAT SURAT</title>
 	<style>
-		body
-			padding: 15px
+		body {
+			padding: 15px;
 		}
 		input[type="text"]{
 			margin-bottom: 0px !important;
@@ -27,214 +27,195 @@
 		  crossorigin="anonymous">
 </head>
 <body class="container">
+<?php
+//Get value
+$tanggal = date("m");
+$tahun = date("Y");
+$json = $nomor[0]->nomor;
+$json = (int) $json;
+$json = $json + 1;
+$nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
+
+?>
 <div class="row-fluid">
-	<div class="span6">
-		<form action="#" method="post">
-			<table class="table table-responsive">
-				<!-- BAGIAN SURAT YANG TIDAK BERUBAH -->
-				<tr>
-					<th>Nomor Surat</th>
-					<th>Kegiatan</th>
-					<th>Jenis </th>
-					<th>Opsi</th>
-				</tr>
-				<tbody>
-				<tr>
-					<td><input name="nomor" class="input-block-level" type="text"/></td>
-					<td><input name="kegiatan" class="input-block-level" type="text"/></td>
-					<td><input
-							id="jenisPembayaran"
-							name="jenisPembayaran"
-							onClick="bayar()"
-							type="checkbox" value="0"/> Bayar di depan ? <br /></td>
-					<td><input
-							id="check"
-							name="check"
-							onClick="toggle('check', 'labelitemlist', 'itemlist')"
-							type="checkbox" value="0"/> Banyak tempat ? <br /></td>
-				</tr>
-				</tbody>
-			</table>
-			<table class="table table-responsive">
+	<div class="card">
+		<div class="span6">
+			<form action="<?php echo base_url('testing/exec_surat') ?>" method="post">
+				<table class="table table-responsive">
+					<!-- BAGIAN SURAT YANG TIDAK BERUBAH -->
+					<tr>
+						<th>Nomor Surat</th>
+						<th>Kegiatan</th>
+						<th>Jenis </th>
+						<th>Opsi</th>
+					</tr>
+					<tbody>
+					<tr>
+						<td><input name="nomor" class="input-block-level" value="<?php echo $nomor_surat ?>" type="text"/></td>
+						<td><input name="kegiatan" class="input-block-level" type="text"/></td>
+						<td><input
+								id="jenisPembayaran"
+								name="jenisPembayaran"
+								onClick="bayar()"
+								type="checkbox" value="0"/> Bayar di depan ? <br/></td>
+						<td><input
+								id="check"
+								name="check"
+								onClick="toggle('check', 'labelitemlist', 'itemlist')"
+								type="checkbox" value="0"/> Banyak tempat ? <br/></td>
+					</tr>
+					</tbody>
+				</table>
+				<table class="table table-responsive">
 
-				<!-- BAGIAN INI HANYA MUNCUL JIKA OPSI BANYAK TEMPAT TIDAK DI PILIH. -->
-				<tbody id="itemgeneral" style="display: block">
-				<tr>
-					<td><label>Tanggal Mulai</label><br/><input name="mulai" class="input-block-level" type="date"/></td>
-					<td><label>Tanggal Akhir</label><br/><input name="akhir" class="input-block-level" type="date" /></td>
-					<td style="display: block" id="moxspoy">
-						<label>Nama Pegawai yang di tugaskan</label><br/>
-						<select multiple="multiple" id="moxs"  name="my-select[]">
-							<?php foreach ($pegawai as $row) {
-								echo
-								"<option value='$row->id_pegawai'>$row->nama_pegawai</option>" ;
-							}
-							?>
-						</select></td>
-					<td><label>Nama Tempat</label><br/><input name="tempat" class="input-block-level" type="text"/></td>
-				</tr>
-				<tr>
-					<td>
-						<label >Uang Harian: </label>
-						<div class="input-group">
-							<select name="harian">
-								<?php foreach ($harian as $row) {
+					<!-- BAGIAN INI HANYA MUNCUL JIKA OPSI BANYAK TEMPAT TIDAK DI PILIH. -->
+					<tbody id="itemgeneral" style="display: block">
+					<tr>
+						<td><label>Tanggal Mulai</label><br/><input name="mulai" class="input-block-level" type="date"/></td>
+						<td><label>Tanggal Akhir</label><br/><input name="akhir" class="input-block-level" type="date" /></td>
+						<td style="display: block" id="moxspoy">
+							<label>Nama Pegawai yang di tugaskan</label><br/>
+							<select multiple="multiple" id="moxs"  name="my-select[]">
+								<?php foreach ($pegawai as $row) {
 									echo
-									"<option value='$row->luar_kota'>$row->provinsi</option>" ;
+									"<option value='$row->id_pegawai'>$row->nama_pegawai</option>" ;
 								}
 								?>
-							</select>
-						</div>
-					</td>
-					<td>
-						<label >Uang Penginapan: </label>
-						<div class="input-group">
-							<select name="penginapan">
-								<?php foreach ($penginapan as $row) {
+							</select></td>
+						<td><label>Nama Tempat</label><br/><input name="tempat" class="input-block-level" type="text"/></td>
+					</tr>
+					<tr>
+						<td>
+							<label >Uang Harian: </label>
+							<div class="input-group">
+								<select name="harian">
+									<?php foreach ($harian as $row) {
+										echo
+										"<option value='$row->id'>$row->provinsi</option>" ;
+									}
+									?>
+								</select>
+							</div>
+						</td>
+						<td>
+							<label >Uang Penginapan: </label>
+							<div class="input-group">
+								<select name="penginapan">
+									<?php foreach ($penginapan as $row) {
+										echo
+										"<option value='$row->id'>$row->provinsi</option>" ;
+									}
+									?>
+								</select>
+							</div>
+						</td>
+						<td>
+							<label >Tiket Pesawat: </label>
+							<div class="input-group">
+								<select name="tiket">
+									<?php foreach ($tiket as $row) {
+										echo
+										"<option value='$row->id'>$row->rute</option>" ;
+									}
+									?>
+								</select>
+							</div>
+						</td>
+						<td>
+							<label >Uang Transportasi: </label>
+							<div class="input-group">
+								<select name="transport">
+									<?php foreach ($transport as $row) {
+										echo
+										"<option value='$row->id'>$row->provinsi</option>" ;
+									}
+									?>
+								</select>
+							</div>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+
+				<table class="table table-responsive">
+					<!-- BAGIAN FORM DINAMIS INI AKAN MUNCUL JIKA USER MENGKLIK OPSI BANYAK TEMPAT-->
+					<thead id="labelitemlist" style="display: none">
+					</thead>
+
+					<!--elemet sebagai target append-->
+					<tbody id="itemlist" style="display: none;">
+					<tr>
+						<td><label>Tempat</label><input name="tempat_input[0]" class="input-block-level" type="text"/></td>
+						<td><label>Tanggal Mulai</label><input name="mulai_input[0]" class="input-block-level" type="date"/></td>
+						<td><label>Tanggal Akhir</label><input name="akhir_input[0]" class="input-block-level" type="date" /></td>
+						<td><label>Pilih Pegawai</label><select  name="my-select-pegawai[0]">
+								<?php foreach ($pegawai as $row) {
 									echo
-									"<option value='$row->eselon_4'>$row->provinsi</option>" ;
+									"<option value='$row->id_pegawai'>$row->nama_pegawai</option>" ;
 								}
 								?>
-							</select>
-						</div>
-					</td>
-					<td>
-						<label >Tiket Pesawat: </label>
-						<div class="input-group">
-							<select name="tiket">
-								<?php foreach ($tiket as $row) {
-									echo
-									"<option value='$row->biaya_tiket'>$row->rute</option>" ;
-								}
-								?>
-							</select>
-						</div>
-					</td>
-					<td>
-						<label >Uang Transportasi: </label>
-						<div class="input-group">
-							<select name="transport">
-								<?php foreach ($transport as $row) {
-									echo
-									"<option value='$row->besaran'>$row->provinsi</option>" ;
-								}
-								?>
-							</select>
-						</div>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-
-			<table class="table table-responsive">
-				<!-- BAGIAN FORM DINAMIS INI AKAN MUNCUL JIKA USER MENGKLIK OPSI BANYAK TEMPAT-->
-				<thead id="labelitemlist" style="display: none">
-				</thead>
-
-				<!--elemet sebagai target append-->
-				<tbody id="itemlist" style="display: none;">
-				<tr>
-					<td><label>Tempat</label><input name="tempat_input[0]" class="input-block-level" type="text"/></td>
-					<td><label>Tanggal Mulai</label><input name="mulai_input[0]" class="input-block-level" type="date"/></td>
-					<td><label>Tanggal Akhir</label><input name="akhir_input[0]" class="input-block-level" type="date" /></td>
-					<td><label>Pilih Pegawai</label><select  name="my-select-pegawai[0]">
-							<?php foreach ($pegawai as $row) {
-								echo
-								"<option value='$row->id_pegawai'>$row->nama_pegawai</option>" ;
-							}
-							?>
-						</select></td>
-					<td>
-						<label >Uang Harian: </label>
-						<div class="input-group">
-							<select name="my-select-harian[]">
-								<?php foreach ($harian as $row) {
-									echo
-									"<option value='$row->luar_kota'>$row->provinsi</option>" ;
-								}
-								?>
-							</select>
-						</div>
-					</td>
-					<td>
-						<label >Uang Penginapan: </label>
-						<div class="input-group">
-							<select name="my-select-penginapan[]">
-								<?php foreach ($penginapan as $row) {
-									echo
-									"<option value='$row->eselon_4'>$row->provinsi</option>" ;
-								}
-								?>
-							</select>
-						</div>
-					</td>
-					<td>
-						<label >Tiket Pesawat: </label>
-						<div class="input-group">
-							<select name="my-select-tiket[]">
-								<?php foreach ($tiket as $row) {
-									echo
-									"<option value='$row->biaya_tiket'>$row->rute</option>" ;
-								}
-								?>
-							</select>
-						</div>
-					</td>
-					<td>
-						<label >Uang Transportasi: </label>
-						<div class="input-group">
-							<select name="my-select-transport[]">
-								<?php foreach ($transport as $row) {
-									echo
-									"<option value='$row->besaran'>$row->provinsi</option>" ;
-								}
-								?>
-							</select>
-						</div>
-					</td>
-				</tr>
-				</tbody>
-				<tfoot>
-				<tr>
-					<td>
-						<button class="btn btn-small btn-default" id="btn_tambah" disabled onclick="additem(); return false"><i class="fas fa-plus-square"></i></i></button>
-						<button name="submit" class="btn btn-small btn-primary"><i class="fas fa-check-circle"></i></button>
-					</td>
-				</tr>
-				</tfoot>
-			</table>
-		</form>
-
-
-	</div>
-	<div class="span6">
-		<p>Hasil submit bisa anda lihat di sini. Hasil ini bisa anda simpan dalam tabel atau digunakan untuk kepentingan lain.</p>
-		<p>
-			<?php
-			if (isset($_POST['submit'])) {
-				$nama = $_POST['nama_input'];
-				$tempat = $_POST['tempat_input'];
-				$mulai = $_POST['mulai_input'];
-				$akhir = $_POST['akhir_input'];
-
-				var_dump($nama, $tempat, $mulai, $akhir);
-
-
-				/*foreach ($nama as $key => $j) {
-					echo "<p>" . $j . "</p>";
-				}
-				foreach ($tempat as $key => $j) {
-					echo "<p>" . $j . "</p>";
-				}
-				foreach ($mulai as $key => $j) {
-					echo "<p>" . $j . "</p>";
-				}
-				foreach ($akhir as $key => $j) {
-					echo "<p>" . $j . "</p>";
-				}*/
-			}
-			?>
-		</p>
+							</select></td>
+						<td>
+							<label >Uang Harian: </label>
+							<div class="input-group">
+								<select name="my-select-harian[0]">
+									<?php foreach ($harian as $row) {
+										echo
+										"<option value='$row->id'>$row->provinsi</option>" ;
+									}
+									?>
+								</select>
+							</div>
+						</td>
+						<td>
+							<label >Uang Penginapan: </label>
+							<div class="input-group">
+								<select name="my-select-penginapan[0]">
+									<?php foreach ($penginapan as $row) {
+										echo
+										"<option value='$row->id'>$row->provinsi</option>" ;
+									}
+									?>
+								</select>
+							</div>
+						</td>
+						<td>
+							<label >Tiket Pesawat: </label>
+							<div class="input-group">
+								<select name="my-select-tiket[0]">
+									<?php foreach ($tiket as $row) {
+										echo
+										"<option value='$row->id'>$row->rute</option>" ;
+									}
+									?>
+								</select>
+							</div>
+						</td>
+						<td>
+							<label >Uang Transportasi: </label>
+							<div class="input-group">
+								<select name="my-select-transport[0]">
+									<?php foreach ($transport as $row) {
+										echo
+										"<option value='$row->id'>$row->provinsi</option>" ;
+									}
+									?>
+								</select>
+							</div>
+						</td>
+					</tr>
+					</tbody>
+					<tfoot>
+					<tr>
+						<td>
+							<button class="btn btn-small btn-default" id="btn_tambah" disabled onclick="additem(); return false"><i class="fas fa-plus-square"></i></i></button>
+							<button name="submit" type="submit" class="btn btn-small btn-primary"><i class="fas fa-check-circle"></i>Buat</button>
+						</td>
+					</tr>
+					</tfoot>
+				</table>
+			</form>
+		</div>
 	</div>
 </div>
 <script>
@@ -310,7 +291,7 @@
 
 		<?php foreach ($harian as $row) { ?>
 		var option_harian = document.createElement('option');
-		option_harian.setAttribute('value', '<?php echo $row->luar_kota?>' );
+		option_harian.setAttribute('value', '<?php echo $row->id?>' );
 		option_harian.innerHTML = "<?php echo $row->provinsi ?>";
 		harian_input.appendChild(option_harian);
 		<?php }
@@ -318,7 +299,7 @@
 
 		<?php foreach ($penginapan as $row) { ?>
 		var option_penginapan = document.createElement('option');
-		option_penginapan.setAttribute('value', '<?php echo $row->eselon_4?>' );
+		option_penginapan.setAttribute('value', '<?php echo $row->id?>' );
 		option_penginapan.innerHTML = "<?php echo $row->provinsi ?>";
 		penginapan_input.appendChild(option_penginapan);
 		<?php }
@@ -326,7 +307,7 @@
 
 		<?php foreach ($tiket as $row) { ?>
 		var option_tiket = document.createElement('option');
-		option_tiket.setAttribute('value', '<?php echo $row->biaya_tiket?>' );
+		option_tiket.setAttribute('value', '<?php echo $row->id?>' );
 		option_tiket.innerHTML = "<?php echo $row->rute?>";
 		tiket_input.appendChild(option_tiket);
 		<?php }
@@ -334,7 +315,7 @@
 
 		<?php foreach ($transport as $row) { ?>
 		var option_transport = document.createElement('option');
-		option_transport.setAttribute('value', '<?php echo $row->besaran?>' );
+		option_transport.setAttribute('value', '<?php echo $row->id?>' );
 		option_transport.innerHTML = "<?php echo $row->provinsi ?>";
 		transport_input.appendChild(option_transport);
 		<?php }
