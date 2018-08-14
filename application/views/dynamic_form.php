@@ -6,26 +6,6 @@
  * Time: 9:08 AM
  */
 ?>
-<!doctype html>
-<html>
-<head>
-	<title>BUAT SURAT</title>
-	<style>
-		body {
-			padding: 15px;
-		}
-		input[type="text"]{
-			margin-bottom: 0px !important;
-		}
-	</style>
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-		  rel="stylesheet"
-		  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-		  crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-		  integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-		  crossorigin="anonymous">
-</head>
 <body class="container">
 <?php
 //Get value

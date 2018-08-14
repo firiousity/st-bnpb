@@ -50,20 +50,16 @@ class C_PDF extends CI_Controller {
 			array('id' => $id))->result();
 		$pegawai 		= $this->db->get_where('pegawai',
 			array('jabatan_pegawai' => 'Kepala Pusat Data Informasi dan Humas'))->result();
-		$ppk 			= $this->db->get_where('pejabat_administratif',
-			array('jabatan' => 'Pejabat Pembuat Komitmen'))->result();
 
 		$nomor 			= $surat_tugas['0']->nomor;
 		$var_kegiatan 	= $surat_tugas['0']->kegiatan;
-		$var_tempat 	= $surat_tugas['0']->tempat;
+		$var_tempat 	= 'var tempat';//$surat_tugas['0']->tempat;
 		$var_tgl_mulai 	= $surat_tugas['0']->tgl_mulai;
 		$var_tgl_akhir 	= $surat_tugas['0']->tgl_akhir;
 
 		$var_tahun_kegiatan 	= substr($surat_tugas['0']->tgl_surat, -4);
 		$var_tgl_surat 			= $surat_tugas['0']->tgl_surat;
 
-		$nama_ppk 				= $ppk['0']->nama;
-		$nip_ppk 				= $ppk['0']->nip;
 		$kapusdatin 			= $pegawai['0']->nama_pegawai;
 		$tgl_sekarang 			= date('d')."-".date('m')."-".date('Y');
 
