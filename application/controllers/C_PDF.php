@@ -46,21 +46,22 @@ class C_PDF extends CI_Controller {
 	function print($id) {
 		/* DEFINE VARIABLE WE WILL USED */
 
-		$data_rinci	= $this->db->get_where('data_rinci',
-			array('id' => $id))->limit(1)->result();
 		$surat_tugas	= $this->db->get_where('surat_dinas',
 			array('id' => $id))->result();
 		$pegawai 		= $this->db->get_where('pegawai',
 			array('jabatan_pegawai' => 'Kepala Pusat Data Informasi dan Humas'))->result();
-
 		$nomor 			= $surat_tugas['0']->nomor;
 		$var_kegiatan 	= $surat_tugas['0']->kegiatan;
-		$var_tempat 	= 'var tempat';//$surat_tugas['0']->tempat;
-		$var_tgl_mulai 	= $surat_tugas['0']->tgl_mulai;
-		$var_tgl_akhir 	= $surat_tugas['0']->tgl_akhir;
 
-		$var_tahun_kegiatan 	= substr($surat_tugas['0']->tgl_surat, -4);
-		$var_tgl_surat 			= $surat_tugas['0']->tgl_surat;
+		$data_rinci	= $this->db->limit(1)->get_where('data_rinci',
+			array('id_surat' => $id))->result();
+
+		$var_tempat 	= $data_rinci['0']->tempat;
+		$var_tgl_mulai 	= $data_rinci['0']->tgl_mulai;
+		$var_tgl_akhir 	= $data_rinci['0']->tgl_akhir;
+
+		$var_tahun_kegiatan 	= substr($data_rinci['0']->tgl_surat, -4);
+		$var_tgl_surat 			= $data_rinci['0']->tgl_surat;
 
 		$kapusdatin 			= $pegawai['0']->nama_pegawai;
 		$tgl_sekarang 			= date('d')."-".date('m')."-".date('Y');
