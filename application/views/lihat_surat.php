@@ -27,7 +27,7 @@
 						  	<tr>
                               <th scope=\"row\">$i</th>
                               <td>$row->nomor</td>
-                              <td>$row->tempat</td>
+                              <td>$row->kegiatan</td>
                               <td>
                               <span><a href='".base_url('C_PDF/print/'.$row->id)."' target='_blank'> 
                               <button type=\"button\" class=\"btn btn-primary btn-rounded btn-sm my-0\">PRINT SURAT DINAS
