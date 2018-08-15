@@ -671,8 +671,8 @@ class C_PDF extends CI_Controller {
 		$rute			= $tiket_result['0']->rute;
 
 		//get real pengeluaran untuk tiket
-
-		$r_tiket =
+		$r_tiket_result = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
+		$r_tiket = $r_tiket_result['0']->tiket;
 
 		$ppk 			= $this->db->get_where('pejabat_administratif',
 			array('jabatan' => 'Pejabat Pembuat Komitmen'))->result();
