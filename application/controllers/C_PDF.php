@@ -1478,8 +1478,8 @@ class C_PDF extends CI_Controller {
 		$id_surat = $arr_slug[0];
 		$id_pegawai = $arr_slug[1];
 		//r untuk rampung
-		$r_penginapan = $this->input->post('penginapan');
-		$r_tiket = $this->input->post('tiket');
+		$penginapan = $this->input->post('penginapan');
+		$tiket = $this->input->post('tiket');
 
 		//Get data rinci
 		$data_rinci_all	= $this->db->get_where('data_rinci',
@@ -1495,10 +1495,10 @@ class C_PDF extends CI_Controller {
 		$harian = $harian_result['0']->luar_kota;
 		//get data uang penginapan
 		$penginapan_result	= $this->db->get_where('biaya_penginapan',array('id' => $id_penginapan))->result();
-		$penginapan = $penginapan_result['0']->eselon_4;
+		$sbu_penginapan = $penginapan_result['0']->eselon_4;
 		//get data uang tiket
 		$tiket_result	= $this->db->get_where('tiket_pesawat',array('id' => $id_tiket))->result();
-		$tiket = $tiket_result['0']->biaya_tiket;
+		$sbu_tiket = $tiket_result['0']->biaya_tiket;
 		//get data uang transport
 		$transport_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport))->result();
 		$transport = $transport_result['0']->besaran;
@@ -1514,10 +1514,6 @@ class C_PDF extends CI_Controller {
 		$nama_dinas 	= $pegawai_result['0']->nama_pegawai;
 		$nip_dinas		= $pegawai_result['0']->nip_pegawai;
 
-		//Get SBU harian
-		//Get SBU penginapan
-		//Get SBU tiket
-		//Get SBU transport
 
 		//Get ppk
 		$ppk 			= $this->db->get_where('pejabat_administratif',
@@ -1537,10 +1533,19 @@ class C_PDF extends CI_Controller {
 		$malam = $this->hitung_hari($surat_result['0']->tgl_mulai, $surat_result['0']->tgl_akhir);
 		$hari = $malam + 1;
 
-		$s_harian = 2;
-		$s_penginapan = 30;
-		$s_tiket = 30;
-		$s_transport = 30;
+		if($jenis == '0') {
+			//bayar di belakang, sett all value to zero
+			$s_harian = 0;
+			$s_penginapan = 0;
+			$s_tiket = 0;
+			$s_transport = 0;
+		} else if ($jenis == '1') {
+			$s_harian = $harian;
+			$s_penginapan = $sbu_penginapan;
+			$s_tiket = $sbu_tiket;
+			$s_transport = $transport;
+		}
+
 
 		$jml_harian = $harian*$hari;
 		$jml_penginapan = $malam*$penginapan;
@@ -1736,7 +1741,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,6,'','LB',0,'C',0);
 		$pdf->Cell(75,6,'Jumlah :','LBR',0,'R',0);
 		$pdf->Cell(10,6,'Rp','B',0,'L',0);
-		$pdf->Cell(30,6,$sisa,'BR',0,'R',0);
+		$pdf->Cell(30,6,abs($sisa),'BR',0,'R',0);
 		$pdf->Cell(55,6,'','BR',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
