@@ -51,6 +51,7 @@ class Home extends CI_Controller {
          	alert('password atau username salah!');
          	window.location.href='index';</script>";
 		}
+		$_SESSION['success'] = [ 'Berhasil', 'Selamat datang'];
 	}
 
 	/*
