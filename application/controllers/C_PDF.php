@@ -1531,10 +1531,15 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(40,6,'',0,0,'C');
 		$pdf->MultiCell(80,3,'Telah menerima jumlah uang sebesar',0,'R');
 		$pdf->Cell(15,6,'',0,0,'L');
-		$pdf->Cell(10,6,'Rp. '.$semula,0,0,'L');
+		if($jenis == '0') {
+			//bayar di belakang brrti yg udah diterima 0
+			$pdf->Cell(10,6,'Rp. -',0,0,'L');
+		} else {
+			$pdf->Cell(10,6,'Rp. '.$semula,0,0,'L');
+		}
 		$pdf->Cell(40,6,'',0,0,'R');
 		$pdf->Cell(48,6,'',0,0,'C');
-		$pdf->MultiCell(80,6,'Rp 0.00',0,'L');
+		$pdf->MultiCell(80,6,'Rp. 0',0,'L');
 		$pdf->Ln();
 		$pdf->Cell(100,6,"Bendahara Pengeluaran Pembantu",0, 0,'C');
 		$pdf->MultiCell(50,6,'Yang menerima',0,'R');
