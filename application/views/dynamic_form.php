@@ -6,7 +6,7 @@
  * Time: 9:08 AM
  */
 ?>
-<body class="container">
+<body class="container margin">
 <?php
 //Get value
 $tanggal = date("m");
@@ -350,4 +350,3 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 
 </script>
 </body>
-</html>

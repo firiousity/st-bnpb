@@ -780,15 +780,38 @@ class C_PDF extends CI_Controller {
 		$pegawai 		= $pegawai_result['0']->nama_pegawai;
 		$jabatan		= $pegawai_result['0']->jabatan_pegawai;
 		$golongan 		= $pegawai_result['0']->golongan_pegawai;
-		$surat_result 	= $this->db->get_where('surat_dinas', array('id' => $arr_slug[0]))->result();
+		$surat_result 	= $this->db->get_where('data_rinci', array('id_surat' => $arr_slug[0],
+			'id_pegawai' => $arr_slug[1]))->result();
 		$nomor 			= $surat_result['0']->nomor;
 		$kegiatan 		= $surat_result['0']->kegiatan;
 
-		$tiket_result 	= $this->home_model->get_tiket($slug);
+		//Get data rinci
+		$data_rinci_all	= $this->db->get_where('data_rinci',
+			array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
+		$jenis = $data_rinci_all['0']->jenis;
+		$id_harian = $data_rinci_all['0']->id_harian;
+		$id_penginapan = $data_rinci_all['0']->id_penginapan;
+		$id_transport = $data_rinci_all['0']->id_transport;
+		$id_tiket = $data_rinci_all['0']->id_tiket;
+
+		//get data uang harian
+		$harian_result	= $this->db->get_where('uang_harian',array('id' => $id_harian))->result();
+		$harian = $harian_result['0']->luar_kota;
+		//get data uang penginapan
+		$penginapan_result	= $this->db->get_where('biaya_penginapan',array('id' => $id_penginapan))->result();
+		$sbu_penginapan = $penginapan_result['0']->eselon_4;
+		//get data uang tiket
+		$tiket_result	= $this->db->get_where('tiket_pesawat',array('id' => $id_tiket))->result();
+		$sbu_tiket = $tiket_result['0']->biaya_tiket;
 		$rute			= $tiket_result['0']->rute;
 		$rute_arr		= explode('-', $rute);
 		$berangkat		= $rute_arr[0];
 		$tujuan			= $rute_arr[1];
+
+		//get data uang transport
+		$transport_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport))->result();
+		$transport = $transport_result['0']->besaran;
+
 
 		$ppk 			= $this->db->get_where('pejabat_administratif',
 			array('jabatan' => 'Pejabat Pembuat Komitmen'))->result();
@@ -799,7 +822,7 @@ class C_PDF extends CI_Controller {
 		$var_tgl_mulai 	= $this->tanggal_indo($surat_result['0']->tgl_mulai, '-');
 		$var_tgl_akhir 	= $this->tanggal_indo($surat_result['0']->tgl_akhir, '-');
 		$var_tgl_surat 	= $this->tanggal_indo($surat_result['0']->tgl_surat,'/');
-		$jumlah_hari	= $this->hitung_hari($surat_result['0']->tgl_mulai, $surat_result['0']->tgl_akhir);
+		$jumlah_hari	= $this->hitung_hari($surat_result['0']->tgl_mulai, $surat_result['0']->tgl_akhir)+1;
 
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
@@ -1503,12 +1526,6 @@ class C_PDF extends CI_Controller {
 		$transport_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport))->result();
 		$transport = $transport_result['0']->besaran;
 
-		//div yang sudah dibayarkan
-		/*$s_penginapan = $this->input->post('s_penginapan');
-		$s_harian = $this->input->post('s_harian');
-		$s_transport = $this->input->post('s_transport');
-		$s_tiket = $this->input->post('s_tiket');*/
-
 		//Get pegawai
 		$pegawai_result = $this->db->get_where('pegawai', array('id_pegawai' => $id_pegawai))->result();
 		$nama_dinas 	= $pegawai_result['0']->nama_pegawai;
@@ -1534,16 +1551,38 @@ class C_PDF extends CI_Controller {
 		$hari = $malam + 1;
 
 		if($jenis == '0') {
-			//bayar di belakang, sett all value to zero
+			//bayar di belakang, set all value to zero
 			$s_harian = 0;
 			$s_penginapan = 0;
 			$s_tiket = 0;
 			$s_transport = 0;
+			$s_total = 0;
+			$data_yang_sudah_dibayar = array(
+				'id_surat' => $id_surat,
+				'id_pegawai' => $id_pegawai,
+				'penginapan' => $s_penginapan,
+				'harian' => $s_harian,
+				'transport' => $s_transport,
+				'tiket' => $s_tiket,
+				'total' => $s_total
+			);
+			$this->db->insert('pembayaran_awal', $data_yang_sudah_dibayar);
 		} else if ($jenis == '1') {
+			//bayar di depan.
 			$s_harian = $harian;
 			$s_penginapan = $sbu_penginapan;
 			$s_tiket = $sbu_tiket;
 			$s_transport = $transport;
+			$data_yang_sudah_dibayar = array(
+				'id_surat' => $id_surat,
+				'id_pegawai' => $id_pegawai,
+				'penginapan' => $s_penginapan,
+				'harian' => $s_harian,
+				'transport' => $s_transport,
+				'tiket' => $s_tiket,
+				'total' => $s_total
+			);
+			$this->db->insert('pembayaran_awal', $data_yang_sudah_dibayar);
 		}
 
 
@@ -1564,17 +1603,7 @@ class C_PDF extends CI_Controller {
 			'tiket' => $tiket,
 			'total' => $total
 		);
-		//$this->db->insert('spd_rampung', $data);
-		$data_yang_sudah_dibayar = array(
-			'id_surat' => $id_surat,
-			'id_pegawai' => $id_pegawai,
-			'penginapan' => $s_penginapan,
-			'harian' => $s_harian,
-			'transport' => $s_transport,
-			'tiket' => $s_tiket,
-			'total' => $s_total
-		);
-		//$this->db->insert('pembayaran_awal', $data_yang_sudah_dibayar);
+		$this->db->insert('spd_rampung', $data);
 
 		$keterangan = "";
 		if ($total>$s_total) {
