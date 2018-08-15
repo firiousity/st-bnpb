@@ -102,9 +102,21 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 							</div>
 						</td>
 						<td>
-							<label >Uang Transportasi: </label>
+							<label >Uang Transport Awal: </label>
 							<div class="input-group">
 								<select name="transport">
+									<?php foreach ($transport as $row) {
+										echo
+										"<option value='$row->id'>$row->provinsi</option>" ;
+									}
+									?>
+								</select>
+							</div>
+						</td>
+						<td>
+							<label >Uang Transport Akhir: </label>
+							<div class="input-group">
+								<select name="transport2">
 									<?php foreach ($transport as $row) {
 										echo
 										"<option value='$row->id'>$row->provinsi</option>" ;
@@ -172,9 +184,21 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 							</div>
 						</td>
 						<td>
-							<label >Uang Transportasi: </label>
+							<label >Uang Transportasi Awal: </label>
 							<div class="input-group">
 								<select name="my-select-transport[0]">
+									<?php foreach ($transport as $row) {
+										echo
+										"<option value='$row->id'>$row->provinsi</option>" ;
+									}
+									?>
+								</select>
+							</div>
+						</td>
+						<td>
+							<label >Uang Transportasi Akhir: </label>
+							<div class="input-group">
+								<select name="my-select-transport2[0]">
 									<?php foreach ($transport as $row) {
 										echo
 										"<option value='$row->id'>$row->provinsi</option>" ;
@@ -215,6 +239,7 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 		var penginapan = document.createElement('td');
 		var tiket = document.createElement('td');
 		var transport = document.createElement('td');
+		var transport2 = document.createElement('td');
 		var aksi = document.createElement('td');
 
 //                meng append element
@@ -227,6 +252,7 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 		row.appendChild(penginapan);
 		row.appendChild(tiket);
 		row.appendChild(transport);
+		row.appendChild(transport2);
 		row.appendChild(aksi);
 
 		var tempat_input = document.createElement('input');
@@ -259,6 +285,9 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 
 		var transport_input = document.createElement('select');
 		transport_input.setAttribute('name', 'my-select-transport['+ i +']');
+
+		var transport2_input = document.createElement('select');
+		transport2_input.setAttribute('name', 'my-select-transport2['+ i +']');
 
 
 		<?php foreach ($pegawai as $row) { ?>
@@ -301,6 +330,14 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 		<?php }
 		?>
 
+		<?php foreach ($transport as $row) { ?>
+		var option_transport2 = document.createElement('option');
+		option_transport2.setAttribute('value', '<?php echo $row->id?>' );
+		option_transport2.innerHTML = "<?php echo $row->provinsi ?>";
+		transport2_input.appendChild(option_transport2);
+		<?php }
+		?>
+
 		var hapus = document.createElement('span');
 
 //                meng append element input
@@ -312,6 +349,7 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 		penginapan.appendChild(penginapan_input);
 		tiket.appendChild(tiket_input);
 		transport.appendChild(transport_input);
+		transport2.appendChild(transport2_input);
 		aksi.appendChild(hapus);
 
 		hapus.innerHTML = '<button class="btn btn-small btn-default"><i class="fas fa-trash-alt"></i></button>';
