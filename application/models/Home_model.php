@@ -97,7 +97,10 @@ class Home_model extends CI_Model {
 		$id_pegawai = $arr_slug[1];
 		$this->db->select('*');
 		$this->db->from('rincian_biaya');
-		$this->db->join('uang_harian', 'uang_harian.id = rincian_biaya.harian', 'inner')->where('id_pegawai', $id_pegawai);
+		$this->db->join('uang_harian', 'uang_harian.id = rincian_biaya.harian', 'inner')->where(
+			array(
+				'id_pegawai'=> $id_pegawai,'id_surat' => $id_surat
+			));
 		$query = $this->db->get();
 		return $query->result();
 	}

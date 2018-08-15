@@ -1336,15 +1336,35 @@ class C_PDF extends CI_Controller {
 		$arr_slug = explode('_', $slug);
 		$id_surat = $arr_slug[0];
 		$id_pegawai = $arr_slug[1];
-		//SAVE TO DATABASE
-		/*$data = array(
-			'id_surat'      => $id_surat,
-			'id_pegawai'         => $id_pegawai,
-			'transport'         => $this->input->post('my-select-transport[]')[0],
-			'penginapan'          => $this->input->post('my-select-penginapan[]')[0],
-			'harian'        => $this->input->post('my-select-harian[]')[0],
-			'tiket'        =>  $this->input->post('my-select-tiket[]')[0],
-		);*/
+
+		//Get data rinci
+		$data_rinci_all	= $this->db->get_where('data_rinci',
+			array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
+		$jenis = $data_rinci_all['0']->jenis;
+		$id_harian = $data_rinci_all['0']->id_harian;
+		$id_penginapan = $data_rinci_all['0']->id_penginapan;
+		$id_transport = $data_rinci_all['0']->id_transport;
+		$id_transport2 = $data_rinci_all['0']->id_transport2;
+		$id_tiket = $data_rinci_all['0']->id_tiket;
+
+		//get data uang harian
+		$harian_result	= $this->db->get_where('uang_harian',array('id' => $id_harian))->result();
+		$harian = $harian_result['0']->luar_kota;
+		//get data uang penginapan
+		$penginapan_result	= $this->db->get_where('biaya_penginapan',array('id' => $id_penginapan))->result();
+		$penginapan = $penginapan_result['0']->eselon_4;
+		//get data uang tiket
+		$tiket_result	= $this->db->get_where('tiket_pesawat',array('id' => $id_tiket))->result();
+		$tiket = $tiket_result['0']->biaya_tiket;
+		//get data uang transport
+		$transport_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport))->result();
+		$transport = $transport_result['0']->besaran*2;
+
+		//get data uang transport2
+		$transport2_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport2))->result();
+		$transport2 = $transport2_result['0']->besaran*2;
+
+		$transport = $transport + $transport2;
 
 		$surat_tugas	= $this->db->limit(1)->get_where('data_rinci',
 			array('id_surat' => $id_surat, 'id_pegawai' => $id_pegawai))->result();
@@ -1360,17 +1380,6 @@ class C_PDF extends CI_Controller {
 		$malam = $this->hitung_hari($surat_tugas['0']->tgl_mulai, $surat_tugas['0']->tgl_akhir);
 		$hari = $malam + 1;
 
-		$result_harian = $this->home_model->get_harian($slug);
-		$harian = $result_harian['0']->luar_kota;
-
-		$result_penginapan = $this->home_model->get_penginapan($slug);
-		$penginapan = $result_penginapan['0']->eselon_1;
-
-		$result_tiket = $this->home_model->get_tiket($slug);
-		$tiket = $result_tiket['0']->biaya_tiket;
-
-		$result_transport = $this->home_model->get_transport($slug);
-		$transport = $result_transport['0']->besaran;
 
 
 		$nomor 			= $surat_tugas['0']->nomor;
