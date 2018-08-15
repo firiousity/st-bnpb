@@ -115,6 +115,7 @@
 $(document).ready(function(){
     $('.dropdown-toggle').dropdown();
 });
+</script>
 <?php if (isset($_SESSION['error'])): ?>
             <script>
               swal({
@@ -135,7 +136,6 @@ $(document).ready(function(){
             </script>
         <?php unset($_SESSION['success']) ?>
           <?php endif ?>
-</script>
 </body>
 
 
