@@ -116,6 +116,26 @@ $(document).ready(function(){
     $('.dropdown-toggle').dropdown();
 });
 </script>
+<?php if (isset($_SESSION['error'])): ?>
+            <script>
+              swal({
+              title: "Error!",
+              text: "<?php echo $_SESSION['error'] ?>",
+              type: "error",
+          });
+            </script>
+        <?php unset($_SESSION['error']) ?>
+          <?php endif ?>
+          <?php if (isset($_SESSION['success'])): ?>
+            <script>
+              swal({
+              title: "<?php echo $_SESSION['success'][0] ?>",
+              text: "<?php echo $_SESSION['success'][1] ?>",
+              type: "success",
+          });
+            </script>
+        <?php unset($_SESSION['success']) ?>
+          <?php endif ?>
 </body>
 
 

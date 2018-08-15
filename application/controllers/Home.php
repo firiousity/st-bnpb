@@ -45,6 +45,7 @@ class Home extends CI_Controller {
 		$sql = "select * from admin where nama = ? and password = ?";
 		$query = $this->db->query($sql, array($this->input->post('name'), $this->input->post('password')));
 		if($query->num_rows()> 0) {
+			$_SESSION['success'] = [ 'login', 'Selamat datang'];
 			$this->href("home/beranda/");
 		} else {
 			echo "<script>         	
