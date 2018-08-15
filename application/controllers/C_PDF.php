@@ -1478,19 +1478,17 @@ class C_PDF extends CI_Controller {
 		$id_surat = $arr_slug[0];
 		$id_pegawai = $arr_slug[1];
 		$penginapan = $this->input->post('penginapan');
-		$harian = $this->input->post('harian');
-		$transport = $this->input->post('transport');
 		$tiket = $this->input->post('tiket');
 
 		//div yang sudah dibayarkan
-		$s_penginapan = $this->input->post('s_penginapan');
+		/*$s_penginapan = $this->input->post('s_penginapan');
 		$s_harian = $this->input->post('s_harian');
 		$s_transport = $this->input->post('s_transport');
-		$s_tiket = $this->input->post('s_tiket');
+		$s_tiket = $this->input->post('s_tiket');*/
 
 		//Get pegawai
 		$pegawai_result = $this->db->get_where('pegawai', array('id_pegawai' => $id_pegawai))->result();
-		$nama_dinas 		= $pegawai_result['0']->nama_pegawai;
+		$nama_dinas 	= $pegawai_result['0']->nama_pegawai;
 		$nip_dinas		= $pegawai_result['0']->nip_pegawai;
 
 		//Get ppk
@@ -1500,8 +1498,8 @@ class C_PDF extends CI_Controller {
 		$nip_ppk 				= $ppk['0']->nip;
 
 		//Get surat_dinas with id = is_surat
-		$surat_result =$this->db->get_where('surat_dinas',
-			array('id' => $id_surat))->result();
+		$surat_result =$this->db->get_where('data_rinci',
+			array('id_surat' => $id_surat, 'id_pegawai' => $id_pegawai))->result();
 		$nomor = $surat_result['0']->nomor;
 		$tempat = $surat_result['0']->tempat;
 		$var_tgl_mulai = $this->tanggal_indo($surat_result['0']->tgl_mulai, '-');
@@ -1510,6 +1508,14 @@ class C_PDF extends CI_Controller {
 		$var_tgl_skrg = $this->tanggal_indo(date('Y').'-'.date('m').'-'.date('d'), '-');
 		$malam = $this->hitung_hari($surat_result['0']->tgl_mulai, $surat_result['0']->tgl_akhir);
 		$hari = $malam + 1;
+
+		$harian = 2;
+		$transport = 30;
+		$s_harian = 2;
+		$s_penginapan = 30;
+		$s_tiket = 30;
+		$s_transport = 30;
+
 		$jml_harian = $harian*$hari;
 		$jml_penginapan = $malam*$penginapan;
 		$jml_s_harian = $s_harian*$hari;
