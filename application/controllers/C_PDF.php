@@ -536,7 +536,41 @@ class C_PDF extends CI_Controller {
 	}
 
 	//Page Surat Pernyataan Biaya Tiket Pesawat
-	function kelik() {
+	function lebih($slug) {
+
+		/* ---- PREPARE VARIABLE ------*/
+		$arr_slug		= explode('_', $slug);
+		$pegawai_result = $this->db->get_where('pegawai', array('id_pegawai' => $arr_slug[1]))->result();
+		$pegawai 		= $pegawai_result['0']->nama_pegawai;
+		$jabatan		= $pegawai_result['0']->jabatan_pegawai;
+		$nip 		= $pegawai_result['0']->nip_pegawai;
+		$surat_result 	= $this->db->get_where('data_rinci', array('id_surat' => $arr_slug[0],
+			'id_pegawai' => $arr_slug[1]))->result();
+		$nomor 			= $surat_result['0']->nomor;
+
+		//Get data rinci
+		$data_rinci_all	= $this->db->get_where('data_rinci',
+			array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
+		$id_tiket = $data_rinci_all['0']->id_tiket;
+		//get data uang tiket
+		$tiket_result	= $this->db->get_where('tiket_pesawat',array('id' => $id_tiket))->result();
+		$sbu_tiket = $tiket_result['0']->biaya_tiket;
+		$rute			= $tiket_result['0']->rute;
+
+		//get real pengeluaran untuk tiket
+		$r_tiket_result = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
+		$r_tiket = $r_tiket_result['0']->tiket;
+
+		$ppk 			= $this->db->get_where('pejabat_administratif',
+			array('jabatan' => 'Pejabat Pembuat Komitmen'))->result();
+		$nama_ppk 				= $ppk['0']->nama;
+		$nip_ppk 				= $ppk['0']->nip;
+
+		$var_tgl_skrg = $this->tanggal_indo(date('Y').'-'.date('m').'-'.date('d'), '-');
+		$var_tgl_surat 	= $this->tanggal_indo($surat_result['0']->tgl_surat,'/');
+
+		/* -----------------------------*/
+
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','B',14);
@@ -551,31 +585,31 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(20,7,'Nama',0,0);
 		$pdf->Cell(10,7,':',0,0);
 		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(20,7,'Yanuar Yuda Darmawan, S.Kom.',0,1);
+		$pdf->Cell(20,7,$pegawai,0,1);
 		$pdf->Cell(15,7,'',0,0);
 		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(20,7,'NIP',0,0);
 		$pdf->Cell(10,7,':',0,0);
 		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(20,7,'19800126 201012 1 001',0,1);
+		$pdf->Cell(20,7,$nip,0,1);
 		$pdf->Cell(15,7,'',0,0);
 		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(20,7,'Jabatan',0,0);
 		$pdf->Cell(10,7,':',0,0);
 		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(20,7,'Staf Bidang Informasi',0,1);
+		$pdf->Cell(20,7,$jabatan,0,1);
 		$pdf->Ln();
 		$pdf->Cell(15,7,'',0,0);
 		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(20,7,'Berdasarkan Surat Tugas Nomor:78/KADIH/05/2018 tanggal 22 Mei 2018 dengan',0,1);
+		$pdf->Cell(20,7,'Berdasarkan Surat Tugas Nomor:'.$nomor.' tanggal '.$var_tgl_surat.' dengan',0,1);
 		$pdf->Cell(15,7,'',0,0);
 		$pdf->Cell(20,7,'sesungguhnya bahwa :',0,1);
 		$pdf->Ln();
 		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(20,7,'1. Tiket Jakarta - Aceh (PP) dengan jumlah tiket pesawat di bawah ini melebihi dengan',0,1);
+		$pdf->Cell(20,7,'1. Tiket '.$rute.' (PP) dengan jumlah tiket pesawat di bawah ini melebihi dengan',0,1);
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(20,7,'SBU tahun 2018, meliputi :',0,1);
+		$pdf->Cell(20,7,'SBU tahun '.date('Y').', meliputi :',0,1);
 		$pdf->Ln();
 
 		//here is table
@@ -589,22 +623,22 @@ class C_PDF extends CI_Controller {
         $pdf->Cell(20,7,'',0,0);
         $pdf->SetFont('Arial','',12);
 		$pdf->Cell(10,5,'1','LB',0,'R',0);
-		$pdf->Cell(70,5,'Tiket Pesawat Jakarta - Aceh (PP)','LRB',0,'L',0);
-		$pdf->Cell(40,5,'Rp 4.492.000,00','RB',0,'R',0);
-		$pdf->Cell(40,5,'Rp 5.092.000,00','RB',0,'R',0);
+		$pdf->Cell(70,5,'Tiket Pesawat '.$rute.' (PP)','LRB',0,'L',0);
+		$pdf->Cell(40,5,'Rp. '.$sbu_tiket,'RB',0,'R',0);
+		$pdf->Cell(40,5,'Rp. '.$r_tiket,'RB',0,'R',0);
         $pdf->Ln();
         $pdf->Cell(20,7,'',0,0);
         $pdf->SetFont('Arial','B',12);
 		$pdf->Cell(10,5,'','LB',0,'L',0);
 		$pdf->Cell(70,5,'Jumlah','LRB',0,'C',0);
-		$pdf->Cell(40,5,'Rp 4.492.000,00','RB',0,'R',0);
-		$pdf->Cell(40,5,'Rp 5.092.000,00','RB',0,'R',0);
+		$pdf->Cell(40,5,'Rp. '.$sbu_tiket,'RB',0,'R',0);
+		$pdf->Cell(40,5,'Rp. '.$r_tiket,'RB',0,'R',0);
         $pdf->Ln();
 		//end of table
 		$pdf->Ln();
 		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(20,7,'2. Bahwa tiker Jakarta - Aceh (PP) dengan jumlah uang tersebut pada angka (1)',0,1);
+		$pdf->Cell(20,7,'2. Bahwa tiket '.$rute.' (PP) dengan jumlah uang tersebut pada angka (1)',0,1);
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(15,7,'',0,0);
 		$pdf->Cell(20,7,'melebihi jumlah SBU dan benar - benar dikeluarkan dengan bukti rill kuitansi tiket',0,1);
@@ -625,7 +659,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(15,6,'',0,0,'L');
 		$pdf->Cell(25,6,'',0,0,'R');
 		$pdf->Cell(20,6,'',0,0,'C');
-		$pdf->MultiCell(60,6,'Jakarta, 4 Juni 2018',0,'R');
+		$pdf->MultiCell(60,6,'Jakarta, '.$var_tgl_skrg,0,'R');
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->Cell(18,6,'',0,0,'L');
@@ -638,11 +672,11 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->SetFont('Arial','BU',12);
 		$pdf->Ln();
-		$pdf->Cell(100,6,"Linda Lestari, S.Kom.",0, 0,'C');
-		$pdf->MultiCell(72.5,6,'Yanuar Yuda Darmawan, S.Kom.',0,'C');
+		$pdf->Cell(100,6,$nama_ppk,0, 0,'C');
+		$pdf->MultiCell(72.5,6,$pegawai,0,'C');
 		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(100,6,"NIP. 19790305 200501 2 001",0, 0,'C');
-		$pdf->MultiCell(72.5,6,'NIP. 19800126 201012 1 001',0,'C');
+		$pdf->Cell(100,6,"NIP. ".$nip_ppk,0, 0,'C');
+		$pdf->MultiCell(72.5,6,'NIP. '.$nip,0,'C');
 
 		//Cetak gans
 		$pdf->Output();
