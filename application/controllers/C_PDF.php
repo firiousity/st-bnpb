@@ -444,6 +444,9 @@ class C_PDF extends CI_Controller {
 		$tiket_result	= $this->db->get_where('tiket_pesawat',array('id' => $id_tiket))->result();
 		$sbu_tiket = $tiket_result['0']->biaya_tiket;
 		$rute			= $tiket_result['0']->rute;
+		$arr_rute = explode('-', $rute);
+		$berangkat = $arr_rute[0];
+		$tujuan = $arr_rute[1];
 
 		//get real pengeluaran untuk tiket
 		$r_tiket_result = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
@@ -488,7 +491,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Cell(15,7,'',0,0);
 		$pdf->SetFont('Arial','',10);
-		$pdf->Cell(20,6,'Berdasarkan Surat Tugas Nomor:78/KADIH/05/2018 tanggal 22 Mei 2018 dengan ini kami menyatakan',0,1);
+		$pdf->Cell(20,6,'Berdasarkan Surat Tugas Nomor:'.$nomor.' tanggal '.$var_tgl_surat.' dengan ini kami menyatakan',0,1);
 		$pdf->Cell(15,7,'',0,0);
 		$pdf->Cell(20,7,'dengan sesungguhnya bahwa :',0,1);
 		$pdf->Ln();
@@ -1343,8 +1346,8 @@ class C_PDF extends CI_Controller {
 			'tiket'        =>  $this->input->post('my-select-tiket[]')[0],
 		);*/
 
-		$surat_tugas	= $this->db->get_where('surat_dinas',
-			array('id' => $id_surat))->result();
+		$surat_tugas	= $this->db->limit(1)->get_where('data_rinci',
+			array('id_surat' => $id_surat, 'id_pegawai' => $id_pegawai))->result();
 		$pegawai 		= $this->db->get_where('pegawai',
 			array('id_pegawai' => $id_pegawai))->result();
 		$bendahara 			= $this->db->get_where('pejabat_administratif',
@@ -1610,6 +1613,7 @@ class C_PDF extends CI_Controller {
 		$id_harian = $data_rinci_all['0']->id_harian;
 		$id_penginapan = $data_rinci_all['0']->id_penginapan;
 		$id_transport = $data_rinci_all['0']->id_transport;
+		$id_transport2 = $data_rinci_all['0']->id_transport2;
 		$id_tiket = $data_rinci_all['0']->id_tiket;
 
 		//get data uang harian
@@ -1623,7 +1627,13 @@ class C_PDF extends CI_Controller {
 		$sbu_tiket = $tiket_result['0']->biaya_tiket;
 		//get data uang transport
 		$transport_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport))->result();
-		$transport = $transport_result['0']->besaran;
+		$transport = $transport_result['0']->besaran*2;
+
+		//get data uang transport2
+		$transport2_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport2))->result();
+		$transport2 = $transport2_result['0']->besaran*2;
+
+		$total_transport = $transport + $transport2;
 
 		//Get pegawai
 		$pegawai_result = $this->db->get_where('pegawai', array('id_pegawai' => $id_pegawai))->result();
@@ -1671,7 +1681,8 @@ class C_PDF extends CI_Controller {
 			$s_harian = $harian;
 			$s_penginapan = $sbu_penginapan;
 			$s_tiket = $sbu_tiket;
-			$s_transport = $transport;
+			$s_transport = $total_transport;
+			$s_total = $s_harian+$s_penginapan+$s_tiket+$s_transport;
 			$data_yang_sudah_dibayar = array(
 				'id_surat' => $id_surat,
 				'id_pegawai' => $id_pegawai,
@@ -1780,9 +1791,9 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,6,'',0,0,'L',0);
 		$pdf->Cell(10,6,'',0,0,'R',0);
 		$pdf->Cell(5,6,'Rp',0,0,'L',0);
-		$pdf->Cell(25,6,$transport,'R',0,'R',0);
+		$pdf->Cell(25,6,$total_transport,'R',0,'R',0);
 		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,$transport,'R',0,'R',0);
+		$pdf->Cell(30,6,$total_transport,'R',0,'R',0);
 		$pdf->Cell(55,6,'Tanggal '.$var_tgl_mulai.' s.d ','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);

@@ -67,6 +67,7 @@ class Surat extends CI_Controller
 				$penginapan = $this->input->post('penginapan');
 				$tiket = $this->input->post('tiket');
 				$transport = $this->input->post('transport');
+				$transport2 = $this->input->post('transport2');
 
 				$num_data = count($this->input->post('my-select[]'));
 				for($i=0;$i<$num_data;$i++) {
@@ -75,7 +76,8 @@ class Surat extends CI_Controller
 						'nomor' => $nomor, 'kegiatan' => $kegiatan, 'jenis' => $jenis,
 						'opsi' => $opsi, 'id_pegawai' => $my_select[$i], 'tgl_mulai' => $mulai,
 						'tgl_akhir' => $akhir, 'tempat' => $tempat, 'id_harian' => $harian,
-						'id_penginapan' => $penginapan, 'id_tiket' => $tiket, 'id_transport' => $transport
+						'id_penginapan' => $penginapan, 'id_tiket' => $tiket, 'id_transport' => $transport,
+						'id_transport2' => $transport2
 					);
 					$data_with_nip = array(
 						'id_surat'      => $id_surat,
@@ -97,6 +99,7 @@ class Surat extends CI_Controller
 				$d_penginapan = $this->input->post('my-select-penginapan');
 				$d_tiket = $this->input->post('my-select-tiket');
 				$d_transport = $this->input->post('my-select-transport');
+				$d_transport2 = $this->input->post('my-select-transport2');
 
 				$num_data = count($this->input->post('my-select-pegawai'));
 
@@ -107,7 +110,8 @@ class Surat extends CI_Controller
 						'nomor' => $nomor, 'kegiatan' => $kegiatan, 'jenis' => $jenis,
 						'opsi' => $opsi, 'id_pegawai' => $d_pegawai[$key], 'tgl_mulai' => $mulai[$key],
 						'tgl_akhir' => $akhir[$key], 'tempat' => $tempat[$key], 'id_harian' => $d_harian[$key],
-						'id_penginapan' => $d_penginapan[$key], 'id_tiket' => $d_tiket[$key], 'id_transport' => $d_transport[$key]
+						'id_penginapan' => $d_penginapan[$key], 'id_tiket' => $d_tiket[$key],
+						'id_transport' => $d_transport[$key],'id_transport2' => $d_transport2[$key]
 					);
 					$data_with_nip = array(
 						'id_surat'      => $id_surat,
