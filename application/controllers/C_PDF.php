@@ -425,7 +425,39 @@ class C_PDF extends CI_Controller {
 	}
 
 	//Page Daftar Pengeluaran Rill
-	function firly() {
+	function riil($slug) {
+		/* ---- PREPARE VARIABLE ------*/
+		$arr_slug		= explode('_', $slug);
+		$pegawai_result = $this->db->get_where('pegawai', array('id_pegawai' => $arr_slug[1]))->result();
+		$pegawai 		= $pegawai_result['0']->nama_pegawai;
+		$jabatan		= $pegawai_result['0']->jabatan_pegawai;
+		$nip 		= $pegawai_result['0']->nip_pegawai;
+		$surat_result 	= $this->db->get_where('data_rinci', array('id_surat' => $arr_slug[0],
+			'id_pegawai' => $arr_slug[1]))->result();
+		$nomor 			= $surat_result['0']->nomor;
+
+		//Get data rinci
+		$data_rinci_all	= $this->db->get_where('data_rinci',
+			array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
+		$id_tiket = $data_rinci_all['0']->id_tiket;
+		//get data uang tiket
+		$tiket_result	= $this->db->get_where('tiket_pesawat',array('id' => $id_tiket))->result();
+		$sbu_tiket = $tiket_result['0']->biaya_tiket;
+		$rute			= $tiket_result['0']->rute;
+
+		//get real pengeluaran untuk tiket
+		$r_tiket_result = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
+		$r_tiket = $r_tiket_result['0']->tiket;
+
+		$ppk 			= $this->db->get_where('pejabat_administratif',
+			array('jabatan' => 'Pejabat Pembuat Komitmen'))->result();
+		$nama_ppk 				= $ppk['0']->nama;
+		$nip_ppk 				= $ppk['0']->nip;
+
+		$var_tgl_skrg = $this->tanggal_indo(date('Y').'-'.date('m').'-'.date('d'), '-');
+		$var_tgl_surat 	= $this->tanggal_indo($surat_result['0']->tgl_surat,'/');
+
+		/* -----------------------------*/
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','B',12);
@@ -440,19 +472,19 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(20,7,'Nama',0,0);
 		$pdf->Cell(10,7,':',0,0);
 		$pdf->SetFont('Arial','B',10);
-		$pdf->Cell(20,7,'Leonard',0,1);
+		$pdf->Cell(20,7,$pegawai,0,1);
 		$pdf->Cell(15,7,'',0,0);
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(20,7,'NIP',0,0);
 		$pdf->Cell(10,7,':',0,0);
 		$pdf->SetFont('Arial','B',10);
-		$pdf->Cell(20,7,'19820107 200912 1 002',0,1);
+		$pdf->Cell(20,7,$nip,0,1);
 		$pdf->Cell(15,7,'',0,0);
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(20,7,'Jabatan',0,0);
 		$pdf->Cell(10,7,':',0,0);
 		$pdf->SetFont('Arial','B',10);
-		$pdf->Cell(20,7,'Staf Bidang Informasi',0,1);
+		$pdf->Cell(20,7,$jabatan,0,1);
 		$pdf->Ln();
 		$pdf->Cell(15,7,'',0,0);
 		$pdf->SetFont('Arial','',10);
