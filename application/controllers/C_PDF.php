@@ -1477,8 +1477,31 @@ class C_PDF extends CI_Controller {
 		$arr_slug = explode('_', $slug);
 		$id_surat = $arr_slug[0];
 		$id_pegawai = $arr_slug[1];
-		$penginapan = $this->input->post('penginapan');
-		$tiket = $this->input->post('tiket');
+		//r untuk rampung
+		$r_penginapan = $this->input->post('penginapan');
+		$r_tiket = $this->input->post('tiket');
+
+		//Get data rinci
+		$data_rinci_all	= $this->db->get_where('data_rinci',
+			array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
+		$jenis = $data_rinci_all['0']->jenis;
+		$id_harian = $data_rinci_all['0']->id_harian;
+		$id_penginapan = $data_rinci_all['0']->id_penginapan;
+		$id_transport = $data_rinci_all['0']->id_transport;
+		$id_tiket = $data_rinci_all['0']->id_tiket;
+
+		//get data uang harian
+		$harian_result	= $this->db->get_where('uang_harian',array('id' => $id_harian))->result();
+		$harian = $harian_result['0']->luar_kota;
+		//get data uang penginapan
+		$penginapan_result	= $this->db->get_where('biaya_penginapan',array('id' => $id_penginapan))->result();
+		$penginapan = $penginapan_result['0']->eselon_4;
+		//get data uang tiket
+		$tiket_result	= $this->db->get_where('tiket_pesawat',array('id' => $id_tiket))->result();
+		$tiket = $tiket_result['0']->biaya_tiket;
+		//get data uang transport
+		$transport_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport))->result();
+		$transport = $transport_result['0']->besaran;
 
 		//div yang sudah dibayarkan
 		/*$s_penginapan = $this->input->post('s_penginapan');
@@ -1490,6 +1513,11 @@ class C_PDF extends CI_Controller {
 		$pegawai_result = $this->db->get_where('pegawai', array('id_pegawai' => $id_pegawai))->result();
 		$nama_dinas 	= $pegawai_result['0']->nama_pegawai;
 		$nip_dinas		= $pegawai_result['0']->nip_pegawai;
+
+		//Get SBU harian
+		//Get SBU penginapan
+		//Get SBU tiket
+		//Get SBU transport
 
 		//Get ppk
 		$ppk 			= $this->db->get_where('pejabat_administratif',
@@ -1509,8 +1537,6 @@ class C_PDF extends CI_Controller {
 		$malam = $this->hitung_hari($surat_result['0']->tgl_mulai, $surat_result['0']->tgl_akhir);
 		$hari = $malam + 1;
 
-		$harian = 2;
-		$transport = 30;
 		$s_harian = 2;
 		$s_penginapan = 30;
 		$s_tiket = 30;
