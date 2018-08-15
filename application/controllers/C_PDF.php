@@ -1460,8 +1460,12 @@ class C_PDF extends CI_Controller {
 	}
 
 	function rampung ($slug) {
+		$arr_slug = explode('_', $slug);
+		$data_rinci_all	= $this->db->get_where('data_rinci',
+			array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
+		$jenis = $data_rinci_all['0']->jenis;
 		$data = array(
-			'slug' => $slug
+			'slug' => $slug, 'jenis' => $jenis
 		);
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
