@@ -56,6 +56,7 @@
 	<!--Multiselect JavaScript -->
 	<script type="text/javascript" src="<?php echo base_url('assets/js/jquery.multi-select.js')?>"></script>
     <!-- Initializations -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/dist/sweetalert2.all.min.js"></script>
 	<!-- Custom js	-->
 	<script type=”text/javascript” src=”js/popper.min.js”></script>
 	<script type=”text/javascript” src=”js/bootstrap.min.js”></script>

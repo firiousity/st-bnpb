@@ -27,34 +27,6 @@
 					</div>
 				</div></div>
 
-				<?php  if( $jenis == '0') { ?>
-					<!--<div class="card" id="sudahbayar">
-						<h2 class="judul">UANG YANG SUDAH DIBAYAR</h2>
-						<div class="form-row">
-							<div class="col-md-4 mb-3">
-								<label for="validationCustom01">Uang Harian</label>
-								<input type="number" class="form-control" name="s_harian" id="s_harian" placeholder="Rp. "
-									   required  value="0">
-							</div>
-							<div class="col-md-4 mb-3">
-								<label for="validationCustom02">Uang Penginapan</label>
-								<input type="number" class="form-control" id="s_penginapan" name="s_penginapan"
-									   placeholder="Rp. " required value="0">
-							</div>
-							<div class="col-md-4 mb-3">
-								<label for="validationCustom01">Uang Transport</label>
-								<input type="number" class="form-control" name="s_transport" id="s_transport" placeholder="Rp. "
-									   required  autofocus value="0">
-							</div>
-							<div class="col-md-4 mb-3">
-								<label for="validationCustom02">Tiket Pesawat</label>
-								<input type="number" class="form-control" id="s_tiket" name="s_tiket"
-									   placeholder="Rp. " value="0" required>
-							</div>
-						</div>
-					</div>-->
-				<?php } ?>
-
 				<button class="btn btn-indigo" type="submit">Print Surat</button>
 			</form>
 		</div>
