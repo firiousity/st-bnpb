@@ -121,7 +121,7 @@ $(document).ready(function(){
               swal({
               title: "Error!",
               text: "<?php echo $_SESSION['error'] ?>",
-              icon: "error",
+              type: "error",
           });
             </script>
         <?php unset($_SESSION['error']) ?>
@@ -131,7 +131,7 @@ $(document).ready(function(){
               swal({
               title: "<?php echo $_SESSION['success'][0] ?>",
               text: "<?php echo $_SESSION['success'][1] ?>",
-              icon: "success",
+              type: "success",
           });
             </script>
         <?php unset($_SESSION['success']) ?>
