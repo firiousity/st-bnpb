@@ -44,7 +44,8 @@
                                 <span class='table-remove'><a href='".base_url("home/edit_penginapan_page/$row->id")."'><button type='button'  class='btn btn-warning btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
                               </td>
                               <td>
-                                <span class='table-remove'><a href='".base_url("home/delete_penginapan/$row->id")."'><button type='button' class='btn btn-danger btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
+                              <span class='table-remove'><button onclick='hapus($row->id)' type='button' class='btn btn-danger btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
+                                
                                 </td>
                             </tr>
                             ";
@@ -52,6 +53,38 @@
                              ?>
                       </tbody>
                     </table>
+                    <script>
+                      function hapus(id) {
+                      const swalWithBootstrapButtons = swal.mixin({
+                      confirmButtonClass: 'btn btn-success',
+                      cancelButtonClass: 'btn btn-danger',
+                      buttonsStyling: false,
+                    })
+
+                    swalWithBootstrapButtons({
+                      title: 'Are you sure?',
+                      text: "You won't be able to revert this!",
+                      type: 'warning',
+                      showCancelButton: true,
+                      confirmButtonText: 'Yes, delete it!',
+                      cancelButtonText: 'No, cancel!',
+                      reverseButtons: true
+                    }).then((result) => {
+                      if (result.value) {
+                        window.location = '<?php echo base_url() ?>home/delete_penginapan/'+id;
+                      } else if (
+                        // Read more about handling dismissals
+                        result.dismiss === swal.DismissReason.cancel
+                      ) {
+                        swalWithBootstrapButtons(
+                          'Cancelled',
+                          'Your imaginary file is safe :)',
+                          'error'
+                        )
+                      }
+                    })
+                      }
+                    </script>
               <div align="left">
                 <a href="#"><button type="button" data-toggle="modal" data-target="#modalRegisterForm" class="btn btn-indigo btn-md">Tambah</button></a>
               </div>
@@ -101,7 +134,7 @@
               </div>
             </div>
             <div class="modal-footer d-flex justify-content-center">
-              <button class="btn btn-indigo" type="submit">Tambah</button>
+              <button onclick="tambah($row->id)" class="btn btn-indigo" type="submit">Tambah</button>
             </div>
           </form>
         </div>

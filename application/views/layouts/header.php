@@ -18,12 +18,22 @@
 	<link href="<?php echo base_url('assets/css/multiselect/multi-select.dev.css')?>" rel="stylesheet">
 	<link href="<?php echo base_url('assets/css/multiselect/multi-select.dist.css')?>" rel="stylesheet">
 	<!-- Your custom styles (optional) -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/dist/sweetalert2.all.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/package.json"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/sweetalert2.d.ts"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/dist/sweetalert2.all.min.js">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/package.json">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/sweetalert2.d.ts">
 	<link href="<?php echo base_url('assets/css/style.css')?>"  type="text/css" rel="stylesheet">
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" 
 			integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
    			crossorigin=""/>
 	<!-- SCRIPTS -->
     <!-- JQuery -->
+    <script src="sweetalert2.all.min.js"></script>
+	<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+	<link rel="stylesheet" href="sweetalert2.min.css">
 	<script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" 
 			integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
 		   	crossorigin=""></script>
@@ -153,6 +163,7 @@
 	.judul {
 		margin: 2%;
 	}
+	
 	.body {
         /* Margin bottom by footer height */
         margin-bottom: 60px;
