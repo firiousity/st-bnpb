@@ -74,7 +74,7 @@
                     })
                       }
                     </script>
-              <div align="left">
+              <div align="center">
                 <a href="#"><button type="button" data-toggle="modal" data-target="#modalRegisterForm" class="btn btn-indigo btn-md">Tambah</button></a>
               </div>
       </div>
