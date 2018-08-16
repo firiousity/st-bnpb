@@ -34,7 +34,6 @@
       <p class="card-text">Lihat dan buat surat</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 		<div class="dropdown">
-
 			<button id="surat" data-target="#" href="https://example.com"
 					class="btn btn-indigo btn-md dropdown-toggle dropena" type="button"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buat</button>
