@@ -1585,9 +1585,8 @@ class C_PDF extends CI_Controller {
 		$r_result = $this->db->get_where('spd_rampung', array('id_surat'=>$arr_slug[0],
 			'id_pegawai'=> $arr_slug[1]))->num_rows();
 		if($r_result>0) {
-			echo "<script>         	
-         	alert('Anda sudah mengisi form SPD rampung ini, jangan mengisi lagi!');
-         	window.location.href='".base_url('C_PDF/print_biaya/').$arr_slug[0]."';</script>";
+			echo "<script>
+         	window.location.href='".base_url('C_PDF/print_rampung/').$slug."';</script>";
 		} else {
 			$this->load->view('layouts/nav');
 			$this->load->view('layouts/header');
@@ -1601,8 +1600,7 @@ class C_PDF extends CI_Controller {
 		$id_surat = $arr_slug[0];
 		$id_pegawai = $arr_slug[1];
 		//r untuk rampung
-		$penginapan = $this->input->post('penginapan');
-		$tiket = $this->input->post('tiket');
+
 
 		//Get data rinci
 		$data_rinci_all	= $this->db->get_where('data_rinci',
@@ -1613,6 +1611,20 @@ class C_PDF extends CI_Controller {
 		$id_transport = $data_rinci_all['0']->id_transport;
 		$id_transport2 = $data_rinci_all['0']->id_transport2;
 		$id_tiket = $data_rinci_all['0']->id_tiket;
+
+		//nilai penginapan dan tiket akan berubah sesuai jenis. kalo di depan makan nilainya sama dengan sbu
+		$jenis = $data_rinci_all['0'] -> jenis;
+		if(!isset($_POST['rsubmit'])) {
+			//dibayar di belakang maka nila tiket dan penginapan sesuai dengan post di spd rampung
+			//get real pengeluaran untuk tiket
+			$r_tiket_result = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
+			$tiket = $r_tiket_result['0']->tiket;
+			$penginapan = $r_tiket_result['0']->penginapan;
+		} else {
+			$penginapan = $this->input->post('penginapan');
+			$tiket = $this->input->post('tiket');
+		}
+
 
 		//get data uang harian
 		$harian_result	= $this->db->get_where('uang_harian',array('id' => $id_harian))->result();

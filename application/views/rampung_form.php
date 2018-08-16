@@ -27,7 +27,7 @@
 					</div>
 				</div></div>
 
-				<button class="btn btn-indigo" type="submit">Print Surat</button>
+				<button class="btn btn-indigo" type="submit" name="rsubmit">Print Surat</button>
 			</form>
 		</div>
 
