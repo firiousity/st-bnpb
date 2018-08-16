@@ -36,7 +36,7 @@ class Surat extends CI_Controller
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('dynamic_form', $data);
-		$this->load->view('layouts/footer');
+		//$this->load->view('layouts/footer');
 	}
 
 	function exec_surat() {
