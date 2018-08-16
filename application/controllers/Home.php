@@ -48,9 +48,8 @@ class Home extends CI_Controller {
 			$_SESSION['success'] = [ 'login', 'Selamat datang'];
 			$this->href("home/beranda/");
 		} else {
-			echo "<script>         	
-         	alert('password atau username salah!');
-         	window.location.href='index';</script>";
+			$_SESSION['error'] = 'Username atau password salah';
+         	$this->href("");
 		}
 	}
 
