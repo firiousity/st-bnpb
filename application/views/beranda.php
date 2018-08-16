@@ -34,9 +34,8 @@
       <p class="card-text">Lihat dan buat surat</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 		<div class="dropdown">
-
 			<button id="anggaran" data-target="#" href="https://example.com"
-					class="btn btn-indigo btn-md dropdown-toggle dropena" type="button"
+					class="btn btn-indigo btn-md dropdown-toggle" type="button"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buat</button>
 			<div class="dropdown-menu" aria-labelledby="anggaran">
 				<a class="dropdown-item" href="<?php echo base_url('surat/buat_surat_dinas')?>">Buat Surat Baru</a>
@@ -64,7 +63,7 @@
       <!--Text-->
       <p class="card-text">Mengelola anggaran</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <div class="btn-group">
+      <div class="dropdown">
     <button id="anggaran" data-target="#" href="https://example.com" class="btn btn-indigo btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Pilih
     </button>
