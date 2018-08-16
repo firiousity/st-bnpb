@@ -182,7 +182,16 @@
 		display: block;
 	}
 
+	.dropup:hover>.dropdown-menu {
+		display: block;
+	}
+
 	.dropdown>.dropdown-toggle:active {
+		/*Without this, clicking will make it sticky*/
+		pointer-events: none;
+	}
+
+	.dropdup>.dropdown-toggle:active {
 		/*Without this, clicking will make it sticky*/
 		pointer-events: none;
 	}
