@@ -235,6 +235,8 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 		</div>
 	</div>
 </div>
+<!--Multiselect JavaScript -->
+<script type="text/javascript" src="<?php echo base_url('assets/js/jquery.multi-select.js')?>"></script>
 <script>
 
 	var i = 1;
