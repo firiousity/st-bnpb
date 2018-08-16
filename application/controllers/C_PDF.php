@@ -28,10 +28,148 @@ class C_PDF extends CI_Controller {
 		//$this->load->library('../controllers/home');
     }
 
+    /*
+     * Helper Function
+     * Your necessary function */
+
+
+	function tanggal_indo($tanggal, $delimiter)
+	{
+		$bulan = array (1 =>   'Januari',
+			'Februari',
+			'Maret',
+			'April',
+			'Mei',
+			'Juni',
+			'Juli',
+			'Agustus',
+			'September',
+			'Oktober',
+			'November',
+			'Desember'
+		);
+		$split = explode($delimiter, $tanggal);
+		if ($delimiter == '/') {
+			return $split[0] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[2];
+		} elseif ($delimiter == '-') {
+			return $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
+		}
+
+		//echo tanggal_indo('2016-03-20'); // 20 Maret 2016
+	}
+
+	function reverse_tanggal($tanggal) {
+		implode('-', array_reverse(explode('-', $tanggal[0])));
+	}
+
+	function terbilang($bilangan) {
+
+		$angka = array('0','0','0','0','0','0','0','0','0','0',
+			'0','0','0','0','0','0');
+		$kata = array('','satu','dua','tiga','empat','lima',
+			'enam','tujuh','delapan','sembilan');
+		$tingkat = array('','ribu','juta','milyar','triliun');
+
+		$panjang_bilangan = strlen($bilangan);
+
+		/* pengujian panjang bilangan */
+		if ($panjang_bilangan > 15) {
+			$kalimat = "Diluar Batas";
+			return $kalimat;
+		}
+
+		/* mengambil angka-angka yang ada dalam bilangan,
+           dimasukkan ke dalam array */
+		for ($i = 1; $i <= $panjang_bilangan; $i++) {
+			$angka[$i] = substr($bilangan,-($i),1);
+		}
+
+		$i = 1;
+		$j = 0;
+		$kalimat = "";
+
+
+		/* mulai proses iterasi terhadap array angka */
+		while ($i <= $panjang_bilangan) {
+
+			$subkalimat = "";
+			$kata1 = "";
+			$kata2 = "";
+			$kata3 = "";
+
+			/* untuk ratusan */
+			if ($angka[$i+2] != "0") {
+				if ($angka[$i+2] == "1") {
+					$kata1 = "seratus";
+				} else {
+					$kata1 = $kata[$angka[$i+2]] . " ratus";
+				}
+			}
+
+			/* untuk puluhan atau belasan */
+			if ($angka[$i+1] != "0") {
+				if ($angka[$i+1] == "1") {
+					if ($angka[$i] == "0") {
+						$kata2 = "sepuluh";
+					} elseif ($angka[$i] == "1") {
+						$kata2 = "sebelas";
+					} else {
+						$kata2 = $kata[$angka[$i]] . " belas";
+					}
+				} else {
+					$kata2 = $kata[$angka[$i+1]] . " puluh";
+				}
+			}
+
+			/* untuk satuan */
+			if ($angka[$i] != "0") {
+				if ($angka[$i+1] != "1") {
+					$kata3 = $kata[$angka[$i]];
+				}
+			}
+
+			/* pengujian angka apakah tidak nol semua,
+               lalu ditambahkan tingkat */
+			if (($angka[$i] != "0") OR ($angka[$i+1] != "0") OR
+				($angka[$i+2] != "0")) {
+				$subkalimat = "$kata1 $kata2 $kata3 " . $tingkat[$j] . " ";
+			}
+
+			/* gabungkan variabe sub kalimat (untuk satu blok 3 angka)
+               ke variabel kalimat */
+			$kalimat = $subkalimat . $kalimat;
+			$i = $i + 3;
+			$j = $j + 1;
+
+		}
+
+		/* mengganti satu ribu jadi seribu jika diperlukan */
+		if (($angka[5] == "0") AND ($angka[6] == "0")) {
+			$kalimat = str_replace("satu ribu","seribu",$kalimat);
+		}
+
+		return trim($kalimat);
+
+	}
+
+	function hitung_hari($awal,$akhir){
+		$tglAwal = strtotime($awal);
+		$tglAkhir = strtotime($akhir);
+		$jeda = abs($tglAkhir - $tglAwal);
+		return floor($jeda/(60*60*24));
+	}
+
+	function alert ($message) {
+		echo "<script>         	
+         	alert($message);</script>";
+	}
+
     function href($route) {
 		echo "<script>
          	window.location.href='".base_url()."$route';</script>";
 	}
+
+	/* ------------------------------------------------------------- */
 
 	public function index()
 	{
@@ -880,17 +1018,6 @@ class C_PDF extends CI_Controller {
 		$pdf->Output();
 	}
 
-	//Page Rincian Perhitungan SPD Rampung
-	function spd_rampung() {
-
-	}
-
-	//Page Perincian Biaya Perjalanan Dinas
-	//PAGE 3
-	function biaya() {
-
-	}
-
 	//Page Surat Perintah Dinas
 	function spd($slug) {
 		$arr_slug		= explode('_', $slug);
@@ -1142,181 +1269,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Output();
 	}
 
-	//page lampiran surat banyak
-	function jadwal() {
-		$pdf = new FPDF('p','mm','A4');
-		$pdf->AddPage();
-		$pdf->SetFont('Arial','B',11);
-		$pdf->Cell(115,5,'',0,0,'L');
-		$pdf->Cell(25,5,'Lampiran Surat Tugas ',0,'L');
-		$pdf->Ln();
-		$pdf->Cell(115,5,'',0,0,'L');
-		$pdf->Cell(25,5,'Nomor   :  /KADIH/05/2018',0,'L');
-		$pdf->Ln();
-		$pdf->Cell(115,5,'',0,0,'L');
-		$pdf->Cell(25,5,'Tanggal :  Mei 2018',0,0,'L');
-		$pdf->Ln();
-		$pdf->Ln();
-		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(0,10,"Jadwal",0,1,'C');
-
-		//here is the table
-		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'No.',1,0,'C',0);
-		$pdf->Cell(50,6,'Nama',1,0,'C',0);
-		$pdf->Cell(65,6,'BPBD',1,0,'C',0);
-		$pdf->Cell(50,6,'Tanggal',1,0,'C',0);
-		$pdf->Ln();
-		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'1.','L',0,'C',0);
-		$pdf->Cell(50,6,'-Meliwaty, S.Kom.','L',0,'L',0);
-		$pdf->Cell(65,6,'Provinsi Lampung','LBR',0,'C',0);
-		$pdf->Cell(50,6,'30 Mei s.d 1 Juni 2018','BR',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','LB',0,'C',0);
-		$pdf->Cell(50,6,'-Dinda Tasnym','LB',0,'L',0);
-		$pdf->Cell(65,6,'Provinsi Kalimantan Barat','LBR',0,'C',0);
-		$pdf->Cell(50,6,'4 s.d 6 Juni 2018','BR',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'2.','L',0,'C',0);
-		$pdf->Cell(50,6,'-Linda Lestari, S.Kom.','L',0,'L',0);
-		$pdf->Cell(65,6,'Provinsi Jawa Barat dan Kota','LR',0,'C',0);
-		$pdf->Cell(50,6,'6 s.d 8 Juni 2018','R',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','L',0,'C',0);
-		$pdf->Cell(50,6,'-Atang Supena, S.Kom.','L',0,'L',0);
-		$pdf->Cell(65,6,'Banjar','LR',0,'C',0);
-		$pdf->Cell(50,6,'','R',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','LB',0,'C',0);
-		$pdf->Cell(50,6,'-Ersal Erlangga, S.Ip.','LB',0,'L',0);
-		$pdf->Cell(65,6,'','LBR',0,'C',0);
-		$pdf->Cell(50,6,'','BR',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'3.','L',0,'C',0);
-		$pdf->Cell(50,6,'-Atang Supena, S.Kom.','L',0,'L',0);
-		$pdf->Cell(65,6,'Provinsi Sulawesi Barat','LR',0,'C',0);
-		$pdf->Cell(50,6,'27 s.d 29 Mei 2018','R',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','LB',0,'C',0);
-		$pdf->Cell(50,6,'-Andi Ahmad Bashir','LB',0,'L',0);
-		$pdf->Cell(65,6,'','LBR',0,'C',0);
-		$pdf->Cell(50,6,'','BR',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'4.','L',0,'C',0);
-		$pdf->Cell(50,6,'-Yanuar Yuda','L',0,'L',0);
-		$pdf->Cell(65,6,'','LR',0,'C',0);
-		$pdf->Cell(50,6,'','R',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','L',0,'C',0);
-		$pdf->Cell(50,6,' Darmawan, S.Kom.','L',0,'L',0);
-		$pdf->Cell(65,6,'Kabupaten Aceh Jaya','LR',0,'C',0);
-		$pdf->Cell(50,6,'27 s.d 29 Mei 2018','R',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','LB',0,'C',0);
-		$pdf->Cell(50,6,'-Ersal Erlangga, S.Ip.','LB',0,'L',0);
-		$pdf->Cell(65,6,'','LBR',0,'C',0);
-		$pdf->Cell(50,6,'','BR',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'5.','L',0,'C',0);
-		$pdf->Cell(50,6,'-Yanuar Yuda','L',0,'L',0);
-		$pdf->Cell(65,6,'Kabupaten Tulungagung dan','LR',0,'C',0);
-		$pdf->Cell(50,6,'','R',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','L',0,'C',0);
-		$pdf->Cell(50,6,' Darmawan, S.Kom.','L',0,'L',0);
-		$pdf->Cell(65,6,'Kabupaten Blitar','LR',0,'C',0);
-		$pdf->Cell(50,6,'4 s.d 6 Juni 2018','R',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','LB',0,'C',0);
-		$pdf->Cell(50,6,'-M Syaiful Hadi, S.T.','LB',0,'L',0);
-		$pdf->Cell(65,6,'','LBR',0,'C',0);
-		$pdf->Cell(50,6,'','BR',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'6.','L',0,'C',0);
-		$pdf->Cell(50,6,'-Dyah Rusmiasih, S.T.,','L',0,'L',0);
-		$pdf->Cell(65,6,'Kabupaten Manggarai,','LR',0,'C',0);
-		$pdf->Cell(50,6,'','R',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','L',0,'C',0);
-		$pdf->Cell(50,6,' M.Kom., MDMa.','L',0,'L',0);
-		$pdf->Cell(65,6,'Kabupaten Manggarai Barat','LR',0,'C',0);
-		$pdf->Cell(50,6,'29 Mei s.d 1 Juni 2018','R',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','LB',0,'C',0);
-		$pdf->Cell(50,6,'-M Syaiful Hadi, S.T.','LB',0,'L',0);
-		$pdf->Cell(65,6,'','LBR',0,'C',0);
-		$pdf->Cell(50,6,'','BR',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'7.','L',0,'C',0);
-		$pdf->Cell(50,6,'-Leonard, S.T.','L',0,'L',0);
-		$pdf->Cell(65,6,'Provinsi Maluku Utara','LBR',0,'C',0);
-		$pdf->Cell(50,6,'30 Mei s.d 1 Juni 2018','BR',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','L',0,'C',0);
-		$pdf->Cell(50,6,'-Abd Kodir Jaelani,','L',0,'L',0);
-		$pdf->Cell(65,6,'Provinsi Sumatra Utara dan','LR',0,'C',0);
-		$pdf->Cell(50,6,'4 s.d 7 Juni 2018','R',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','LB',0,'C',0);
-		$pdf->Cell(50,6,' S.Kom.','LB',0,'L',0);
-		$pdf->Cell(65,6,'Kabupaten Nias','LBR',0,'C',0);
-		$pdf->Cell(50,6,'','BR',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'8.','L',0,'C',0);
-		$pdf->Cell(50,6,'-Mochammad','L',0,'L',0);
-		$pdf->Cell(65,6,'Kabupaten Lombok Timur','LBR',0,'C',0);
-		$pdf->Cell(50,6,'27 s.d 29 Mei 2018','BR',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','L',0,'C',0);
-		$pdf->Cell(50,6,' Zakiyamani','L',0,'L',0);
-		$pdf->Cell(65,6,'','LR',0,'C',0);
-		$pdf->Cell(50,6,'','R',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','L',0,'C',0);
-		$pdf->Cell(50,6,'-Ardi Karman Yumiardi,','L',0,'L',0);
-		$pdf->Cell(65,6,'Provinsi Papua','LR',0,'C',0);
-		$pdf->Cell(50,6,'4 s.d 7 Juni 2018','R',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','LB',0,'C',0);
-		$pdf->Cell(50,6,' S.T.','LB',0,'L',0);
-		$pdf->Cell(65,6,'','LBR',0,'C',0);
-		$pdf->Cell(50,6,'','BR',0,'C',0);
-		$pdf->Ln();
-		//end of the table
-		
-		//Cetak gans
-		$pdf->Output();
-	}
-
-	function ena ($id) {
-		$surat_tugas = $this->db->select('nomor')->get_where('surat_dinas', array('id' => $id))->result();
-		echo $surat_tugas['0']->nomor;
-	}
+	/* Page buat nampilin rincian print per pegawai per nomor*/
 
 	function print_biaya($id) {
 		$surat_tugas  = $this->db->get_where('surat_dinas',
@@ -1954,135 +1907,4 @@ class C_PDF extends CI_Controller {
 		$pdf->Output();
 	}
 
-
-	function tanggal_indo($tanggal, $delimiter)
-	{
-		$bulan = array (1 =>   'Januari',
-			'Februari',
-			'Maret',
-			'April',
-			'Mei',
-			'Juni',
-			'Juli',
-			'Agustus',
-			'September',
-			'Oktober',
-			'November',
-			'Desember'
-		);
-		$split = explode($delimiter, $tanggal);
-		if ($delimiter == '/') {
-			return $split[0] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[2];
-		} elseif ($delimiter == '-') {
-			return $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
-		}
-
-		//echo tanggal_indo('2016-03-20'); // 20 Maret 2016
-	}
-
-	function reverse_tanggal($tanggal) {
-		implode('-', array_reverse(explode('-', $tanggal[0])));
-	}
-
-	function terbilang($bilangan) {
-
-		$angka = array('0','0','0','0','0','0','0','0','0','0',
-			'0','0','0','0','0','0');
-		$kata = array('','satu','dua','tiga','empat','lima',
-			'enam','tujuh','delapan','sembilan');
-		$tingkat = array('','ribu','juta','milyar','triliun');
-
-		$panjang_bilangan = strlen($bilangan);
-
-		/* pengujian panjang bilangan */
-		if ($panjang_bilangan > 15) {
-			$kalimat = "Diluar Batas";
-			return $kalimat;
-		}
-
-		/* mengambil angka-angka yang ada dalam bilangan,
-           dimasukkan ke dalam array */
-		for ($i = 1; $i <= $panjang_bilangan; $i++) {
-			$angka[$i] = substr($bilangan,-($i),1);
-		}
-
-		$i = 1;
-		$j = 0;
-		$kalimat = "";
-
-
-		/* mulai proses iterasi terhadap array angka */
-		while ($i <= $panjang_bilangan) {
-
-			$subkalimat = "";
-			$kata1 = "";
-			$kata2 = "";
-			$kata3 = "";
-
-			/* untuk ratusan */
-			if ($angka[$i+2] != "0") {
-				if ($angka[$i+2] == "1") {
-					$kata1 = "seratus";
-				} else {
-					$kata1 = $kata[$angka[$i+2]] . " ratus";
-				}
-			}
-
-			/* untuk puluhan atau belasan */
-			if ($angka[$i+1] != "0") {
-				if ($angka[$i+1] == "1") {
-					if ($angka[$i] == "0") {
-						$kata2 = "sepuluh";
-					} elseif ($angka[$i] == "1") {
-						$kata2 = "sebelas";
-					} else {
-						$kata2 = $kata[$angka[$i]] . " belas";
-					}
-				} else {
-					$kata2 = $kata[$angka[$i+1]] . " puluh";
-				}
-			}
-
-			/* untuk satuan */
-			if ($angka[$i] != "0") {
-				if ($angka[$i+1] != "1") {
-					$kata3 = $kata[$angka[$i]];
-				}
-			}
-
-			/* pengujian angka apakah tidak nol semua,
-               lalu ditambahkan tingkat */
-			if (($angka[$i] != "0") OR ($angka[$i+1] != "0") OR
-				($angka[$i+2] != "0")) {
-				$subkalimat = "$kata1 $kata2 $kata3 " . $tingkat[$j] . " ";
-			}
-
-			/* gabungkan variabe sub kalimat (untuk satu blok 3 angka)
-               ke variabel kalimat */
-			$kalimat = $subkalimat . $kalimat;
-			$i = $i + 3;
-			$j = $j + 1;
-
-		}
-
-		/* mengganti satu ribu jadi seribu jika diperlukan */
-		if (($angka[5] == "0") AND ($angka[6] == "0")) {
-			$kalimat = str_replace("satu ribu","seribu",$kalimat);
-		}
-
-		return trim($kalimat);
-
-	}
-
-	function hitung_hari($awal,$akhir){
-		$tglAwal = strtotime($awal);
-		$tglAkhir = strtotime($akhir);
-		$jeda = abs($tglAkhir - $tglAwal);
-		return floor($jeda/(60*60*24));
-	}
-
-	function alert ($message) {
-		echo "<script>         	
-         	alert($message);</script>";
-	}
 }
