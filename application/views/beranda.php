@@ -26,7 +26,7 @@
 					class="btn btn-indigo btn-md dropdown-toggle dropena" type="button"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buat</button>
 			<div class="dropdown-menu" aria-labelledby="surat">
-				<a class="dropdown-item" href="<?php echo base_url('surat/buat_surat_dinas')?>">Buat Surat Baru</a>
+				<a class="dropdown-item" href="<?php echo base_url('surat/buat_surat_dinas')?>">Buat Surat</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="<?php echo base_url('home/lihat_surat')?>">Daftar Surat</a>
 			</div>
