@@ -28,8 +28,14 @@
     <!-- JQuery -->
 
     <!-- Sweetalert2 -->
-	<link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/sweetalert2.css">
+	<!-- <link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/sweetalert2.css"> -->
     <script src="<?php echo base_url() ?>assets/js/sweetalert2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/package.json"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/sweetalert2.d.ts"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/dist/sweetalert2.all.min.js">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/package.json">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/sweetalert2.d.ts">
     <!-- Sweetalert2 -->
 
 	<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->

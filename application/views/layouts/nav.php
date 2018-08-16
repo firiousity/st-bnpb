@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark indigo scrolling-navbar fixed-top">
     <div class="container">
-    <img style="margin-left: 20px;" src="<?php echo base_url('assets/img/logo.png')?>" width="40" height="40"> 
+    <img style="margin-left: 20px;" src="<?php echo base_url('assets/img/logo.png')?>" width="30" height="30"> 
     <a style="margin-left: 8px;" class="navbar-brand" href="<?php echo base_url('home/beranda')?>"><Strong>SPJ Pusdatinmas</Strong></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
         aria-expanded="false" aria-label="Toggle navigation">
