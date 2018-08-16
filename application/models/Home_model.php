@@ -2,6 +2,7 @@
 class Home_model extends CI_Model {
 	function get_pegawai() {
 		$this->db->from('pegawai');
+		$this->db->order_by('nama_pegawai','asc' );
 		$query = $this->db->get();
 		return $query->result();
 	}
