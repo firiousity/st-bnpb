@@ -8,13 +8,26 @@
 ?>
 <body class="container margin">
 <?php
+
+
 //Get value
 $tanggal = date("m");
 $tahun = date("Y");
-$json = $nomor[0]->nomor;
+
+//cek jika nomor ada nilainya untuk menghindari ofset error
+if ($nomor != NULL) {
+	$json = $nomor[0]->nomor;
+} else {
+	$json = "0";
+}
+
 $json = (int) $json;
 $json = $json + 1;
 $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
+
+
+
+
 
 ?>
 <div class="row-fluid">
