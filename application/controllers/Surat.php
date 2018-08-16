@@ -85,6 +85,8 @@ class Surat extends CI_Controller
 					);
 					$this->db->insert('yang_dinas', $data_with_nip);
 					$this->db->insert('data_rinci', $data_rinci);
+
+					//if opsi = 1 maka pembayaran awalny
 				}
 
 			} else {

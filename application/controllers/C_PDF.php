@@ -252,7 +252,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'',0,0);
 		$pdf->Cell(5,6,'',0,0);
 		$pdf->Cell(5,6,'3.',0,0);
-		$pdf->MultiCell(0,6,"Peraturan Kepala Badan Nasional Penanggulangan Bencana Nomor 1 tahun 2008 tentang Organisasi dan Tata Kerja Badan Nasional Penanggulangan Bencana",0,'J');
+		$pdf->MultiCell(0,6,"Peraturan Kepala Badan Nasional Penanggulangan Bencana Nomor 1 tahun 2008 tentang Organisasi dan Tata Kerja Badan Nasional Penanggulangan Bencana.",0,'J');
 		$pdf->SetFont('Arial','B',12);
 		$pdf->Cell(0,10,"Memberi tugas",0,1,'C');
 		$pdf->SetFont('Arial','',10);
@@ -935,6 +935,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(20,7,$jabatan,0,1);
 		$pdf->Ln();
 		$pdf->Cell(15,7,'',0,0);
+		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(20,7,'Berdasarkan Surat Tugas Nomor: '. $nomor .' tanggal '.$var_tgl_surat.' dengan',0,1);
 		$pdf->Cell(15,7,'',0,0);
 		$pdf->Cell(20,7,'sesungguhnya bahwa :',0,1);
@@ -1580,10 +1581,19 @@ class C_PDF extends CI_Controller {
 		$data = array(
 			'slug' => $slug, 'jenis' => $jenis
 		);
-		$this->load->view('layouts/nav');
-		$this->load->view('layouts/header');
-		$this->load->view('rampung_form', $data);
-		$this->load->view('layouts/footer2');
+
+		//cek duls dia udah ngisi spd rampung belum supaya ga dobel ngisinya
+		$r_result = $this->db->get_where('spd_rampung', array('id_surat'=>$arr_slug[0],
+			'id_pegawai'=> $arr_slug[1]))->num_rows();
+		if($r_result>0) {
+			echo "<script>
+         	window.location.href='".base_url('C_PDF/print_rampung/').$slug."';</script>";
+		} else {
+			$this->load->view('layouts/nav');
+			$this->load->view('layouts/header');
+			$this->load->view('rampung_form', $data);
+			$this->load->view('layouts/footer2');
+		}
 	}
 
 	function print_rampung ($slug) {
@@ -1591,8 +1601,7 @@ class C_PDF extends CI_Controller {
 		$id_surat = $arr_slug[0];
 		$id_pegawai = $arr_slug[1];
 		//r untuk rampung
-		$penginapan = $this->input->post('penginapan');
-		$tiket = $this->input->post('tiket');
+
 
 		//Get data rinci
 		$data_rinci_all	= $this->db->get_where('data_rinci',
@@ -1603,6 +1612,20 @@ class C_PDF extends CI_Controller {
 		$id_transport = $data_rinci_all['0']->id_transport;
 		$id_transport2 = $data_rinci_all['0']->id_transport2;
 		$id_tiket = $data_rinci_all['0']->id_tiket;
+
+		//nilai penginapan dan tiket akan berubah sesuai jenis. kalo di depan makan nilainya sama dengan sbu
+		$jenis = $data_rinci_all['0'] -> jenis;
+		if(!isset($_POST['rsubmit'])) {
+			//dibayar di belakang maka nila tiket dan penginapan sesuai dengan post di spd rampung
+			//get real pengeluaran untuk tiket
+			$r_tiket_result = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
+			$tiket = $r_tiket_result['0']->tiket;
+			$penginapan = $r_tiket_result['0']->penginapan;
+		} else {
+			$penginapan = $this->input->post('penginapan');
+			$tiket = $this->input->post('tiket');
+		}
+
 
 		//get data uang harian
 		$harian_result	= $this->db->get_where('uang_harian',array('id' => $id_harian))->result();
