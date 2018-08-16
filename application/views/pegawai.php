@@ -1,28 +1,28 @@
 <body>
-  <div class="container margin">
+  <div class="container-fluid" style="margin-top: 50px; margin-bottom: 50px;">
         <p style="font-size: 27px; text-align: center; padding-top: 50px;">Kelola Pegawai</p>
-        <table id="pegawai" class="table table-responsive table-hover" cellspacing="0" width="100%">
+        <table id="pegawai" class="table table-hover" cellspacing="0">
   <thead class="mdb-color darken-3 white-text">
     <tr>
-      <th class="th-sm" scope="col">No
+      <th scope="col">No
         <i class="fa fa-sort float-right" aria-hidden="true"></i>
       </th>
-      <th class="th-sm" scope="col">Nama
+      <th scope="col">Nama
         <i class="fa fa-sort float-right" aria-hidden="true"></i>
       </th>
-      <th class="th-sm" scope="col">NIP
+      <th scope="col">NIP
         <i class="fa fa-sort float-right" aria-hidden="true"></i>
       </th>
-      <th class="th-sm" scope="col">Jabatan
+      <th scope="col">Jabatan
         <i class="fa fa-sort float-right" aria-hidden="true"></i>
       </th>
-      <th class="th-sm" scope="col">Golongan
+      <th scope="col">Golongan
         <i class="fa fa-sort float-right" aria-hidden="true"></i>
       </th>
-      <th class="th-sm" scope="col">Edit
+      <th scope="col">Edit
         <i class="fa fa-sort float-right" aria-hidden="true"></i>
       </th>
-      <th class="th-sm" scope="col">Hapus
+      <th scope="col">Hapus
         <i class="fa fa-sort float-right" aria-hidden="true"></i>
       </th>
     </tr>
@@ -80,7 +80,7 @@
                     })
                       }
                     </script>
-<div align="left">
+<div align="center">
                 <a href="#"><button type="button" data-toggle="modal" data-target="#modalRegisterForm" class="btn btn-indigo btn-md">Tambah Pegawai</button></a>
               </div>
       </div>
