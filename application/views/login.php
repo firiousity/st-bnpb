@@ -39,6 +39,16 @@
 	</section>
 <!-- Default form login -->
 </div>
+<?php if (isset($_SESSION['error'])): ?>
+            <script>
+              swal({
+              title: "Error!",
+              text: "<?php echo $_SESSION['error'] ?>",
+              type: "error",
+          });
+            </script>
+        <?php unset($_SESSION['error']) ?>
+          <?php endif ?>
 </body>
 
 </html>

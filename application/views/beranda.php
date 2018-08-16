@@ -116,16 +116,7 @@ $(document).ready(function(){
     $('.dropdown-toggle').dropdown();
 });
 </script>
-<?php if (isset($_SESSION['error'])): ?>
-            <script>
-              swal({
-              title: "Error!",
-              text: "<?php echo $_SESSION['error'] ?>",
-              type: "error",
-          });
-            </script>
-        <?php unset($_SESSION['error']) ?>
-          <?php endif ?>
+
           <?php if (isset($_SESSION['success'])): ?>
             <script>
               swal({
