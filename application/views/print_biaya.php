@@ -20,6 +20,7 @@
 						  $i = 1;
 						  foreach ($nama as $row) {
 
+
 						  	echo "
 						  	<tr>
                               <th scope=\"row\">$i</th>
@@ -38,6 +39,7 @@
                               <span><a href='".base_url('C_PDF/hilang/'.$row->id_surat."_".$row->id_pegawai)."' target='_blank'> 
                               <button type=\"button\" class=\"btn btn-primary btn-rounded btn-sm my-0\">BUKTI HILANG
                               </button></a></span>
+                            
                               <span><a href='".base_url('C_PDF/lebih/'.$row->id_surat."_".$row->id_pegawai)."' target='_blank'> 
                               <button type=\"button\" class=\"btn btn-primary btn-rounded btn-sm my-0\">SURAT LEBIH
                               </button></a></span>

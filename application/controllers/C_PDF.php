@@ -606,115 +606,121 @@ class C_PDF extends CI_Controller {
 
 		/* -----------------------------*/
 
-		$pdf = new FPDF('p','mm','A4');
-		$pdf->AddPage();
-		$pdf->SetFont('Arial','B',14);
-		$pdf->Ln();
-		$pdf->Ln();
-		$pdf->MultiCell(0,25,"SURAT PERNYATAAN",0,'C');
-		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(25,7,'',0,0);
-		$pdf->MultiCell(0,6,"Yang bertandatangan di bawah ini :",0,'L');
-		$pdf->Ln();
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(20,7,'Nama',0,0);
-		$pdf->Cell(10,7,':',0,0);
-		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(20,7,$pegawai,0,1);
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(20,7,'NIP',0,0);
-		$pdf->Cell(10,7,':',0,0);
-		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(20,7,$nip,0,1);
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(20,7,'Jabatan',0,0);
-		$pdf->Cell(10,7,':',0,0);
-		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(20,7,$jabatan,0,1);
-		$pdf->Ln();
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(20,7,'Berdasarkan Surat Tugas Nomor:'.$nomor.' tanggal '.$var_tgl_surat.' dengan',0,1);
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(20,7,'sesungguhnya bahwa :',0,1);
-		$pdf->Ln();
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(20,7,'1. Tiket '.$rute.' (PP) dengan jumlah tiket pesawat di bawah ini melebihi dengan',0,1);
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(20,7,'SBU tahun '.date('Y').', meliputi :',0,1);
-		$pdf->Ln();
+		if($sbu_tiket<$r_tiket) {
+			$pdf = new FPDF('p','mm','A4');
+			$pdf->AddPage();
+			$pdf->SetFont('Arial','B',14);
+			$pdf->Ln();
+			$pdf->Ln();
+			$pdf->MultiCell(0,25,"SURAT PERNYATAAN",0,'C');
+			$pdf->SetFont('Arial','',12);
+			$pdf->Cell(25,7,'',0,0);
+			$pdf->MultiCell(0,6,"Yang bertandatangan di bawah ini :",0,'L');
+			$pdf->Ln();
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->Cell(20,7,'Nama',0,0);
+			$pdf->Cell(10,7,':',0,0);
+			$pdf->SetFont('Arial','B',12);
+			$pdf->Cell(20,7,$pegawai,0,1);
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->SetFont('Arial','',12);
+			$pdf->Cell(20,7,'NIP',0,0);
+			$pdf->Cell(10,7,':',0,0);
+			$pdf->SetFont('Arial','B',12);
+			$pdf->Cell(20,7,$nip,0,1);
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->SetFont('Arial','',12);
+			$pdf->Cell(20,7,'Jabatan',0,0);
+			$pdf->Cell(10,7,':',0,0);
+			$pdf->SetFont('Arial','B',12);
+			$pdf->Cell(20,7,$jabatan,0,1);
+			$pdf->Ln();
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->SetFont('Arial','',12);
+			$pdf->Cell(20,7,'Berdasarkan Surat Tugas Nomor:'.$nomor.' tanggal '.$var_tgl_surat.' dengan',0,1);
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->Cell(20,7,'sesungguhnya bahwa :',0,1);
+			$pdf->Ln();
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->Cell(20,7,'1. Tiket '.$rute.' (PP) dengan jumlah tiket pesawat di bawah ini melebihi dengan',0,1);
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->Cell(20,7,'SBU tahun '.date('Y').', meliputi :',0,1);
+			$pdf->Ln();
 
-		//here is table
-		$pdf->Cell(20,7,'',0,0);
-		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(10,5,'No.',1,0,'C',0);
-		$pdf->Cell(70,5,'Uraian',1,0,'C',0);
-		$pdf->Cell(40,5,'Nilai SBU',1,0,'C',0);
-		$pdf->Cell(40,5,'Pengeluaran Rill',1,0,'C',0);
-        $pdf->Ln();
-        $pdf->Cell(20,7,'',0,0);
-        $pdf->SetFont('Arial','',12);
-		$pdf->Cell(10,5,'1','LB',0,'R',0);
-		$pdf->Cell(70,5,'Tiket Pesawat '.$rute.' (PP)','LRB',0,'L',0);
-		$pdf->Cell(40,5,'Rp. '.$sbu_tiket,'RB',0,'R',0);
-		$pdf->Cell(40,5,'Rp. '.$r_tiket,'RB',0,'R',0);
-        $pdf->Ln();
-        $pdf->Cell(20,7,'',0,0);
-        $pdf->SetFont('Arial','B',12);
-		$pdf->Cell(10,5,'','LB',0,'L',0);
-		$pdf->Cell(70,5,'Jumlah','LRB',0,'C',0);
-		$pdf->Cell(40,5,'Rp. '.$sbu_tiket,'RB',0,'R',0);
-		$pdf->Cell(40,5,'Rp. '.$r_tiket,'RB',0,'R',0);
-        $pdf->Ln();
-		//end of table
-		$pdf->Ln();
-		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(20,7,'2. Bahwa tiket '.$rute.' (PP) dengan jumlah uang tersebut pada angka (1)',0,1);
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(20,7,'melebihi jumlah SBU dan benar - benar dikeluarkan dengan bukti rill kuitansi tiket',0,1);
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(20,7,'Perjalanan Dinas dimaksud.',0,1);
-		$pdf->Ln();
-		$pdf->Cell(20,7,'',0,0);
-		$pdf->Cell(20,7,'Demikian pernyataan ini kami buat dengan sebenarnya, untuk dipergunakan',0,1);
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(20,7,'sebagaimana mestinya.',0,1);
-		$pdf->Ln();
-		$pdf->Ln();
-		//Footer Surat
-		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(10,6,"",0,0,'L');
-		$pdf->Cell(25,6,'',0,0,'L');
-		$pdf->Cell(15,6,'',0,0,'L');
-		$pdf->Cell(25,6,'',0,0,'R');
-		$pdf->Cell(20,6,'',0,0,'C');
-		$pdf->MultiCell(60,6,'Jakarta, '.$var_tgl_skrg,0,'R');
-		$pdf->Ln();
-		$pdf->Ln();
-		$pdf->Cell(18,6,'',0,0,'L');
-		$pdf->MultiCell(55,6,'Mengetahui/Menyetujui',0,'R');
-		$pdf->Cell(100,6,'Pejabat Pembuat Komitmen',0, 0,'C');
-		$pdf->MultiCell(50,6,'Pelaksana SPD',0,'R');
-		$pdf->Cell(100,6,' Pusat Data Informasi dan Humas',0, 0,'C');
-		$pdf->Ln();
-		$pdf->Ln();
-		$pdf->Ln();
-		$pdf->SetFont('Arial','BU',12);
-		$pdf->Ln();
-		$pdf->Cell(100,6,$nama_ppk,0, 0,'C');
-		$pdf->MultiCell(72.5,6,$pegawai,0,'C');
-		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(100,6,"NIP. ".$nip_ppk,0, 0,'C');
-		$pdf->MultiCell(72.5,6,'NIP. '.$nip,0,'C');
+			//here is table
+			$pdf->Cell(20,7,'',0,0);
+			$pdf->SetFont('Arial','B',12);
+			$pdf->Cell(10,5,'No.',1,0,'C',0);
+			$pdf->Cell(70,5,'Uraian',1,0,'C',0);
+			$pdf->Cell(40,5,'Nilai SBU',1,0,'C',0);
+			$pdf->Cell(40,5,'Pengeluaran Rill',1,0,'C',0);
+			$pdf->Ln();
+			$pdf->Cell(20,7,'',0,0);
+			$pdf->SetFont('Arial','',12);
+			$pdf->Cell(10,5,'1','LB',0,'R',0);
+			$pdf->Cell(70,5,'Tiket Pesawat '.$rute.' (PP)','LRB',0,'L',0);
+			$pdf->Cell(40,5,'Rp. '.$sbu_tiket,'RB',0,'R',0);
+			$pdf->Cell(40,5,'Rp. '.$r_tiket,'RB',0,'R',0);
+			$pdf->Ln();
+			$pdf->Cell(20,7,'',0,0);
+			$pdf->SetFont('Arial','B',12);
+			$pdf->Cell(10,5,'','LB',0,'L',0);
+			$pdf->Cell(70,5,'Jumlah','LRB',0,'C',0);
+			$pdf->Cell(40,5,'Rp. '.$sbu_tiket,'RB',0,'R',0);
+			$pdf->Cell(40,5,'Rp. '.$r_tiket,'RB',0,'R',0);
+			$pdf->Ln();
+			//end of table
+			$pdf->Ln();
+			$pdf->SetFont('Arial','',12);
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->Cell(20,7,'2. Bahwa tiket '.$rute.' (PP) dengan jumlah uang tersebut pada angka (1)',0,1);
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->Cell(20,7,'melebihi jumlah SBU dan benar - benar dikeluarkan dengan bukti rill kuitansi tiket',0,1);
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->Cell(20,7,'Perjalanan Dinas dimaksud.',0,1);
+			$pdf->Ln();
+			$pdf->Cell(20,7,'',0,0);
+			$pdf->Cell(20,7,'Demikian pernyataan ini kami buat dengan sebenarnya, untuk dipergunakan',0,1);
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->Cell(20,7,'sebagaimana mestinya.',0,1);
+			$pdf->Ln();
+			$pdf->Ln();
+			//Footer Surat
+			$pdf->SetFont('Arial','',12);
+			$pdf->Cell(10,6,"",0,0,'L');
+			$pdf->Cell(25,6,'',0,0,'L');
+			$pdf->Cell(15,6,'',0,0,'L');
+			$pdf->Cell(25,6,'',0,0,'R');
+			$pdf->Cell(20,6,'',0,0,'C');
+			$pdf->MultiCell(60,6,'Jakarta, '.$var_tgl_skrg,0,'R');
+			$pdf->Ln();
+			$pdf->Ln();
+			$pdf->Cell(18,6,'',0,0,'L');
+			$pdf->MultiCell(55,6,'Mengetahui/Menyetujui',0,'R');
+			$pdf->Cell(100,6,'Pejabat Pembuat Komitmen',0, 0,'C');
+			$pdf->MultiCell(50,6,'Pelaksana SPD',0,'R');
+			$pdf->Cell(100,6,' Pusat Data Informasi dan Humas',0, 0,'C');
+			$pdf->Ln();
+			$pdf->Ln();
+			$pdf->Ln();
+			$pdf->SetFont('Arial','BU',12);
+			$pdf->Ln();
+			$pdf->Cell(100,6,$nama_ppk,0, 0,'C');
+			$pdf->MultiCell(72.5,6,$pegawai,0,'C');
+			$pdf->SetFont('Arial','',12);
+			$pdf->Cell(100,6,"NIP. ".$nip_ppk,0, 0,'C');
+			$pdf->MultiCell(72.5,6,'NIP. '.$nip,0,'C');
 
-		//Cetak gans
-		$pdf->Output();
+			//Cetak gans
+			$pdf->Output();
+		} else {
+			echo "<script>         	
+         	alert('Tidak bisa mencetak karena biaya tiket tidak lebih dari SBU!');
+         	window.location.href='".base_url('home/lihat_surat')."';</script>";
+		}
 	}
 
 	//Page Surat Pernyataan Kehilangan Boarding
@@ -1732,7 +1738,7 @@ class C_PDF extends CI_Controller {
 		$keterangan = "";
 		if ($total>$s_total) {
 			$keterangan = "KURANG";
-		} elseif (($total>$s_total)) {
+		} elseif (($total<$s_total)) {
 			$keterangan = "LEBIH";
 		} else {
 			$keterangan = "";
