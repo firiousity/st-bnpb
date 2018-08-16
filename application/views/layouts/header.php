@@ -2,11 +2,12 @@
 <html lang="en">
 
 <head>
-	<link rel="shortcut icon" href="<?php echo base_url('assets/img/logo.png')?>">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>SPJ Pusdatinmas</title>
+	<!-- Favicon for better exp -->
+	<link rel="shortcut icon" href="http://pngimg.com/uploads/envelope/envelope_PNG18414.png" type="image/x-icon">
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
 	<!-- Bootstrap core CSS -->
