@@ -935,6 +935,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(20,7,$jabatan,0,1);
 		$pdf->Ln();
 		$pdf->Cell(15,7,'',0,0);
+		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(20,7,'Berdasarkan Surat Tugas Nomor: '. $nomor .' tanggal '.$var_tgl_surat.' dengan',0,1);
 		$pdf->Cell(15,7,'',0,0);
 		$pdf->Cell(20,7,'sesungguhnya bahwa :',0,1);
