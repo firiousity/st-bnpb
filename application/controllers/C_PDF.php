@@ -440,6 +440,8 @@ class C_PDF extends CI_Controller {
 		$data_rinci_all	= $this->db->get_where('data_rinci',
 			array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
 		$id_tiket = $data_rinci_all['0']->id_tiket;
+		$id_transport = $data_rinci_all['0']->id_transport;
+		$id_transport2 = $data_rinci_all['0']->id_transport2;
 		//get data uang tiket
 		$tiket_result	= $this->db->get_where('tiket_pesawat',array('id' => $id_tiket))->result();
 		$sbu_tiket = $tiket_result['0']->biaya_tiket;
@@ -448,9 +450,17 @@ class C_PDF extends CI_Controller {
 		$berangkat = $arr_rute[0];
 		$tujuan = $arr_rute[1];
 
-		//get real pengeluaran untuk tiket
-		$r_tiket_result = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
-		$r_tiket = $r_tiket_result['0']->tiket;
+		//get sbu transport berangkat
+		$transport_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport))->result();
+		$sbu_transport = $transport_result['0']->besaran;
+
+		//get sbu transport tujuan
+		$transport2_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport2))->result();
+		$sbu_transport2 = $transport2_result['0']->besaran;
+
+		$total1 = 2*$sbu_transport;
+		$total2 = 2*$sbu_transport2;
+		$total_transport = $total1 + $total2;
 
 		$ppk 			= $this->db->get_where('pejabat_administratif',
 			array('jabatan' => 'Pejabat Pembuat Komitmen'))->result();
@@ -512,23 +522,23 @@ class C_PDF extends CI_Controller {
         $pdf->Cell(10,7,'',0,0);
         $pdf->SetFont('Arial','',10);
 		$pdf->Cell(10,5,'1','L',0,'R',0);
-		$pdf->Cell(70,5,'Transport Bandara Jakarta (PP)','L',0,'L',0);
-		$pdf->Cell(30,5,'2 x 256.000','R',0,'R',0);
-		$pdf->Cell(40,5,'942.000,00','R',0,'R',0);
+		$pdf->Cell(70,5,'Transport Bandara '.$berangkat.' (PP)','L',0,'L',0);
+		$pdf->Cell(30,5,'2 x '.$sbu_transport,'R',0,'R',0);
+		$pdf->Cell(40,5,$total1,'R',0,'R',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
         $pdf->Cell(10,7,'',0,0);
         $pdf->Cell(10,5,'2','LB',0,'R',0);
-		$pdf->Cell(70,5,'Transport Bandara Bali (PP)','LB',0,'L',0);
-		$pdf->Cell(30,5,'2 x 256.000','RB',0,'R',0);
-		$pdf->Cell(40,5,'942.000,00','RB',0,'R',0);
+		$pdf->Cell(70,5,'Transport Bandara '.$tujuan.' (PP)','LB',0,'L',0);
+		$pdf->Cell(30,5,'2 x '.$sbu_transport2,'RB',0,'R',0);
+		$pdf->Cell(40,5,$total2,'RB',0,'R',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
         $pdf->Cell(10,7,'',0,0);
         $pdf->SetFont('Arial','B',10);
 		$pdf->Cell(10,5,'','LB',0,'L',0);
 		$pdf->Cell(100,5,'Jumlah','RB',0,'C',0);
-		$pdf->Cell(40,5,'942.000,00','RB',0,'R',0);
+		$pdf->Cell(40,5,$total_transport,'RB',0,'R',0);
         $pdf->Ln();
         //end of table
 		$pdf->Ln();
@@ -548,7 +558,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(5,6,'',0,0,'L');
 		$pdf->Cell(25,6,'',0,0,'R');
 		$pdf->Cell(20,6,'',0,0,'C');
-		$pdf->MultiCell(60,6,'Jakarta, 27 Februari 2018',0,'R');
+		$pdf->MultiCell(60,6,'Jakarta, '.$var_tgl_skrg,0,'R');
 		$pdf->Ln();
 		$pdf->Cell(14,6,'',0,0,'L');
 		$pdf->MultiCell(55,6,'Mengetahui/Menyetujui',0,'R');
@@ -560,11 +570,11 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->SetFont('Arial','BU',10);
 		$pdf->Ln();
-		$pdf->Cell(100,6,"Linda Lestari, S.Kom.",0, 0,'C');
-		$pdf->MultiCell(72.5,6,'Leonard, S.T.',0,'C');
+		$pdf->Cell(100,6,$nama_ppk,0, 0,'C');
+		$pdf->MultiCell(72.5,6,$pegawai,0,'C');
 		$pdf->SetFont('Arial','',10);
-		$pdf->Cell(100,6,"NIP. 19790305 200501 2 001",0, 0,'C');
-		$pdf->MultiCell(72.5,6,'NIP. 19790305 200501 2 001',0,'C');
+		$pdf->Cell(100,6,"NIP. ".$nip_ppk,0, 0,'C');
+		$pdf->MultiCell(72.5,6,'NIP. '.$nip,0,'C');
 
 		//Cetak gans
 		$pdf->Output();
