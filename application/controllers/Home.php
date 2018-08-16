@@ -173,7 +173,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('biaya_penginapan', $data);
-		$this->load->view('layouts/footer');
+		// $this->load->view('layouts/footer');
 	}
 
 	public function tambah_penginapan() {
@@ -241,7 +241,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('biaya_transport', $data);
-		$this->load->view('layouts/footer');
+		// $this->load->view('layouts/footer');
 	}
 
 	public function tambah_transport() {
@@ -298,7 +298,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('tiket_pesawat', $data);
-		$this->load->view('layouts/footer');
+		// $this->load->view('layouts/footer');
 	}
 
 	public function tambah_tiket() {
@@ -355,7 +355,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('uang_harian', $data);
-		$this->load->view('layouts/footer');
+		// $this->load->view('layouts/footer');
 	}
 
 	public function tambah_harian() {
@@ -491,7 +491,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('pegawai', $data);
-		$this->load->view('layouts/footer');
+		// $this->load->view('layouts/footer');
 	}
 	public function tambah_pegawai() {
 		$name = $this->input->post('nama');
