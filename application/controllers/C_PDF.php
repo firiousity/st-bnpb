@@ -1581,10 +1581,20 @@ class C_PDF extends CI_Controller {
 		$data = array(
 			'slug' => $slug, 'jenis' => $jenis
 		);
-		$this->load->view('layouts/nav');
-		$this->load->view('layouts/header');
-		$this->load->view('rampung_form', $data);
-		$this->load->view('layouts/footer2');
+
+		//cek duls dia udah ngisi spd rampung belum supaya ga dobel ngisinya
+		$r_result = $this->db->get_where('spd_rampung', array('id_surat'=>$arr_slug[0],
+			'id_pegawai'=> $arr_slug[1]))->num_rows();
+		if($r_result>0) {
+			echo "<script>         	
+         	alert('Anda sudah mengisi form SPD rampung ini, jangan mengisi lagi!');
+         	window.location.href='".base_url('C_PDF/print_biaya/').$arr_slug[0]."';</script>";
+		} else {
+			$this->load->view('layouts/nav');
+			$this->load->view('layouts/header');
+			$this->load->view('rampung_form', $data);
+			$this->load->view('layouts/footer2');
+		}
 	}
 
 	function print_rampung ($slug) {
