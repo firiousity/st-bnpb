@@ -252,7 +252,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'',0,0);
 		$pdf->Cell(5,6,'',0,0);
 		$pdf->Cell(5,6,'3.',0,0);
-		$pdf->MultiCell(0,6,"Peraturan Kepala Badan Nasional Penanggulangan Bencana Nomor 1 tahun 2008 tentang Organisasi dan Tata Kerja Badan Nasional Penanggulangan Bencana",0,'J');
+		$pdf->MultiCell(0,6,"Peraturan Kepala Badan Nasional Penanggulangan Bencana Nomor 1 tahun 2008 tentang Organisasi dan Tata Kerja Badan Nasional Penanggulangan Bencana.",0,'J');
 		$pdf->SetFont('Arial','B',12);
 		$pdf->Cell(0,10,"Memberi tugas",0,1,'C');
 		$pdf->SetFont('Arial','',10);
