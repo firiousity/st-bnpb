@@ -35,10 +35,10 @@
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 		<div class="dropdown">
 
-			<button id="anggaran" data-target="#" href="https://example.com"
+			<button id="surat" data-target="#" href="https://example.com"
 					class="btn btn-indigo btn-md dropdown-toggle dropena" type="button"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buat</button>
-			<div class="dropdown-menu" aria-labelledby="anggaran">
+			<div class="dropdown-menu" aria-labelledby="surat">
 				<a class="dropdown-item" href="<?php echo base_url('surat/buat_surat_dinas')?>">Buat Surat Baru</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="<?php echo base_url('home/lihat_surat')?>">Daftar Surat</a>
@@ -64,8 +64,8 @@
       <!--Text-->
       <p class="card-text">Mengelola anggaran</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <div class="btn-group">
-    <button id="anggaran" data-target="#" href="https://example.com" class="btn btn-indigo btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div class="dropup">
+    <button id="anggaran" data-target="#" href="https://example.com" class="btn btn-indigo btn-md dropdown-toggle dropena" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Pilih
     </button>
     <div class="dropdown-menu" aria-labelledby="anggaran">
