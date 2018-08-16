@@ -135,6 +135,7 @@
 			document.getElementById('sudahbayar').style.display = vis;
 		}
 
+
 	</script>
 <style>
 	.html {
@@ -172,6 +173,17 @@
 	.mapid {
 		height: 400px;
 	}
-	</style>
+
+	.dropdown:hover>.dropdown-menu {
+		display: block;
+	}
+
+	.dropdown>.dropdown-toggle:active {
+		/*Without this, clicking will make it sticky*/
+		pointer-events: none;
+	}
+
+
+</style>
 </head>
 
