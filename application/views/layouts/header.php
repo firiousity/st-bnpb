@@ -44,7 +44,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
 		  integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
 		  crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 	
 	<script type="text/javascript" src="<?php echo base_url('assets/js/mdb.js')?>"></script>
     <!-- Bootstrap tooltips -->
@@ -61,7 +61,10 @@
 	<script type=”text/javascript” src=”js/bootstrap.min.js”></script>
 	<script type=”text/javascript” src=”js/mdb.min.js”></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/custom.js')?>"></script>
-	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+	<!-- <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script> -->
 	<script>
 		var i = 1;
 		function additem() {
@@ -168,6 +171,7 @@
 	.body {
         /* Margin bottom by footer height */
         margin-bottom: 60px;
+        color: #eceff1; 
     }
 
 	.mapid {

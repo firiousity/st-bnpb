@@ -71,7 +71,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
         $this->load->view('beranda');
-        $this->load->view('layouts/footer');
+        $this->load->view('layouts/footer2');
     } 	
 
 	/*

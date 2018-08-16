@@ -1,7 +1,7 @@
-<body>
+<body style="background-color: #eceff1">
 <!-- Intro Section -->
 <!--<div class="view hm-black-light jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('--><?php //echo base_url()."assets/img/2.jpg";?>/*');background-repeat: no-repeat; background-size: cover; ">*/
-<div class="view hm-black-light jarallax" data-jarallax='{"speed": 0.2}' style="background-color:  #f0932b">
+<!-- <div class="view hm-black-light jarallax" data-jarallax='{"speed": 0.2}' style="background-color:  #ffffff">
 	<div class="full-bg-img">
 		<div class="container flex-center">
 			<div class="row pt-5 mt-3">
@@ -10,7 +10,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 <!-- Card deck -->
 <div class="container center">
 <div class="card-deck">
