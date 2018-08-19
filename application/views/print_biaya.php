@@ -54,7 +54,7 @@
 						  ?>
 						  </tbody>
 						</table>
-            
+            <a href="../../home/lihat_surat"><button class="btn btn-indigo">Kembali</button></a>
             </div>
         </div>
 
