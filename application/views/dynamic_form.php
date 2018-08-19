@@ -224,8 +224,8 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 					<tfoot>
 					<tr>
 						<td>
-							<button class="btn btn-small btn-default" id="btn_tambah" disabled onclick="additem(); return false"><i class="fas fa-plus-square"></i></i></button>
-							<button name="submit" type="submit" class="btn btn-small btn-primary"><i class="fas fa-check-circle"></i>Buat</button>
+							<button class="btn btn-light-blue" id="btn_tambah" disabled onclick="additem(); return false"><i class="fas fa-plus-square"></i></i></button>
+							<button name="submit" type="submit" class="btn btn-indigo"><i class="fas fa-check-circle"></i> Buat</button>
 						</td>
 					</tr>
 					</tfoot>

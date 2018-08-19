@@ -26,6 +26,6 @@
 	?>		
 		</div>
 	</div>
-	<a href="../biaya_transport"><button class="btn btn-indigo">Kembali</button></a>
+	<a href="../biaya_transport"><button class="btn btn-indigo"><i class="fa fa-angle-left" arria-hidden="true"></i> Kembali</button></a>
 </div>
 </body>

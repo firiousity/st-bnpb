@@ -36,7 +36,7 @@
 	?>	
 		</div>
 	</div>
-	<a href="../pegawai"><button class="btn btn-indigo">Kembali</button></a>
+	<a href="../pegawai"><button class="btn btn-indigo"><i class="fa fa-angle-left" arria-hidden="true"></i> Kembali</button></a>
 	
 </div>
 </body>

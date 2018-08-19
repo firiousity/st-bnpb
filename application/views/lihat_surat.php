@@ -1,10 +1,10 @@
 <body>
           <div class="container margin">
-                <p style="font-size: 27px; text-align: center; padding-top: 50px;">Surat</p>
+                <p style="font-size: 27px; text-align: center; padding-top: 50px;">Daftar Surat</p>
                       <table id="lihat_surat" class="table table-hover" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
-                              <th class="th-sm" scope="col">No.
+                              <th scope="col">No.
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
                               <th class="th-sm" scope="col">Nomor Surat
@@ -13,7 +13,10 @@
                               <th class="th-sm" scope="col">Tempat
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
-                              <th class="th-sm" scope="col">PDF
+                              <th class="th-sm" scope="col">Rincian Biaya
+                                <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                              </th>
+                              <th class="th-sm" scope="col">Print
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
                             </tr>
@@ -29,13 +32,14 @@
                               <td>$row->nomor</td>
                               <td>$row->kegiatan</td>
                               <td>
-                              <span><a href='".base_url('C_PDF/print/'.$row->id)."' target='_blank'> 
-                              <button type=\"button\" class=\"btn btn-primary btn-rounded btn-sm my-0\">PRINT SURAT DINAS
-                              </button></a></span>
                               <a href='".base_url('C_PDF/print_biaya/'.$row->id)."'> 
-                              <button type=\"button\" class=\"btn btn-primary btn-rounded btn-sm my-0\">LIHAT RINCIAN BIAYA
+                              <button type=\"button\" class=\"btn btn-light-blue btn-sm my-0\">LIHAT RINCIAN
                               </button></a>
-                              
+                              </td>
+                              <td>
+                              <a href='".base_url('C_PDF/print/'.$row->id)."' target='_blank'> 
+                              <button type=\"button\" class=\"btn btn-light-blue btn-sm my-0\"><i class=\"fa fa-print\" aria-hidden=\"true\"></i> PRINT SURAT
+                              </button></a>
                               </td>
                             </tr>
 						  	";
@@ -44,8 +48,8 @@
 						  ?>
 						  </tbody>
 						</table>
-                    <div align="left">
-                          <a href="<?php  echo base_url('surat/buat_surat_dinas')?>"><button type="button" class="btn btn-indigo btn-md">Tambah Surat</button></a>
+                    <div align="center">
+                          <a href="<?php  echo base_url('surat/buat_surat_dinas')?>"><button type="button" class="btn btn-indigo btn-md"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Surat</button></a>
                     </div>
               </div>
           </div>
