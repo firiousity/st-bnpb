@@ -28,6 +28,6 @@
 	?>
 		</div>
 	</div>
-	<a href="../tiket_pesawat"><button class="btn btn-indigo">Kembali</button></a>
+	<a href="../tiket_pesawat"><button class="btn btn-indigo"><i class="fa fa-angle-left" arria-hidden="true"></i> Kembali</button></a>
 </div>
 </body>

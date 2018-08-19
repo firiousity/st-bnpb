@@ -7,16 +7,16 @@
       <th scope="col">No
         <i class="fa fa-sort float-right" aria-hidden="true"></i>
       </th>
-      <th scope="col">Nama
+      <th class="th-sm" scope="col">Nama
         <i class="fa fa-sort float-right" aria-hidden="true"></i>
       </th>
-      <th scope="col">NIP
+      <th class="th-sm" scope="col">NIP
         <i class="fa fa-sort float-right" aria-hidden="true"></i>
       </th>
       <th scope="col">Jabatan
         <i class="fa fa-sort float-right" aria-hidden="true"></i>
       </th>
-      <th scope="col">Golongan
+      <th class="th-sm" scope="col">Golongan
         <i class="fa fa-sort float-right" aria-hidden="true"></i>
       </th>
       <th scope="col">Edit
@@ -81,7 +81,7 @@
                       }
                     </script>
 <div align="center">
-                <a href="#"><button type="button" data-toggle="modal" data-target="#modalRegisterForm" class="btn btn-indigo btn-md">Tambah Pegawai</button></a>
+                <a href="#"><button type="button" data-toggle="modal" data-target="#modalRegisterForm" class="btn btn-indigo btn-md"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Pegawai</button></a>
               </div>
       </div>
     </div>
