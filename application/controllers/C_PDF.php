@@ -292,13 +292,14 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(5,6,'2.',0,0);
 		$pdf->MultiCell(0,6,"Apabila terdapat kekeliruan dalam Surat Tugas ini akan dilakukan perbaikan sebagaimana mestinya.",0,'J');
 		$pdf->Ln();
-		$pdf->MultiCell(0,6,"Jakarta, ".$this->tanggal_indo($var_tgl_surat,'/'),0,'R');
-		$pdf->MultiCell(0,6,"Kepala Pusat Data Informasi dan Humas",0,'R');
+		$pdf->Ln();
+		$pdf->MultiCell(0,6,"Jakarta, ".$this->tanggal_indo($var_tgl_surat,'/'),0,'C');
+		$pdf->MultiCell(0,6,"Kepala Pusat Data Informasi dan Humas",0,'C');
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->SetFont('Arial','B',12);
-		$pdf->MultiCell(0,6,$kapusdatin,0,'R');
+		$pdf->MultiCell(0,6,$kapusdatin,0,'C');
 
 		//Page ke-2
 		if ($opsi == '0') {
@@ -897,6 +898,7 @@ class C_PDF extends CI_Controller {
 		$r_tiket_result = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
 		$r_tiket = $r_tiket_result['0']->tiket;
 
+
 		$ppk 			= $this->db->get_where('pejabat_administratif',
 			array('jabatan' => 'Pejabat Pembuat Komitmen'))->result();
 		$nama_ppk 				= $ppk['0']->nama;
@@ -958,15 +960,19 @@ class C_PDF extends CI_Controller {
         $pdf->SetFont('Arial','',12);
 		$pdf->Cell(10,5,'1','LB',0,'R',0);
 		$pdf->Cell(70,5,'Tiket Pesawat '.$rute,'LRB',0,'L',0);
-		$pdf->Cell(40,5,'Rp. '.$sbu_tiket,'RB',0,'R',0);
-		$pdf->Cell(40,5,'Rp '.$r_tiket,'RB',0,'R',0);
+		$pdf->Cell(10,5,'Rp','B',0,'L',0);
+		$pdf->Cell(30,5,''.$sbu_tiket,'RB',0,'R',0);
+		$pdf->Cell(10,5,'Rp','B',0,'L',0);
+		$pdf->Cell(30,5,''.$r_tiket,'RB',0,'R',0);
         $pdf->Ln();
         $pdf->Cell(20,7,'',0,0);
         $pdf->SetFont('Arial','B',12);
 		$pdf->Cell(10,5,'','LB',0,'L',0);
 		$pdf->Cell(70,5,'Jumlah','LRB',0,'C',0);
-		$pdf->Cell(40,5,'Rp '.$sbu_tiket,'RB',0,'R',0);
-		$pdf->Cell(40,5,'Rp '.$r_tiket,'RB',0,'R',0);
+		$pdf->Cell(10,5,'Rp','B',0,'L',0);
+		$pdf->Cell(30,5,''.$sbu_tiket,'RB',0,'R',0);
+		$pdf->Cell(10,5,'Rp','B',0,'L',0);
+		$pdf->Cell(30,5,''.$r_tiket,'RB',0,'R',0);
         $pdf->Ln();
 		//end of table
 
@@ -1116,7 +1122,7 @@ class C_PDF extends CI_Controller {
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'','L',0,'C',0);
 		$pdf->Cell(70,5,'b. Jabatan / Instansi','LR',0,'L',0);
-		$pdf->Cell(90,5,'b. '.$jabatan,'R',0,'L',0);
+		$pdf->Cell(90,5,'b. ','R',0,'L',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'','LB',0,'C',0);
@@ -1126,8 +1132,7 @@ class C_PDF extends CI_Controller {
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'4','L',0,'C',0);
 		$pdf->Cell(70,5,'Maksud perjalanan Dinas','LR',0,'L',0);
-		$pdf->Cell(90,5,'Melakukan kegiatan '.$kegiatan,'R',0,'L',0);
-        $pdf->Ln();
+		$pdf->MultiCell(90,5,'Melakukan kegiatan '.$kegiatan,'LR','L');
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'','LB',0,'C',0);
 		$pdf->Cell(70,5,'','LBR',0,'L',0);
@@ -1480,8 +1485,8 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(5,7,'',0,0);
 			$pdf->SetFont('Arial','B',10);
 			$pdf->Cell(10,6,'','LB',0,'C',0);
-			$pdf->Cell(20,6,'Terbilang :','LBR',0,'L',0);
-			$pdf->Cell(150,6,$this->Terbilang($total_biaya)." rupiah",'BR',0,'L',0);
+			$pdf->Cell(75,6,'Terbilang :','LB',0,'R',0);
+			$pdf->MultiCell(95,6,$this->Terbilang($total_biaya)." rupiah",'LBR','L',0);
 			$pdf->Ln();
 			//end of table
 			$pdf->Ln();
@@ -1503,13 +1508,13 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(15,6,'',0,0,'L');
 			if($jenis == '0') {
 				//bayar di belakang brrti yg udah diterima 0
-				$pdf->Cell(10,6,'Rp. -',0,0,'L');
+				$pdf->Cell(10,6,'Rp 0',0,0,'L');
 			} else {
-				$pdf->Cell(10,6,'Rp. '.$semula,0,0,'L');
+				$pdf->Cell(10,6,'Rp '.$semula,0,0,'L');
 			}
 			$pdf->Cell(40,6,'',0,0,'R');
 			$pdf->Cell(48,6,'',0,0,'C');
-			$pdf->MultiCell(80,6,'Rp. 0',0,'L');
+			$pdf->MultiCell(80,6,'Rp 0',0,'L');
 			$pdf->Ln();
 			$pdf->Cell(100,6,"Bendahara Pengeluaran Pembantu",0, 0,'C');
 			$pdf->MultiCell(50,6,'Yang menerima',0,'R');
@@ -1548,7 +1553,9 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(45,5,'',0,0,'L');
 			$pdf->Cell(80,5,".............................................. : Rp",0, 0,'L');
 			$pdf->Cell(7,5,$sisa,0, 0,'R');
-			$pdf->Ln();$pdf->Ln();$pdf->Ln();$pdf->Ln();
+			$pdf->Ln();
+			$pdf->Ln();
+			$pdf->Ln();
 			$pdf->Cell(115,6,'',0, 0,'C');
 			$pdf->MultiCell(50,5,'SETUJU DIBAYAR',0,'C');
 			$pdf->Cell(115,6,'',0, 0,'C');
@@ -1856,9 +1863,9 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'Tiket Pesawat','L',0,'L',0);
 		$pdf->Cell(10,6,'',0,0,'L',0);
 		$pdf->Cell(10,6,'',0,0,'R',0);
-		$pdf->Cell(5,6,'',0,0,'L',0);
+		$pdf->Cell(5,6,'Rp',0,0,'L',0);
 		$pdf->Cell(25,6,$s_tiket,'R',0,'R',0);
-		$pdf->Cell(10,6,'',0,0,'L',0);
+		$pdf->Cell(10,6,'Rp',0,0,'L',0);
 		$pdf->Cell(30,6,$s_tiket,'R',0,'R',0);
 		$pdf->Cell(55,6,'','R',0,'L',0);
 		$pdf->Ln();
@@ -1867,9 +1874,9 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'Transport','L',0,'L',0);
 		$pdf->Cell(10,6,'',0,0,'L',0);
 		$pdf->Cell(10,6,'',0,0,'R',0);
-		$pdf->Cell(5,6,'',0,0,'L',0);
+		$pdf->Cell(5,6,'Rp',0,0,'L',0);
 		$pdf->Cell(25,6,$s_transport,'R',0,'R',0);
-		$pdf->Cell(10,6,'',0,0,'L',0);
+		$pdf->Cell(10,6,'Rp',0,0,'L',0);
 		$pdf->Cell(30,6,$s_transport,'R',0,'R',0);
 		$pdf->Cell(55,6,'','R',0,'L',0);
 		$pdf->Ln();
@@ -1883,21 +1890,16 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(10,6,'','L',0,'C',0);
-		$pdf->Cell(75,6,'SISA '.$keterangan,'LR',0,'L',0);
-		$pdf->Cell(40,6,'','R',0,'R',0);
-		$pdf->Cell(55,6,'','R',0,'L',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','LB',0,'C',0);
-		$pdf->Cell(75,6,'Jumlah :','LBR',0,'R',0);
+		$pdf->Cell(55,6,'SISA '.$keterangan,'BL',0,'L',0);
+		$pdf->Cell(20,6,'Jumlah :','BR',0,'R',0);
 		$pdf->Cell(10,6,'Rp','B',0,'L',0);
 		$pdf->Cell(30,6,abs($sisa),'BR',0,'R',0);
 		$pdf->Cell(55,6,'','BR',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(10,6,'','LB',0,'C',0);
-		$pdf->Cell(20,6,'Terbilang :','LBR',0,'L',0);
-		$pdf->Cell(150,6,$this->Terbilang(abs($sisa))." rupiah",'BR',0,'L',0);
+		$pdf->Cell(75,6,'Terbilang :','LB',0,'R',0);
+		$pdf->MultiCell(95,6,$this->Terbilang(abs($sisa))." delapan ratus delapan puluh delapan rupiah",'LBR','L',0);
 		$pdf->Ln();
 		//end of table
 		$pdf->Ln();
@@ -1912,8 +1914,9 @@ class C_PDF extends CI_Controller {
 		$pdf->MultiCell(50,6,'Jakarta, '.$var_tgl_skrg,0,'R');
 
 		$pdf->Ln();
-		$pdf->Cell(100,6,"Mengetahui \nPejabat Pembuat Komitmen",0, 0,'C');
-		$pdf->MultiCell(70,6,'Yang melakukan perjalanan dinas',0,'R');
+		$pdf->MultiCell(60,6,'Mengetahui',0,'R');
+		$pdf->Cell(100,6,"\nPejabat Pembuat Komitmen",0, 0,'C');
+		$pdf->MultiCell(100,6,'Yang melakukan perjalanan dinas',0,'C');
 
 		$pdf->Ln();
 		$pdf->Ln();
@@ -1921,10 +1924,10 @@ class C_PDF extends CI_Controller {
 		$pdf->SetFont('Arial','BU',10);
 		$pdf->Ln();
 		$pdf->Cell(100,6,$nama_ppk,0, 0,'C');
-		$pdf->MultiCell(70,6,$nama_dinas,0,'C');
+		$pdf->MultiCell(100,6,$nama_dinas,0,'C');
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(100,6,'NIP.'.$nip_ppk  ,0, 0,'C');
-		$pdf->MultiCell(70,6,'NIP. '.$nip_dinas,0,'C');
+		$pdf->MultiCell(100,6,'NIP. '.$nip_dinas,0,'C');
 
 		//Cetak gans
 		$pdf->Output();

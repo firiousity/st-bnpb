@@ -40,10 +40,10 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 					<tbody>
 					<tr>
 						<div>
-							<td><input name="nomor" class="input-block-level form-control" required="true" value="<?php echo $nomor_surat ?>" type="text"/></td>
+							<td><input name="nomor" class="input-block-level form-control" value="<?php echo $nomor_surat ?>" type="text"/></td>
 						</div>
 						<div>
-							<td><input name="kegiatan" class="input-block-level form-control" required="true" type="text"/></td>
+							<td><input name="kegiatan" class="input-block-level form-control"  type="text"/></td>
 						</div>
 						
 						<td><input
@@ -63,18 +63,18 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 					<!-- BAGIAN INI HANYA MUNCUL JIKA OPSI BANYAK TEMPAT TIDAK DI PILIH. -->
 					<tbody id="itemgeneral" style="display: block">
 					<tr>
-						<td><label>Tanggal Mulai</label><br/><input required="true" name="mulai" class="input-block-level form-control" type="date"/></td>
-						<td><label>Tanggal Akhir</label><br/><input required="true" name="akhir" class="input-block-level form-control" type="date" /></td>
+						<td><label>Tanggal Mulai</label><br/><input name="mulai" class="input-block-level form-control" type="date"/></td>
+						<td><label>Tanggal Akhir</label><br/><input name="akhir" class="input-block-level form-control" type="date" /></td>
 						<td style="display: block" id="moxspoy">
 							<label>Nama Pegawai yang di tugaskan</label><br/>
-							<select required="true" multiple="multiple" id="moxs" name="my-select[]">
+							<select multiple="multiple" id="moxs" name="my-select[]">
 								<?php foreach ($pegawai as $row) {
 									echo
 									"<option value='$row->id_pegawai'>$row->nama_pegawai</option>" ;
 								}
 								?>
 							</select></td>
-						<td><label>Nama Tempat</label><br/><input required="true" name="tempat" class="input-block-level form-control" type="text"/></td>
+						<td><label>Nama Tempat</label><br/><input name="tempat" class="input-block-level form-control" type="text"/></td>
 					</tr>
 					<tr>
 						<td>
@@ -149,10 +149,10 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 					<!--elemet sebagai target append-->
 					<tbody id="itemlist" style="display: none;">
 					<tr>
-						<td><label>Tempat</label><input name="tempat_input[0]" class="input-block-level" required="true" type="text"/></td>
-						<td><label>Tanggal Mulai</label><input name="mulai_input[0]" class="input-block-level" required="true" type="date"/></td>
-						<td><label>Tanggal Akhir</label><input name="akhir_input[0]" class="input-block-level" required="true" type="date" /></td>
-						<td><label>Pilih Pegawai</label><select  name="my-select-pegawai[0]" required="true">
+						<td><label>Tempat</label><input name="tempat_input[0]" class="input-block-level" type="text"/></td>
+						<td><label>Tanggal Mulai</label><input name="mulai_input[0]" class="input-block-level"  type="date"/></td>
+						<td><label>Tanggal Akhir</label><input name="akhir_input[0]" class="input-block-level"  type="date" /></td>
+						<td><label>Pilih Pegawai</label><select  name="my-select-pegawai[0]">
 								<?php foreach ($pegawai as $row) {
 									echo
 									"<option value='$row->id_pegawai'>$row->nama_pegawai</option>" ;
@@ -162,7 +162,7 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 						<td>
 							<label >Uang Harian: </label>
 							<div>
-								<select name="my-select-harian[0]" required="true">
+								<select name="my-select-harian[0]" >
 									<?php foreach ($harian as $row) {
 										echo
 										"<option value='$row->id'>$row->provinsi</option>" ;
@@ -174,7 +174,7 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 						<td>
 							<label >Uang Penginapan: </label>
 							<div>
-								<select name="my-select-penginapan[0]" required="true">
+								<select name="my-select-penginapan[0]">
 									<?php foreach ($penginapan as $row) {
 										echo
 										"<option value='$row->id'>$row->provinsi</option>" ;
@@ -186,7 +186,7 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 						<td>
 							<label >Tiket Pesawat: </label>
 							<div>
-								<select name="my-select-tiket[0]" required="true">
+								<select name="my-select-tiket[0]">
 									<?php foreach ($tiket as $row) {
 										echo
 										"<option value='$row->id'>$row->rute</option>" ;
@@ -198,7 +198,7 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 						<td>
 							<label>Uang Transportasi Awal: </label>
 							<div>
-								<select name="my-select-transport[0]" required="true">
+								<select name="my-select-transport[0]" >
 									<?php foreach ($transport as $row) {
 										echo
 										"<option value='$row->id'>$row->provinsi</option>" ;
@@ -210,7 +210,7 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 						<td>
 							<label >Uang Transportasi Akhir: </label>
 							<div>
-								<select name="my-select-transport2[0]" required="true">
+								<select name="my-select-transport2[0]">
 									<?php foreach ($transport as $row) {
 										echo
 										"<option value='$row->id'>$row->provinsi</option>" ;

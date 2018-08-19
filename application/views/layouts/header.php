@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>SPJ Pusdatinmas</title>
+	<title>PSDP | Pengolaan Surat dan Data Pusdatinmas</title>
 	<!-- Favicon for better exp -->
 	<link rel="shortcut icon" href="http://pngimg.com/uploads/envelope/envelope_PNG18414.png" type="image/x-icon">
 	<!-- Font Awesome -->
