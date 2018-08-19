@@ -10,7 +10,7 @@
                               <th class="th-sm" scope="col">Nomor Surat
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
-                              <th class="th-sm" scope="col">Tempat
+                              <th class="th-sm" scope="col">Kegiatan
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
                               <th class="th-sm" scope="col">Rincian Biaya

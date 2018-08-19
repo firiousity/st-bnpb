@@ -7,7 +7,7 @@
                               <th scope="col">No.
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
-                              <th class="th-sm" scope="col">Nomor Surat
+                              <th class="th-sm" scope="col">Nama
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
                               <th class="th-sm" scope="col">Print Surat
