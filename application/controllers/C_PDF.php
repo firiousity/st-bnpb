@@ -1899,7 +1899,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(10,6,'','LB',0,'C',0);
 		$pdf->Cell(75,6,'Terbilang :','LB',0,'R',0);
-		$pdf->MultiCell(95,6,$this->Terbilang(abs($sisa))." delapan ratus delapan puluh delapan rupiah",'LBR','L',0);
+		$pdf->MultiCell(95,6,$this->Terbilang(abs($sisa))." rupiah",'LBR','L',0);
 		$pdf->Ln();
 		//end of table
 		$pdf->Ln();

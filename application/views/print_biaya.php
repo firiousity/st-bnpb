@@ -27,7 +27,7 @@
                               <td>$row->nama_pegawai</td>
                               <td>
                               
-                              <span><a href='".base_url('C_PDF/rampung/'.$row->id_surat."_".$row->id_pegawai)."'> 
+                              <span><a href='".base_url('C_PDF/rampung/'.$row->id_surat."_".$row->id_pegawai)."' target='_blank'> 
                               <button type=\"button\" class=\"btn btn-light-blue btn-sm my-0\">SPD RAMPUNG
                               </button></a></span>
                               <span><a href='".base_url('C_PDF/print_rincian/'.$row->id_surat."_".$row->id_pegawai)."' target='_blank'> 
