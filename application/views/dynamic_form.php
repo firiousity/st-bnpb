@@ -141,7 +141,7 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 					</tbody>
 				</table>
 
-				<table class="table table-responsive">
+				<table class="table table-responsive" width="100%">
 					<!-- BAGIAN FORM DINAMIS INI AKAN MUNCUL JIKA USER MENGKLIK OPSI BANYAK TEMPAT-->
 					<thead id="labelitemlist" style="display: none">
 					</thead>
