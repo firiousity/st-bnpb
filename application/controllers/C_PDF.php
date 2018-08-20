@@ -810,15 +810,15 @@ class C_PDF extends CI_Controller {
 			$pdf->SetFont('Arial','',12);
 			$pdf->Cell(10,5,'1','LB',0,'R',0);
 			$pdf->Cell(70,5,'Tiket Pesawat '.$rute.' (PP)','LRB',0,'L',0);
-			$pdf->Cell(40,5,'Rp. '.number_format($sbu_tiket,2,',','.'),'RB',0,'R',0);
-			$pdf->Cell(40,5,'Rp. '.number_format($r_tiket,2,',','.'),'RB',0,'R',0);
+			$pdf->Cell(40,5,'Rp '.number_format($sbu_tiket,2,',','.'),'RB',0,'R',0);
+			$pdf->Cell(40,5,'Rp '.number_format($r_tiket,2,',','.'),'RB',0,'R',0);
 			$pdf->Ln();
 			$pdf->Cell(20,7,'',0,0);
 			$pdf->SetFont('Arial','B',12);
 			$pdf->Cell(10,5,'','LB',0,'L',0);
 			$pdf->Cell(70,5,'Jumlah','LRB',0,'C',0);
-			$pdf->Cell(40,5,'Rp. '.$sbu_tiket,'RB',0,'R',0);
-			$pdf->Cell(40,5,'Rp. '.$r_tiket,'RB',0,'R',0);
+			$pdf->Cell(40,5,'Rp '.number_format($sbu_tiket,2,',','.'),'RB',0,'R',0);
+			$pdf->Cell(40,5,'Rp '.number_format($r_tiket,2,',','.'),'RB',0,'R',0);
 			$pdf->Ln();
 			//end of table
 			$pdf->Ln();
@@ -962,18 +962,18 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,5,'1','LB',0,'R',0);
 		$pdf->Cell(70,5,'Tiket Pesawat '.$rute,'LRB',0,'L',0);
 		$pdf->Cell(10,5,'Rp','B',0,'L',0);
-		$pdf->Cell(30,5,''.$sbu_tiket,'RB',0,'R',0);
+		$pdf->Cell(30,5,''.number_format($sbu_tiket,2,',','.'),'RB',0,'R',0);
 		$pdf->Cell(10,5,'Rp','B',0,'L',0);
-		$pdf->Cell(30,5,''.$r_tiket,'RB',0,'R',0);
+		$pdf->Cell(30,5,''.number_format($r_tiket,2,',','.'),'RB',0,'R',0);
         $pdf->Ln();
         $pdf->Cell(20,7,'',0,0);
         $pdf->SetFont('Arial','B',12);
 		$pdf->Cell(10,5,'','LB',0,'L',0);
 		$pdf->Cell(70,5,'Jumlah','LRB',0,'C',0);
 		$pdf->Cell(10,5,'Rp','B',0,'L',0);
-		$pdf->Cell(30,5,''.$sbu_tiket,'RB',0,'R',0);
+		$pdf->Cell(30,5,''.number_format($sbu_tiket,2,',','.'),'RB',0,'R',0);
 		$pdf->Cell(10,5,'Rp','B',0,'L',0);
-		$pdf->Cell(30,5,''.$r_tiket,'RB',0,'R',0);
+		$pdf->Cell(30,5,''.number_format($r_tiket,2,',','.'),'RB',0,'R',0);
         $pdf->Ln();
 		//end of table
 
