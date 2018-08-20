@@ -12,9 +12,15 @@
         </ul>
         <span style="margin-right: 20px;">
             <ul class="navbar-nav navbar-right mr-auto mt-lg-0">
-        <li class="nav-item">
+              <span><li class="nav-item">
+                <a class="nav-link" href="https://bnpb.go.id/">BNPB</a>
+            </li></span>
+              <span><li class="nav-item">
+                <a class="nav-link" href="http://dibi.bnpb.go.id/dibi/">DIBI</a>
+            </li></span>
+            <span><li class="nav-item">
                 <a class="nav-link" onclick="keluar()">Logout</a>
-            </li>    
+            </li></span>
         </ul>    
         </span>
     </div>
