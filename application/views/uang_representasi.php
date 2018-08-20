@@ -1,6 +1,6 @@
 <body>
-  <div class="container margin">
-        <p style="font-size: 27px; text-align: center; padding-top: 50px;">Uang Representasi</p>
+  <div class="container">
+        <p style="font-size: 27px; text-align: center; padding-top: 20vh;">Uang Representasi</p>
               <table id="uang_representasi" class="table table-hover" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>

@@ -1,5 +1,5 @@
 <body>
-<div class="container margin" style="padding-top: 50px;">
+<div class="container" style="padding-top: 20vh;">
 	<div class="card mb-4">
 		<div class="card-body">
 			<?php foreach ($uang_harian as $row) {

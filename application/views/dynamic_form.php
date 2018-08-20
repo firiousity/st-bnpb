@@ -24,8 +24,8 @@ $json = $json + 1;
 $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 
 ?>
-<div class="container margin">
-	<div class="row">
+<div class="container">
+	<div class="row" style="padding-top: 15vh">
 		<form action="<?php echo base_url('surat/exec_surat') ?>" method="post">
 		<!-- BAGIAN SURAT YANG TIDAK BERUBAH -->
 				<table class="table table-responsive" cellspacing="0" width="100%">
