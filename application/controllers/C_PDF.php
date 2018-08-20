@@ -264,7 +264,7 @@ class C_PDF extends CI_Controller {
 		if($num_pegawai < 4 && $opsi == "0") {
 			$counterr = 1;
 			foreach ($nama_result as $row) {
-				$pdf->Cell(5,6,"$counterr. ",0,0);
+				$pdf->Cell(9,6,$counterr. ". ",0,0);
 				$pdf->MultiCell(0,6,"$row->nama_pegawai",0,'J');
 				$pdf->Cell(30,6,"",0,0);
 				$counterr++;
@@ -314,8 +314,8 @@ class C_PDF extends CI_Controller {
 				$pdf->SetFont('Arial','',12);
 				$counter = 1;
 				foreach ($nama_result as $row) {
-					$pdf->Cell(5,6,"$counter. ",0,0);
-					$pdf->MultiCell(0,6,"$row->nama_pegawai",0,'J');
+					$pdf->Cell(9,6,$counter.". ",0,0);
+					$pdf->MultiCell(0,6,$row->nama_pegawai,0,'J');
 					$counter++;
 				}
 			}

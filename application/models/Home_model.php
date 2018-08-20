@@ -76,6 +76,8 @@ class Home_model extends CI_Model {
 	   $this->db->join('data_rinci', 'data_rinci.id_pegawai = pegawai.id_pegawai', 'inner')->where( array(
 		   'id_surat' => $id
 	   ));
+	   $this->db->order_by('pegawai.golongan_pegawai', 'desc');
+	   $this->db->order_by('pegawai.id_pegawai', 'asc');
 	   $query = $this->db->get();
 	   return $query->result();
    }

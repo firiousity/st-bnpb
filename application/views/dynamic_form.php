@@ -40,10 +40,11 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 					<tbody>
 					<tr>
 						<div>
-							<td><input name="nomor" class="input-block-level form-control" value="<?php echo $nomor_surat ?>" type="text"/></td>
+							<td><input name="nomor" class="input-block-level form-control"
+									   value="<?php echo $nomor_surat ?>" required type="text"/></td>
 						</div>
 						<div>
-							<td><input name="kegiatan" class="input-block-level form-control"  type="text"/></td>
+							<td><input name="kegiatan" class="input-block-level form-control" required type="text"/></td>
 						</div>
 						
 						<td><input
@@ -63,8 +64,10 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 					<!-- BAGIAN INI HANYA MUNCUL JIKA OPSI BANYAK TEMPAT TIDAK DI PILIH. -->
 					<tbody id="itemgeneral" style="display: block">
 					<tr>
-						<td><label>Tanggal Mulai</label><br/><input name="mulai" class="input-block-level form-control" type="date"/></td>
-						<td><label>Tanggal Akhir</label><br/><input name="akhir" class="input-block-level form-control" type="date" /></td>
+						<td><label>Tanggal Mulai</label><br/><input name="mulai" class="input-block-level form-control"
+																	required type="date"/></td>
+						<td><label>Tanggal Akhir</label><br/><input name="akhir" class="input-block-level form-control"
+																	required type="date" /></td>
 						<td style="display: block" id="moxspoy">
 							<label>Nama Pegawai yang di tugaskan</label><br/>
 							<select multiple="multiple" id="moxs" name="my-select[]">
@@ -74,7 +77,8 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 								}
 								?>
 							</select></td>
-						<td><label>Nama Tempat</label><br/><input name="tempat" class="input-block-level form-control" type="text"/></td>
+						<td><label>Nama Tempat</label><br/><input name="tempat" class="input-block-level form-control"
+																  required type="text"/></td>
 					</tr>
 					<tr>
 						<td>
