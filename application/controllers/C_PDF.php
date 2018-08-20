@@ -663,24 +663,24 @@ class C_PDF extends CI_Controller {
         $pdf->Cell(10,7,'',0,0);
         $pdf->Cell(10,7,'',0,0);
         $pdf->SetFont('Arial','',10);
-		$pdf->Cell(10,5,'1','L',0,'R',0);
-		$pdf->Cell(70,5,'Transport Bandara '.$berangkat.' (PP)','L',0,'L',0);
-		$pdf->Cell(30,5,'2 x '.$sbu_transport,'R',0,'R',0);
-		$pdf->Cell(40,5,$total1,'R',0,'R',0);
+		$pdf->Cell(10,6,'1','L',0,'R',0);
+		$pdf->Cell(70,6,'Transport Bandara '.$berangkat.' (PP)','L',0,'L',0);
+		$pdf->Cell(30,6,'2 x '.number_format($sbu_transport,2,',','.'),'R',0,'R',0);
+		$pdf->Cell(40,6,number_format($total1,2,',','.'),'R',0,'R',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
         $pdf->Cell(10,7,'',0,0);
         $pdf->Cell(10,5,'2','LB',0,'R',0);
 		$pdf->Cell(70,5,'Transport Bandara '.$tujuan.' (PP)','LB',0,'L',0);
-		$pdf->Cell(30,5,'2 x '.$sbu_transport2,'RB',0,'R',0);
-		$pdf->Cell(40,5,$total2,'RB',0,'R',0);
+		$pdf->Cell(30,5,'2 x '.number_format($sbu_transport2,2,',','.'),'RB',0,'R',0);
+		$pdf->Cell(40,5,number_format($total2,2,',','.'),'RB',0,'R',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
         $pdf->Cell(10,7,'',0,0);
         $pdf->SetFont('Arial','B',10);
 		$pdf->Cell(10,5,'','LB',0,'L',0);
 		$pdf->Cell(100,5,'Jumlah','RB',0,'C',0);
-		$pdf->Cell(40,5,$total_transport,'RB',0,'R',0);
+		$pdf->Cell(40,5,number_format($total_transport,2,',','.'),'RB',0,'R',0);
         $pdf->Ln();
         //end of table
 		$pdf->Ln();
@@ -812,15 +812,15 @@ class C_PDF extends CI_Controller {
 			$pdf->SetFont('Arial','',12);
 			$pdf->Cell(10,5,'1','LB',0,'R',0);
 			$pdf->Cell(70,5,'Tiket Pesawat '.$rute.' (PP)','LRB',0,'L',0);
-			$pdf->Cell(40,5,'Rp. '.$sbu_tiket,'RB',0,'R',0);
-			$pdf->Cell(40,5,'Rp. '.$r_tiket,'RB',0,'R',0);
+			$pdf->Cell(40,5,'Rp '.number_format($sbu_tiket,2,',','.'),'RB',0,'R',0);
+			$pdf->Cell(40,5,'Rp '.number_format($r_tiket,2,',','.'),'RB',0,'R',0);
 			$pdf->Ln();
 			$pdf->Cell(20,7,'',0,0);
 			$pdf->SetFont('Arial','B',12);
 			$pdf->Cell(10,5,'','LB',0,'L',0);
 			$pdf->Cell(70,5,'Jumlah','LRB',0,'C',0);
-			$pdf->Cell(40,5,'Rp. '.$sbu_tiket,'RB',0,'R',0);
-			$pdf->Cell(40,5,'Rp. '.$r_tiket,'RB',0,'R',0);
+			$pdf->Cell(40,5,'Rp '.number_format($sbu_tiket,2,',','.'),'RB',0,'R',0);
+			$pdf->Cell(40,5,'Rp '.number_format($r_tiket,2,',','.'),'RB',0,'R',0);
 			$pdf->Ln();
 			//end of table
 			$pdf->Ln();
@@ -964,18 +964,18 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,5,'1','LB',0,'R',0);
 		$pdf->Cell(70,5,'Tiket Pesawat '.$rute,'LRB',0,'L',0);
 		$pdf->Cell(10,5,'Rp','B',0,'L',0);
-		$pdf->Cell(30,5,''.$sbu_tiket,'RB',0,'R',0);
+		$pdf->Cell(30,5,''.number_format($sbu_tiket,2,',','.'),'RB',0,'R',0);
 		$pdf->Cell(10,5,'Rp','B',0,'L',0);
-		$pdf->Cell(30,5,''.$r_tiket,'RB',0,'R',0);
+		$pdf->Cell(30,5,''.number_format($r_tiket,2,',','.'),'RB',0,'R',0);
         $pdf->Ln();
         $pdf->Cell(20,7,'',0,0);
         $pdf->SetFont('Arial','B',12);
 		$pdf->Cell(10,5,'','LB',0,'L',0);
 		$pdf->Cell(70,5,'Jumlah','LRB',0,'C',0);
 		$pdf->Cell(10,5,'Rp','B',0,'L',0);
-		$pdf->Cell(30,5,''.$sbu_tiket,'RB',0,'R',0);
+		$pdf->Cell(30,5,''.number_format($sbu_tiket,2,',','.'),'RB',0,'R',0);
 		$pdf->Cell(10,5,'Rp','B',0,'L',0);
-		$pdf->Cell(30,5,''.$r_tiket,'RB',0,'R',0);
+		$pdf->Cell(30,5,''.number_format($r_tiket,2,',','.'),'RB',0,'R',0);
         $pdf->Ln();
 		//end of table
 
@@ -1426,7 +1426,7 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(10,6,$hari.' Hari',0,0,'L',0);
 			$pdf->Cell(10,6,'x',0,0,'R',0);
 			$pdf->Cell(5,6,'Rp',0,0,'L',0);
-			$pdf->Cell(25,6,$harian,'R',0,'R',0);
+			$pdf->Cell(25,6,number_format($harian,2,',','.'),'R',0,'R',0);
 			$pdf->Cell(10,6,'Rp',0,0,'L',0);
 			$pdf->Cell(30,6,$total_harian,'R',0,'R',0);
 			$pdf->Cell(55,6,'Perjalanan dinas ke :','R',0,'L',0);
@@ -1434,7 +1434,7 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(5,7,'',0,0);
 			$pdf->Cell(10,6,'2','L',0,'C',0);
 			$pdf->Cell(25,6,'Penginapan','L',0,'L',0);
-			$pdf->Cell(10,6,$malam.' Malam',0,0,'L',0);
+			$pdf->Cell(10,6,number_format($malam,2,',','.'),' Malam',0,0,'L',0);
 			$pdf->Cell(10,6,'x',0,0,'R',0);
 			$pdf->Cell(5,6,'Rp',0,0,'L',0);
 			$pdf->Cell(25,6,$penginapan,'R',0,'R',0);
