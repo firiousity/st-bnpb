@@ -1749,7 +1749,7 @@ class C_PDF extends CI_Controller {
 			$keterangan = "";
 		}
 		//Print PDF
-		$pdf = new FPDF('p','mm','A4');
+		$pdf = new PDF_MC_Table('p','mm','A4');
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','BU',12);
 		$pdf->Cell(0,6,"RINCIAN PERHITUNGAN SPD RAMPUNG",0,1,'C');
@@ -1904,10 +1904,14 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(55,6,'','BR',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','LB',0,'C',0);
-		$pdf->Cell(75,6,'Terbilang :','LB',0,'R',0);
-		$pdf->MultiCell(95,6,$this->Terbilang(abs($sisa))." rupiah",'LBR','L',0);
-		$pdf->Ln();
+		$pdf->SetWidths(array(10, 75, 95));
+		for($i=0;$i<1;$i++)
+			$pdf->Row(array("",
+				"Terbilang",$this->Terbilang(abs($sisa))." rupiah"));
+//		$pdf->Cell(10,6,'','1',0,'C',0);
+//		$pdf->Cell(75,6,'Terbilang :','LB',0,'R',0);
+//		$pdf->MultiCell(95,6,$this->Terbilang(abs($sisa))." rupiah",'LBR','L',0);
+//		$pdf->Ln();
 		//end of table
 		$pdf->Ln();
 
