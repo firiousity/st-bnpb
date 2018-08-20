@@ -13,10 +13,42 @@
         <span style="margin-right: 20px;">
             <ul class="navbar-nav navbar-right mr-auto mt-lg-0">
         <li class="nav-item">
-                <a class="nav-link" href="<?php echo  base_url()?>">Logout</a>
+                <a class="nav-link" onclick="keluar()">Logout</a>
             </li>    
         </ul>    
         </span>
     </div>
 </div>
 </nav>
+<script>
+                      function keluar() {
+                      const swalWithBootstrapButtons = swal.mixin({
+                      confirmButtonClass: 'btn btn-success',
+                      cancelButtonClass: 'btn btn-danger',
+                      buttonsStyling: false,
+                    })
+
+                    swalWithBootstrapButtons({
+                      title: 'Are you sure?',
+                      text: "You won't be able to revert this!",
+                      type: 'warning',
+                      showCancelButton: true,
+                      confirmButtonText: 'Yes, im sure!',
+                      cancelButtonText: 'No, cancel!',
+                      reverseButtons: true
+                    }).then((result) => {
+                      if (result.value) {
+                        window.location = '<?php echo base_url() ?>'
+                      } else if (
+                        // Read more about handling dismissals
+                        result.dismiss === swal.DismissReason.cancel
+                      ) {
+                        swalWithBootstrapButtons(
+                          'Cancelled',
+                          'Your imaginary file is safe :)',
+                          'error'
+                        )
+                      }
+                    })
+                      }
+                    </script>
