@@ -812,19 +812,15 @@ class C_PDF extends CI_Controller {
 			$pdf->SetFont('Arial','',12);
 			$pdf->Cell(10,5,'1','LB',0,'R',0);
 			$pdf->Cell(70,5,'Tiket Pesawat '.$rute.' (PP)','LRB',0,'L',0);
-			$pdf->Cell(10,5,'Rp','B',0,'R',0);
-			$pdf->Cell(30,5,''.number_format($sbu_tiket,2,',','.'),'RB',0,'R',0);
-			$pdf->Cell(10,5,'Rp','B',0,'R',0);
-			$pdf->Cell(30,5,''.number_format($r_tiket,2,',','.'),'RB',0,'R',0);
+			$pdf->Cell(40,5,'Rp '.number_format($sbu_tiket,2,',','.'),'RB',0,'R',0);
+			$pdf->Cell(40,5,'Rp '.number_format($r_tiket,2,',','.'),'RB',0,'R',0);
 			$pdf->Ln();
 			$pdf->Cell(20,7,'',0,0);
 			$pdf->SetFont('Arial','B',12);
 			$pdf->Cell(10,5,'','LB',0,'L',0);
 			$pdf->Cell(70,5,'Jumlah','LRB',0,'C',0);
-			$pdf->Cell(10,5,'Rp','B',0,'R',0);
-			$pdf->Cell(30,5,''.number_format($sbu_tiket,2,',','.'),'RB',0,'R',0);
-			$pdf->Cell(10,5,'Rp','B',0,'R',0);
-			$pdf->Cell(30,5,''.number_format($r_tiket,2,',','.'),'RB',0,'R',0);
+			$pdf->Cell(40,5,'Rp '.number_format($sbu_tiket,2,',','.'),'RB',0,'R',0);
+			$pdf->Cell(40,5,'Rp '.number_format($r_tiket,2,',','.'),'RB',0,'R',0);
 			$pdf->Ln();
 			//end of table
 			$pdf->Ln();
@@ -1293,7 +1289,7 @@ class C_PDF extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('print_biaya', $data);
-		// $this->load->view('layouts/footer');
+		$this->load->view('layouts/footer');
 	}
 	function form_biaya($slug) {
 		$arr_slug = explode('_', $slug);
@@ -1438,7 +1434,7 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(5,7,'',0,0);
 			$pdf->Cell(10,6,'2','L',0,'C',0);
 			$pdf->Cell(25,6,'Penginapan','L',0,'L',0);
-			$pdf->Cell(10,6,$malam.' Malam',0,0,'L',0);
+			$pdf->Cell(10,6,$malam." Malam",0,0,'L',0);
 			$pdf->Cell(10,6,'x',0,0,'R',0);
 			$pdf->Cell(5,6,'Rp',0,0,'L',0);
 			$pdf->Cell(25,6,number_format($penginapan,2,',','.'),'R',0,'R',0);
@@ -1527,7 +1523,7 @@ class C_PDF extends CI_Controller {
 			}
 			$pdf->Cell(40,6,'',0,0,'R');
 			$pdf->Cell(48,6,'',0,0,'C');
-			$pdf->MultiCell(80,6,'Rp 0',0,'L');
+			$pdf->MultiCell(80,6,'Rp '.number_format(0,2,',','.'),0,'L');
 			$pdf->Ln();
 			$pdf->Cell(100,6,"Bendahara Pengeluaran Pembantu",0, 0,'C');
 			$pdf->MultiCell(50,6,'Yang menerima',0,'R');
@@ -1553,19 +1549,19 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(10,5,"Ditetapkan sejumlah",0, 0,'L');
 			$pdf->Cell(45,5,'',0,0,'L');
 			$pdf->Cell(80,5,".............................................. : Rp",0, 0,'L');
-			$pdf->Cell(7,5,number_format($total_biaya,2,',','.'),0, 0,'R');
+			$pdf->Cell(7,5,$total_biaya,0, 0,'R');
 			$pdf->Ln();
 			$pdf->Cell(15,6,'',0,0,'L');
 			$pdf->Cell(10,5,"Yang telah dibayarkan semula",0, 0,'L');
 			$pdf->Cell(45,5,'',0,0,'L');
 			$pdf->Cell(80,5,".............................................. : Rp",0, 0,'L');
-			$pdf->Cell(7,5,number_format($semula,2,',','.'),0, 0,'R');
+			$pdf->Cell(7,5,$semula,0, 0,'R');
 			$pdf->Ln();
 			$pdf->Cell(15,6,'',0,0,'L');
 			$pdf->Cell(10,5,"Sisa ".$keterangan,0, 0,'L');
 			$pdf->Cell(45,5,'',0,0,'L');
 			$pdf->Cell(80,5,".............................................. : Rp",0, 0,'L');
-			$pdf->Cell(7,5,number_format($sisa,2,',','.'),0, 0,'R');
+			$pdf->Cell(7,5,$sisa,0, 0,'R');
 			$pdf->Ln();
 			$pdf->Ln();
 			$pdf->Ln();
@@ -1789,9 +1785,9 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,6,$hari.' Hari',0,0,'L',0);
 		$pdf->Cell(10,6,'x',0,0,'R',0);
 		$pdf->Cell(5,6,'Rp',0,0,'L',0);
-		$pdf->Cell(25,6,number_format($harian,2,',','.'),'R',0,'R',0);
+		$pdf->Cell(25,6,$harian,'R',0,'R',0);
 		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,number_format($jml_harian,2,',','.'),'R',0,'R',0);
+		$pdf->Cell(30,6,$jml_harian,'R',0,'R',0);
 		$pdf->Cell(55,6,'Perjalanan dinas ke :','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
@@ -1800,9 +1796,9 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,6,$malam.' Malam',0,0,'L',0);
 		$pdf->Cell(10,6,'x',0,0,'R',0);
 		$pdf->Cell(5,6,'Rp',0,0,'L',0);
-		$pdf->Cell(25,6,number_format($penginapan,2,',','.'),'R',0,'R',0);
+		$pdf->Cell(25,6,$penginapan,'R',0,'R',0);
 		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,number_format($jml_penginapan,2,',','.'),'R',0,'R',0);
+		$pdf->Cell(30,6,$jml_penginapan,'R',0,'R',0);
 		$pdf->Cell(55,6,'Ke '.$tempat,'R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
@@ -1811,9 +1807,9 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,6,'',0,0,'L',0);
 		$pdf->Cell(10,6,'',0,0,'R',0);
 		$pdf->Cell(5,6,'Rp',0,0,'L',0);
-		$pdf->Cell(25,6,number_format($tiket,2,',','.'),'R',0,'R',0);
+		$pdf->Cell(25,6,$tiket,'R',0,'R',0);
 		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,number_format($tiket,2,',','.'),'R',0,'R',0);
+		$pdf->Cell(30,6,$tiket,'R',0,'R',0);
 		$pdf->Cell(55,6,'(selama '.$hari.' hari)','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
@@ -1822,9 +1818,9 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,6,'',0,0,'L',0);
 		$pdf->Cell(10,6,'',0,0,'R',0);
 		$pdf->Cell(5,6,'Rp',0,0,'L',0);
-		$pdf->Cell(25,6,number_format($total_transport,2,',','.'),'R',0,'R',0);
+		$pdf->Cell(25,6,$total_transport,'R',0,'R',0);
 		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,number_format($total_transport,2,',','.'),'R',0,'R',0);
+		$pdf->Cell(30,6,$total_transport,'R',0,'R',0);
 		$pdf->Cell(55,6,'Tanggal '.$var_tgl_mulai.' s.d ','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
@@ -1838,7 +1834,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,6,'','L',0,'C',0);
 		$pdf->Cell(75,6,'Jumlah :','LR',0,'R',0);
 		$pdf->Cell(7,6,'Rp',0,0,'L',0);
-		$pdf->Cell(33,6,number_format($total,2,',','.'),'TR',0,'R',0);
+		$pdf->Cell(33,6,$total,'TR',0,'R',0);
 		$pdf->Cell(55,6,'','R',0,'L',0);
 		$pdf->Ln();
 
@@ -1855,9 +1851,9 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,6,$hari.' Hari',0,0,'L',0);
 		$pdf->Cell(10,6,'x',0,0,'R',0);
 		$pdf->Cell(5,6,'Rp ',0,0,'L',0);
-		$pdf->Cell(25,6,number_format($s_harian,2,',','.'),'R',0,'R',0);
+		$pdf->Cell(25,6,$s_harian,'R',0,'R',0);
 		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,number_format($jml_s_harian,2,',','.'),'R',0,'R',0);
+		$pdf->Cell(30,6,$jml_s_harian,'R',0,'R',0);
 		$pdf->Cell(55,6,'','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
@@ -1866,9 +1862,9 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,6,$malam.' Malam',0,0,'L',0);
 		$pdf->Cell(10,6,'x',0,0,'R',0);
 		$pdf->Cell(5,6,'Rp ',0,0,'L',0);
-		$pdf->Cell(25,6,number_format($s_penginapan,2,',','.'),'R',0,'R',0);
+		$pdf->Cell(25,6,$s_penginapan,'R',0,'R',0);
 		$pdf->Cell(10,6,'Rp ',0,0,'L',0);
-		$pdf->Cell(30,6,number_format($jml_s_penginapan,2,',','.'),'R',0,'R',0);
+		$pdf->Cell(30,6,$jml_s_penginapan,'R',0,'R',0);
 		$pdf->Cell(55,6,'','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
@@ -1877,9 +1873,9 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,6,'',0,0,'L',0);
 		$pdf->Cell(10,6,'',0,0,'R',0);
 		$pdf->Cell(5,6,'Rp',0,0,'L',0);
-		$pdf->Cell(25,6,number_format($s_tiket,2,',','.'),'R',0,'R',0);
+		$pdf->Cell(25,6,$s_tiket,'R',0,'R',0);
 		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,number_format($s_tiket,2,',','.'),'R',0,'R',0);
+		$pdf->Cell(30,6,$s_tiket,'R',0,'R',0);
 		$pdf->Cell(55,6,'','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
@@ -1888,9 +1884,9 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,6,'',0,0,'L',0);
 		$pdf->Cell(10,6,'',0,0,'R',0);
 		$pdf->Cell(5,6,'Rp',0,0,'L',0);
-		$pdf->Cell(25,6,number_format($s_transport,2,',','.'),'R',0,'R',0);
+		$pdf->Cell(25,6,$s_transport,'R',0,'R',0);
 		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,number_format($s_transport,2,',','.'),'R',0,'R',0);
+		$pdf->Cell(30,6,$s_transport,'R',0,'R',0);
 		$pdf->Cell(55,6,'','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
@@ -1898,7 +1894,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,6,'','L',0,'C',0);
 		$pdf->Cell(75,6,'Jumlah :','LR',0,'R',0);
 		$pdf->Cell(7,6,'Rp',0,0,'L',0);
-		$pdf->Cell(33,6,number_format($s_total,2,',','.'),'TR',0,'R',0);
+		$pdf->Cell(33,6,$s_total,'TR',0,'R',0);
 		$pdf->Cell(55,6,'','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
@@ -1906,8 +1902,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(55,6,'SISA '.$keterangan,'BL',0,'L',0);
 		$pdf->Cell(20,6,'Jumlah :','BR',0,'R',0);
 		$pdf->Cell(10,6,'Rp','B',0,'L',0);
-		$abs_sisa = abs($sisa);
-		$pdf->Cell(30,6,number_format($abs_sisa,2,',','.'),'BR',0,'R',0);
+		$pdf->Cell(30,6,abs($sisa),'BR',0,'R',0);
 		$pdf->Cell(55,6,'','BR',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
