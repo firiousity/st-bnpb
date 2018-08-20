@@ -35,6 +35,7 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 						<th class="th-sm" scope="col">Kegiatan</th>
 						<th class="th-sm" scope="col">Jenis </th>
 						<th class="th-sm" scope="col">Opsi</th>
+						<th class="th-sm" scope="col">Pos Kegiatan</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -57,6 +58,13 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 								name="check"
 								onClick="toggle('check', 'labelitemlist', 'itemlist')"
 								type="checkbox" value="0"/> Banyak tempat ? <br/></td>
+						<td><select name="pos" class="form-control	">
+								<option value="1">
+									Melakukan Monitoring dan Evaluasi Teknologi
+									Informasi dan Komunikasi</option>
+								<option value="2">
+									Menyediakan Akses Sistem Informasi Kebencanaan</option>
+						</td>
 					</tr>
 					</tbody>
 				</table>

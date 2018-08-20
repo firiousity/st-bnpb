@@ -45,12 +45,14 @@ class Surat extends CI_Controller
 			$kegiatan = $this->input->post('kegiatan');
 			$jenis = isset($_POST['jenisPembayaran']) ? "1" : "0";
 			$opsi = isset($_POST['check'])	 ? "1" : "0";
+			$pos = $this->input->post('pos');
 
 			$data_surat = array(
 				'nomor' => $nomor,
 				'kegiatan' => $kegiatan,
 				'jenis' => $jenis,
-				'opsi' => $opsi
+				'opsi' => $opsi,
+				'pos' => $pos
 			);
 			$this->db->insert('surat_dinas', $data_surat);
 			$surat_result = $this->db->from('surat_dinas')->order_by('id', 'desc')->limit(1)->get()->result();
@@ -73,7 +75,7 @@ class Surat extends CI_Controller
 				for($i=0;$i<$num_data;$i++) {
 					$data_rinci = array(
 						'id_surat' => $id_surat, 'tgl_surat' => $tgl_surat,
-						'nomor' => $nomor, 'kegiatan' => $kegiatan, 'jenis' => $jenis,
+						'nomor' => $nomor, 'kegiatan' => $kegiatan, 'jenis' => $jenis, 'pos' => $pos,
 						'opsi' => $opsi, 'id_pegawai' => $my_select[$i], 'tgl_mulai' => $mulai,
 						'tgl_akhir' => $akhir, 'tempat' => $tempat, 'id_harian' => $harian,
 						'id_penginapan' => $penginapan, 'id_tiket' => $tiket, 'id_transport' => $transport,

@@ -190,6 +190,8 @@ class C_PDF extends CI_Controller {
 		$pegawai 		= $this->db->get_where('pegawai',
 			array('jabatan_pegawai' => 'Kepala Pusat Data Informasi dan Humas'))->result();
 		$nomor 			= $surat_tugas['0']->nomor;
+		$pos_num 			= $surat_tugas['0']->pos;
+		$pos = ($pos_num == "1") ? "Melakukan Monitoring dan Evaluasi Teknologi Informasi dan Komunikasi" : "Menyediakan Akses Sistem Informasi Kebencanaan";
 		$var_kegiatan 	= $surat_tugas['0']->kegiatan;
 
 		//Get data only one from data_rinci table
@@ -264,7 +266,7 @@ class C_PDF extends CI_Controller {
 		if($num_pegawai < 4 && $opsi == "0") {
 			$counterr = 1;
 			foreach ($nama_result as $row) {
-				$pdf->Cell(9,6,$counterr. ". ",0,0);
+				$pdf->Cell(6,6,$counterr. ". ",0,0);
 				$pdf->MultiCell(0,6,"$row->nama_pegawai",0,'J');
 				$pdf->Cell(30,6,"",0,0);
 				$counterr++;
@@ -287,10 +289,10 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'',0,0);
 		$pdf->Cell(5,6,'',0,0);
 		$pdf->Cell(5,6,'3.',0,0);
-		$pdf->MultiCell(0,6,"Segala biaya yang dikeluarkan untuk tugas tersebut di atas dibebankan kepada DIPA BNPB TA ". date('Y') .", Pos Kegiatan Melakukan Monitoring dan Evaluasi Teknologi Informasi dan Komunikasi;",0,'J');
+		$pdf->MultiCell(0,6,"Segala biaya yang dikeluarkan untuk tugas tersebut di atas dibebankan kepada DIPA BNPB TA ". date('Y') .", Pos Kegiatan ".$pos.";",0,'J');
 		$pdf->Cell(25,6,'',0,0);
 		$pdf->Cell(5,6,'',0,0);
-		$pdf->Cell(5,6,'2.',0,0);
+		$pdf->Cell(5,6,'4	.',0,0);
 		$pdf->MultiCell(0,6,"Apabila terdapat kekeliruan dalam Surat Tugas ini akan dilakukan perbaikan sebagaimana mestinya.",0,'J');
 		$pdf->Ln();
 		$pdf->Ln();
