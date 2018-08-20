@@ -87,7 +87,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('lihat_surat', $data);
-		$this->load->view('layouts/footer');
+		// $this->load->view('layouts/footer');
 	}
 
 	public function buat_surat ()
@@ -101,7 +101,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('buat_surat', $data);
-		$this->load->view('layouts/footer');
+		// $this->load->view('layouts/footer');
 	}
 
 
@@ -116,7 +116,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('buat_surat2', $data);
-		$this->load->view('layouts/footer');
+		// $this->load->view('layouts/footer');
 	}
 
 	public function exec_buat_surat() {
@@ -315,7 +315,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('transport_lokal');
-		$this->load->view('layouts/footer');
+		// $this->load->view('layouts/footer');
 		$data = array(
 			'provinsi' => $provinsi,
 			'ibukota' => $ibukota,
@@ -378,7 +378,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('tiket_pesawat');
-		$this->load->view('layouts/footer');
+		// $this->load->view('layouts/footer');
 		$data = array(
 			'rute' => $rute,
 			'biaya_tiket' => $biaya_tiket,
@@ -437,7 +437,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('uang_harian');
-		$this->load->view('layouts/footer');
+		// $this->load->view('layouts/footer');
 		$data = array(
 			'provinsi' => $provinsi,
 			'luar_kota' => $luar_kota,
@@ -453,7 +453,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('edit_harian', $data);
-		$this->load->view('layouts/footer');
+		// $this->load->view('layouts/footer');
 	}
 
 	function edit_harian($id) {
@@ -500,7 +500,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('uang_representasi');
-		$this->load->view('layouts/footer');
+		// $this->load->view('layouts/footer');
 		$data = array(
 			'uraian' => $uraian,
 			'luar_kota' => $luar_kota,
@@ -591,7 +591,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('edit_pegawai', $data);
-		$this->load->view('layouts/footer');
+		// $this->load->view('layouts/footer');
 	}
 
 	function edit_pegawai($id) {
