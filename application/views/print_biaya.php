@@ -1,6 +1,6 @@
 <body>
-          <div class="container margin">
-                <p style="font-size: 27px; text-align: center; padding-top: 50px;">Detail Surat</p>
+          <div class="container">
+                <p style="font-size: 27px; text-align: center; padding-top: 20vh;">Detail Surat</p>
                       <table id="print_biaya" class="table table-hover" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
