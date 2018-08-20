@@ -61,6 +61,7 @@
         <a class="dropdown-item" href="<?php echo base_url('home/uang_harian')?>">Uang Harian</a>
         <a class="dropdown-item" href="<?php echo base_url('home/uang_representasi')?>">Uang Representasi</a>
         <a class="dropdown-item" href="<?php echo base_url('home/tiket_pesawat')?>">Tiket Pesawat</a>
+        <a class="dropdown-item" href="<?php echo base_url('home/transport_lokal')?>">Transport Lokal</a>
     </div>
 </div>
 
