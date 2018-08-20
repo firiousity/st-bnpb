@@ -314,8 +314,8 @@ class C_PDF extends CI_Controller {
 				$pdf->SetFont('Arial','',12);
 				$counter = 1;
 				foreach ($nama_result as $row) {
-					$pdf->Cell(5,6,"$counter. ",0,0);
-					$pdf->MultiCell(0,6,"$row->nama_pegawai",0,'J');
+					$pdf->Cell(9,6,$counter.". ",0,0);
+					$pdf->MultiCell(0,6,$row->nama_pegawai,0,'J');
 					$counter++;
 				}
 			}
