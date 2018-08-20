@@ -288,6 +288,71 @@ class Home extends CI_Controller {
 	}
 
 	/*
+	 * CRUD Transport Lokal
+	 *
+	 * */
+
+	public function transport_lokal()
+	{
+		$data['transport'] = $this->home_model->get_transport_lokal();
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
+		$this->load->view('transport_lokal', $data);
+		// $this->load->view('layouts/footer');
+	}
+
+	public function tambah_transport_lokal() {
+		$provinsi = $this->input->post('provinsi');
+		$ibukota = $this->input->post('ibukota');
+		$kota_kabupaten = $this->input->post('kota_kabupaten');
+		$besaran = $this->input->post('besaran');
+
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
+		$this->load->view('transport_lokal');
+		$this->load->view('layouts/footer');
+		$data = array(
+			'provinsi' => $provinsi,
+			'ibukota' => $ibukota,
+			'kota_kabupaten' => $kota_kabupaten,
+			'besaran' => $besaran,
+		);
+		$this->db->insert('transport_lokal', $data);
+		$this->href('home/transport_lokal');
+	}
+
+	function edit_transport_lokal_page($id) {
+		$data['transport_lokal'] = $this->db->get_where('transport_lokal',  array('id' => $id) )->result();
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
+		$this->load->view('edit_transport', $data);
+		$this->load->view('layouts/footer2');
+	}
+
+	function edit_transport_lokal($id) {
+		$provinsi = $this->input->post('provinsi');
+		$ibukota = $this->input->post('ibukota');
+		$kota_kabupaten = $this->input->post('kota_kabupaten');
+		$besaran = $this->input->post('besaran');
+		$data = array(
+			'provinsi' => $provinsi,
+			'ibukota' => $ibukota,
+			'kota_kabupaten' => $kota_kabupaten,
+			'besaran' => $besaran,
+		);
+		$this->db->where('id', $id);
+		$this->db->update('transport_lokal', $data);
+		$this->href('home/transport_lokal');
+	}
+
+	function delete_transport_lokal($id) {
+		$where = array('id' => $id );
+		$this->db->delete('transport_lokal', $where);
+		$this->alert("Berhasil menghapus");
+		$this->href('home/transport_lokal');
+	}
+
+	/*
 	 * CRUD Tiket Pesawat
 	 *
 	 * */
