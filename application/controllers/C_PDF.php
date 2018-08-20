@@ -1473,7 +1473,7 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(10,6,'','L',0,'C',0);
 			$pdf->Cell(75,6,'Jumlah :','LR',0,'R',0);
 			$pdf->Cell(10,6,'Rp',0,0,'L',0);
-			$pdf->Cell(30,6,$total_biaya,'TR',0,'R',0);
+			$pdf->Cell(30,6,number_format($total_biaya,2,',','.'),'TR',0,'R',0);
 			$pdf->Cell(55,6,'','R',0,'L',0);
 			$pdf->Ln();
 			$pdf->Cell(5,7,'',0,0);
