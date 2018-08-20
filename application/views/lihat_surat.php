@@ -33,12 +33,12 @@
                               <td>$row->kegiatan</td>
                               <td>
                               <a href='".base_url('C_PDF/print_biaya/'.$row->id)."'> 
-                              <button type=\"button\" class=\"btn btn-light-blue btn-sm my-0\">LIHAT RINCIAN
+                              <button type=\"button\" class=\"btn btn-success btn-sm my-0\">LIHAT RINCIAN
                               </button></a>
                               </td>
                               <td>
                               <a href='".base_url('C_PDF/print/'.$row->id)."' target='_blank'> 
-                              <button type=\"button\" class=\"btn btn-light-blue btn-sm my-0\"><i class=\"fa fa-print\" aria-hidden=\"true\"></i> PRINT SURAT
+                              <button type=\"button\" class=\"btn btn-success btn-sm my-0\"><i class=\"fa fa-print\" aria-hidden=\"true\"></i> PRINT SURAT
                               </button></a>
                               </td>
                             </tr>

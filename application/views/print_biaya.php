@@ -28,22 +28,22 @@
                               <td>
                               
                               <span><a href='".base_url('C_PDF/rampung/'.$row->id_surat."_".$row->id_pegawai)."' target='_blank'> 
-                              <button type=\"button\" class=\"btn btn-light-blue btn-sm my-0\">SPD RAMPUNG
+                              <button type=\"button\" class=\"btn btn-primary btn-sm my-0\">SPD RAMPUNG
                               </button></a></span>
                               <span><a href='".base_url('C_PDF/print_rincian/'.$row->id_surat."_".$row->id_pegawai)."' target='_blank'> 
-                              <button type=\"button\" class=\"btn btn-primary btn-sm my-0\">RINCIAN BIAYA
+                              <button type=\"button\" class=\"btn btn-indigo btn-sm my-0\">RINCIAN BIAYA
                               </button></a></span>
                               <span><a href='".base_url('C_PDF/spd/'.$row->id_surat."_".$row->id_pegawai)."' target='_blank'> 
-                              <button type=\"button\" class=\"btn btn-indigo btn-sm my-0\">SPD
+                              <button type=\"button\" class=\"btn btn-deep-purple btn-sm my-0\">SPD
                               </button></a></span>
                               <span><a href='".base_url('C_PDF/hilang/'.$row->id_surat."_".$row->id_pegawai)."' target='_blank'> 
-                              <button type=\"button\" class=\"btn btn-deep-purple btn-rounded btn-sm my-0\">BUKTI HILANG
+                              <button type=\"button\" class=\"btn btn-primary btn-rounded btn-sm my-0\">BUKTI HILANG
                               </button></a></span>
                               <span><a href='".base_url('C_PDF/lebih/'.$row->id_surat."_".$row->id_pegawai)."' target='_blank'> 
-                              <button type=\"button\" class=\"btn btn-mdb-color btn-rounded btn-sm my-0\">SURAT LEBIH
+                              <button type=\"button\" class=\"btn btn-indigo btn-rounded btn-sm my-0\">SURAT LEBIH
                               </button></a></span>
                               <span><a href='".base_url('C_PDF/riil/'.$row->id_surat."_".$row->id_pegawai)."' target='_blank'> 
-                              <button type=\"button\" class=\"btn btn-blue-grey btn-rounded btn-sm my-0\">RIIL
+                              <button type=\"button\" class=\"btn btn-deep-purple btn-rounded btn-sm my-0\">RIIL
                               </button></a></span>
                               </td>
                             </tr>
