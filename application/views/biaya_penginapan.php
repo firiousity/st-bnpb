@@ -1,9 +1,12 @@
 <body>
-  <div class="container margin">
-        <p style="font-size: 27px; text-align: center; padding-top: 50px;">Biaya Penginapan</p>
+  <div class="container-fluid" style="padding-top: 20vh; padding-bottom: 20vh">
+        <p style="font-size: 27px; text-align: center;">Biaya Penginapan</p>
             <table id="biaya_penginapan" class="table table-hover" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
+                              <th scope="col">No
+                                <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                              </th>
                               <th class="th-sm" scope="col">Provinsi
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
@@ -31,9 +34,12 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <?php foreach ($penginapan as $row) {
+                            <?php 
+                            $counter = 1;
+                            foreach ($penginapan as $row) {
                 echo "
                 <tr>
+                              <td>".$counter."</td>
                               <td>".$row->provinsi."</td>
                               <td> Rp ".$row->eselon_1."</td>
                               <td> Rp ".$row->eselon_2."</td>
@@ -49,7 +55,7 @@
                                 </td>
                             </tr>
                             ";
-              }
+              $counter++;}
                              ?>
                       </tbody>
                     </table>
@@ -85,9 +91,17 @@
                     })
                       }
                     </script>
-              <div align="center">
-                <a href="#"><button type="button" data-toggle="modal" data-target="#modalRegisterForm" class="btn btn-indigo btn-md"><i class="fa fa-plus" aria-hidden="true"></i> Tambah</button></a>
-              </div>
+              <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="btn-group">
+        <a href="#"> <button class="btn btn-indigo btn-fab" type="button" data-toggle="modal" data-target="#modalRegisterForm" id="main"><i class="fa fa-plus" aria-hidden="true">
+          </i> Tambah</button> 
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
   </div>
 
