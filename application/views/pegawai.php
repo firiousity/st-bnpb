@@ -48,7 +48,7 @@
                      ?>
   </tbody>
 </table>
-<script>
+                    <script>
                       function hapus(id) {
                       const swalWithBootstrapButtons = swal.mixin({
                       confirmButtonClass: 'btn btn-success',
@@ -80,9 +80,20 @@
                     })
                       }
                     </script>
-<div align="center">
+              <!-- <div align="center">
                 <a href="#"><button type="button" data-toggle="modal" data-target="#modalRegisterForm" class="btn btn-indigo btn-md"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Pegawai</button></a>
-              </div>
+              </div> -->
+              <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="btn-group">
+        <a href="#"> <button class="btn btn-indigo btn-fab" type="button" data-toggle="modal" data-target="#modalRegisterForm" id="main"><i class="fa fa-plus" aria-hidden="true">
+          </i> Tambah</button> 
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
       </div>
     </div>
   </div>
@@ -136,4 +147,12 @@ $(document).ready(function () {
   $('#pegawai').DataTable();
   $('.dataTables_length').addClass('bs-select');
 });
+$("#main").click(function() {
+  $("#mini-fab").toggleClass('hidden');
+});
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();  
+});
+$.material.init();
 </script>

@@ -105,6 +105,27 @@
         color: #eceff1; 
     }
 
+    .btn-group-sm .btn-fab{
+	  position: fixed !important;
+	  left: 59px;
+	}
+	.btn-group .btn-fab{
+	  position: fixed !important;
+	  left: 50px;
+	}
+	#main{
+	  bottom: 30px;
+	}
+	#mail{
+	  bottom: 80px
+	}
+	#sms{
+	  bottom: 125px
+	}
+	#autre{
+	  bottom: 170px
+	}
+
 	.mapid {
 		height: 400px;
 	}
