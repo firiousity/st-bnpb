@@ -1,6 +1,6 @@
 <body>
-          <div class="container" style="padding-top: 20vh; padding-bottom: 20vh">
-                <p style="font-size: 27px; text-align: center;">Daftar Surat</p>
+          <div class="container">
+                <p style="font-size: 27px; text-align: center; padding-top: 20vh;">Daftar Surat</p>
                       <table id="lihat_surat" class="table table-hover" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
@@ -48,7 +48,7 @@
 						  ?>
 						  </tbody>
 						</table>
-            <div class="container-fluid">
+                   <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
       <div class="btn-group">
@@ -60,6 +60,8 @@
   </div>
 </div>
               </div>
+          </div>
+        </div>
 
 </body>
 <script>
