@@ -1517,12 +1517,13 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(15,6,'',0,0,'L');
 			if($jenis == '0') {
 				//bayar di belakang brrti yg udah diterima 0
-				$pdf->Cell(10,6,'Rp 0',0,0,'L');
+				$pdf->Cell(10,6,'Rp 0,00',0,0,'L');
 			} else {
 				$pdf->Cell(10,6,'Rp '.number_format($semula,2,',','.'),0,0,'L');
 			}
 			$pdf->Cell(40,6,'',0,0,'R');
 			$pdf->Cell(48,6,'',0,0,'C');
+
 			$pdf->MultiCell(80,6,'Rp '.number_format(0,2,',','.'),0,'L');
 			$pdf->Ln();
 			$pdf->Cell(100,6,"Bendahara Pengeluaran Pembantu",0, 0,'C');
@@ -1589,7 +1590,7 @@ class C_PDF extends CI_Controller {
 
 	}
 
-	function rampung ($slug) {
+	function rampung($slug) {
 		$arr_slug = explode('_', $slug);
 		$data_rinci_all	= $this->db->get_where('data_rinci',
 			array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();

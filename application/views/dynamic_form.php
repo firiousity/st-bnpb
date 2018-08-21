@@ -163,7 +163,7 @@ $nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
 					<tr>
 						<td><label>Tempat</label><input name="tempat_input[0]" class="input-block-level" type="text"/></td>
 						<td><label>Tanggal Mulai</label><input name="mulai_input[0]" class="input-block-level"  type="date"/></td>
-						<td><label>Tanggal Akhir</label><input name="akhir_input[0]" class="input-block-level"  type="date" /></td>
+						<td><label>Tanggal Akhir</label><input name="akhir_input[0]" class="input-block-level"  type="date"/></td>
 						<td><label>Pilih Pegawai</label><select  name="my-select-pegawai[0]">
 								<?php foreach ($pegawai as $row) {
 									echo
