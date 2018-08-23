@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark indigo scrolling-navbar fixed-top">
+<nav class="navbar navbar-expand-lg animated fadeInDown navbar-dark indigo scrolling-navbar fixed-top">
     <div class="container">
     <img style="margin-left: 20px;" src="<?php echo base_url('assets/img/logo.png')?>" width="30" height="30"> 
     <a style="margin-left: 8px;" class="navbar-brand" href="<?php echo base_url('home/beranda')?>"><Strong>Persuratan Pusdatinmas</Strong></a>
