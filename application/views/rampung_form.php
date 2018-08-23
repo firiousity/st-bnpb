@@ -19,17 +19,20 @@
 					<tr>
 						<td>
 							<label for="validationCustom02">Uang Penginapan</label>
-							<input type="number" class="form-control" id="validationCustom02" required name="penginapan"
-								   placeholder="Rp. " required>
+							<input type="number" class="form-control" id="inap" name="inap"
+								   placeholder="Rp. ">
 						</td>
 						<td>
 							<label for="validationCustom02">Tiket Pesawat</label>
-							<input type="number" class="form-control" id="validationCustom02" required name="tiket"
+							<input type="number" class="form-control" id="validationCustom02" name="tiket"
 								   placeholder="Rp. " required></td>
+						<td>
+							<input type="checkbox" onclick="cek()" name="isMultiple" id="isMultiple"> Penginapan lebih dari 1 malam? <br/>
+						</td>
 					</tr>
 					<tr>
 						<td>
-							<button class="btn btn-blue" id="btn_tambah" onclick="additem(); return false"><i class="fas fa-plus-square"></i></i></button>
+							<button class="btn btn-blue" id="btn_tambah" disabled onclick="additem(); return false"><i class="fas fa-plus-square"></i></i></button>
 						</td>
 					</tr>
 					</tbody>
@@ -49,11 +52,13 @@
 //                membuat element
 		var row = document.createElement('tr');
 		var penginapan = document.createElement('td');
+		var malam = document.createElement('td');
 		var aksi = document.createElement('td');
 
 //                meng append element
 		itemlist.appendChild(row);
 		row.appendChild(penginapan);
+		row.appendChild(malam);
 		row.appendChild(aksi);
 
 
@@ -61,12 +66,20 @@
 		penginapan_input.setAttribute('name', 'penginapan['+ i +']');
 		penginapan_input.setAttribute('type', 'number');
 		penginapan_input.setAttribute('class', 'form-control');
+		penginapan_input.setAttribute('placeholder', 'Rp. ');
+
+		var malam_input = document.createElement('input');
+		malam_input.setAttribute('name', 'malam['+ i +']');
+		malam_input.setAttribute('type', 'number');
+		malam_input.setAttribute('class', 'form-control');
+		malam_input.setAttribute('placeholder', 'Berapa malam?');
 
 
 		var hapus = document.createElement('span');
 
 //                meng append element input
 		penginapan.appendChild(penginapan_input);
+		malam.appendChild(malam_input);
 		aksi.appendChild(hapus);
 
 		hapus.innerHTML = '<button class="btn btn-small btn-default"><i class="fas fa-trash-alt"></i></button>';
@@ -76,6 +89,22 @@
 		};
 
 		i++;
+	}
+
+	function cek() {
+		var checkbox = document.getElementById('isMultiple');
+		var inap = document.getElementById('inap');
+		var btntambah = document.getElementById('btn_tambah');
+		if(checkbox.checked) {
+			btntambah.disabled = false;
+			//inap.style.display = "none";
+			inap.disabled = true;
+
+		} else {
+			btntambah.disabled = true;
+			inap.style.display = "block";
+			inap.disabled = false;
+		}
 	}
 
 </script>

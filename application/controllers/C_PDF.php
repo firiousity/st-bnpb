@@ -1617,32 +1617,14 @@ class C_PDF extends CI_Controller {
 		$arr_slug = explode('_', $slug);
 		$id_surat = $arr_slug[0];
 		$id_pegawai = $arr_slug[1];
-		//r untuk rampung
-
-
 		//Get data rinci
 		$data_rinci_all	= $this->db->get_where('data_rinci',
 			array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
-		$jenis = $data_rinci_all['0']->jenis;
 		$id_harian = $data_rinci_all['0']->id_harian;
 		$id_penginapan = $data_rinci_all['0']->id_penginapan;
 		$id_transport = $data_rinci_all['0']->id_transport;
 		$id_transport2 = $data_rinci_all['0']->id_transport2;
 		$id_tiket = $data_rinci_all['0']->id_tiket;
-
-		//nilai penginapan dan tiket akan berubah sesuai jenis. kalo di depan makan nilainya sama dengan sbu
-		$jenis = $data_rinci_all['0'] -> jenis;
-		if(!isset($_POST['rsubmit'])) {
-			//dibayar di belakang maka nila tiket dan penginapan sesuai dengan post di spd rampung
-			//get real pengeluaran untuk tiket
-			$r_tiket_result = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
-			$tiket = $r_tiket_result['0']->tiket;
-			$penginapan = $r_tiket_result['0']->penginapan;
-		} else {
-			$penginapan = $this->input->post('penginapan');
-			$tiket = $this->input->post('tiket');
-		}
-
 
 		//get data uang harian
 		$harian_result	= $this->db->get_where('uang_harian',array('id' => $id_harian))->result();
@@ -1656,7 +1638,6 @@ class C_PDF extends CI_Controller {
 		//get data uang transport
 		$transport_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport))->result();
 		$transport = $transport_result['0']->besaran*2;
-
 		//get data uang transport2
 		$transport2_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport2))->result();
 		$transport2 = $transport2_result['0']->besaran*2;
@@ -1687,6 +1668,25 @@ class C_PDF extends CI_Controller {
 		$malam = $this->hitung_hari($surat_result['0']->tgl_mulai, $surat_result['0']->tgl_akhir);
 		$hari = $malam + 1;
 
+		//nilai penginapan dan tiket akan berubah sesuai jenis. kalo di depan makan nilainya sama dengan sbu
+		$jenis = $data_rinci_all['0'] -> jenis;
+		if(!isset($_POST['rsubmit'])) {
+			//dibayar di belakang maka nila tiket dan penginapan sesuai dengan post di spd rampung
+			//get real pengeluaran untuk tiket
+			$r_tiket_result = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
+			$tiket = $r_tiket_result['0']->tiket;
+			$penginapan = $r_tiket_result['0']->penginapan;
+		} else  {
+			$tiket = $this->input->post('tiket');
+			if (!isset($_POST['isMultiple'])) {
+				//satu tempat penginapan saja
+				$penginapan = $this->input->post('inap');
+			} else {
+				//multiple tempat penginapan
+
+			}
+		}
+
 		if($jenis == '0') {
 			//bayar di belakang, set all value to zero
 			$s_harian = 0;
@@ -1706,8 +1706,8 @@ class C_PDF extends CI_Controller {
 			$this->db->insert('pembayaran_awal', $data_yang_sudah_dibayar);
 		} else if ($jenis == '1') {
 			//bayar di depan.
-			$s_harian = $harian;
-			$s_penginapan = $sbu_penginapan;
+			$s_harian = $harian*$hari;
+			$s_penginapan = $sbu_penginapan*$malam;
 			$s_tiket = $sbu_tiket;
 			$s_transport = $total_transport;
 			$s_total = $s_harian+$s_penginapan+$s_tiket+$s_transport;
@@ -1732,18 +1732,21 @@ class C_PDF extends CI_Controller {
 		$total = $jml_harian+$jml_penginapan+$tiket+$transport;
 		$sisa = $s_total - $total;
 
-		$data = array(
-			'id_surat' => $id_surat,
-			'id_pegawai' => $id_pegawai,
-			'penginapan' => $penginapan,
-			'harian' => $harian,
-			'transport' => $transport,
-			'tiket' => $tiket,
-			'total' => $total
-		);
-		$this->db->insert('spd_rampung', $data);
 
-		$keterangan = "";
+		$num_data = count($this->input->post('penginapan'));
+		for($key=0;$key<$num_data;$key++) {
+			$data = array(
+				'id_surat' => $id_surat,
+				'id_pegawai' => $id_pegawai,
+				'penginapan' => $penginapan[$key],
+				'harian' => $harian,
+				'transport' => $transport,
+				'tiket' => $tiket,
+				'total' => $total
+			);
+			$this->db->insert('spd_rampung', $data);
+		}
+
 		if ($total>$s_total) {
 			$keterangan = "KURANG";
 		} elseif (($total<$s_total)) {
