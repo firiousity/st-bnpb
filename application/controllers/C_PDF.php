@@ -218,7 +218,7 @@ class C_PDF extends CI_Controller {
 		$kapusdatin 			= $pegawai['0']->nama_pegawai;
 		$tgl_sekarang 			= date('d')."-".date('m')."-".date('Y');
 
-		$pdf = new FPDF('p','mm','A4');
+		$pdf = new PDF_MC_Table('p','mm','A4');
 
 		// membuat halaman baru
 		$pdf->AddPage();
@@ -347,14 +347,20 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(50,6,'Tanggal',1,0,'C',0);
 			$pdf->SetFont('Arial','',12);
 			$counterrr = 1;
+			$pdf->Ln();
 			foreach ($nama_result as $row) {
-				$pdf->Ln();
 				$pdf->Cell(5,7,'',0,0);
-				$pdf->Cell(10,6,$counterrr. '. ',0,0,'C',0);
-				$pdf->Cell(50,6,$row->nama_pegawai,0,0,'L',0);
-				$pdf->Cell(65,6,$row->tempat,0,0,'C',0);
-				$pdf->MultiCell(50,6,$this->tanggal_indo($row->tgl_mulai,'-').' s.d '
-					.$this->tanggal_indo($row->tgl_akhir,'-'),0,'L');
+				$pdf->SetWidths(array(10, 50, 65, 50));
+				for($i=0;$i<1;$i++) {
+					$pdf->Row(array($counterrr,$row->nama_pegawai,$row->tempat, $this->tanggal_indo($row->tgl_mulai,'-')
+						.' s.d '.$this->tanggal_indo($row->tgl_akhir,'-')));
+				}
+//				$pdf->Cell(5,7,'',0,0);
+//				$pdf->Cell(10,6,$counterrr. '. ',0,0,'C',0);
+//				$pdf->Cell(50,6,$row->nama_pegawai,0,0,'L',0);
+//				$pdf->Cell(65,6,$row->tempat,0,0,'C',0);
+//				$pdf->MultiCell(50,6,$this->tanggal_indo($row->tgl_mulai,'-').' s.d '
+//					.$this->tanggal_indo($row->tgl_akhir,'-'),0,'L');
 				$counterrr++;
 			}
 
@@ -1360,21 +1366,16 @@ class C_PDF extends CI_Controller {
 		$malam = $this->hitung_hari($surat_tugas['0']->tgl_mulai, $surat_tugas['0']->tgl_akhir);
 		$hari = $malam + 1;
 
-
-
 		$nomor 			= $surat_tugas['0']->nomor;
-		$var_kegiatan 	= $surat_tugas['0']->kegiatan;
 		$var_tempat 	= $surat_tugas['0']->tempat;
 		$var_tgl_mulai 	= $this->tanggal_indo($surat_tugas['0']->tgl_mulai, '-');
 		$var_tgl_akhir 	= $this->tanggal_indo($surat_tugas['0']->tgl_akhir, '-');
 
-		$var_tahun_kegiatan 	= substr($surat_tugas['0']->tgl_surat, -4);
 		$var_tgl_surat 			= $this->tanggal_indo($surat_tugas['0']->tgl_surat,'/');
 		$current_date = date('d/m/Y');
 		$var_tgl_skrg = $this->tanggal_indo($current_date, '/');
 		$nama_bendahara 				= $bendahara['0']->nama;
 		$nip_bendahara				= $bendahara['0']->nip;
-		$tgl_sekarang 			= date('d')."-".date('m')."-".date('Y');
 
 		$yang_dinas = $pegawai['0']->nama_pegawai;
 		$nip_yang_dinas = $pegawai['0']->nip_pegawai;
@@ -1708,7 +1709,7 @@ class C_PDF extends CI_Controller {
 				'tiket' => $s_tiket,
 				'total' => $s_total
 			);
-			$this->db->insert('pembayaran_awal', $data_yang_sudah_dibayar);
+			//$this->db->insert('pembayaran_awal', $data_yang_sudah_dibayar);
 		} else if ($jenis == '1') {
 			//bayar di depan, nilainya sesuai sbu
 			$s_harian = $harian*$hari;
@@ -1725,17 +1726,20 @@ class C_PDF extends CI_Controller {
 				'tiket' => $s_tiket,
 				'total' => $s_total
 			);
-			$this->db->insert('pembayaran_awal', $data_yang_sudah_dibayar);
+			//$this->db->insert('pembayaran_awal', $data_yang_sudah_dibayar);
 		}
 
-
 		$jml_harian = $harian*$hari;
-		$jml_penginapan = $malam*$penginapan;
 		$jml_s_harian = $s_harian*$hari;
-  		$jml_s_penginapan = $s_penginapan*$malam;
-  		$s_total = $jml_s_harian+$jml_s_penginapan+$s_tiket+$s_transport;
-		$total = $jml_harian+$jml_penginapan+$tiket+$transport;
-		$sisa = $s_total - $total;
+		if(!isset($_POST['rsubmit'])) {
+			$jml_penginapan = $malam*$penginapan;
+			$jml_s_penginapan = $s_penginapan*$malam;
+			$s_total = $jml_s_harian+$jml_s_penginapan+$s_tiket+$s_transport;
+			$total = $jml_harian+$jml_penginapan+$tiket+$transport;
+			$sisa = $s_total - $total;
+		} else {
+
+		}
 
 
 		$num_data = count($this->input->post('penginapan'));
@@ -1749,7 +1753,7 @@ class C_PDF extends CI_Controller {
 				'tiket' => $tiket,
 				'total' => $total
 			);
-			$this->db->insert('spd_rampung', $data);
+			//$this->db->insert('spd_rampung', $data);
 		}
 
 		if ($total>$s_total) {
@@ -1798,17 +1802,21 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,6,'Rp',0,0,'L',0);
 		$pdf->Cell(30,6,$jml_harian,'R',0,'R',0);
 		$pdf->Cell(55,6,'Perjalanan dinas ke :','R',0,'L',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'2','L',0,'C',0);
-		$pdf->Cell(25,6,'Penginapan','L',0,'L',0);
-		$pdf->Cell(10,6,$malam.' Malam',0,0,'L',0);
-		$pdf->Cell(10,6,'x',0,0,'R',0);
-		$pdf->Cell(5,6,'Rp',0,0,'L',0);
-		$pdf->Cell(25,6,$penginapan,'R',0,'R',0);
-		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,$jml_penginapan,'R',0,'R',0);
-		$pdf->Cell(55,6,'Ke '.$tempat,'R',0,'L',0);
+
+		if(!isset($_POST['rsubmit'])) {
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,'2','L',0,'C',0);
+			$pdf->Cell(25,6,'Penginapan','L',0,'L',0);
+			$pdf->Cell(10,6,$malam.' Malam',0,0,'L',0);
+			$pdf->Cell(10,6,'x',0,0,'R',0);
+			$pdf->Cell(5,6,'Rp',0,0,'L',0);
+			$pdf->Cell(25,6,$penginapan,'R',0,'R',0);
+			$pdf->Cell(10,6,'Rp',0,0,'L',0);
+			$pdf->Cell(30,6,$jml_penginapan,'R',0,'R',0);
+			$pdf->Cell(55,6,'Ke '.$tempat,'R',0,'L',0);
+		}
+
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(10,6,'3','L',0,'C',0);
