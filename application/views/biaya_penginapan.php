@@ -22,7 +22,7 @@
                               <th class="th-sm" scope="col">Eselon IV
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
-                              <th class="th-sm" scope="col">Eselon Golongan I/II
+                              <th class="th-sm" scope="col">Golongan I/II
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
                               <th class="th-sm" scope="col">Edit
