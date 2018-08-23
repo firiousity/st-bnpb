@@ -1,5 +1,5 @@
 <body>
-  <div class="container-fluid" style="padding-top: 10vh; padding-bottom: 10vh">
+  <div class="container-fluid" style="padding-top: 10vh; padding-bottom: 15vh">
         <p style="font-size: 27px; text-align: center; padding-top: 50px;">Kelola Pegawai</p>
         <table id="pegawai" class="table table-hover" cellspacing="0">
   <thead class="mdb-color darken-3 white-text">
@@ -87,10 +87,6 @@
   <div class="row">
     <div class="col-md-12">
       <div class="btn-group">
-<!-- <<<<<<< Updated upstream
-        <a href="#" class="btn-fab" data-toggle="modal" data-target="#modalRegisterForm" id="main"><i style="font-size: 47px; color: red;" class="fa fa-user-plus" aria-hidden="true">
-          </i> 
-======= -->
         <a href="#"> <button class="btn animated bounceInLeft btn-indigo btn-fab" type="button" data-toggle="modal" data-target="#modalRegisterForm" id="main"><i class="fa fa-plus" aria-hidden="true">
           </i> Tambah</button> 
         </a>

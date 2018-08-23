@@ -53,7 +53,11 @@
 						  ?>
 						  </tbody>
 						</table>
-            <a href="<?php echo base_url('home/lihat_surat')?>"><button class="btn btn-indigo"><i class="fa fa-angle-left" aria-hidden="true"></i> Kembali</button></a>
+            <div class="container-fluid">
+      <div class="btn-group">
+        <a href="<?php echo base_url('home/lihat_surat')?>"> <button class="btn animated bounceInLeft btn-indigo btn-fab" type="button" data-toggle="modal" data-target="#modalRegisterForm" id="main"><i class="fa fa-angle-left" aria-hidden="true"></i> Kembali</button></a>
+      </div>
+    </div>
             </div>
 
         </div>

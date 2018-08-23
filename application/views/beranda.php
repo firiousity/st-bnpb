@@ -19,12 +19,12 @@
       <!--Title-->
       <h4 class="card-title jdl">Persuratan</h4>
       <!--Text-->
-      <p class="card-text">Lihat dan buat surat</p>
+      <p class="card-text">Lihat daftar surat atau buat surat baru</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 		<div class="dropdown">
 			<button id="surat" data-target="#" href="https://example.com"
 					class="btn btn-indigo btn-md dropdown-toggle dropena" type="button"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buat</button>
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pilih</button>
 			<div class="dropdown-menu" aria-labelledby="surat">
 				<a class="dropdown-item" href="<?php echo base_url('surat/buat_surat_dinas')?>">Buat Surat</a>
 				<div class="dropdown-divider"></div>
@@ -49,7 +49,7 @@
       <!--Title-->
       <h4 class="card-title">Anggaran</h4>
       <!--Text-->
-      <p class="card-text">Mengelola anggaran</p>
+      <p class="card-text">Mengelola anggaran SBU Pusdatinmas</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
       <div class="dropup">
     <button id="anggaran" data-target="#" href="https://example.com" class="btn btn-indigo btn-md dropdown-toggle dropena" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -87,7 +87,7 @@
       <!--Title-->
       <h4 class="card-title">Pegawai</h4>
       <!--Text-->
-      <p class="card-text">Mengelola data kepegawaian</p>
+      <p class="card-text">Data pegawai Pusdatinmas BNPB</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
       <a href="<?php echo base_url('home/pegawai')?>"><button type="button" class="btn btn-indigo btn-md">kelola</button></a>
 
