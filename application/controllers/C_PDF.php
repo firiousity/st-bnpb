@@ -1289,7 +1289,7 @@ class C_PDF extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('print_biaya', $data);
-		$this->load->view('layouts/footer');
+		// $this->load->view('layouts/footer');
 	}
 	function form_biaya($slug) {
 		$arr_slug = explode('_', $slug);

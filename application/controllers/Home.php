@@ -490,7 +490,7 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('uang_representasi', $data);
-		$this->load->view('layouts/footer2');
+		// $this->load->view('layouts/footer2');
 	}
 
 	public function tambah_representasi() {

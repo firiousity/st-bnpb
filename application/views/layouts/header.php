@@ -126,10 +126,6 @@
 	  bottom: 170px
 	}
 
-	.mapid {
-		height: 400px;
-	}
-
 	.dropdown:hover>.dropdown-menu {
 		display: block;
 	}

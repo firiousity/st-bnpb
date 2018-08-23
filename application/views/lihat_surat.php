@@ -48,9 +48,26 @@
 						  ?>
 						  </tbody>
 						</table>
-                    <div align="center">
-                          <a href="<?php  echo base_url('surat/buat_surat_dinas')?>"><button type="button" class="btn btn-indigo btn-md"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Surat</button></a>
-                    </div>
+<div class="container-fluid">
+      <div class="btn-group">
+        <a href="<?php  echo base_url('surat/buat_surat_dinas')?>"> <button style="padding-left: 17.5px; padding-right: 17.5px;" class="btn btn-indigo btn-fab btn-lg" type="button" data-toggle="modal" data-target="#modalRegisterForm" id="main"><i class="fa fa-plus" aria-hidden="true">
+          </i></button> 
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="btn-group">
+        <a href="<?php  echo base_url('surat/buat_surat_dinas')?>"> <button class="btn btn-indigo btn-fab" type="button"><i class="fa fa-plus" aria-hidden="true">
+          </i> Tambah</button> 
+        </a>
+      </div>
+    </div>
+  </div>
+</div> -->
               </div>
           </div>
         </div>
