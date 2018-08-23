@@ -1,6 +1,6 @@
 <body>
-          <div class="container">
-                <p style="font-size: 27px; text-align: center; padding-top: 20vh;">Daftar Surat</p>
+          <div class="container" style="padding-top: 10vh; padding-bottom: 10vh">
+                <p style="font-size: 27px; text-align: center;">Daftar Surat</p>
                       <table id="lihat_surat" class="table table-hover" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
@@ -57,21 +57,7 @@
     </div>
   </div>
 </div>
-<!-- <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="btn-group">
-        <a href="<?php  echo base_url('surat/buat_surat_dinas')?>"> <button class="btn btn-indigo btn-fab" type="button"><i class="fa fa-plus" aria-hidden="true">
-          </i> Tambah</button> 
-        </a>
-      </div>
-    </div>
-  </div>
-</div> -->
               </div>
-          </div>
-        </div>
-
 </body>
 <script>
 $(document).ready(function () {

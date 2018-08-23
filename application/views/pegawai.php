@@ -87,8 +87,12 @@
   <div class="row">
     <div class="col-md-12">
       <div class="btn-group">
+<!-- <<<<<<< Updated upstream
         <a href="#" class="btn-fab" data-toggle="modal" data-target="#modalRegisterForm" id="main"><i style="font-size: 47px; color: red;" class="fa fa-user-plus" aria-hidden="true">
           </i> 
+======= -->
+        <a href="#"> <button class="btn animated bounceInLeft btn-indigo btn-fab" type="button" data-toggle="modal" data-target="#modalRegisterForm" id="main"><i class="fa fa-plus" aria-hidden="true">
+          </i> Tambah</button> 
         </a>
       </div>
     </div>
