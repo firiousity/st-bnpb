@@ -1346,6 +1346,8 @@ class C_PDF extends CI_Controller {
 
 		$surat_tugas	= $this->db->limit(1)->get_where('data_rinci',
 			array('id_surat' => $id_surat, 'id_pegawai' => $id_pegawai))->result();
+		$rampung_result	= $this->db->limit(1)->get_where('spd_rampung',
+			array('id_surat' => $id_surat, 'id_pegawai' => $id_pegawai))->result();
 		$pegawai 		= $this->db->get_where('pegawai',
 			array('id_pegawai' => $id_pegawai))->result();
 		$bendahara 			= $this->db->get_where('pejabat_administratif',
@@ -1368,7 +1370,8 @@ class C_PDF extends CI_Controller {
 
 		$var_tahun_kegiatan 	= substr($surat_tugas['0']->tgl_surat, -4);
 		$var_tgl_surat 			= $this->tanggal_indo($surat_tugas['0']->tgl_surat,'/');
-
+		$current_date = date('d/m/Y');
+		$var_tgl_skrg = $this->tanggal_indo($current_date, '/');
 		$nama_bendahara 				= $bendahara['0']->nama;
 		$nip_bendahara				= $bendahara['0']->nip;
 		$tgl_sekarang 			= date('d')."-".date('m')."-".date('Y');
@@ -1379,12 +1382,12 @@ class C_PDF extends CI_Controller {
 		$total_harian = $hari*$harian;
 		$total_penginapan = $malam*$penginapan;
 		$total_biaya = $total_harian + $total_penginapan + $tiket + $transport;
+		$total_rampung = $rampung_result['0']->total;
 
 		$pembayaran_result = $this->home_model->get_pembayaran_awal($slug);
 		if($pembayaran_result != NULL) {
 			$semula = $pembayaran_result['0']->total;
-			$sisa = $total_biaya - $semula;
-			$keterangan = "";
+			$sisa = $total_rampung - $semula;
 			if($sisa<0) {
 				$keterangan = "Kurang";
 			} elseif ($sisa>0) {
@@ -1507,7 +1510,7 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(10,6,'',0,0,'L');
 			$pdf->Cell(25,6,'',0,0,'R');
 			$pdf->Cell(40,6,'',0,0,'C');
-			$pdf->MultiCell(50,6,'Jakarta, '.$var_tgl_surat,0,'R');
+			$pdf->MultiCell(50,6,'Jakarta, '.$var_tgl_skrg,0,'R');
 			$pdf->Ln();
 			$pdf->Cell(15,6,'',0,0,'L');
 			$pdf->Cell(10,3,'Telah dibayar sejumlah',0,0,'L');
@@ -1524,7 +1527,7 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(40,6,'',0,0,'R');
 			$pdf->Cell(48,6,'',0,0,'C');
 
-			$pdf->MultiCell(80,6,'Rp '.number_format(0,2,',','.'),0,'L');
+			$pdf->MultiCell(80,6,'Rp '.number_format($semula,2,',','.'),0,'L');
 			$pdf->Ln();
 			$pdf->Cell(100,6,"Bendahara Pengeluaran Pembantu",0, 0,'C');
 			$pdf->MultiCell(50,6,'Yang menerima',0,'R');
@@ -1550,19 +1553,20 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(10,5,"Ditetapkan sejumlah",0, 0,'L');
 			$pdf->Cell(45,5,'',0,0,'L');
 			$pdf->Cell(80,5,".............................................. : Rp",0, 0,'L');
-			$pdf->Cell(7,5,$total_biaya,0, 0,'R');
+			$pdf->Cell(7,5,number_format($total_rampung,2,',','.'),0, 0,'R');
 			$pdf->Ln();
 			$pdf->Cell(15,6,'',0,0,'L');
 			$pdf->Cell(10,5,"Yang telah dibayarkan semula",0, 0,'L');
 			$pdf->Cell(45,5,'',0,0,'L');
 			$pdf->Cell(80,5,".............................................. : Rp",0, 0,'L');
-			$pdf->Cell(7,5,$semula,0, 0,'R');
+			$pdf->Cell(7,5,	number_format($semula,2,',','.'),0, 0,'R');
 			$pdf->Ln();
 			$pdf->Cell(15,6,'',0,0,'L');
 			$pdf->Cell(10,5,"Sisa ".$keterangan,0, 0,'L');
 			$pdf->Cell(45,5,'',0,0,'L');
 			$pdf->Cell(80,5,".............................................. : Rp",0, 0,'L');
-			$pdf->Cell(7,5,$sisa,0, 0,'R');
+			$sisa = abs($sisa);
+			$pdf->Cell(7,5,number_format($sisa,2,',','.'),0, 0,'R');
 			$pdf->Ln();
 			$pdf->Ln();
 			$pdf->Ln();
@@ -1683,7 +1687,8 @@ class C_PDF extends CI_Controller {
 				$penginapan = $this->input->post('inap');
 			} else {
 				//multiple tempat penginapan
-
+				$malam_d = $this->input->post('malam');
+				$penginapan_d = $this->input->post('penginapan');
 			}
 		}
 
@@ -1705,7 +1710,7 @@ class C_PDF extends CI_Controller {
 			);
 			$this->db->insert('pembayaran_awal', $data_yang_sudah_dibayar);
 		} else if ($jenis == '1') {
-			//bayar di depan.
+			//bayar di depan, nilainya sesuai sbu
 			$s_harian = $harian*$hari;
 			$s_penginapan = $sbu_penginapan*$malam;
 			$s_tiket = $sbu_tiket;

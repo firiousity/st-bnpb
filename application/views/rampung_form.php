@@ -72,7 +72,7 @@
 		malam_input.setAttribute('name', 'malam['+ i +']');
 		malam_input.setAttribute('type', 'number');
 		malam_input.setAttribute('class', 'form-control');
-		malam_input.setAttribute('placeholder', 'Berapa malam?');
+		malam_input.setAttribute('placeholder', 'Jumlah malam');
 
 
 		var hapus = document.createElement('span');
