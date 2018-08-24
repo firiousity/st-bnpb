@@ -167,6 +167,13 @@ class Home extends CI_Controller {
 
 	}
 
+	function delete_surat($id) {
+		$where = array('id' => $id );
+		$this->db->delete('surat_dinas', $where);
+		$this->alert("Berhasil menghapus");
+		$this->href('home/lihat_surat');
+	}
+
 	/*
 	 * CRUD Biaya Penginapan
 	 *
