@@ -1778,7 +1778,7 @@ class C_PDF extends CI_Controller {
 				$jml_penginapan = $malam*$penginapan;
 				$jml_s_penginapan = $s_penginapan*$malam;
 				$s_total = $jml_s_harian+$jml_s_penginapan+$s_tiket+$s_transport;
-				$total = $jml_harian+$jml_penginapan+$tiket+$transport;
+				$total = $jml_harian+$jml_penginapan+$tiket+$total_transport;
 				$sisa = $s_total - $total;
 
 				$data = array(
@@ -1803,7 +1803,7 @@ class C_PDF extends CI_Controller {
 					$jml_penginapan = $malam_d[$key]*$penginapan_d[$key];
 					$jml_s_penginapan = $s_penginapan*$malam_d[$key];
 					$s_total = $jml_s_harian+$jml_s_penginapan+$s_tiket+$s_transport;
-					$total = $jml_harian+$jml_penginapan+$tiket+$transport;
+					$total = $jml_harian+$jml_penginapan+$tiket+$total_transport;
 					$sisa = $s_total - $total;
 					$data = array(
 						'id_surat' => $id_surat,
@@ -2015,6 +2015,7 @@ class C_PDF extends CI_Controller {
 			$jml_penginapan = $penginapan*$malam_t;
 			$total = $jml_penginapan+$jml_harian+$tiket+$total_transport;
 			$sisa = $s_total - $total;
+
 			$pdf->Ln();
 			$pdf->Cell(5,7,'',0,0);
 			$pdf->Cell(10,6,'','L',0,'L',0);
