@@ -1798,13 +1798,17 @@ class C_PDF extends CI_Controller {
 
 				$penginapan_d = $this->input->post('penginapan');
 				$num_data = count($penginapan_d);
+
+				$total_penginapan = 0;
 				for($key=1;$key<=$num_data;$key++) {
 					$malam_d = $this->input->post('malam');
 					$jml_penginapan = $malam_d[$key]*$penginapan_d[$key];
+					$total_penginapan = $total_penginapan + $malam_d[$key]*$penginapan_d[$key];
 					$jml_s_penginapan = $s_penginapan*$malam_d[$key];
 					$s_total = $jml_s_harian+$jml_s_penginapan+$s_tiket+$s_transport;
-					$total = $jml_harian+$jml_penginapan+$tiket+$total_transport;
+					$total = $jml_harian+$total_penginapan+$tiket+$total_transport;
 					$sisa = $s_total - $total;
+
 					$data = array(
 						'id_surat' => $id_surat,
 						'id_pegawai' => $id_pegawai,
@@ -1820,8 +1824,6 @@ class C_PDF extends CI_Controller {
 				}
 			}
 		}
-
-
 
 		/* Otomatis Menyesuaikan Apakah Sisanya Lebih atau Kurang*/
 		if ($total>$s_total) {
@@ -1881,8 +1883,11 @@ class C_PDF extends CI_Controller {
 				$jml_penginapan = $malam_d[$a]*$penginapan_d[$a];
 				$jml_s_penginapan = $s_penginapan*$malam_d[$a];
 				$s_total = $jml_s_harian+$jml_s_penginapan+$s_tiket+$s_transport;
-				$total = $jml_harian+$malam_d[$a]*$penginapan_d[$a]
-					+$tiket+$transport;
+				$total_result = $this->db->order_by('id', 'desc')->limit(1)->get_where('spd_rampung',
+					array(
+						'id_surat' => $id_surat, 'id_pegawai' => $id_pegawai
+					))->result();
+				$total = $total_result['0']->total;
 				$sisa = $s_total - $total;
 				$pdf->Ln();
 				$pdf->Cell(5,7,'',0,0);
@@ -2114,7 +2119,11 @@ class C_PDF extends CI_Controller {
 				$total_penginapan = $total_penginapan + $r_tiket_result[$a]->penginapan*$r_tiket_result[$a]->malam;
 				$jml_s_penginapan = $s_penginapan*$malam;
 				$s_total = $jml_s_harian+$jml_s_penginapan+$s_tiket+$s_transport;
-				$total = $jml_harian+$total_penginapan+$tiket+$transport;
+				$total_result = $this->db->order_by('id', 'desc')->limit(1)->get_where('spd_rampung',
+					array(
+						'id_surat' => $id_surat, 'id_pegawai' => $id_pegawai
+					))->result();
+				$total = $total_result['0']->total;
 				$sisa = $s_total - $total;
 				$pdf->Ln();
 				$pdf->Cell(5,7,'',0,0);
