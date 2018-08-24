@@ -1427,7 +1427,6 @@ class C_PDF extends CI_Controller {
 			}
 			//PRINT USING FPDF
 			$pdf = new PDF_MC_Table('p','mm','A4');
-
 			//Page 1
 			$pdf->AddPage();
 			$pdf->SetFont('Arial','BU',12);
