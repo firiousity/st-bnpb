@@ -62,6 +62,10 @@ class C_PDF extends CI_Controller {
 		implode('-', array_reverse(explode('-', $tanggal[0])));
 	}
 
+	 function buat_erik($n) {
+		echo $this->terbilang($n);
+	 }
+
 	function terbilang($bilangan) {
 
 		$angka = array('0','0','0','0','0','0','0','0','0','0',
@@ -1646,14 +1650,13 @@ class C_PDF extends CI_Controller {
 		//get data uang transport2
 		$transport2_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport2))->result();
 		$transport2 = $transport2_result['0']->besaran*2;
-
 		$total_transport = $transport + $transport2;
+		$jenis = $data_rinci_all['0'] -> jenis;
 
 		//Get pegawai
 		$pegawai_result = $this->db->get_where('pegawai', array('id_pegawai' => $id_pegawai))->result();
 		$nama_dinas 	= $pegawai_result['0']->nama_pegawai;
 		$nip_dinas		= $pegawai_result['0']->nip_pegawai;
-
 
 		//Get ppk
 		$ppk 			= $this->db->get_where('pejabat_administratif',
@@ -1670,92 +1673,135 @@ class C_PDF extends CI_Controller {
 		$var_tgl_akhir = $this->tanggal_indo($surat_result['0']->tgl_akhir, '-');
 		$var_tgl_surat = $this->tanggal_indo($surat_result['0']->tgl_surat, '/');
 		$var_tgl_skrg = $this->tanggal_indo(date('Y').'-'.date('m').'-'.date('d'), '-');
-		$malam = $this->hitung_hari($surat_result['0']->tgl_mulai, $surat_result['0']->tgl_akhir);
-		$hari = $malam + 1;
+		$hari = $this->hitung_hari($surat_result['0']->tgl_mulai, $surat_result['0']->tgl_akhir);
+		$hari = $hari + 1;
+		$malam = $hari - 1 ;
 
 		//nilai penginapan dan tiket akan berubah sesuai jenis. kalo di depan makan nilainya sama dengan sbu
-		$jenis = $data_rinci_all['0'] -> jenis;
 		if(!isset($_POST['rsubmit'])) {
+			//Artinya dia udah ngisi SPD, tinggal nyetak aja
 			//dibayar di belakang maka nila tiket dan penginapan sesuai dengan post di spd rampung
 			//get real pengeluaran untuk tiket
-			$r_tiket_result = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
+			$r_tiket_result = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0],
+				'id_pegawai' => $arr_slug[1]))->result();
 			$tiket = $r_tiket_result['0']->tiket;
 			$penginapan = $r_tiket_result['0']->penginapan;
-		} else  {
-			$tiket = $this->input->post('tiket');
-			if (!isset($_POST['isMultiple'])) {
-				//satu tempat penginapan saja
-				$penginapan = $this->input->post('inap');
-			} else {
-				//multiple tempat penginapan
-				$malam_d = $this->input->post('malam');
-				$penginapan_d = $this->input->post('penginapan');
+			$isMultiple = $r_tiket_result['0']->multiple;
+			$malam = $r_tiket_result['0']->malam;
+			if($jenis == '0') {
+				//bayar di belakang, set all value to zero
+				$s_harian = 0;
+				$s_penginapan = 0;
+				$s_tiket = 0;
+				$s_transport = 0;
+			} else if ($jenis == '1') {
+				//bayar di depan, nilainya sesuai sbu
+				$s_harian = $harian;
+				$s_penginapan = $sbu_penginapan;
+				$s_tiket = $sbu_tiket;
+				$s_transport = $total_transport;
 			}
-		}
-
-		if($jenis == '0') {
-			//bayar di belakang, set all value to zero
-			$s_harian = 0;
-			$s_penginapan = 0;
-			$s_tiket = 0;
-			$s_transport = 0;
-			$s_total = 0;
-			$data_yang_sudah_dibayar = array(
-				'id_surat' => $id_surat,
-				'id_pegawai' => $id_pegawai,
-				'penginapan' => $s_penginapan,
-				'harian' => $s_harian,
-				'transport' => $s_transport,
-				'tiket' => $s_tiket,
-				'total' => $s_total
-			);
-			//$this->db->insert('pembayaran_awal', $data_yang_sudah_dibayar);
-		} else if ($jenis == '1') {
-			//bayar di depan, nilainya sesuai sbu
-			$s_harian = $harian*$hari;
-			$s_penginapan = $sbu_penginapan*$malam;
-			$s_tiket = $sbu_tiket;
-			$s_transport = $total_transport;
-			$s_total = $s_harian+$s_penginapan+$s_tiket+$s_transport;
-			$data_yang_sudah_dibayar = array(
-				'id_surat' => $id_surat,
-				'id_pegawai' => $id_pegawai,
-				'penginapan' => $s_penginapan,
-				'harian' => $s_harian,
-				'transport' => $s_transport,
-				'tiket' => $s_tiket,
-				'total' => $s_total
-			);
-			//$this->db->insert('pembayaran_awal', $data_yang_sudah_dibayar);
-		}
-
-		$jml_harian = $harian*$hari;
-		$jml_s_harian = $s_harian*$hari;
-		if(!isset($_POST['rsubmit'])) {
+			$jml_harian = $harian*$hari;
+			$jml_s_harian = $s_harian*$hari;
 			$jml_penginapan = $malam*$penginapan;
 			$jml_s_penginapan = $s_penginapan*$malam;
 			$s_total = $jml_s_harian+$jml_s_penginapan+$s_tiket+$s_transport;
 			$total = $jml_harian+$jml_penginapan+$tiket+$transport;
 			$sisa = $s_total - $total;
-		} else {
+		} else  {
+			/* Menyimpan Ke Pembayaran Awal */
+			if($jenis == '0') {
+				//bayar di belakang, set all value to zero
+				$s_harian = 0;
+				$s_penginapan = 0;
+				$s_tiket = 0;
+				$s_transport = 0;
+				$s_total = 0;
+				$data_yang_sudah_dibayar = array(
+					'id_surat' => $id_surat,
+					'id_pegawai' => $id_pegawai,
+					'penginapan' => $s_penginapan,
+					'harian' => $s_harian,
+					'transport' => $s_transport,
+					'tiket' => $s_tiket,
+					'total' => $s_total
+				);
+				$this->db->insert('pembayaran_awal', $data_yang_sudah_dibayar);
+			} else if ($jenis == '1') {
+				//bayar di depan, nilainya sesuai sbu
+				$s_harian = $harian;
+				$s_penginapan = $sbu_penginapan;
+				$s_tiket = $sbu_tiket;
+				$s_transport = $total_transport;
+				$s_total = $s_harian+$s_penginapan+$s_tiket+$s_transport;
+				$data_yang_sudah_dibayar = array(
+					'id_surat' => $id_surat,
+					'id_pegawai' => $id_pegawai,
+					'penginapan' => $s_penginapan,
+					'harian' => $s_harian,
+					'transport' => $s_transport,
+					'tiket' => $s_tiket,
+					'total' => $s_total
+				);
+				$this->db->insert('pembayaran_awal', $data_yang_sudah_dibayar);
+			}
+			//nilainya diambil dari isian form
+			$isMultiple = isset($_POST['isMultiple']) ? "1" : "0";
+			$tiket = $this->input->post('tiket');
+			$jml_harian = $harian*$hari;
+			$jml_s_harian = $s_harian*$hari;
+			if ($isMultiple == "0") {
+				//satu tempat penginapan saja
+				$penginapan = $this->input->post('inap');
+				$jml_penginapan = $malam*$penginapan;
+				$jml_s_penginapan = $s_penginapan*$malam;
+				$s_total = $jml_s_harian+$jml_s_penginapan+$s_tiket+$s_transport;
+				$total = $jml_harian+$jml_penginapan+$tiket+$transport;
+				$sisa = $s_total - $total;
 
+				$data = array(
+					'id_surat' => $id_surat,
+					'id_pegawai' => $id_pegawai,
+					'multiple' => $isMultiple,
+					'malam' => $malam,
+					'penginapan' => $penginapan,
+					'harian' => $harian,
+					'transport' => $transport,
+					'tiket' => $tiket,
+					'total' => $total
+				);
+				$this->db->insert('spd_rampung', $data);
+			} else {
+				//multiple tempat penginapan
+
+				$penginapan_d = $this->input->post('penginapan');
+				$num_data = count($penginapan_d);
+				for($key=1;$key<=$num_data;$key++) {
+					$malam_d = $this->input->post('malam');
+					$jml_penginapan = $malam_d[$key]*$penginapan_d[$key];
+					$jml_s_penginapan = $s_penginapan*$malam_d[$key];
+					$s_total = $jml_s_harian+$jml_s_penginapan+$s_tiket+$s_transport;
+					$total = $jml_harian+$jml_penginapan+$tiket+$transport;
+					$sisa = $s_total - $total;
+					$data = array(
+						'id_surat' => $id_surat,
+						'id_pegawai' => $id_pegawai,
+						'multiple' => $isMultiple,
+						'malam' => $malam_d[$key],
+						'penginapan' => $penginapan_d[$key],
+						'harian' => $harian,
+						'transport' => $transport,
+						'tiket' => $tiket,
+						'total' => $total
+					);
+					$this->db->insert('spd_rampung', $data);
+				}
+			}
 		}
 
 
-		$num_data = count($this->input->post('penginapan'));
-		for($key=0;$key<$num_data;$key++) {
-			$data = array(
-				'id_surat' => $id_surat,
-				'id_pegawai' => $id_pegawai,
-				'penginapan' => $penginapan[$key],
-				'harian' => $harian,
-				'transport' => $transport,
-				'tiket' => $tiket,
-				'total' => $total
-			);
-			//$this->db->insert('spd_rampung', $data);
-		}
 
+		/* Otomatis Menyesuaikan Apakah Sisanya Lebih atau Kurang*/
 		if ($total>$s_total) {
 			$keterangan = "KURANG";
 		} elseif (($total<$s_total)) {
@@ -1763,7 +1809,8 @@ class C_PDF extends CI_Controller {
 		} else {
 			$keterangan = "";
 		}
-		//Print PDF
+
+		/* Print PDF */
 		$pdf = new PDF_MC_Table('p','mm','A4');
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','BU',12);
@@ -1784,26 +1831,112 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(75,6,'Perincian biaya',1,0,'C',0);
 		$pdf->Cell(40,6,'Jumlah',1,0,'C',0);
 		$pdf->Cell(55,6,'Keterangan',1,0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','L',0,'L',0);
-		$pdf->Cell(75,6,'RINCIAN PENGELUARAN','LR',0,'L',0);
-		$pdf->Cell(40,6,'','R',0,'C',0);
-		$pdf->Cell(55,6,'','R',0,'C',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->SetFont('Arial','',10);
-		$pdf->Cell(10,6,'1','L',0,'C',0);
-		$pdf->Cell(25,6,'Uang Harian','L',0,'L',0);
-		$pdf->Cell(10,6,$hari.' Hari',0,0,'L',0);
-		$pdf->Cell(10,6,'x',0,0,'R',0);
-		$pdf->Cell(5,6,'Rp',0,0,'L',0);
-		$pdf->Cell(25,6,$harian,'R',0,'R',0);
-		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,$jml_harian,'R',0,'R',0);
-		$pdf->Cell(55,6,'Perjalanan dinas ke :','R',0,'L',0);
 
-		if(!isset($_POST['rsubmit'])) {
+		//Rincian pengeluaran akan berbeda karna pengisiannya beda
+		//Belum isi SPD dan Memilih penginapan banyak
+		if (isset($_POST['rsubmit']) && $isMultiple == "1") {
+			/* Nilainya di dapat dari form dan ini buat double tempat penginapan*/
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,'','L',0,'L',0);
+			$pdf->Cell(75,6,'RINCIAN PENGELUARAN','LR',0,'L',0);
+			$pdf->Cell(40,6,'','R',0,'C',0);
+			$pdf->Cell(55,6,'','R',0,'C',0);
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->SetFont('Arial','',10);
+			$pdf->Cell(10,6,'1','L',0,'C',0);
+			$pdf->Cell(25,6,'Uang Harian','L',0,'L',0);
+			$pdf->Cell(10,6,$hari.' Hari',0,0,'L',0);
+			$pdf->Cell(10,6,'x',0,0,'R',0);
+			$pdf->Cell(5,6,'Rp',0,0,'L',0);
+			$pdf->Cell(25,6,$harian,'R',0,'R',0);
+			$pdf->Cell(10,6,'Rp',0,0,'L',0);
+			$pdf->Cell(30,6,$jml_harian,'R',0,'R',0);
+			$pdf->Cell(55,6,'Perjalanan dinas ke :','R',0,'L',0);
+			$counterx = 2;
+			for ($a = 1; $a <= count($penginapan_d); $a++) {
+				$jml_penginapan = $malam_d[$a]*$penginapan_d[$a];
+				$jml_s_penginapan = $s_penginapan*$malam_d[$a];
+				$s_total = $jml_s_harian+$jml_s_penginapan+$s_tiket+$s_transport;
+				$total = $jml_harian+$jml_penginapan+$tiket+$transport;
+				$sisa = $s_total - $total;
+				$pdf->Ln();
+				$pdf->Cell(5,7,'',0,0);
+				$pdf->Cell(10,6,$counterx,'L',0,'C',0);
+				$pdf->Cell(25,6,'Penginapan','L',0,'L',0);
+				$pdf->Cell(10,6,$malam_d[$a].' Malam',0,0,'L',0);
+				$pdf->Cell(10,6,'x',0,0,'R',0);
+				$pdf->Cell(5,6,'Rp',0,0,'L',0);
+				$pdf->Cell(25,6,$penginapan_d[$a],'R',0,'R',0);
+				$pdf->Cell(10,6,'Rp',0,0,'L',0);
+				$pdf->Cell(30,6,$jml_penginapan,'R',0,'R',0);
+				if ($a == 1) {
+					$pdf->Cell(55,6,'Ke '.$tempat,'R',0,'L',0);
+				} else {
+					$pdf->Cell(55,6,'','R',0,'L',0);
+				}
+				$counterx++;
+			}
+
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,$counterx+1,'L',0,'C',0);
+			$pdf->Cell(25,6,'Tiket Pesawat','L',0,'L',0);
+			$pdf->Cell(10,6,'',0,0,'L',0);
+			$pdf->Cell(10,6,'',0,0,'R',0);
+			$pdf->Cell(5,6,'Rp',0,0,'L',0);
+			$pdf->Cell(25,6,$tiket,'R',0,'R',0);
+			$pdf->Cell(10,6,'Rp',0,0,'L',0);
+			$pdf->Cell(30,6,$tiket,'R',0,'R',0);
+			$pdf->Cell(55,6,'(selama '.$hari.' hari)','R',0,'L',0);
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,$counterx+2,'L',0,'C',0);
+			$pdf->Cell(25,6,'Transport','L',0,'L',0);
+			$pdf->Cell(10,6,'',0,0,'L',0);
+			$pdf->Cell(10,6,'',0,0,'R',0);
+			$pdf->Cell(5,6,'Rp',0,0,'L',0);
+			$pdf->Cell(25,6,$total_transport,'R',0,'R',0);
+			$pdf->Cell(10,6,'Rp',0,0,'L',0);
+			$pdf->Cell(30,6,$total_transport,'R',0,'R',0);
+			$pdf->Cell(55,6,'Tanggal '.$var_tgl_mulai.' s.d ','R',0,'L',0);
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,'','L',0,'C',0);
+			$pdf->Cell(75,6,'','LR',0,'L',0);
+			$pdf->Cell(40,6,'','R',0,'R',0);
+			$pdf->Cell(55,6,$var_tgl_akhir,'R',0,'L',0);
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->SetFont('Arial','B',10);
+			$pdf->Cell(10,6,'','L',0,'C',0);
+			$pdf->Cell(75,6,'Jumlah :','LR',0,'R',0);
+			$pdf->Cell(7,6,'Rp',0,0,'L',0);
+			$pdf->Cell(33,6,$total,'TR',0,'R',0);
+			$pdf->Cell(55,6,'','R',0,'L',0);
+			$pdf->Ln();
+		} else if (isset($_POST['rsubmit']) && $isMultiple == "0") {
+			/* Nilainya di dapat dari form dan ini cuma buat satu tempat penginapan aja*/
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,'','L',0,'L',0);
+			$pdf->Cell(75,6,'RINCIAN PENGELUARAN','LR',0,'L',0);
+			$pdf->Cell(40,6,'','R',0,'C',0);
+			$pdf->Cell(55,6,'','R',0,'C',0);
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->SetFont('Arial','',10);
+			$pdf->Cell(10,6,'1','L',0,'C',0);
+			$pdf->Cell(25,6,'Uang Harian','L',0,'L',0);
+			$pdf->Cell(10,6,$hari.' Hari',0,0,'L',0);
+			$pdf->Cell(10,6,'x',0,0,'R',0);
+			$pdf->Cell(5,6,'Rp',0,0,'L',0);
+			$pdf->Cell(25,6,$harian,'R',0,'R',0);
+			$pdf->Cell(10,6,'Rp',0,0,'L',0);
+			$pdf->Cell(30,6,$jml_harian,'R',0,'R',0);
+			$pdf->Cell(55,6,'Perjalanan dinas ke :','R',0,'L',0);
+
 			$pdf->Ln();
 			$pdf->Cell(5,7,'',0,0);
 			$pdf->Cell(10,6,'2','L',0,'C',0);
@@ -1815,45 +1948,203 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(10,6,'Rp',0,0,'L',0);
 			$pdf->Cell(30,6,$jml_penginapan,'R',0,'R',0);
 			$pdf->Cell(55,6,'Ke '.$tempat,'R',0,'L',0);
+
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,'3','L',0,'C',0);
+			$pdf->Cell(25,6,'Tiket Pesawat','L',0,'L',0);
+			$pdf->Cell(10,6,'',0,0,'L',0);
+			$pdf->Cell(10,6,'',0,0,'R',0);
+			$pdf->Cell(5,6,'Rp',0,0,'L',0);
+			$pdf->Cell(25,6,$tiket,'R',0,'R',0);
+			$pdf->Cell(10,6,'Rp',0,0,'L',0);
+			$pdf->Cell(30,6,$tiket,'R',0,'R',0);
+			$pdf->Cell(55,6,'(selama '.$hari.' hari)','R',0,'L',0);
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,'4','L',0,'C',0);
+			$pdf->Cell(25,6,'Transport','L',0,'L',0);
+			$pdf->Cell(10,6,'',0,0,'L',0);
+			$pdf->Cell(10,6,'',0,0,'R',0);
+			$pdf->Cell(5,6,'Rp',0,0,'L',0);
+			$pdf->Cell(25,6,$total_transport,'R',0,'R',0);
+			$pdf->Cell(10,6,'Rp',0,0,'L',0);
+			$pdf->Cell(30,6,$total_transport,'R',0,'R',0);
+			$pdf->Cell(55,6,'Tanggal '.$var_tgl_mulai.' s.d ','R',0,'L',0);
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,'','L',0,'C',0);
+			$pdf->Cell(75,6,'','LR',0,'L',0);
+			$pdf->Cell(40,6,'','R',0,'R',0);
+			$pdf->Cell(55,6,$var_tgl_akhir,'R',0,'L',0);
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->SetFont('Arial','B',10);
+			$pdf->Cell(10,6,'','L',0,'C',0);
+			$pdf->Cell(75,6,'Jumlah :','LR',0,'R',0);
+			$pdf->Cell(7,6,'Rp',0,0,'L',0);
+			$pdf->Cell(33,6,$total,'TR',0,'R',0);
+			$pdf->Cell(55,6,'','R',0,'L',0);
+		} else if (!isset($_POST['rsubmit']) && $isMultiple == "0") {
+
+			$malam_t = $hari-1;
+			$jml_penginapan = $penginapan*$malam_t;
+			$total = $jml_penginapan+$jml_harian+$tiket+$total_transport;
+
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,'','L',0,'L',0);
+			$pdf->Cell(75,6,'RINCIAN PENGELUARAN','LR',0,'L',0);
+			$pdf->Cell(40,6,'','R',0,'C',0);
+			$pdf->Cell(55,6,'','R',0,'C',0);
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->SetFont('Arial','',10);
+			$pdf->Cell(10,6,'1','L',0,'C',0);
+			$pdf->Cell(25,6,'Uang Harian','L',0,'L',0);
+			$pdf->Cell(10,6,$hari.' Hari',0,0,'L',0);
+			$pdf->Cell(10,6,'x',0,0,'R',0);
+			$pdf->Cell(5,6,'Rp',0,0,'L',0);
+			$pdf->Cell(25,6,$harian,'R',0,'R',0);
+			$pdf->Cell(10,6,'Rp',0,0,'L',0);
+			$pdf->Cell(30,6,$jml_harian,'R',0,'R',0);
+			$pdf->Cell(55,6,'Perjalanan dinas ke :','R',0,'L',0);
+
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,'2','L',0,'C',0);
+			$pdf->Cell(25,6,'Penginapan','L',0,'L',0);
+			$pdf->Cell(10,6,$malam_t.' Malam',0,0,'L',0);
+			$pdf->Cell(10,6,'x',0,0,'R',0);
+			$pdf->Cell(5,6,'Rp',0,0,'L',0);
+			$pdf->Cell(25,6,$penginapan,'R',0,'R',0);
+			$pdf->Cell(10,6,'Rp',0,0,'L',0);
+			$pdf->Cell(30,6,$jml_penginapan,'R',0,'R',0);
+			$pdf->Cell(55,6,'Ke '.$tempat,'R',0,'L',0);
+
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,'3','L',0,'C',0);
+			$pdf->Cell(25,6,'Tiket Pesawat','L',0,'L',0);
+			$pdf->Cell(10,6,'',0,0,'L',0);
+			$pdf->Cell(10,6,'',0,0,'R',0);
+			$pdf->Cell(5,6,'Rp',0,0,'L',0);
+			$pdf->Cell(25,6,$tiket,'R',0,'R',0);
+			$pdf->Cell(10,6,'Rp',0,0,'L',0);
+			$pdf->Cell(30,6,$tiket,'R',0,'R',0);
+			$pdf->Cell(55,6,'(selama '.$hari.' hari)','R',0,'L',0);
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,'4','L',0,'C',0);
+			$pdf->Cell(25,6,'Transport','L',0,'L',0);
+			$pdf->Cell(10,6,'',0,0,'L',0);
+			$pdf->Cell(10,6,'',0,0,'R',0);
+			$pdf->Cell(5,6,'Rp',0,0,'L',0);
+			$pdf->Cell(25,6,$total_transport,'R',0,'R',0);
+			$pdf->Cell(10,6,'Rp',0,0,'L',0);
+			$pdf->Cell(30,6,$total_transport,'R',0,'R',0);
+			$pdf->Cell(55,6,'Tanggal '.$var_tgl_mulai.' s.d ','R',0,'L',0);
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,'','L',0,'C',0);
+			$pdf->Cell(75,6,'','LR',0,'L',0);
+			$pdf->Cell(40,6,'','R',0,'R',0);
+			$pdf->Cell(55,6,$var_tgl_akhir,'R',0,'L',0);
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->SetFont('Arial','B',10);
+			$pdf->Cell(10,6,'','L',0,'C',0);
+			$pdf->Cell(75,6,'Jumlah :','LR',0,'R',0);
+			$pdf->Cell(7,6,'Rp',0,0,'L',0);
+			$pdf->Cell(33,6,$total,'TR',0,'R',0);
+			$pdf->Cell(55,6,'','R',0,'L',0);
+		} else {
+			/* Nilainya di dapat dari spd rampung dan ini buat double tempat penginapan*/
+			//get value from db enaena
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,'','L',0,'L',0);
+			$pdf->Cell(75,6,'RINCIAN PENGELUARAN','LR',0,'L',0);
+			$pdf->Cell(40,6,'','R',0,'C',0);
+			$pdf->Cell(55,6,'','R',0,'C',0);
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->SetFont('Arial','',10);
+			$pdf->Cell(10,6,'1','L',0,'C',0);
+			$pdf->Cell(25,6,'Uang Harian','L',0,'L',0);
+			$pdf->Cell(10,6,$hari.' Hari',0,0,'L',0);
+			$pdf->Cell(10,6,'x',0,0,'R',0);
+			$pdf->Cell(5,6,'Rp',0,0,'L',0);
+			$pdf->Cell(25,6,$harian,'R',0,'R',0);
+			$pdf->Cell(10,6,'Rp',0,0,'L',0);
+			$pdf->Cell(30,6,$jml_harian,'R',0,'R',0);
+			$pdf->Cell(55,6,'Perjalanan dinas ke :','R',0,'L',0);
+			$counterx = 2;
+			$num_penginapan = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0],
+				'id_pegawai' => $arr_slug[1]));
+			for ($a = 0; $a < $num_penginapan->num_rows(); $a++) {
+				$jml_penginapan = $r_tiket_result[$a]->penginapan*$r_tiket_result[$a]->malam;
+				$jml_s_penginapan = $s_penginapan*$malam;
+				$s_total = $jml_s_harian+$jml_s_penginapan+$s_tiket+$s_transport;
+				$total = $jml_harian+$jml_penginapan+$tiket+$transport;
+				$sisa = $s_total - $total;
+				$pdf->Ln();
+				$pdf->Cell(5,7,'',0,0);
+				$pdf->Cell(10,6,$counterx,'L',0,'C',0);
+				$pdf->Cell(25,6,'Penginapan','L',0,'L',0);
+				$pdf->Cell(10,6,$r_tiket_result[$a]->malam.' Malam',0,0,'L',0);
+				$pdf->Cell(10,6,'x',0,0,'R',0);
+				$pdf->Cell(5,6,'Rp',0,0,'L',0);
+				$pdf->Cell(25,6,$r_tiket_result[$a]->penginapan,'R',0,'R',0);
+				$pdf->Cell(10,6,'Rp',0,0,'L',0);
+				$pdf->Cell(30,6,$jml_penginapan,'R',0,'R',0);
+				if ($a == 0) {
+					$pdf->Cell(55,6,'Ke '.$tempat,'R',0,'L',0);
+				} else {
+					$pdf->Cell(55,6,'','R',0,'L',0);
+				}
+				$counterx++;
+			}
+
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,$counterx,'L',0,'C',0);
+			$pdf->Cell(25,6,'Tiket Pesawat','L',0,'L',0);
+			$pdf->Cell(10,6,'',0,0,'L',0);
+			$pdf->Cell(10,6,'',0,0,'R',0);
+			$pdf->Cell(5,6,'Rp',0,0,'L',0);
+			$pdf->Cell(25,6,$tiket,'R',0,'R',0);
+			$pdf->Cell(10,6,'Rp',0,0,'L',0);
+			$pdf->Cell(30,6,$tiket,'R',0,'R',0);
+			$pdf->Cell(55,6,'(selama '.$hari.' hari)','R',0,'L',0);
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,$counterx+1,'L',0,'C',0);
+			$pdf->Cell(25,6,'Transport','L',0,'L',0);
+			$pdf->Cell(10,6,'',0,0,'L',0);
+			$pdf->Cell(10,6,'',0,0,'R',0);
+			$pdf->Cell(5,6,'Rp',0,0,'L',0);
+			$pdf->Cell(25,6,$total_transport,'R',0,'R',0);
+			$pdf->Cell(10,6,'Rp',0,0,'L',0);
+			$pdf->Cell(30,6,$total_transport,'R',0,'R',0);
+			$pdf->Cell(55,6,'Tanggal '.$var_tgl_mulai.' s.d ','R',0,'L',0);
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->Cell(10,6,'','L',0,'C',0);
+			$pdf->Cell(75,6,'','LR',0,'L',0);
+			$pdf->Cell(40,6,'','R',0,'R',0);
+			$pdf->Cell(55,6,$var_tgl_akhir,'R',0,'L',0);
+			$pdf->Ln();
+			$pdf->Cell(5,7,'',0,0);
+			$pdf->SetFont('Arial','B',10);
+			$pdf->Cell(10,6,'','L',0,'C',0);
+			$pdf->Cell(75,6,'Jumlah :','LR',0,'R',0);
+			$pdf->Cell(7,6,'Rp',0,0,'L',0);
+			$pdf->Cell(33,6,$total,'TR',0,'R',0);
+			$pdf->Cell(55,6,'','R',0,'L',0);
+			$pdf->Ln();
 		}
 
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'3','L',0,'C',0);
-		$pdf->Cell(25,6,'Tiket Pesawat','L',0,'L',0);
-		$pdf->Cell(10,6,'',0,0,'L',0);
-		$pdf->Cell(10,6,'',0,0,'R',0);
-		$pdf->Cell(5,6,'Rp',0,0,'L',0);
-		$pdf->Cell(25,6,$tiket,'R',0,'R',0);
-		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,$tiket,'R',0,'R',0);
-		$pdf->Cell(55,6,'(selama '.$hari.' hari)','R',0,'L',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'4','L',0,'C',0);
-		$pdf->Cell(25,6,'Transport','L',0,'L',0);
-		$pdf->Cell(10,6,'',0,0,'L',0);
-		$pdf->Cell(10,6,'',0,0,'R',0);
-		$pdf->Cell(5,6,'Rp',0,0,'L',0);
-		$pdf->Cell(25,6,$total_transport,'R',0,'R',0);
-		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,$total_transport,'R',0,'R',0);
-		$pdf->Cell(55,6,'Tanggal '.$var_tgl_mulai.' s.d ','R',0,'L',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->Cell(10,6,'','L',0,'C',0);
-		$pdf->Cell(75,6,'','LR',0,'L',0);
-		$pdf->Cell(40,6,'','R',0,'R',0);
-		$pdf->Cell(55,6,$var_tgl_akhir,'R',0,'L',0);
-		$pdf->Ln();
-		$pdf->Cell(5,7,'',0,0);
-		$pdf->SetFont('Arial','B',10);
-		$pdf->Cell(10,6,'','L',0,'C',0);
-		$pdf->Cell(75,6,'Jumlah :','LR',0,'R',0);
-		$pdf->Cell(7,6,'Rp',0,0,'L',0);
-		$pdf->Cell(33,6,$total,'TR',0,'R',0);
-		$pdf->Cell(55,6,'','R',0,'L',0);
-		$pdf->Ln();
 
 		$pdf->Cell(5,7,'',0,0);
 		$pdf->Cell(10,6,'','L',0,'C',0);
