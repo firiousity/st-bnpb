@@ -285,9 +285,14 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(25,6,'Untuk',0,0);
 		$pdf->Cell(5,6,':',0,0);
 		$pdf->Cell(5,6,'1.',0,0);
-		$pdf->MultiCell(0,6,"Dinas ke ".$var_tempat." dalam rangka mendukung kegiatan ".$var_kegiatan." tahun ".$var_tahun_kegiatan.", pada tanggal "
-			.$this->tanggal_indo($var_tgl_mulai,'-')." s.d "
-			.$this->tanggal_indo($var_tgl_akhir,'-').";",0,'J');
+		if ($opsi == "1") {
+			$pdf->MultiCell(0,6,"Dinas ke BPBD dalam rangka mendukung kegiatan ".$var_kegiatan.";",0,'J');
+		} else {
+			$pdf->MultiCell(0,6,"Dinas ke ".$var_tempat." dalam rangka mendukung kegiatan ".$var_kegiatan." tahun ".$var_tahun_kegiatan.", pada tanggal "
+				.$this->tanggal_indo($var_tgl_mulai,'-')." s.d "
+				.$this->tanggal_indo($var_tgl_akhir,'-').";",0,'J');
+		}
+
 		$pdf->Cell(25,6,'',0,0);
 		$pdf->Cell(5,6,'',0,0);
 		$pdf->Cell(5,6,'2.',0,0);
