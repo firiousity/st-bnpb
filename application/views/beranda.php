@@ -4,7 +4,7 @@
 <div class="card-deck">
 
   <!-- Card -->
-  <div class="card mb-12 animated fadeinRightBig">
+  <div class="card mb-12 animated bounceInLeft">
 
     <!--Card image-->
     <div class="view overlay">
@@ -33,7 +33,7 @@
 		</div>
     </div>
   </div>
-  <div class="card mb-12 animated bounceUp">
+  <div class="card mb-12 animated bounceInUp">
 
     <!--Card image-->
     <div class="view overlay">
@@ -71,7 +71,7 @@
   <!-- Card -->
 
   <!-- Card -->
-  <div class="card mb-12 animated fadeInLeftBig">
+  <div class="card mb-12 animated bounceInRight">
 
     <!--Card image-->
     <div class="view overlay">

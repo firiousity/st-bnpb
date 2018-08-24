@@ -21,9 +21,9 @@
 			<form class="text-center p-4" method="post" action="<?php  echo base_url('home/login')?>">
 				<p class="h4 mb-4">Sign in</p>
 				<!-- Email -->
-				<input type="text" id="defaultLoginFormEmail" class="form-control mb-4" name='name' placeholder="E-mail" required>
+				<input type="text" id="defaultLoginFormEmail" class="form-control mb-4" name='name' placeholder="username" required>
 				<!-- Password -->
-				<input type="password" id="defaultLoginFormPassword" class="form-control mb-4" name='password' placeholder="Password" required>
+				<input type="password" id="defaultLoginFormPassword" class="form-control mb-4" name='password' placeholder="password" required>
 				<div class="d-flex justify-content-around">
 					<div>
 						<!-- Remember me -->
