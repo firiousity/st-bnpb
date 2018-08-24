@@ -36,7 +36,7 @@
 
                     swalWithBootstrapButtons({
                       title: 'Are you sure?',
-                      text: "You won't be able to revert this!",
+                      text: "Thanks for your hardwork!",
                       type: 'warning',
                       showCancelButton: true,
                       confirmButtonText: 'Yes, im sure!',
@@ -51,7 +51,7 @@
                       ) {
                         swalWithBootstrapButtons(
                           'Cancelled',
-                          'Your imaginary file is safe :)',
+                          'Remember to never tired yourself out! :)',
                           'error'
                         )
                       }
