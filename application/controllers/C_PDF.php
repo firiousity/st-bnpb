@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_PDF extends CI_Controller {
+	private  $extension = ".pdf";
 
 
 	/**
@@ -379,7 +380,10 @@ class C_PDF extends CI_Controller {
 		}
 
 		//Cetak gans
-		$pdf->Output();
+
+		$filename = "Surat Dinas - Nomor ".$nomor.$this->extension;
+		$pdf->setTitle($filename);
+		$pdf->Output("I", $filename);
 
 	}
 
@@ -580,7 +584,9 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(115,6,'',0, 0,'C');
 		$pdf->Cell(50,6,'NIP. 19820107 200912 1 002',0, 0,'C');
 
-		$pdf->Output();
+		$filename = "Rincian Biaya Perjalanan - ".$arr_slug[0]." - ".$pegawai.$this->extension;
+		$pdf->setTitle($filename);
+		$pdf->Output("I", $filename);
 	}
 
 	//Page Daftar Pengeluaran Rill
@@ -736,7 +742,9 @@ class C_PDF extends CI_Controller {
 		$pdf->MultiCell(72.5,6,'NIP. '.$nip,0,'C');
 
 		//Cetak gans
-		$pdf->Output();
+		$filename = "Riil - ".$arr_slug[0]." - ".$pegawai.$this->extension;
+		$pdf->setTitle($filename);
+		$pdf->Output("I", $filename);
 	}
 
 	//Page Surat Pernyataan Biaya Tiket Pesawat
@@ -884,11 +892,13 @@ class C_PDF extends CI_Controller {
 			$pdf->MultiCell(72.5,6,'NIP. '.$nip,0,'C');
 
 			//Cetak gans
-			$pdf->Output();
+			$filename = "Lebih - ".$arr_slug[0]." - ".$pegawai.$this->extension;
+			$pdf->setTitle($filename);
+			$pdf->Output("I", $filename);
 		} else {
 			echo "<script>         	
          	alert('Tidak bisa mencetak karena biaya tiket tidak lebih dari SBU!');
-         	window.location.href='".base_url('home/lihat_surat')."';</script>";
+         	window.location.href='".base_url('C_PDF/print_biaya/').$arr_slug[0]."';</script>";
 		}
 	}
 
@@ -1042,7 +1052,9 @@ class C_PDF extends CI_Controller {
 		$pdf->MultiCell(105,6,'NIP. '.$nip,0,'C');
 
 		//Cetak gans
-		$pdf->Output();
+		$filename = "Hilang - ".$arr_slug[0]." - ".$pegawai.$this->extension;
+		$pdf->setTitle($filename);
+		$pdf->Output("I", $filename);
 	}
 
 	//Page Surat Perintah Dinas
@@ -1161,7 +1173,7 @@ class C_PDF extends CI_Controller {
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'5','LB',0,'C',0);
 		$pdf->Cell(70,5,'Alat angkutan yang dipergunakan','LBR',0,'L',0);
-		$pdf->Cell(90,5,'udara','BR',0,'L',0);
+		$pdf->Cell(90,5,'Udara','BR',0,'L',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'6.','L',0,'C',0);
@@ -1292,7 +1304,9 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(40,4,'NIP. '.$nip_ppk,0,0,'C');
 
 		//Cetak gans
-		$pdf->Output();
+		$filename = "Surat Perintah Dinas - ".$arr_slug[0]." - ".$pegawai.$this->extension;
+		$pdf->setTitle($filename);
+		$pdf->Output("I", $filename);
 	}
 
 	/* Page buat nampilin rincian print per pegawai per nomor*/
@@ -1397,7 +1411,11 @@ class C_PDF extends CI_Controller {
 		$total_rampung = $rampung_result['0']->total;
 
 		$pembayaran_result = $this->home_model->get_pembayaran_awal($slug);
-		if($pembayaran_result != NULL) {
+		if($pembayaran_result == NULL) {
+			echo "<script>         	
+         	alert('Anda harus mengisi SPD Rampung Dulu!');
+         	window.location.href='".base_url('C_PDF/print_biaya/').$id_surat."';</script>";
+		} else {
 			$semula = $pembayaran_result['0']->total;
 			$sisa = $total_rampung - $semula;
 			if($sisa<0) {
@@ -1597,11 +1615,9 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(50,6,'NIP. '.$nip_ppk  ,0, 0,'C');
 
 			//Cetak gans
-			$pdf->Output();
-		} else {
-			echo "<script>         	
-         	alert('Anda harus mengisi SPD Rampung Dulu!');
-         	window.location.href='".base_url('home/lihat_surat')."';</script>";
+			$filename = "SPD Rampung - ".$pegawai." - ".$id_surat.$this->extension;
+			$pdf->setTitle($filename);
+			$pdf->Output($filename);
 		}
 
 	}
@@ -2259,7 +2275,9 @@ class C_PDF extends CI_Controller {
 		$pdf->MultiCell(100,6,'NIP. '.$nip_dinas,0,'C');
 
 		//Cetak gans
-		$pdf->Output();
+		$filename = "SPD Rampung - ".$arr_slug[0]." - ".$pegawai.$this->extension;
+		$pdf->setTitle($filename);
+		$pdf->Output("I", $filename);
 	}
 
 }
