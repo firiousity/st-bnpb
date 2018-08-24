@@ -1377,7 +1377,7 @@ class C_PDF extends CI_Controller {
 
 		$surat_tugas	= $this->db->limit(1)->get_where('data_rinci',
 			array('id_surat' => $id_surat, 'id_pegawai' => $id_pegawai))->result();
-		$rampung_result	= $this->db->limit(1)->get_where('spd_rampung',
+		$rampung_result	= $this->db->limit(1)->order_by('total', 'DESC')->get_where('spd_rampung',
 			array('id_surat' => $id_surat, 'id_pegawai' => $id_pegawai))->result();
 		$pegawai 		= $this->db->get_where('pegawai',
 			array('id_pegawai' => $id_pegawai))->result();
@@ -1419,9 +1419,9 @@ class C_PDF extends CI_Controller {
 			$semula = $pembayaran_result['0']->total;
 			$sisa = $total_rampung - $semula;
 			if($sisa<0) {
-				$keterangan = "Kurang";
-			} elseif ($sisa>0) {
 				$keterangan = "Lebih";
+			} elseif ($sisa>0) {
+				$keterangan = "Kurang";
 			} else {
 				$keterangan = "";
 			}
@@ -1615,9 +1615,9 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(50,6,'NIP. '.$nip_ppk  ,0, 0,'C');
 
 			//Cetak gans
-			$filename = "SPD Rampung - ".$pegawai." - ".$id_surat.$this->extension;
+			$filename = "SPD Rampung - ".$slug.$this->extension;
 			$pdf->setTitle($filename);
-			$pdf->Output($filename);
+			$pdf->Output('I', $filename);
 		}
 
 	}
@@ -1756,7 +1756,7 @@ class C_PDF extends CI_Controller {
 				$s_penginapan = $sbu_penginapan;
 				$s_tiket = $sbu_tiket;
 				$s_transport = $total_transport;
-				$s_total = $s_harian+$s_penginapan+$s_tiket+$s_transport;
+				$s_total = ($s_harian*$hari)+($s_penginapan*$malam)+$s_tiket+$s_transport;
 				$data_yang_sudah_dibayar = array(
 					'id_surat' => $id_surat,
 					'id_pegawai' => $id_pegawai,
@@ -1882,7 +1882,8 @@ class C_PDF extends CI_Controller {
 				$jml_penginapan = $malam_d[$a]*$penginapan_d[$a];
 				$jml_s_penginapan = $s_penginapan*$malam_d[$a];
 				$s_total = $jml_s_harian+$jml_s_penginapan+$s_tiket+$s_transport;
-				$total = $jml_harian+$jml_penginapan+$tiket+$transport;
+				$total = $jml_harian+$malam_d[$a]*$penginapan_d[$a]
+					+$tiket+$transport;
 				$sisa = $s_total - $total;
 				$pdf->Ln();
 				$pdf->Cell(5,7,'',0,0);
@@ -1904,7 +1905,7 @@ class C_PDF extends CI_Controller {
 
 			$pdf->Ln();
 			$pdf->Cell(5,7,'',0,0);
-			$pdf->Cell(10,6,$counterx+1,'L',0,'C',0);
+			$pdf->Cell(10,6,$counterx,'L',0,'C',0);
 			$pdf->Cell(25,6,'Tiket Pesawat','L',0,'L',0);
 			$pdf->Cell(10,6,'',0,0,'L',0);
 			$pdf->Cell(10,6,'',0,0,'R',0);
@@ -1915,7 +1916,7 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(55,6,'(selama '.$hari.' hari)','R',0,'L',0);
 			$pdf->Ln();
 			$pdf->Cell(5,7,'',0,0);
-			$pdf->Cell(10,6,$counterx+2,'L',0,'C',0);
+			$pdf->Cell(10,6,$counterx+1,'L',0,'C',0);
 			$pdf->Cell(25,6,'Transport','L',0,'L',0);
 			$pdf->Cell(10,6,'',0,0,'L',0);
 			$pdf->Cell(10,6,'',0,0,'R',0);
@@ -2105,11 +2106,13 @@ class C_PDF extends CI_Controller {
 			$counterx = 2;
 			$num_penginapan = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0],
 				'id_pegawai' => $arr_slug[1]));
+			$total_penginapan = 0;
 			for ($a = 0; $a < $num_penginapan->num_rows(); $a++) {
 				$jml_penginapan = $r_tiket_result[$a]->penginapan*$r_tiket_result[$a]->malam;
+				$total_penginapan = $total_penginapan + $r_tiket_result[$a]->penginapan*$r_tiket_result[$a]->malam;
 				$jml_s_penginapan = $s_penginapan*$malam;
 				$s_total = $jml_s_harian+$jml_s_penginapan+$s_tiket+$s_transport;
-				$total = $jml_harian+$jml_penginapan+$tiket+$transport;
+				$total = $jml_harian+$total_penginapan+$tiket+$transport;
 				$sisa = $s_total - $total;
 				$pdf->Ln();
 				$pdf->Cell(5,7,'',0,0);
@@ -2275,7 +2278,7 @@ class C_PDF extends CI_Controller {
 		$pdf->MultiCell(100,6,'NIP. '.$nip_dinas,0,'C');
 
 		//Cetak gans
-		$filename = "SPD Rampung - ".$arr_slug[0]." - ".$pegawai.$this->extension;
+		$filename = "SPD Rampung - ".$arr_slug[0]." - ".$arr_slug[1].$this->extension;
 		$pdf->setTitle($filename);
 		$pdf->Output("I", $filename);
 	}
