@@ -2014,7 +2014,7 @@ class C_PDF extends CI_Controller {
 			$malam_t = $hari-1;
 			$jml_penginapan = $penginapan*$malam_t;
 			$total = $jml_penginapan+$jml_harian+$tiket+$total_transport;
-
+			$sisa = $s_total - $total;
 			$pdf->Ln();
 			$pdf->Cell(5,7,'',0,0);
 			$pdf->Cell(10,6,'','L',0,'L',0);
