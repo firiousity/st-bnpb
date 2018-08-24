@@ -54,7 +54,7 @@
     				  ?>
 						  </tbody>
 						</table>
-<script>
+			  <script>
                       function hapus(id) {
                       const swalWithBootstrapButtons = swal.mixin({
                       confirmButtonClass: 'btn btn-success',
@@ -64,7 +64,7 @@
 
                     swalWithBootstrapButtons({
                       title: 'Are you sure?',
-                      text: "You won't be able to revert this!",
+                      text: "Seluruh Data yang berkaitan dengan surat ini akan terhapus! Anda tidak bisa mengembalikannya lagi",
                       type: 'warning',
                       showCancelButton: true,
                       confirmButtonText: 'Yes, delete it!',
@@ -72,19 +72,28 @@
                       reverseButtons: true
                     }).then((result) => {
                       if (result.value) {
-                        window.location = '<?php echo base_url() ?>home/delete_surat/'+id;
+                        window.location = '<?php echo base_url() ?>surat/hapus_surat/'+id;
                       } else if (
                         // Read more about handling dismissals
                         result.dismiss === swal.DismissReason.cancel
                       ) {
                         swalWithBootstrapButtons(
-                          'Cancelled',
-                          'Your imaginary file is safe :)',
+                          'Dibatalkan',
+                          'Jangan gegabah :)',
                           'error'
                         )
                       }
                     })
                       }
+
+                      <?php if  (isset($_POST["berhasil"])) {?>
+
+					  swal({
+						  title: "Berhasil",
+						  text: "Surat berhasil dihapus",
+						  type: "success",
+					  });
+				  <?php } ?>
                     </script>
 
 
