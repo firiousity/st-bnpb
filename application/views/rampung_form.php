@@ -12,6 +12,7 @@
 				  action="<?php echo base_url('C_PDF/print_rampung/'.$slug) ?>"
 				  method="post">
 				<h2 class="judul">ISIAN FORM RAMPUNG</h2>
+				<p>Pastikan jumlah malam tidak lebih dari <?php echo $malam ?> malam </p>
 				<table class="table table-responsive" width="100%">
 					<!-- BAGIAN FORM DINAMIS INI AKAN MUNCUL JIKA USER MENGKLIK OPSI BANYAK TEMPAT-->
 					<!--elemet sebagai target append-->
@@ -87,6 +88,11 @@
 		hapus.onclick = function () {
 			row.parentNode.removeChild(row);
 		};
+
+		if (i >= <?php echo $malam ?> ) {
+			var btn = document.getElementById('btn_tambah');
+			btn.disabled = true;
+		}
 
 		i++;
 	}

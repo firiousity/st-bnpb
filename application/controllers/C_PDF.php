@@ -1626,8 +1626,11 @@ class C_PDF extends CI_Controller {
 		$data_rinci_all	= $this->db->get_where('data_rinci',
 			array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
 		$jenis = $data_rinci_all['0']->jenis;
+		$hari = $this->hitung_hari($data_rinci_all['0']->tgl_mulai, $data_rinci_all['0']->tgl_akhir);
+		$hari = $hari + 1;
+		$malam = $hari - 1 ;
 		$data = array(
-			'slug' => $slug, 'jenis' => $jenis
+			'slug' => $slug, 'jenis' => $jenis, 'hari' => $hari, 'malam' => $malam
 		);
 
 		//cek duls dia udah ngisi spd rampung belum supaya ga dobel ngisinya
