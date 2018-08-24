@@ -2008,6 +2008,7 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(7,6,'Rp',0,0,'L',0);
 			$pdf->Cell(33,6,$this->rupiah($total),'TR',0,'R',0);
 			$pdf->Cell(55,6,'','R',0,'L',0);
+			$pdf->Ln();
 		} else if (!isset($_POST['rsubmit']) && $isMultiple == "0") {
 
 			$malam_t = $hari-1;
@@ -2081,6 +2082,7 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(7,6,'Rp',0,0,'L',0);
 			$pdf->Cell(33,6,$this->rupiah($total),'TR',0,'R',0);
 			$pdf->Cell(55,6,'','R',0,'L',0);
+			$pdf->Ln();
 		} else {
 			/* Nilainya di dapat dari spd rampung dan ini buat double tempat penginapan*/
 			//get value from db enaena

@@ -55,13 +55,12 @@
 						  </tbody>
 						</table>
 			  <script>
-                      function hapus(id) {
+				  function hapus(id) {
                       const swalWithBootstrapButtons = swal.mixin({
                       confirmButtonClass: 'btn btn-success',
                       cancelButtonClass: 'btn btn-danger',
-                      buttonsStyling: false,
-                    })
-
+                      buttonsStyling: false
+					  })
                     swalWithBootstrapButtons({
                       title: 'Are you sure?',
                       text: "Seluruh Data yang berkaitan dengan surat ini akan terhapus! Anda tidak bisa mengembalikannya lagi",
@@ -84,9 +83,8 @@
                         )
                       }
                     })
-                      }
-
-                      <?php if  (isset($_SESSION["berhasil"])) {?>
+				  }
+				  <?php if  (isset($_SESSION["berhasil"])) {?>
 
 					  swal({
 						  title: "Berhasil",
@@ -94,11 +92,8 @@
 						  type: "success",
 					  });
 				  <?php } ?>
-					  <?php unset($_SESSION['berhasil']) ?>
-
-                    </script>
-
-
+				  <?php unset($_SESSION['berhasil']) ?>
+			  </script>
 
 <div class="container-fluid">
       <div class="btn-group">
@@ -109,7 +104,7 @@
     </div>
   </div>
 </div>
-              </div>
+		  </div>
 </body>
 <script>
 $(document).ready(function () {
