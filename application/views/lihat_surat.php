@@ -86,7 +86,7 @@
                     })
                       }
 
-                      <?php if  (isset($_POST["berhasil"])) {?>
+                      <?php if  (isset($_SESSION["berhasil"])) {?>
 
 					  swal({
 						  title: "Berhasil",
@@ -94,7 +94,10 @@
 						  type: "success",
 					  });
 				  <?php } ?>
+					  <?php unset($_SESSION['berhasil']) ?>
+
                     </script>
+
 
 
 <div class="container-fluid">

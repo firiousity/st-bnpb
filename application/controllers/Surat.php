@@ -137,7 +137,7 @@ class Surat extends CI_Controller
 		$this->db->delete('spd_rampung', $where2);
 		$this->db->delete('pembayaran_awal', $where2);
 		$this->db->delete('data_rinci', $where2);
-		$_POST['berhasil'] = "Berhasil menghapus";
+		$_SESSION['berhasil'] = "Berhasil menghapus";
 		$this->href('home/lihat_surat');
 	}
 }
