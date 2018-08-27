@@ -79,6 +79,15 @@
                       }
                     })
                       }
+          <?php if  (isset($_SESSION["berhasil"])) {?>
+
+            swal({
+              title: "Berhasil",
+              text: "Data berhasil dihapus",
+              type: "success",
+            });
+          <?php } ?>
+          <?php unset($_SESSION['berhasil']) ?>
                     </script>
               <!-- <div align="center">
                 <a href="#"><button type="button" data-toggle="modal" data-target="#modalRegisterForm" class="btn btn-indigo btn-md"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Pegawai</button></a>
