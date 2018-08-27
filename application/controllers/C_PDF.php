@@ -308,12 +308,20 @@ class C_PDF extends CI_Controller {
 		$pdf->MultiCell(0,6,"Apabila terdapat kekeliruan dalam Surat Tugas ini akan dilakukan perbaikan sebagaimana mestinya.",0,'J');
 		$pdf->Ln();
 		$pdf->Ln();
-		$pdf->MultiCell(0,6,"Jakarta, ".$this->tanggal_indo($var_tgl_surat,'/'),0,'C');
+
+		//remove tanggal di surat dinas
+		$tanggal_sekarang = $this->tanggal_indo($var_tgl_surat,'/');
+		$arr_tgl = explode(' ', $tanggal_sekarang);
+
+		$pdf->Cell(85, 6, "", 0,0);
+		$pdf->MultiCell(0,6,"Jakarta,       ".$arr_tgl[1]." ".$arr_tgl[2],0,'C');
+		$pdf->Cell(85, 6, "", 0,0);
 		$pdf->MultiCell(0,6,"Kepala Pusat Data Informasi dan Humas",0,'C');
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->SetFont('Arial','B',12);
+		$pdf->Cell(85, 6, "", 0,0);
 		$pdf->MultiCell(0,6,$kapusdatin,0,'C');
 
 		//Page ke-2
@@ -1118,6 +1126,10 @@ class C_PDF extends CI_Controller {
 		$var_tgl_surat 	= $this->tanggal_indo($surat_result['0']->tgl_surat,'/');
 		$jumlah_hari	= $this->hitung_hari($surat_result['0']->tgl_mulai, $surat_result['0']->tgl_akhir)+1;
 
+		$var_tgl_rampung = $this->db->get_where('spd_rampung',
+			array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
+		$var_tgl_rampung = $this->tanggal_indo($var_tgl_rampung['0']->tgl,'/');
+
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','B',8);
@@ -1293,7 +1305,7 @@ class C_PDF extends CI_Controller {
 		$pdf->SetFont('Arial','',8);
 		$pdf->Cell(112,7,'',0,0);
 		$pdf->Cell(30,5,'Pada tanggal :','B',0,'L');
-		$pdf->Cell(20,5,$var_tgl_surat,'B',0,'L');
+		$pdf->Cell(20,5,$var_tgl_rampung,'B',0,'L');
 		$pdf->Ln();
 		$pdf->Ln();
 		$pdf->Cell(116.5,7,'',0,0);
@@ -1420,6 +1432,10 @@ class C_PDF extends CI_Controller {
 		$total_biaya = $total_harian + $total_penginapan + $tiket + $transport;
 		$total_rampung = $rampung_result['0']->total;
 
+		$var_tgl_rampung = $this->db->get_where('spd_rampung',
+			array('id_surat' => $id_surat, 'id_pegawai' => $id_pegawai))->result();
+		$var_tgl_rampung = $this->tanggal_indo($var_tgl_rampung['0']->tgl,'/');
+
 		$pembayaran_result = $this->home_model->get_pembayaran_awal($slug);
 		if($pembayaran_result == NULL) {
 			echo "<script>         	
@@ -1451,7 +1467,7 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(5,7,'',0,0);
 			$pdf->Cell(34,6,'Tanggal',0,0);
 			$pdf->Cell(3,6,':',0,0);
-			$pdf->MultiCell(0,6,$var_tgl_surat,0,'L');
+			$pdf->MultiCell(0,6,$var_tgl_rampung,0,'L');
 			$pdf->Ln();
 			//here is table
 			$pdf->Cell(5,7,'',0,0);
@@ -1542,7 +1558,7 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(10,6,'',0,0,'L');
 			$pdf->Cell(25,6,'',0,0,'R');
 			$pdf->Cell(40,6,'',0,0,'C');
-			$pdf->MultiCell(50,6,'Jakarta, '.$var_tgl_skrg,0,'R');
+			$pdf->MultiCell(50,6,'Jakarta, '.$var_tgl_rampung,0,'R');
 			$pdf->Ln();
 			$pdf->Cell(15,6,'',0,0,'L');
 			$pdf->Cell(10,3,'Telah dibayar sejumlah',0,0,'L');
@@ -1629,11 +1645,12 @@ class C_PDF extends CI_Controller {
 		$data_rinci_all	= $this->db->get_where('data_rinci',
 			array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
 		$jenis = $data_rinci_all['0']->jenis;
+		$nomor = $data_rinci_all['0']->nomor;
 		$hari = $this->hitung_hari($data_rinci_all['0']->tgl_mulai, $data_rinci_all['0']->tgl_akhir);
 		$hari = $hari + 1;
 		$malam = $hari - 1 ;
 		$data = array(
-			'slug' => $slug, 'jenis' => $jenis, 'hari' => $hari, 'malam' => $malam
+			'slug' => $slug, 'jenis' => $jenis, 'hari' => $hari, 'malam' => $malam, 'nomor' => $nomor
 		);
 
 		//cek duls dia udah ngisi spd rampung belum supaya ga dobel ngisinya
@@ -1680,6 +1697,7 @@ class C_PDF extends CI_Controller {
 		$transport2 = $transport2_result['0']->besaran*2;
 		$total_transport = $transport + $transport2;
 		$jenis = $data_rinci_all['0'] -> jenis;
+		$tgl_baru = date('d/m/Y');
 
 		//Get pegawai
 		$pegawai_result = $this->db->get_where('pegawai', array('id_pegawai' => $id_pegawai))->result();
@@ -1693,7 +1711,7 @@ class C_PDF extends CI_Controller {
 		$nip_ppk 				= $ppk['0']->nip;
 
 		//Get surat_dinas with id = is_surat
-		$surat_result =$this->db->get_where('data_rinci',
+		$surat_result = $this->db->get_where('data_rinci',
 			array('id_surat' => $id_surat, 'id_pegawai' => $id_pegawai))->result();
 		$nomor = $surat_result['0']->nomor;
 		$tempat = $surat_result['0']->tempat;
@@ -1704,6 +1722,10 @@ class C_PDF extends CI_Controller {
 		$hari = $this->hitung_hari($surat_result['0']->tgl_mulai, $surat_result['0']->tgl_akhir);
 		$hari = $hari + 1;
 		$malam = $hari - 1 ;
+		$var_tgl_rampung = $this->db->get_where('spd_rampung',
+			array('id_surat' => $id_surat, 'id_pegawai' => $id_pegawai))->result();
+		$var_tgl_rampung = $this->tanggal_indo($var_tgl_rampung['0']->tgl,'/');
+
 
 		//nilai penginapan dan tiket akan berubah sesuai jenis. kalo di depan makan nilainya sama dengan sbu
 		if(!isset($_POST['rsubmit'])) {
@@ -1796,7 +1818,8 @@ class C_PDF extends CI_Controller {
 					'harian' => $harian,
 					'transport' => $transport,
 					'tiket' => $tiket,
-					'total' => $total
+					'total' => $total,
+					'tgl' => $tgl_baru
 				);
 				$this->db->insert('spd_rampung', $data);
 			} else {
@@ -1824,7 +1847,8 @@ class C_PDF extends CI_Controller {
 						'harian' => $harian,
 						'transport' => $transport,
 						'tiket' => $tiket,
-						'total' => $total
+						'total' => $total,
+						'tgl' => $tgl_baru
 					);
 					$this->db->insert('spd_rampung', $data);
 				}
@@ -1852,7 +1876,7 @@ class C_PDF extends CI_Controller {
 		$pdf->MultiCell(0,6,$nomor,0,'L');
 		$pdf->Cell(34,6,'Tanggal',0,0);
 		$pdf->Cell(3,6,':',0,0);
-		$pdf->MultiCell(0,6,$var_tgl_surat,0,'L');
+		$pdf->MultiCell(0,6,$var_tgl_rampung,0,'L');
 		$pdf->Ln();
 		//here is table
 		$pdf->Cell(5,7,'',0,0);

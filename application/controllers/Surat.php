@@ -154,6 +154,8 @@ class Surat extends CI_Controller
 		$this->db->update('data_rinci', array(
 			'nomor' => $nomor
 		));
+
+
 		$this->href('home/lihat_surat');
 	}
 }

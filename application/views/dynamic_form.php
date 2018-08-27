@@ -21,7 +21,7 @@ if ($nomor != NULL) {
 
 $json = (int) $json;
 $json = $json + 1;
-$nomor_surat = $json."/KADIH/".$tanggal."/".$tahun;
+$nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 
 ?>
 <div class="container">

@@ -64,12 +64,14 @@
 		penginapan_input.setAttribute('type', 'number');
 		penginapan_input.setAttribute('class', 'form-control');
 		penginapan_input.setAttribute('placeholder', 'Rp. ');
+		penginapan_input.setAttribute('required', 'true');
 
 		var malam_input = document.createElement('input');
 		malam_input.setAttribute('name', 'malam['+ i +']');
 		malam_input.setAttribute('type', 'number');
 		malam_input.setAttribute('class', 'form-control');
 		malam_input.setAttribute('placeholder', 'Jumlah malam');
+		malam_input.setAttribute('required', 'true');
 
 
 		var hapus = document.createElement('span');
