@@ -36,7 +36,7 @@
 
                     swalWithBootstrapButtons({
                       title: 'Are you sure?',
-                      text: "Thanks for your hardwork!",
+                      text: "Recheck your work might help!",
                       type: 'warning',
                       showCancelButton: true,
                       confirmButtonText: 'Yes, im sure!',
@@ -57,4 +57,13 @@
                       }
                     })
                       }
+          <?php if  (isset($_SESSION["berhasil"])) {?>
+
+            swal({
+              title: "Berhasil",
+              text: "Thanks for your hardwork!",
+              type: "success",
+            });
+          <?php } ?>
+          <?php unset($_SESSION['berhasil']) ?>
                     </script>

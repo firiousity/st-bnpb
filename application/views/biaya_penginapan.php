@@ -1,6 +1,6 @@
 <body>
-  <div class="container-fluid" style="padding-top: 20vh; padding-bottom: 20vh">
-        <p style="font-size: 27px; text-align: center;">Biaya Penginapan</p>
+  <div class="container-fluid" style="padding-top: 10vh; padding-bottom: 15vh">
+        <p style="font-size: 27px; text-align: center; padding-top: 50px;">Biaya Penginapan</p>
             <table id="biaya_penginapan" class="table table-hover" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>

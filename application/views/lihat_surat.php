@@ -1,8 +1,6 @@
-
-
 <body>
-          <div class="container" style="padding-top: 10%;">
-                <p style="font-size: 27px; text-align: center;">Daftar Surat</p>
+          <div class="container-fluid" style="padding-top: 10vh; padding-bottom: 15vh;">
+                <p style="font-size: 27px; text-align: center; padding-top: 50px;">Daftar Surat</p>
                       <table id="lihat_surat" class="table table-hover" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>

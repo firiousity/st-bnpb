@@ -1,6 +1,6 @@
 <body>
-          <div class="container-fluid ">
-                <p style="font-size: 27px; text-align: center; padding-top: 20vh;">Detail Surat</p>
+          <div class="container-fluid" style="padding-top: 10vh; padding-bottom: 10vh;">
+                <p style="font-size: 27px; text-align: center; padding-top: 50px;">Detail Surat</p>
                       <table id="print_biaya" class="table table-hover" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
