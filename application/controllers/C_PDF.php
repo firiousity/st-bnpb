@@ -1021,7 +1021,7 @@ class C_PDF extends CI_Controller {
 			//$pdf->Ln();
 				$pdf->SetWidths(array(10, 70, 40, 40));
 				for($i=0;$i<1;$i++) {
-					$pdf->Row(array($counterrr,"Tiket Pesawat ".$rute. " (PP)","Rp ".number_format($sbu_tiket,2,',','.'), "Rp ".number_format($r_tiket,2,',','.')));
+					$pdf->Row(array($counterrr,"Tiket Pesawat ".$rute,"Rp ".number_format($sbu_tiket,2,',','.'), "Rp ".number_format($r_tiket,2,',','.')));
 					$counterrr++;
 				}
         $pdf->Cell(20,7,'',0,0);
