@@ -131,6 +131,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 							<label >Dari: </label>
 							<div class="form-group">
 								<select name="transport" class="form-control">
+									<option value=''>Pilih Trasportasi Keberangkatan</option>
 									<?php foreach ($transport as $row) {
 										echo
 										"<option value='$row->id'>$row->provinsi</option>" ;
@@ -231,6 +232,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 							<label>Dari: </label>
 							<div>
 								<select name="my-select-transport[0]" class="form-control" >
+									<option value=''>Pilih Trasportasi Keberangkatan</option>
 									<?php foreach ($transport as $row) {
 										echo
 										"<option value='$row->id'>$row->provinsi</option>" ;
@@ -243,7 +245,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 							<label >Ke: </label>
 							<div>
 								<select name="my-select-transport2[0]" class="form-control">
-									<option value=''>Pilih Trasportasi Keberangkatan</option>
+									<option value=''>Pilih Trasportasi Tujuan</option>
 									<?php foreach ($transport as $row) {
 										echo
 										"
@@ -401,6 +403,10 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 		<?php }
 		?>
 
+		var option_transport_hint = document.createElement('option');
+		option_transport_hint.setAttribute('value', '' );
+		option_transport_hint.innerHTML = "Pilih Transportasi Keberangkatan";
+		transport_input.appendChild(option_transport_hint);
 		<?php foreach ($transport as $row) { ?>
 		var option_transport = document.createElement('option');
 		option_transport.setAttribute('value', '<?php echo $row->id?>' );
@@ -409,6 +415,10 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 		<?php }
 		?>
 
+		var option_transport2_hint = document.createElement('option');
+		option_transport2_hint.setAttribute('value', '' );
+		option_transport2_hint.innerHTML = "Pilih Transportasi Tujuan";
+		transport2_input.appendChild(option_transport2_hint);
 		<?php foreach ($transport as $row) { ?>
 		var option_transport2 = document.createElement('option');
 		option_transport2.setAttribute('value', '<?php echo $row->id?>' );
@@ -417,6 +427,10 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 		<?php }
 		?>
 
+		var option_transport_lokal_hint = document.createElement('option');
+		option_transport_lokal_hint.setAttribute('value', '' );
+		option_transport_lokal_hint.innerHTML = "Pilih Transportasi Lokal";
+		transport_lokal_input.appendChild(option_transport_lokal_hint);
 		<?php foreach ($lokal as $row) { ?>
 		var option_transport_lokal = document.createElement('option');
 		option_transport_lokal.setAttribute('value', '<?php echo $row->id?>' );
