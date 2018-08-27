@@ -48,22 +48,24 @@
                                 <button type=\"button\" class=\"btn btn-success btn-sm my-0\"><i class=\"fa fa-print\" aria-hidden=\"true\"></i> PRINT SURAT
                                 </button></a>
                               </td>
-                              <td>";
+                              <td>
+                                <button onclick='hapus($row->id)' 
+                                type='button' class='btn btn-danger btn-sm my-0'>
+                                <i class='fa fa-times' aria-hidden='true'></i></button>
+                                
+    						  	";
 						  	//edit button hanya muncul kalo nomornya belum ada
 						  if(empty($nomor_surat)) {
 							  echo "
-                                <a href='".base_url('Surat/edit/'.$row->id)."'><button
+                                <span><a  data-toggle='modal' 
+                                data-target='#modalEdit'><button
                                 type='button' class='btn btn-danger btn-sm my-0' id='edit_surat'>
-                                <i class='fa fa-edit' aria-hidden='true'></i></button></span>";
+                                <i class='fa fa-edit' aria-hidden='true'></i></button></span>
+                                </td>
+                            </tr>";
 						  }
 
-						  	echo "
-                                <span class='table-remove'><button onclick='hapus($row->id)' 
-                                type='button' class='btn btn-danger btn-sm my-0'>
-                                <i class='fa fa-times' aria-hidden='true'></i></button></span>
-                                </td>
-                            </tr>
-    						  	";
+
     						  $i++;
     						}
     				  ?>
@@ -120,8 +122,35 @@
       </div>
     </div>
   </div>
-</div>
+
+		  <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+				  <div class="modal-content">
+					  <form action="<?php echo base_url('Surat/edit/'.$row->id)?>" method="post">
+						  <div class="modal-header text-center">
+							  <h4 class="modal-title w-100 font-weight-bold">Edit nomor surat</h4>
+							  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								  <span aria-hidden="true">&times;</span>
+							  </button>
+						  </div>
+						  <div class="modal-body mx-3">
+							  <div class="md-form mb-5">
+								  <i class="fa fa-sort-numeric-asc prefix grey-text"></i>
+								  <input type="text" id="form3" class="form-control validate" name="nomor"
+										 value="<?php  echo $row->nomor?>">
+								  <label data-error="wrong" data-success="right" for="form3">Nomor surat</label>
+							  </div>
+
+						  </div>
+						  <div class="modal-footer d-flex justify-content-center">
+							  <button class="btn btn-indigo">Send <i class="fa fa-edit ml-1"></i></button>
+						  </div>
+					  </form>
+				  </div>
+			  </div>
 		  </div>
+
+
 </body>
 <script>
 $(document).ready(function () {
