@@ -1,13 +1,10 @@
 <body>
   <div class="container-fluid" style="padding-top: 10vh; padding-bottom: 15vh">
         <p style="font-size: 27px; text-align: center; padding-top: 50px;">Transport Lokal</p>
-          <table id="biaya_transport" class="table table-hover" cellspacing="0">
+          <table id="transportasi_lokal" class="table table-hover" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
                               <th scope="col">No
-                                <i class="fa fa-sort float-right" aria-hidden="true"></i>
-                              </th>
-                              <th class="th-sm" scope="col">Provinsi
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
                               <th class="th-sm" scope="col">Ibukota
@@ -37,9 +34,8 @@
                 echo "
                 <tr> 
                               <td> ".$counter." </td>
-                              <td>".$row->provinsi."</td>
                               <td>".$row->ibukota."</td>
-                              <td>".$row->kota_kabupaten."</td>
+                              <td>".$row->kabupaten."</td>
                               <td>Orang/Kali</td>
                               <td> Rp ".$row->besaran."</td>
                               

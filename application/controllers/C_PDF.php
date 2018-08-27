@@ -823,7 +823,7 @@ class C_PDF extends CI_Controller {
 		/* -----------------------------*/
 
 		if($sbu_tiket<$r_tiket) {
-			$pdf = new FPDF('p','mm','A4');
+			$pdf = new PDF_MC_Table('p','mm','A4');
 			$pdf->AddPage();
 			$pdf->SetFont('Arial','B',14);
 			$pdf->Ln();
@@ -874,22 +874,23 @@ class C_PDF extends CI_Controller {
 			$pdf->Ln();
 			$pdf->Cell(20,7,'',0,0);
 			$pdf->SetFont('Arial','',12);
-			$pdf->Cell(10,5,'1','LB',0,'R',0);
-			$pdf->Cell(70,5,'Tiket Pesawat '.$rute.' (PP)','LRB',0,'L',0);
-			$pdf->Cell(10,5,'Rp ','B',0,'L',0);
-			$pdf->Cell(30,5,''.number_format($sbu_tiket,2,',','.'),'RB',0,'R',0);
-			$pdf->Cell(10,5,'Rp ','B',0,'L',0);
-			$pdf->Cell(30,5,''.number_format($r_tiket,2,',','.'),'RB',0,'R',0);
-			$pdf->Ln();
+			$counterrr = 1;
+			//$pdf->Ln();
+				$pdf->SetWidths(array(10, 70, 40, 40));
+				for($i=0;$i<1;$i++) {
+					$pdf->Row(array($counterrr,"Tiket Pesawat ".$rute. " (PP)","Rp ".number_format($sbu_tiket,2,',','.'), "Rp ".number_format($r_tiket,2,',','.')));
+					$counterrr++;
+				}
 			$pdf->Cell(20,7,'',0,0);
 			$pdf->SetFont('Arial','B',12);
 			$pdf->Cell(10,5,'','LB',0,'L',0);
 			$pdf->Cell(70,5,'Jumlah','LRB',0,'C',0);
-			$pdf->Cell(10,5,'Rp ','B',0,'L',0);
-			$pdf->Cell(30,5,''.number_format($sbu_tiket,2,',','.'),'RB',0,'R',0);
-			$pdf->Cell(10,5,'Rp ','B',0,'L',0);
-			$pdf->Cell(30,5,''.number_format($r_tiket,2,',','.'),'RB',0,'R',0);
+			$pdf->Cell(7,5,'Rp ','B',0,'L',0);
+			$pdf->Cell(33,5,''.number_format($sbu_tiket,2,',','.'),'RB',0,'L',0);
+			$pdf->Cell(7,5,'Rp ','B',0,'L',0);
+			$pdf->Cell(33,5,''.number_format($r_tiket,2,',','.'),'RB',0,'L',0);
 			$pdf->Ln();
+			
 			//end of table
 			$pdf->Ln();
 			$pdf->SetFont('Arial','',12);
@@ -997,7 +998,7 @@ class C_PDF extends CI_Controller {
 		}
 
 		/* -----------------------------*/
-		$pdf = new FPDF('p','mm','A4');
+		$pdf = new PDF_MC_Table('p','mm','A4');
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','B',14);
 		$pdf->Ln();
@@ -1045,23 +1046,23 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(40,5,'Nilai SBU',1,0,'C',0);
 		$pdf->Cell(40,5,'Pengeluaran Rill',1,0,'C',0);
         $pdf->Ln();
-        $pdf->Cell(20,7,'',0,0);
-        $pdf->SetFont('Arial','',12);
-		$pdf->Cell(10,5,'1','LB',0,'R',0);
-		$pdf->Cell(70,5,'Tiket Pesawat '.$rute,'LRB',0,'L',0);
-		$pdf->Cell(10,5,'Rp','B',0,'L',0);
-		$pdf->Cell(30,5,''.number_format($sbu_tiket,2,',','.'),'RB',0,'R',0);
-		$pdf->Cell(10,5,'Rp','B',0,'L',0);
-		$pdf->Cell(30,5,''.number_format($r_tiket,2,',','.'),'RB',0,'R',0);
-        $pdf->Ln();
+		$pdf->Cell(20,7,'',0,0);
+		$pdf->SetFont('Arial','',12);
+			$counterrr = 1;
+			//$pdf->Ln();
+				$pdf->SetWidths(array(10, 70, 40, 40));
+				for($i=0;$i<1;$i++) {
+					$pdf->Row(array($counterrr,"Tiket Pesawat ".$rute,"Rp ".number_format($sbu_tiket,2,',','.'), "Rp ".number_format($r_tiket,2,',','.')));
+					$counterrr++;
+				}
         $pdf->Cell(20,7,'',0,0);
         $pdf->SetFont('Arial','B',12);
 		$pdf->Cell(10,5,'','LB',0,'L',0);
 		$pdf->Cell(70,5,'Jumlah','LRB',0,'C',0);
-		$pdf->Cell(10,5,'Rp','B',0,'L',0);
-		$pdf->Cell(30,5,''.number_format($sbu_tiket,2,',','.'),'RB',0,'R',0);
-		$pdf->Cell(10,5,'Rp','B',0,'L',0);
-		$pdf->Cell(30,5,''.number_format($r_tiket,2,',','.'),'RB',0,'R',0);
+		$pdf->Cell(7,5,'Rp','B',0,'L',0);
+		$pdf->Cell(33,5,''.number_format($sbu_tiket,2,',','.'),'RB',0,'L',0);
+		$pdf->Cell(7,5,'Rp','B',0,'L',0);
+		$pdf->Cell(33,5,''.number_format($r_tiket,2,',','.'),'RB',0,'L',0);
         $pdf->Ln();
 		//end of table
 

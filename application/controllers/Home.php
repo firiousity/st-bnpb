@@ -226,9 +226,8 @@ class Home extends CI_Controller {
 	}
 
 	public function tambah_transport_lokal() {
-		$provinsi = $this->input->post('provinsi');
 		$ibukota = $this->input->post('ibukota');
-		$kota_kabupaten = $this->input->post('kota_kabupaten');
+		$kabupaten = $this->input->post('kabupaten');
 		$besaran = $this->input->post('besaran');
 
 		$this->load->view('layouts/nav');
@@ -236,42 +235,39 @@ class Home extends CI_Controller {
 		$this->load->view('transport_lokal');
 		// $this->load->view('layouts/footer');
 		$data = array(
-			'provinsi' => $provinsi,
 			'ibukota' => $ibukota,
-			'kota_kabupaten' => $kota_kabupaten,
+			'kabupaten' => $kabupaten,
 			'besaran' => $besaran,
 		);
-		$this->db->insert('transport_lokal', $data);
+		$this->db->insert('transportasi_lokal', $data);
 		$this->href('home/transport_lokal');
 	}
 
 	function edit_transport_lokal_page($id) {
-		$data['transport_lokal'] = $this->db->get_where('transport_lokal',  array('id' => $id) )->result();
+		$data['transport_lokal'] = $this->db->get_where('transportasi_lokal',  array('id' => $id) )->result();
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
-		$this->load->view('edit_transport', $data);
-		$this->load->view('layouts/footer2');
+		$this->load->view('edit_lokal', $data);
+		// $this->load->view('layouts/footer2');
 	}
 
 	function edit_transport_lokal($id) {
-		$provinsi = $this->input->post('provinsi');
 		$ibukota = $this->input->post('ibukota');
-		$kota_kabupaten = $this->input->post('kota_kabupaten');
+		$kabupaten = $this->input->post('kabupaten');
 		$besaran = $this->input->post('besaran');
 		$data = array(
-			'provinsi' => $provinsi,
 			'ibukota' => $ibukota,
-			'kota_kabupaten' => $kota_kabupaten,
+			'kabupaten' => $kabupaten,
 			'besaran' => $besaran,
 		);
 		$this->db->where('id', $id);
-		$this->db->update('transport_lokal', $data);
+		$this->db->update('transportasi_lokal', $data);
 		$this->href('home/transport_lokal');
 	}
 
 	function delete_transport_lokal($id) {
 		$where = array('id' => $id );
-		$this->db->delete('transport_lokal', $where);
+		$this->db->delete('transportasi_lokal', $where);
 		$_SESSION['berhasil'] = "Berhasil menghapus";
 		$this->href('home/transport_lokal');
 	}
