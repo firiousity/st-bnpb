@@ -142,10 +142,18 @@ class Surat extends CI_Controller
 	}
 
 	function edit($id) {
-		$data['data'] = $this->db->get_where('data_rinci',  array('id' => $id) )->result();
-		$this->load->view('layouts/nav');
-		$this->load->view('layouts/header');
-		$this->load->view('edit_surat', $data);
-		$this->load->view('layouts/footer');
+		$nomor = $this->input->post('nomor');
+		//edit di surat_dinas
+		$this->db->where('id', $id);
+		$this->db->update('surat_dinas', array(
+			'nomor' => $nomor
+		));
+
+		//edit di tabel data_rinci
+		$this->db->where('id_surat', $id);
+		$this->db->update('data_rinci', array(
+			'nomor' => $nomor
+		));
+		$this->href('home/lihat_surat');
 	}
 }
