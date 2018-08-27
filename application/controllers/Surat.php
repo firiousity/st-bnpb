@@ -140,4 +140,12 @@ class Surat extends CI_Controller
 		$_SESSION['berhasil'] = "Berhasil menghapus";
 		$this->href('home/lihat_surat');
 	}
+
+	function edit($id) {
+		$data['data'] = $this->db->get_where('data_rinci',  array('id' => $id) )->result();
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
+		$this->load->view('edit_surat', $data);
+		$this->load->view('layouts/footer');
+	}
 }
