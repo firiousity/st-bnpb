@@ -1,22 +1,21 @@
 <body>
 	<div class="container" style="padding-top: 20vh; padding-bottom: 15vh">
 		<div class="card mb-6">
-			<!-- Default form contact -->
-			<form class="needs-validation"  style="margin: 1%"
+			<div style="margin-left: 5%; margin-top: 5%">
+				  	<h3 class="card-title">ISIAN FORM RAMPUNG</h3>
+				  </div>
+			<div class="card-body" style="margin-left: 3%">
+				<!-- Default form contact -->
+			<form class="needs-validation"
 				  action="<?php echo base_url('C_PDF/print_rampung/'.$slug) ?>"
 				  method="post">
-				  <div class="col-md-6" style="margin-top: 5vh; margin-bottom: 5vh">
-				  	<h2>ISIAN FORM RAMPUNG</h2>
-				  </div>
 				
-				<table class="table table-responsive" width="100%">
+				<table class="table table-responsive">
 					<!-- BAGIAN FORM DINAMIS INI AKAN MUNCUL JIKA USER MENGKLIK OPSI BANYAK TEMPAT-->
 					<!--elemet sebagai target append-->
 					<tbody id="itemlist">
 					<tr>
-						<tr>
 							<input type="checkbox" onclick="cek()" name="isMultiple" id="isMultiple"> Penginapan lebih dari 1 malam? <br/>
-						</tr>
 						<td>
 							<label for="validationCustom02">Uang Penginapan</label>
 							<input type="number" class="form-control" id="inap" name="inap"
@@ -33,11 +32,15 @@
 					
 					</tbody>
 				</table>
-					<p>Pastikan jumlah malam tidak lebih dari <?php echo $malam ?> malam </p>
-				<button class="btn btn-indigo" type="submit" name="rsubmit">Print Surat</button>
+				<div style="float: right; padding-right: 20px;">
+						<p>*Pastikan jumlah malam tidak lebih dari <?php echo $malam ?> malam </p>	
+						<div style="float: right;"><button class="btn btn-indigo" type="submit" name="rsubmit">Print Surat</button>	</div>
+						
+					</div>
+				</div>
 			</form>
+			</div>
 		</div>
-
 	</div>
 <script>
 	var i = 1;
