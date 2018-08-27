@@ -20,18 +20,17 @@
 						<td>
 							<label for="validationCustom02">Uang Penginapan</label>
 							<input type="number" class="form-control" id="inap" name="inap"
-								   placeholder="Rp. ">
+								   placeholder="Rp ">
 						</td>
 						<td>
 							<label for="validationCustom02">Tiket Pesawat</label>
 							<input type="number" class="form-control" id="validationCustom02" name="tiket"
-								   placeholder="Rp. " required></td>
-					</tr>
-					<tr>
+								   placeholder="Rp " required></td>
 						<td>
-							<button class="btn btn-blue" id="btn_tambah" disabled onclick="additem(); return false"><i class="fas fa-plus-square"></i></i></button>
+							<button class="btn btn-primary" id="btn_tambah" disabled onclick="additem(); return false"><i class="fas fa-plus-square"></i></i></button>
 						</td>
 					</tr>
+					
 					</tbody>
 				</table>
 					<p>Pastikan jumlah malam tidak lebih dari <?php echo $malam ?> malam </p>
@@ -63,7 +62,7 @@
 		penginapan_input.setAttribute('name', 'penginapan['+ i +']');
 		penginapan_input.setAttribute('type', 'number');
 		penginapan_input.setAttribute('class', 'form-control');
-		penginapan_input.setAttribute('placeholder', 'Rp. ');
+		penginapan_input.setAttribute('placeholder', 'Rp ');
 		penginapan_input.setAttribute('required', 'true');
 
 		var malam_input = document.createElement('input');
