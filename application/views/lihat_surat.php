@@ -1,3 +1,5 @@
+
+
 <body>
           <div class="container" style="padding-top: 10%;">
                 <p style="font-size: 27px; text-align: center;">Daftar Surat</p>
@@ -28,7 +30,9 @@
 						  <?php
 						  $i = 1;
 						  foreach ($surat as $row) {
-
+							  $nomor = $row->nomor;
+							  $arr_nomor = explode('/', $nomor);
+							  $nomor_surat = trim($arr_nomor[0], " ");
 						  	echo "
 						  	<tr>
                               <th scope=\"row\">$i</th>
@@ -44,8 +48,19 @@
                                 <button type=\"button\" class=\"btn btn-success btn-sm my-0\"><i class=\"fa fa-print\" aria-hidden=\"true\"></i> PRINT SURAT
                                 </button></a>
                               </td>
-                              <td>
-                                <span class='table-remove'><button onclick='hapus($row->id)' type='button' class='btn btn-danger btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
+                              <td>";
+						  	//edit button hanya muncul kalo nomornya belum ada
+						  if(empty($nomor_surat)) {
+							  echo "
+                                <a href='".base_url('Surat/edit/'.$row->id)."'><button
+                                type='button' class='btn btn-danger btn-sm my-0' id='edit_surat'>
+                                <i class='fa fa-edit' aria-hidden='true'></i></button></span>";
+						  }
+
+						  	echo "
+                                <span class='table-remove'><button onclick='hapus($row->id)' 
+                                type='button' class='btn btn-danger btn-sm my-0'>
+                                <i class='fa fa-times' aria-hidden='true'></i></button></span>
                                 </td>
                             </tr>
     						  	";
@@ -55,6 +70,8 @@
 						  </tbody>
 						</table>
 			  <script>
+
+
 				  function hapus(id) {
                       const swalWithBootstrapButtons = swal.mixin({
                       confirmButtonClass: 'btn btn-success',

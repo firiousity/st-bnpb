@@ -90,6 +90,20 @@ class Home extends CI_Controller {
 		// $this->load->view('layouts/footer');
 	}
 
+	/* Cek nomor apakah kosong */
+	public function isNomorFilled($id) {
+		$surat_result = $this->db->get_where('surat_dinas', array('id' => $id))->result();
+		$nomor = $surat_result['0']->nomor;
+		$arr_nomor = explode('/', $nomor);
+		$nomor_surat = trim($arr_nomor[0], " ");
+		if(empty($nomor_surat)) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+
 	public function buat_surat ()
 	{
 		$data['pegawai'] = $this->home_model->get_pegawai();

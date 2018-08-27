@@ -89,6 +89,7 @@
 			row.parentNode.removeChild(row);
 		};
 
+		//Jika lebih dari jumlah malam maka tombol tambah gabisa di klik
 		if (i >= <?php echo $malam ?> ) {
 			var btn = document.getElementById('btn_tambah');
 			btn.disabled = true;
