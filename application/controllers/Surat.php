@@ -33,6 +33,7 @@ class Surat extends CI_Controller
 		$data['penginapan'] = $this->home_model->get_biaya_penginapan();
 		$data['tiket'] = $this->home_model->get_tiket_pesawat();
 		$data['transport'] = $this->home_model->get_biaya_transport();
+		$data['lokal'] = $this->home_model->get_transport_lokal();
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('dynamic_form', $data);

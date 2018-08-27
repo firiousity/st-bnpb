@@ -125,8 +125,10 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 								</select>
 							</div>
 						</td>
+					</tr>
+					<tr>
 						<td>
-							<label >Uang Transport Awal: </label>
+							<label >Dari: </label>
 							<div class="form-group">
 								<select name="transport" class="form-control">
 									<?php foreach ($transport as $row) {
@@ -138,12 +140,28 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 							</div>
 						</td>
 						<td>
-							<label >Uang Transport Akhir: </label>
+							<label >Ke: </label>
 							<div class="form-group">
 								<select name="transport2" class="form-control">
+									<option value=''>Pilih Trasportasi Tujuan</option>
 									<?php foreach ($transport as $row) {
 										echo
-										"<option value='$row->id'>$row->provinsi</option>" ;
+										"
+										<option value='$row->id'>$row->provinsi</option>" ;
+									}
+									?>
+								</select>
+							</div>
+						</td>
+						<td>
+							<label >Tranport Lokal: </label>
+							<div class="form-group">
+								<select name="transport_lokal" class="form-control">
+									<option value=''>Pilih Trasportasi Lokal</option>
+									<?php foreach ($lokal as $row) {
+										echo
+										"
+										<option value='$row->id'>$row->ibukota - $row->kabupaten</option>" ;
 									}
 									?>
 								</select>
@@ -161,10 +179,10 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 					<!--elemet sebagai target append-->
 					<tbody id="itemlist" style="display: none;">
 					<tr>
-						<td><label>Tempat</label><input name="tempat_input[0]" class="input-block-level" type="text"/></td>
-						<td><label>Tanggal Mulai</label><input name="mulai_input[0]" class="input-block-level"  type="date"/></td>
-						<td><label>Tanggal Akhir</label><input name="akhir_input[0]" class="input-block-level"  type="date"/></td>
-						<td><label>Pilih Pegawai</label><select  name="my-select-pegawai[0]">
+						<td><label>Tempat</label><input name="tempat_input[0]" class="form-control" type="text"/></td>
+						<td><label>Tanggal Mulai</label><input name="mulai_input[0]" class="form-control"  type="date"/></td>
+						<td><label>Tanggal Akhir</label><input name="akhir_input[0]" class="form-control"  type="date"/></td>
+						<td><label>Pilih Pegawai</label><select  name="my-select-pegawai[0]" class="form-control">
 								<?php foreach ($pegawai as $row) {
 									echo
 									"<option value='$row->id_pegawai'>$row->nama_pegawai</option>" ;
@@ -174,7 +192,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 						<td>
 							<label >Uang Harian: </label>
 							<div>
-								<select name="my-select-harian[0]" >
+								<select name="my-select-harian[0]" class="form-control" >
 									<?php foreach ($harian as $row) {
 										echo
 										"<option value='$row->id'>$row->provinsi</option>" ;
@@ -186,7 +204,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 						<td>
 							<label >Uang Penginapan: </label>
 							<div>
-								<select name="my-select-penginapan[0]">
+								<select name="my-select-penginapan[0]" class="form-control">
 									<?php foreach ($penginapan as $row) {
 										echo
 										"<option value='$row->id'>$row->provinsi</option>" ;
@@ -195,10 +213,12 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 								</select>
 							</div>
 						</td>
+					</tr>
+					<tr>
 						<td>
 							<label >Tiket Pesawat: </label>
 							<div>
-								<select name="my-select-tiket[0]">
+								<select name="my-select-tiket[0]" class="form-control">
 									<?php foreach ($tiket as $row) {
 										echo
 										"<option value='$row->id'>$row->rute</option>" ;
@@ -208,9 +228,9 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 							</div>
 						</td>
 						<td>
-							<label>Uang Transportasi Awal: </label>
+							<label>Dari: </label>
 							<div>
-								<select name="my-select-transport[0]" >
+								<select name="my-select-transport[0]" class="form-control" >
 									<?php foreach ($transport as $row) {
 										echo
 										"<option value='$row->id'>$row->provinsi</option>" ;
@@ -220,12 +240,28 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 							</div>
 						</td>
 						<td>
-							<label >Uang Transportasi Akhir: </label>
+							<label >Ke: </label>
 							<div>
-								<select name="my-select-transport2[0]">
+								<select name="my-select-transport2[0]" class="form-control">
+									<option value=''>Pilih Trasportasi Keberangkatan</option>
 									<?php foreach ($transport as $row) {
 										echo
-										"<option value='$row->id'>$row->provinsi</option>" ;
+										"
+									<option value='$row->id'>$row->provinsi</option>" ;
+									}
+									?>
+								</select>
+							</div>
+						</td>
+						<td>
+							<label >Trasportasi Lokal: </label>
+							<div>
+								<select name="my-select-transport-lokal[0]" class="form-control">
+									<option value=''>Pilih Trasportasi Lokal</option>
+									<?php foreach ($lokal as $row) {
+										echo
+										"
+										<option value='$row->id'>$row->ibukota - $row->kabupaten</option>" ;
 									}
 									?>
 								</select>
@@ -258,6 +294,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 
 //                membuat element
 		var row = document.createElement('tr');
+		var row2 = document.createElement('tr');
 		var tempat = document.createElement('td');
 		var mulai = document.createElement('td');
 		var akhir = document.createElement('td');
@@ -267,54 +304,69 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 		var tiket = document.createElement('td');
 		var transport = document.createElement('td');
 		var transport2 = document.createElement('td');
+		var transport_lokal = document.createElement('td');
 		var aksi = document.createElement('td');
+
 
 //                meng append element
 		itemlist.appendChild(row);
+		itemlist.appendChild(row2);
 		row.appendChild(tempat);
 		row.appendChild(mulai);
 		row.appendChild(akhir);
 		row.appendChild(pegawai);
 		row.appendChild(harian);
 		row.appendChild(penginapan);
-		row.appendChild(tiket);
-		row.appendChild(transport);
-		row.appendChild(transport2);
-		row.appendChild(aksi);
+		row2.appendChild(tiket);
+		row2.appendChild(transport);
+		row2.appendChild(transport2);
+		row2.appendChild(transport_lokal);
+		row2.appendChild(aksi);
 
 		var tempat_input = document.createElement('input');
 		tempat_input.setAttribute('name', 'tempat_input[' + i + ']');
-		tempat_input.setAttribute('class', 'input-block-level');
+		tempat_input.setAttribute('class', 'form-control');
 		tempat_input.setAttribute('type', 'text');
 
 		var mulai_input = document.createElement('input');
 		mulai_input.setAttribute('name', 'mulai_input[' + i + ']');
-		mulai_input.setAttribute('class', 'input-block-level');
+		mulai_input.setAttribute('class', 'form-control');
 		mulai_input.setAttribute('type', 'date');
 
 		var akhir_input = document.createElement('input');
 		akhir_input.setAttribute('name', 'akhir_input[' + i + ']');
-		akhir_input.setAttribute('class', 'input-block-level');
+		akhir_input.setAttribute('class', 'form-control');
 		akhir_input.setAttribute('type', 'date');
 
 
 		var pegawai_input = document.createElement('select');
 		pegawai_input.setAttribute('name', 'my-select-pegawai['+ i +']');
+		pegawai_input.setAttribute('class', 'form-control');
 
 		var harian_input = document.createElement('select');
 		harian_input.setAttribute('name', 'my-select-harian['+ i +']');
+		harian_input.setAttribute('class', 'form-control');
 
+		pegawai_input.setAttribute('class', 'form-control');
 		var penginapan_input = document.createElement('select');
 		penginapan_input.setAttribute('name', 'my-select-penginapan['+ i +']');
+		penginapan_input.setAttribute('class', 'form-control');
 
 		var tiket_input = document.createElement('select');
 		tiket_input.setAttribute('name', 'my-select-tiket['+ i +']');
+		tiket_input.setAttribute('class', 'form-control');
 
 		var transport_input = document.createElement('select');
 		transport_input.setAttribute('name', 'my-select-transport['+ i +']');
+		transport_input.setAttribute('class', 'form-control');
 
 		var transport2_input = document.createElement('select');
 		transport2_input.setAttribute('name', 'my-select-transport2['+ i +']');
+		transport2_input.setAttribute('class', 'form-control');
+
+		var transport_lokal_input = document.createElement('select');
+		transport_lokal_input.setAttribute('name', 'my-select-transport-lokal['+ i +']');
+		transport_lokal_input.setAttribute('class', 'form-control');
 
 
 		<?php foreach ($pegawai as $row) { ?>
@@ -365,6 +417,14 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 		<?php }
 		?>
 
+		<?php foreach ($lokal as $row) { ?>
+		var option_transport_lokal = document.createElement('option');
+		option_transport_lokal.setAttribute('value', '<?php echo $row->id?>' );
+		option_transport_lokal.innerHTML = "<?php echo $row->ibukota."-".$row->kabupaten ?>";
+		transport_lokal_input.appendChild(option_transport_lokal);
+		<?php }
+		?>
+
 		var hapus = document.createElement('span');
 
 //                meng append element input
@@ -377,11 +437,13 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 		tiket.appendChild(tiket_input);
 		transport.appendChild(transport_input);
 		transport2.appendChild(transport2_input);
+		transport_lokal.appendChild(transport_lokal_input);
 		aksi.appendChild(hapus);
 
 		hapus.innerHTML = '<button class="btn btn-small btn-default"><i class="fas fa-trash-alt"></i></button>';
 //                membuat aksi delete element
 		hapus.onclick = function () {
+			row2.parentNode.removeChild(row2);
 			row.parentNode.removeChild(row);
 		};
 
