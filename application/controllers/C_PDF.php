@@ -947,7 +947,17 @@ class C_PDF extends CI_Controller {
 
 		if(empty($r_tiket)) {
 			echo "<script>         	
-         	alert('Anda harus mengisi SPD Rampung Dulu!');
+			const toast = swal.mixin({
+			  toast: true,
+			  position: 'top-end',
+			  showConfirmButton: false,
+			  timer: 3000
+			});
+
+			toast({
+			  type: 'error',
+			  title: 'Anda belum mengisi SPD Rampung'
+			})
          	window.location.href='".base_url('C_PDF/print_biaya/').$arr_slug[0]."';</script>";
 		}
 
