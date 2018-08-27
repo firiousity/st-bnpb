@@ -7,7 +7,6 @@
 				  method="post">
 				  <div class="col-md-6" style="margin-top: 5vh; margin-bottom: 5vh">
 				  	<h2>ISIAN FORM RAMPUNG</h2>
-					<p>Pastikan jumlah malam tidak lebih dari <?php echo $malam ?> malam </p>
 				  </div>
 				
 				<table class="table table-responsive" width="100%">
@@ -15,6 +14,9 @@
 					<!--elemet sebagai target append-->
 					<tbody id="itemlist">
 					<tr>
+						<tr>
+							<input type="checkbox" onclick="cek()" name="isMultiple" id="isMultiple"> Penginapan lebih dari 1 malam? <br/>
+						</tr>
 						<td>
 							<label for="validationCustom02">Uang Penginapan</label>
 							<input type="number" class="form-control" id="inap" name="inap"
@@ -24,9 +26,6 @@
 							<label for="validationCustom02">Tiket Pesawat</label>
 							<input type="number" class="form-control" id="validationCustom02" name="tiket"
 								   placeholder="Rp. " required></td>
-						<td>
-							<input type="checkbox" onclick="cek()" name="isMultiple" id="isMultiple"> Penginapan lebih dari 1 malam? <br/>
-						</td>
 					</tr>
 					<tr>
 						<td>
@@ -35,7 +34,7 @@
 					</tr>
 					</tbody>
 				</table>
-
+					<p>Pastikan jumlah malam tidak lebih dari <?php echo $malam ?> malam </p>
 				<button class="btn btn-indigo" type="submit" name="rsubmit">Print Surat</button>
 			</form>
 		</div>
