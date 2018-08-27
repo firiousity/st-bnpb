@@ -1852,7 +1852,7 @@ class C_PDF extends CI_Controller {
 			$jml_harian = $harian*$hari;
 			$jml_s_harian = $s_harian*$hari;
 			if ($isMultiple == "0") {
-				//satu tempat penginapan saja
+				//satu tempat penginapan saja bosq
 				$penginapan = $this->input->post('inap');
 				$jml_penginapan = $malam*$penginapan;
 				$jml_s_penginapan = $s_penginapan*$malam;
