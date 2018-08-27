@@ -937,6 +937,12 @@ class C_PDF extends CI_Controller {
 		$var_tgl_skrg = $this->tanggal_indo(date('Y').'-'.date('m').'-'.date('d'), '-');
 		$var_tgl_surat 	= $this->tanggal_indo($surat_result['0']->tgl_surat,'/');
 
+		if(empty($r_tiket)) {
+			echo "<script>         	
+         	alert('Anda harus mengisi SPD Rampung Dulu!');
+         	window.location.href='".base_url('C_PDF/print_biaya/').$arr_slug[0]."';</script>";
+		}
+
 		/* -----------------------------*/
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
@@ -2094,7 +2100,7 @@ class C_PDF extends CI_Controller {
 			$pdf->Ln();
 		} else {
 			/* Nilainya di dapat dari spd rampung dan ini buat double tempat penginapan*/
-			//get value from db enaena
+			//get value from db
 			$pdf->Ln();
 			$pdf->Cell(5,7,'',0,0);
 			$pdf->Cell(10,6,'','L',0,'L',0);
