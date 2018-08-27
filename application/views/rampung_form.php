@@ -1,18 +1,15 @@
-<?php
-
-?>
 <body>
-	<div class="container margin">
+	<div class="container" style="padding-top: 20vh; padding-bottom: 15vh">
 		<div class="card mb-6">
-			<h1>
-				<?php  ?>
-			</h1>
 			<!-- Default form contact -->
 			<form class="needs-validation"  style="margin: 1%"
 				  action="<?php echo base_url('C_PDF/print_rampung/'.$slug) ?>"
 				  method="post">
-				<h2 class="judul">ISIAN FORM RAMPUNG</h2>
-				<p>Pastikan jumlah malam tidak lebih dari <?php echo $malam ?> malam </p>
+				  <div class="col-md-6" style="margin-top: 5vh; margin-bottom: 5vh">
+				  	<h2>ISIAN FORM RAMPUNG</h2>
+					<p>Pastikan jumlah malam tidak lebih dari <?php echo $malam ?> malam </p>
+				  </div>
+				
 				<table class="table table-responsive" width="100%">
 					<!-- BAGIAN FORM DINAMIS INI AKAN MUNCUL JIKA USER MENGKLIK OPSI BANYAK TEMPAT-->
 					<!--elemet sebagai target append-->

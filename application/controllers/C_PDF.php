@@ -1643,7 +1643,7 @@ class C_PDF extends CI_Controller {
 			$this->load->view('layouts/nav');
 			$this->load->view('layouts/header');
 			$this->load->view('rampung_form', $data);
-			$this->load->view('layouts/footer2');
+			// $this->load->view('layouts/footer2');
 		}
 	}
 
