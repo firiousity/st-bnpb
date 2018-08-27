@@ -157,7 +157,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 						<td>
 							<label >Tranport Lokal: </label>
 							<div class="form-group">
-								<select name="transport_lokal" class="form-control">
+								<select name="transport-lokal" class="form-control">
 									<option value=''>Pilih Trasportasi Lokal</option>
 									<?php foreach ($lokal as $row) {
 										echo

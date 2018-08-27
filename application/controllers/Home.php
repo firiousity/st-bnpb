@@ -68,15 +68,11 @@ class Home extends CI_Controller {
 
 	public function beranda()
 	{
-		//if (isset($_SESSION['success'])) {
 			$this->load->view('layouts/nav');
 			$this->load->view('layouts/header');
 	        $this->load->view('beranda');
 	        $this->load->view('layouts/footer2');
-		// } else {
-		// 	$_SESSION['error'] = 'Username atau password salah';
-  //        	$this->href("");
-		// }
+
     } 	
 
 	/*

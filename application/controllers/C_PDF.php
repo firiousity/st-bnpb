@@ -615,6 +615,7 @@ class C_PDF extends CI_Controller {
 		$id_tiket = $data_rinci_all['0']->id_tiket;
 		$id_transport = $data_rinci_all['0']->id_transport;
 		$id_transport2 = $data_rinci_all['0']->id_transport2;
+		$id_lokal = $data_rinci_all['0']->id_lokal;
 		//get data uang tiket
 		$tiket_result	= $this->db->get_where('tiket_pesawat',array('id' => $id_tiket))->result();
 		$sbu_tiket = $tiket_result['0']->biaya_tiket;
@@ -630,10 +631,14 @@ class C_PDF extends CI_Controller {
 		//get sbu transport tujuan
 		$transport2_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport2))->result();
 		$sbu_transport2 = $transport2_result['0']->besaran;
+		//get sbu transport lokal
+		$lokal_result	= $this->db->get_where('transportasi_lokal',array('id' => $id_lokal))->result();
+		$rute_lokal = $lokal_result['0']->ibukota."-".$lokal_result['0']->kabupaten;
+		$besaran_lokal = $lokal_result['0']->besaran;
 
 		$total1 = 2*$sbu_transport;
 		$total2 = 2*$sbu_transport2;
-		$total_transport = $total1 + $total2;
+		$total_transport = $total1 + $total2 +$besaran_lokal;
 
 		$ppk 			= $this->db->get_where('pejabat_administratif',
 			array('jabatan' => 'Pejabat Pembuat Komitmen'))->result();
@@ -644,7 +649,7 @@ class C_PDF extends CI_Controller {
 		$var_tgl_surat 	= $this->tanggal_indo($surat_result['0']->tgl_surat,'/');
 
 		/* -----------------------------*/
-		$pdf = new FPDF('p','mm','A4');
+		$pdf = new PDF_MC_Table('p','mm','A4');
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','B',12);
 		$pdf->Ln();
@@ -701,11 +706,37 @@ class C_PDF extends CI_Controller {
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
         $pdf->Cell(10,7,'',0,0);
-        $pdf->Cell(10,5,'2','LB',0,'R',0);
-		$pdf->Cell(70,5,'Transport Bandara '.$tujuan.' (PP)','LB',0,'L',0);
-		$pdf->Cell(30,5,'2 x '.number_format($sbu_transport2,2,',','.'),'RB',0,'R',0);
-		$pdf->Cell(40,5,number_format($total2,2,',','.'),'RB',0,'R',0);
+        $pdf->Cell(10,5,'2','L',0,'R',0);
+		$pdf->Cell(70,5,'Transport Bandara '.$tujuan.' (PP)','L',0,'L',0);
+		$pdf->Cell(30,5,'2 x '.number_format($sbu_transport2,2,',','.'),'R',0,'R',0);
+		$pdf->Cell(40,5,number_format($total2,2,',','.'),'R',0,'R',0);
         $pdf->Ln();
+
+        /* Baris ini hanya muncul jika transport lokal ada nilainya */
+		if ($lokal_result != NULL ) {
+			/* This is assignment for forly. Make this table auto height plz*/
+//		$pdf->SetWidths(array(10, 10, 10, 70, 30, 40));
+//		for($i=0;$i<1;$i++)
+//			$pdf->Row(array("","","3","Transport Lokal ".$rute_lokal, '1 x '.$this->rupiah($besaran_lokal),
+//				$this->rupiah($besaran_lokal)));
+
+			$pdf->Cell(10,7,'',0,0);
+			$pdf->Cell(10,7,'',0,0);
+			$pdf->Cell(10,5,'3','LB',0,'R',0);
+			$pdf->Cell(70,5,'Transport Lokal '.$rute_lokal,'LB',0,'L',0);
+			$pdf->Cell(30,5,'1 x '.number_format($besaran_lokal,2,',','.'),'RB',0,'R',0);
+			$pdf->Cell(40,5,number_format($besaran_lokal,2,',','.'),'RB',0,'R',0);
+			$pdf->Ln();
+		} else {
+			$pdf->Cell(10,7,'',0,0);
+			$pdf->Cell(10,7,'',0,0);
+			$pdf->Cell(10,5,'','LB',0,'R',0);
+			$pdf->Cell(70,5,'','LB',0,'L',0);
+			$pdf->Cell(30,5,'1','RB',0,'R',0);
+			$pdf->Cell(40,5,'','RB',0,'R',0);
+			$pdf->Ln();
+		}
+
         $pdf->Cell(10,7,'',0,0);
         $pdf->Cell(10,7,'',0,0);
         $pdf->SetFont('Arial','B',10);
@@ -1689,6 +1720,7 @@ class C_PDF extends CI_Controller {
 		$id_transport = $data_rinci_all['0']->id_transport;
 		$id_transport2 = $data_rinci_all['0']->id_transport2;
 		$id_tiket = $data_rinci_all['0']->id_tiket;
+		$id_lokal = $data_rinci_all['0']->id_lokal;
 
 		//get data uang harian
 		$harian_result	= $this->db->get_where('uang_harian',array('id' => $id_harian))->result();
@@ -1705,8 +1737,13 @@ class C_PDF extends CI_Controller {
 		//get data uang transport2
 		$transport2_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport2))->result();
 		$transport2 = $transport2_result['0']->besaran*2;
-		$total_transport = $transport + $transport2;
+		//get data uang transport lokal
+		$lokal_result	= $this->db->get_where('transportasi_lokal',array('id' => $id_lokal))->result();
+		$biaya_lokal= $lokal_result['0']->besaran;
+		$total_transport = $transport + $transport2 + $biaya_lokal;
 		$jenis = $data_rinci_all['0'] -> jenis;
+
+		//create tanggal setelah dapet tandatangan pa topo
 		$tgl_baru = date('d/m/Y');
 
 		//Get pegawai
@@ -1732,15 +1769,13 @@ class C_PDF extends CI_Controller {
 		$hari = $this->hitung_hari($surat_result['0']->tgl_mulai, $surat_result['0']->tgl_akhir);
 		$hari = $hari + 1;
 		$malam = $hari - 1 ;
-		$var_tgl_rampung = $this->db->get_where('spd_rampung',
-			array('id_surat' => $id_surat, 'id_pegawai' => $id_pegawai))->result();
-		$var_tgl_rampung = $this->tanggal_indo($var_tgl_rampung['0']->tgl,'/');
+
 
 
 		//nilai penginapan dan tiket akan berubah sesuai jenis. kalo di depan makan nilainya sama dengan sbu
 		if(!isset($_POST['rsubmit'])) {
 			//Artinya dia udah ngisi SPD, tinggal nyetak aja
-			//dibayar di belakang maka nila tiket dan penginapan sesuai dengan post di spd rampung
+			//dibayar di belakang maka nilai tiket dan penginapan sesuai dengan post di spd rampung
 			//get real pengeluaran untuk tiket
 			$r_tiket_result = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0],
 				'id_pegawai' => $arr_slug[1]))->result();
@@ -1748,6 +1783,9 @@ class C_PDF extends CI_Controller {
 			$penginapan = $r_tiket_result['0']->penginapan;
 			$isMultiple = $r_tiket_result['0']->multiple;
 			$malam = $r_tiket_result['0']->malam;
+			$var_tgl_rampung = $this->db->get_where('spd_rampung',
+				array('id_surat' => $id_surat, 'id_pegawai' => $id_pegawai))->result();
+			$var_tgl_rampung = $this->tanggal_indo($var_tgl_rampung['0']->tgl,'/');
 			if($jenis == '0') {
 				//bayar di belakang, set all value to zero
 				$s_harian = 0;
@@ -1769,6 +1807,8 @@ class C_PDF extends CI_Controller {
 			$total = $jml_harian+$jml_penginapan+$tiket+$transport;
 			$sisa = $s_total - $total;
 		} else  {
+			$var_tgl_rampung = date('d/m/Y');
+			$var_tgl_rampung = $this->tanggal_indo($var_tgl_rampung,'/');
 			/* Menyimpan Ke Pembayaran Awal */
 			if($jenis == '0') {
 				//bayar di belakang, set all value to zero
@@ -1793,13 +1833,13 @@ class C_PDF extends CI_Controller {
 				$s_penginapan = $sbu_penginapan;
 				$s_tiket = $sbu_tiket;
 				$s_transport = $total_transport;
-				$s_total = ($s_harian*$hari)+($s_penginapan*$malam)+$s_tiket+$s_transport;
+				$s_total = ($s_harian*$hari)+($s_penginapan*$malam)+$s_tiket+$total_transport;
 				$data_yang_sudah_dibayar = array(
 					'id_surat' => $id_surat,
 					'id_pegawai' => $id_pegawai,
 					'penginapan' => $s_penginapan,
 					'harian' => $s_harian,
-					'transport' => $s_transport,
+					'transport' => $total_transport,
 					'tiket' => $s_tiket,
 					'total' => $s_total
 				);
@@ -1826,7 +1866,7 @@ class C_PDF extends CI_Controller {
 					'malam' => $malam,
 					'penginapan' => $penginapan,
 					'harian' => $harian,
-					'transport' => $transport,
+					'transport' => $total_transport,
 					'tiket' => $tiket,
 					'total' => $total,
 					'tgl' => $tgl_baru
@@ -1855,7 +1895,7 @@ class C_PDF extends CI_Controller {
 						'malam' => $malam_d[$key],
 						'penginapan' => $penginapan_d[$key],
 						'harian' => $harian,
-						'transport' => $transport,
+						'transport' => $total_transport,
 						'tiket' => $tiket,
 						'total' => $total,
 						'tgl' => $tgl_baru
