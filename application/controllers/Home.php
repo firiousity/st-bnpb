@@ -252,7 +252,7 @@ class Home extends CI_Controller {
 	function delete_penginapan($id) {
 		$where = array('id' => $id );
 		$this->db->delete('biaya_penginapan', $where);
-		$this->alert("Berhasil menghapus");
+		$_SESSION['berhasil'] = "Berhasil menghapus";
 		$this->href('home/biaya_penginapan');
 	}
 
@@ -309,7 +309,7 @@ class Home extends CI_Controller {
 	function delete_transport($id) {
 		$where = array('id' => $id );
 		$this->db->delete('biaya_transport', $where);
-		$this->alert("Berhasil menghapus");
+		$_SESSION['berhasil'] = "Berhasil menghapus";
 		$this->href('home/biaya_transport');
 	}
 
@@ -374,7 +374,7 @@ class Home extends CI_Controller {
 	function delete_transport_lokal($id) {
 		$where = array('id' => $id );
 		$this->db->delete('transport_lokal', $where);
-		$this->alert("Berhasil menghapus");
+		$_SESSION['berhasil'] = "Berhasil menghapus";
 		$this->href('home/transport_lokal');
 	}
 
@@ -431,7 +431,7 @@ class Home extends CI_Controller {
 	function delete_tiket($id) {
 		$where = array('id' => $id );
 		$this->db->delete('tiket_pesawat', $where);
-		$this->alert("Berhasil menghapus");
+		$_SESSION['berhasil'] = "Berhasil menghapus";
 		$this->href('home/tiket_pesawat');
 	}
 
@@ -496,7 +496,7 @@ class Home extends CI_Controller {
 	function delete_harian($id) {
 		$where = array('id' => $id );
 		$this->db->delete('uang_harian', $where);
-		$this->alert("Berhasil menghapus");
+		$_SESSION['berhasil'] = "Berhasil menghapus";
 		$this->href('home/uang_harian');
 	}
 
@@ -556,7 +556,7 @@ class Home extends CI_Controller {
 	function delete_representasi($id) {
 		$where = array('id' => $id );
 		$this->db->delete('uang_representasi', $where);
-		$this->alert("Berhasil menghapus");
+		$_SESSION['berhasil'] = "Berhasil menghapus";
 		$this->href('home/uang_representasi');
 	}
 
@@ -603,7 +603,7 @@ class Home extends CI_Controller {
 	function delete_pegawai($id) {
 		$where = array('id_pegawai' => $id );
 		$this->db->delete('pegawai', $where);
-		$this->alert("Berhasil menghapus");
+		$_SESSION['berhasil'] = "Berhasil menghapus";
 		$this->href('home/pegawai');
 	}
 

@@ -85,6 +85,15 @@
                       }
                     })
                       }
+          <?php if  (isset($_SESSION["berhasil"])) {?>
+
+            swal({
+              title: "Berhasil",
+              text: "Data berhasil dihapus",
+              type: "success",
+            });
+          <?php } ?>
+          <?php unset($_SESSION['berhasil']) ?>
                     </script>
               <div class="container-fluid">
   <div class="row">
