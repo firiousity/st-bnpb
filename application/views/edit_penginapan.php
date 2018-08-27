@@ -1,5 +1,5 @@
 <body>
-<div class="container" style="padding-top: 20vh; padding-bottom: 15vh">
+<div class="container" style="padding-top: 15vh; padding-bottom: 10vh">
 	<div class="card mb-4">
 		<div class="card-body">
 			<?php foreach ($biaya_penginapan as $row) {

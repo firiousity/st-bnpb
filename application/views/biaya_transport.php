@@ -1,6 +1,6 @@
 <body>
-  <div class="container"  style="padding-top: 20vh; padding-bottom: 20vh">
-        <p style="font-size: 27px; text-align: center;">Biaya Transport</p>
+  <div class="container"  style="padding-top: 10vh; padding-bottom: 15vh">
+        <p style="font-size: 27px; text-align: center; padding-top: 50px;">Biaya Transport</p>
           <table id="biaya_transport" class="table table-hover" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
