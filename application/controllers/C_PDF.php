@@ -810,7 +810,7 @@ class C_PDF extends CI_Controller {
 
 		//get real pengeluaran untuk tiket
 		$r_tiket_result = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
-		$r_tiket = $r_tiket_result['0']->tiket;
+		$r_tiket = $r_tiket_result != NULL ? $r_tiket_result['0']->tiket : 0;
 
 		$ppk 			= $this->db->get_where('pejabat_administratif',
 			array('jabatan' => 'Pejabat Pembuat Komitmen'))->result();
@@ -821,6 +821,11 @@ class C_PDF extends CI_Controller {
 		$var_tgl_surat 	= $this->tanggal_indo($surat_result['0']->tgl_surat,'/');
 
 		/* -----------------------------*/
+		if(empty($r_tiket_result)) {
+			echo "<script>         	
+         	alert('Anda belum mengisi SPD Rampung!');
+         	window.location.href='".base_url('C_PDF/print_biaya/').$arr_slug[0]."';</script>";
+		}
 
 		if($sbu_tiket<$r_tiket) {
 			$pdf = new PDF_MC_Table('p','mm','A4');
