@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg animated fadeInDown navbar-dark indigo scrolling-navbar fixed-top">
-    <div class="container">
-    <img src="<?php echo base_url('assets/img/logo.png')?>" width="30" height="30"> 
-    <a style="margin-left: 1%;" class="navbar-brand" href="<?php echo base_url('home/beranda')?>"><Strong>Persuratan Pusdatinmas</Strong></a>
+  <div class="container">
+    <a href="" class="navbar-brand"><img src="<?php echo base_url('assets/img/logo.png')?>" width="30" height="30"> 
+    <a class="navbar-brand" href="<?php echo base_url('home/beranda')?>"><Strong>Persuratan Pusdatinmas</Strong></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
