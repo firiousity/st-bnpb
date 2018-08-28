@@ -6,33 +6,27 @@ class C_PDF extends CI_Controller {
 
 
 	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 * This controller provide engine to manage data of Surat Dinas in BNPB
+	 * We using FPDF and MC_Tables for make autoheight base on content length
+	 * Please be careful when you want to edit
+	 * You can contact me at mnurilmanbaehaqi@gmail.com as Backend devs
+	 * You can contact on instagram kelikisc and firiousity as Front end devs
+	 * Native Inc. All Right Reserved
 	 */
+
 
 	function __Construct()
     {
         parent ::__construct();
         $this->load->model("home_model");
         $this->load->library("pagination");
-		//$this->load->library('../controllers/home');
     }
 
     /*
      * Helper Function
      * Your necessary function */
 
+    /* This function return the format of number */
     function rupiah($n) {
 		return number_format($n,2,',','.');
 	}
@@ -629,12 +623,24 @@ class C_PDF extends CI_Controller {
 		$sbu_transport = $transport_result['0']->besaran;
 
 		//get sbu transport tujuan
-		$transport2_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport2))->result();
-		$sbu_transport2 = $transport2_result['0']->besaran;
-		//get sbu transport lokal
-		$lokal_result	= $this->db->get_where('transportasi_lokal',array('id' => $id_lokal))->result();
-		$rute_lokal = $lokal_result['0']->ibukota."-".$lokal_result['0']->kabupaten;
-		$besaran_lokal = $lokal_result['0']->besaran;
+		if($id_transport2 == 0 ) {
+			$sbu_transport2 = 0;
+		} else {
+			$transport2_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport2))->result();
+			$sbu_transport2 = $transport2_result['0']->besaran;
+		}
+
+		if($id_lokal == 0 ) {
+			$lokal_result = 0;
+			$besaran_lokal = 0;
+			$rute_lokal = "";
+		} else {
+			//get sbu transport lokal
+			$lokal_result	= $this->db->get_where('transportasi_lokal',array('id' => $id_lokal))->result();
+			$rute_lokal = $lokal_result['0']->ibukota."-".$lokal_result['0']->kabupaten;
+			$besaran_lokal = $lokal_result['0']->besaran;
+		}
+
 
 		$total1 = 2*$sbu_transport;
 		$total2 = 2*$sbu_transport2;
@@ -713,7 +719,7 @@ class C_PDF extends CI_Controller {
         $pdf->Ln();
 
         /* Baris ini hanya muncul jika transport lokal ada nilainya */
-		if ($lokal_result != NULL ) {
+		if (empty($lokal_result) ) {
 			/* This is assignment for forly. Make this table auto height plz*/
 //		$pdf->SetWidths(array(10, 10, 10, 70, 30, 40));
 //		for($i=0;$i<1;$i++)
@@ -722,18 +728,19 @@ class C_PDF extends CI_Controller {
 
 			$pdf->Cell(10,7,'',0,0);
 			$pdf->Cell(10,7,'',0,0);
+			$pdf->Cell(10,5,'','LB',0,'R',0);
+			$pdf->Cell(70,5,'','LB',0,'L',0);
+			$pdf->Cell(30,5,'','RB',0,'R',0);
+			$pdf->Cell(40,5,'','RB',0,'R',0);
+			$pdf->Ln();
+		} else {
+
+			$pdf->Cell(10,7,'',0,0);
+			$pdf->Cell(10,7,'',0,0);
 			$pdf->Cell(10,5,'3','LB',0,'R',0);
 			$pdf->Cell(70,5,'Transport Lokal '.$rute_lokal,'LB',0,'L',0);
 			$pdf->Cell(30,5,'1 x '.number_format($besaran_lokal,2,',','.'),'RB',0,'R',0);
 			$pdf->Cell(40,5,number_format($besaran_lokal,2,',','.'),'RB',0,'R',0);
-			$pdf->Ln();
-		} else {
-			$pdf->Cell(10,7,'',0,0);
-			$pdf->Cell(10,7,'',0,0);
-			$pdf->Cell(10,5,'','LB',0,'R',0);
-			$pdf->Cell(70,5,'','LB',0,'L',0);
-			$pdf->Cell(30,5,'1','RB',0,'R',0);
-			$pdf->Cell(40,5,'','RB',0,'R',0);
 			$pdf->Ln();
 		}
 
@@ -1436,8 +1443,13 @@ class C_PDF extends CI_Controller {
 		$transport = $transport_result['0']->besaran*2;
 
 		//get data uang transport2
-		$transport2_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport2))->result();
-		$transport2 = $transport2_result['0']->besaran*2;
+		if ($id_transport2 == 0) {
+			$transport2 = 0;
+		} else {
+			$transport2_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport2))->result();
+			$transport2 = $transport2_result['0']->besaran*2;
+		}
+
 
 		$transport = $transport + $transport2;
 
