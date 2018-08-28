@@ -1,7 +1,7 @@
 <body>
   <div class="container-fluid" style="padding-top: 10vh; padding-bottom: 15vh">
         <p style="font-size: 27px; text-align: center; padding-top: 50px;">Transport Lokal</p>
-          <table id="transportasi_lokal" class="table table-hover" cellspacing="0">
+          <table id="transportasi_lokal" class="table table-striped" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
                               <th scope="col">No

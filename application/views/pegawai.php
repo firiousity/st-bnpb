@@ -1,7 +1,7 @@
 <body>
   <div class="container-fluid" style="padding-top: 10vh; padding-bottom: 15vh">
         <p style="font-size: 27px; text-align: center; padding-top: 50px;">Daftar Pegawai</p>
-        <table id="pegawai" class="table table-hover" cellspacing="0">
+        <table id="pegawai" class="table table-striped" cellspacing="0">
   <thead class="mdb-color darken-3 white-text">
     <tr>
       <th scope="col">No
@@ -92,6 +92,7 @@
               <!-- <div align="center">
                 <a href="#"><button type="button" data-toggle="modal" data-target="#modalRegisterForm" class="btn btn-indigo btn-md"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Pegawai</button></a>
               </div> -->
+              
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
