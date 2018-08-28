@@ -110,6 +110,8 @@
 			inap.style.display = "block";
 			inap.disabled = false;
 		}
+
+		additem();
 	}
 
 </script>
