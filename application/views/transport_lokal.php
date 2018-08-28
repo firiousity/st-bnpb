@@ -149,7 +149,7 @@
 </body>
 <script>
 $(document).ready(function () {
-  $('#biaya_transport').DataTable();
+  $('#transportasi_lokal').DataTable();
   $('.dataTables_length').addClass('bs-select');
 });
 </script>
