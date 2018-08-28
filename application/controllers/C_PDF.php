@@ -970,9 +970,9 @@ class C_PDF extends CI_Controller {
 
 		//get real pengeluaran untuk tiket
 		$r_tiket_result = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
-		$r_tiket = $r_tiket_result['0']->tiket;
-
-
+		$r_tiket_row = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->num_rows();
+		$r_tiket = $r_tiket_result != NULL ? $r_tiket_result['0']->tiket : 0;
+//		$r_tiket = $r_tiket_result['0']->tiket;
 		$ppk 			= $this->db->get_where('pejabat_administratif',
 			array('jabatan' => 'Pejabat Pembuat Komitmen'))->result();
 		$nama_ppk 				= $ppk['0']->nama;
@@ -981,140 +981,132 @@ class C_PDF extends CI_Controller {
 		$var_tgl_skrg = $this->tanggal_indo(date('Y').'-'.date('m').'-'.date('d'), '-');
 		$var_tgl_surat 	= $this->tanggal_indo($surat_result['0']->tgl_surat,'/');
 
-		if(empty($r_tiket)) {
+		if($r_tiket_row <= 0) {
 			echo "<script>         	
-			const toast = swal.mixin({
-			  toast: true,
-			  position: 'top-end',
-			  showConfirmButton: false,
-			  timer: 3000
-			});
-
-			toast({
-			  type: 'error',
-			  title: 'Anda belum mengisi SPD Rampung'
-			})
+         	alert('Anda harus mengisi SPD Rampung Dulu!');
          	window.location.href='".base_url('C_PDF/print_biaya/').$arr_slug[0]."';</script>";
-		}
+		} else {
+			/* -----------------------------*/
+			$pdf = new PDF_MC_Table('p','mm','A4');
+			$pdf->AddPage();
+			$pdf->SetFont('Arial','B',14);
+			$pdf->Ln();
+			$pdf->Ln();
+			$pdf->MultiCell(0,25,"SURAT PERNYATAAN",0,'C');
+			$pdf->SetFont('Arial','',12);
+			$pdf->Cell(25,7,'',0,0);
+			$pdf->MultiCell(0,6,"Yang bertandatangan di bawah ini :",0,'L');
+			$pdf->Ln();
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->Cell(20,7,'Nama',0,0);
+			$pdf->Cell(10,7,':',0,0);
+			$pdf->SetFont('Arial','B',12);
+			$pdf->Cell(20,7,$pegawai,0,1);
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->SetFont('Arial','',12);
+			$pdf->Cell(20,7,'NIP',0,0);
+			$pdf->Cell(10,7,':',0,0);
+			$pdf->SetFont('Arial','B',12);
+			$pdf->Cell(20,7,$nip,0,1);
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->SetFont('Arial','',12);
+			$pdf->Cell(20,7,'Jabatan',0,0);
+			$pdf->Cell(10,7,':',0,0);
+			$pdf->SetFont('Arial','B',12);
+			$pdf->Cell(20,7,$jabatan,0,1);
+			$pdf->Ln();
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->SetFont('Arial','',12);
+			$pdf->Cell(20,7,'Berdasarkan Surat Tugas Nomor: '. $nomor .' tanggal '.$var_tgl_surat.' dengan',0,1);
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->Cell(20,7,'sesungguhnya bahwa :',0,1);
+			$pdf->Ln();
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->Cell(20,7,'1. Boarding Pass '.$rute.' dengan jumlah tiket pesawat dibawah ini tidak',0,1);
+			$pdf->Cell(20,7,'',0,0);
+			$pdf->Cell(20,7,'melebihi dengan SBU tahun '.date('Y').', meliputi :',0,1);
+			$pdf->Ln();
 
-		/* -----------------------------*/
-		$pdf = new PDF_MC_Table('p','mm','A4');
-		$pdf->AddPage();
-		$pdf->SetFont('Arial','B',14);
-		$pdf->Ln();
-		$pdf->Ln();
-		$pdf->MultiCell(0,25,"SURAT PERNYATAAN",0,'C');
-		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(25,7,'',0,0);
-		$pdf->MultiCell(0,6,"Yang bertandatangan di bawah ini :",0,'L');
-		$pdf->Ln();
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(20,7,'Nama',0,0);
-		$pdf->Cell(10,7,':',0,0);
-		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(20,7,$pegawai,0,1);
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(20,7,'NIP',0,0);
-		$pdf->Cell(10,7,':',0,0);
-		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(20,7,$nip,0,1);
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(20,7,'Jabatan',0,0);
-		$pdf->Cell(10,7,':',0,0);
-		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(20,7,$jabatan,0,1);
-		$pdf->Ln();
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(20,7,'Berdasarkan Surat Tugas Nomor: '. $nomor .' tanggal '.$var_tgl_surat.' dengan',0,1);
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(20,7,'sesungguhnya bahwa :',0,1);
-		$pdf->Ln();
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(20,7,'1. Boarding Pass '.$rute.' dengan jumlah tiket pesawat dibawah ini tidak',0,1);
-		$pdf->Cell(20,7,'',0,0);
-		$pdf->Cell(20,7,'melebihi dengan SBU tahun '.date('Y').', meliputi :',0,1);
-		$pdf->Ln();
-
-		//here is table
-		$pdf->Cell(20,7,'',0,0);
-		$pdf->SetFont('Arial','B',12);
-		$pdf->Cell(10,5,'No.',1,0,'C',0);
-		$pdf->Cell(70,5,'Uraian',1,0,'C',0);
-		$pdf->Cell(40,5,'Nilai SBU',1,0,'C',0);
-		$pdf->Cell(40,5,'Pengeluaran Rill',1,0,'C',0);
-        $pdf->Ln();
-		$pdf->Cell(20,7,'',0,0);
-		$pdf->SetFont('Arial','',12);
+			//here is table
+			$pdf->Cell(20,7,'',0,0);
+			$pdf->SetFont('Arial','B',12);
+			$pdf->Cell(10,5,'No.',1,0,'C',0);
+			$pdf->Cell(70,5,'Uraian',1,0,'C',0);
+			$pdf->Cell(40,5,'Nilai SBU',1,0,'C',0);
+			$pdf->Cell(40,5,'Pengeluaran Rill',1,0,'C',0);
+			$pdf->Ln();
+			$pdf->Cell(20,7,'',0,0);
+			$pdf->SetFont('Arial','',12);
 			$counterrr = 1;
 			//$pdf->Ln();
-				$pdf->SetWidths(array(10, 70, 40, 40));
-				for($i=0;$i<1;$i++) {
-					$pdf->Row(array($counterrr,"Tiket Pesawat ".$rute,"Rp ".number_format($sbu_tiket,2,',','.'), "Rp ".number_format($r_tiket,2,',','.')));
-					$counterrr++;
-				}
-        $pdf->Cell(20,7,'',0,0);
-        $pdf->SetFont('Arial','B',12);
-		$pdf->Cell(10,5,'','LB',0,'L',0);
-		$pdf->Cell(70,5,'Jumlah','LRB',0,'C',0);
-		$pdf->Cell(7,5,'Rp','B',0,'L',0);
-		$pdf->Cell(33,5,''.number_format($sbu_tiket,2,',','.'),'RB',0,'L',0);
-		$pdf->Cell(7,5,'Rp','B',0,'L',0);
-		$pdf->Cell(33,5,''.number_format($r_tiket,2,',','.'),'RB',0,'L',0);
-        $pdf->Ln();
-		//end of table
+			$pdf->SetWidths(array(10, 70, 40, 40));
+			for($i=0;$i<1;$i++) {
+				$pdf->Row(array($counterrr,"Tiket Pesawat ".$rute,"Rp ".number_format($sbu_tiket,2,',','.'), "Rp ".number_format($r_tiket,2,',','.')));
+				$counterrr++;
+			}
+			$pdf->Cell(20,7,'',0,0);
+			$pdf->SetFont('Arial','B',12);
+			$pdf->Cell(10,5,'','LB',0,'L',0);
+			$pdf->Cell(70,5,'Jumlah','LRB',0,'C',0);
+			$pdf->Cell(7,5,'Rp','B',0,'L',0);
+			$pdf->Cell(33,5,''.number_format($sbu_tiket,2,',','.'),'RB',0,'L',0);
+			$pdf->Cell(7,5,'Rp','B',0,'L',0);
+			$pdf->Cell(33,5,''.number_format($r_tiket,2,',','.'),'RB',0,'L',0);
+			$pdf->Ln();
+			//end of table
 
-		$pdf->Ln();
-		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(20,7,'2. Boarding Pass '.$rute.' hilang dengan jumlah uang tersebut pada angka',0,1);
-		$pdf->Cell(20,7,'',0,0);
-		$pdf->Cell(20,7,'(1) sesuai dengan SBU dan benar - benar dikeluarkan sesuai dengan bukti rill kuitansi',0,1);
-		$pdf->Cell(20,7,'',0,0);
-		$pdf->Cell(20,7,'tiket Perjalanan Dinas dimaksud.',0,1);
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(20,7,'3. Apabila dikemudian hari ditemukan suatu temuan terkait Boarding Pass tersebut,',0,1);
-		$pdf->Cell(20,7,'',0,0);
-		$pdf->Cell(20,7,'maka saya akan bertanggung jawab.',0,1);
-		$pdf->Ln();
-		$pdf->Cell(20,7,'',0,0);
-		$pdf->Cell(20,7,'Demikian pernyataan ini kami buat dengan sebenarnya, untuk dipergunakan',0,1);
-		$pdf->Cell(15,7,'',0,0);
-		$pdf->Cell(20,7,'sebagaimana mestinya.',0,1);
-		$pdf->Ln();
-		$pdf->Ln();
-		//Footer Surat
-		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(10,6,"",0,0,'L');
-		$pdf->Cell(25,6,'',0,0,'L');
-		$pdf->Cell(15,6,'',0,0,'L');
-		$pdf->Cell(5,6,'',0,0,'L');
-		$pdf->Cell(25,6,'',0,0,'R');
-		$pdf->Cell(20,6,'',0,0,'C');
-		$pdf->MultiCell(60,6,'Jakarta, '.$var_tgl_skrg,0,'R');
-		$pdf->Ln();
-		$pdf->Cell(15,6,'',0,0,'L');
-		$pdf->MultiCell(55,6,'Mengetahui/Menyetujui',0,'C');
-		$pdf->Cell(85,6,'Pejabat Pembuat Komitmen',0, 0,'C');
-		$pdf->MultiCell(65,6,'Pelaksana SPD',0,'R');
-		$pdf->Cell(85,6,' Pusat Data Informasi dan Humas',0, 0,'C');
-		$pdf->Ln();
-		$pdf->Ln();
-		$pdf->Ln();
-		$pdf->SetFont('Arial','BU',12);
-		$pdf->Ln();
-		$pdf->Cell(85,6,$nama_ppk,0, 0,'C');
-		$pdf->MultiCell(105,6,$pegawai,0,'C');
-		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(85,6,"NIP. ".$nip_ppk,0, 0,'C');
-		$pdf->MultiCell(105,6,'NIP. '.$nip,0,'C');
+			$pdf->Ln();
+			$pdf->SetFont('Arial','',12);
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->Cell(20,7,'2. Boarding Pass '.$rute.' hilang dengan jumlah uang tersebut pada angka',0,1);
+			$pdf->Cell(20,7,'',0,0);
+			$pdf->Cell(20,7,'(1) sesuai dengan SBU dan benar - benar dikeluarkan sesuai dengan bukti rill kuitansi',0,1);
+			$pdf->Cell(20,7,'',0,0);
+			$pdf->Cell(20,7,'tiket Perjalanan Dinas dimaksud.',0,1);
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->Cell(20,7,'3. Apabila dikemudian hari ditemukan suatu temuan terkait Boarding Pass tersebut,',0,1);
+			$pdf->Cell(20,7,'',0,0);
+			$pdf->Cell(20,7,'maka saya akan bertanggung jawab.',0,1);
+			$pdf->Ln();
+			$pdf->Cell(20,7,'',0,0);
+			$pdf->Cell(20,7,'Demikian pernyataan ini kami buat dengan sebenarnya, untuk dipergunakan',0,1);
+			$pdf->Cell(15,7,'',0,0);
+			$pdf->Cell(20,7,'sebagaimana mestinya.',0,1);
+			$pdf->Ln();
+			$pdf->Ln();
+			//Footer Surat
+			$pdf->SetFont('Arial','',12);
+			$pdf->Cell(10,6,"",0,0,'L');
+			$pdf->Cell(25,6,'',0,0,'L');
+			$pdf->Cell(15,6,'',0,0,'L');
+			$pdf->Cell(5,6,'',0,0,'L');
+			$pdf->Cell(25,6,'',0,0,'R');
+			$pdf->Cell(20,6,'',0,0,'C');
+			$pdf->MultiCell(60,6,'Jakarta, '.$var_tgl_skrg,0,'R');
+			$pdf->Ln();
+			$pdf->Cell(15,6,'',0,0,'L');
+			$pdf->MultiCell(55,6,'Mengetahui/Menyetujui',0,'C');
+			$pdf->Cell(85,6,'Pejabat Pembuat Komitmen',0, 0,'C');
+			$pdf->MultiCell(65,6,'Pelaksana SPD',0,'R');
+			$pdf->Cell(85,6,' Pusat Data Informasi dan Humas',0, 0,'C');
+			$pdf->Ln();
+			$pdf->Ln();
+			$pdf->Ln();
+			$pdf->SetFont('Arial','BU',12);
+			$pdf->Ln();
+			$pdf->Cell(85,6,$nama_ppk,0, 0,'C');
+			$pdf->MultiCell(105,6,$pegawai,0,'C');
+			$pdf->SetFont('Arial','',12);
+			$pdf->Cell(85,6,"NIP. ".$nip_ppk,0, 0,'C');
+			$pdf->MultiCell(105,6,'NIP. '.$nip,0,'C');
 
-		//Cetak gans
-		$filename = "Hilang - ".$arr_slug[0]." - ".$pegawai.$this->extension;
-		$pdf->setTitle($filename);
-		$pdf->Output("I", $filename);
+			//Cetak gans
+			$filename = "Hilang - ".$arr_slug[0]." - ".$pegawai.$this->extension;
+			$pdf->setTitle($filename);
+			$pdf->Output("I", $filename);
+		}
+
+
 	}
 
 	//Page Surat Perintah Dinas
@@ -1472,14 +1464,16 @@ class C_PDF extends CI_Controller {
 		$total_harian = $hari*$harian;
 		$total_penginapan = $malam*$penginapan;
 		$total_biaya = $total_harian + $total_penginapan + $tiket + $transport;
-		$total_rampung = $rampung_result['0']->total;
+		$total_rampung = $rampung_result != NULL ? $rampung_result['0']->total : NULL;
 
 		$var_tgl_rampung = $this->db->get_where('spd_rampung',
 			array('id_surat' => $id_surat, 'id_pegawai' => $id_pegawai))->result();
-		$var_tgl_rampung = $this->tanggal_indo($var_tgl_rampung['0']->tgl,'/');
+		$var_tgl_rampung = $var_tgl_rampung != NULL ? $this->tanggal_indo($var_tgl_rampung['0']->tgl,'/') : NULL;
 
 		$pembayaran_result = $this->home_model->get_pembayaran_awal($slug);
-		if($pembayaran_result == NULL) {
+		$pembayaran_row = $this->db->get_where('pembayaran_awal',
+			array('id_surat' => $id_surat, 'id_pegawai' => $id_pegawai))->num_rows();
+		if($pembayaran_row <= 0) {
 			echo "<script>         	
          	alert('Anda harus mengisi SPD Rampung Dulu!');
          	window.location.href='".base_url('C_PDF/print_biaya/').$id_surat."';</script>";
