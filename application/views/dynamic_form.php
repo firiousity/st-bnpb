@@ -37,8 +37,8 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 				<table class="table table-responsive" cellspacing="0" width="100%">
 					<thead class="mdb-color darken-3 white-text">
 						<tr>
-						<th class="th-sm" scope="col">Nomor Surat</th>
-						<th class="th-sm" scope="col">Kegiatan</th>
+						<th class="th-sm" scope="col">Nomor Surat*</th>
+						<th class="th-sm" scope="col">Kegiatan*</th>
 						<th class="th-sm" scope="col">Jenis </th>
 						<th class="th-sm" scope="col">Opsi</th>
 						<th class="th-sm" scope="col">Pos Kegiatan</th>
@@ -51,7 +51,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 									   value="<?php echo $nomor_surat ?>"  type="text"/></td>
 						</div>
 						<div>
-							<td><input name="kegiatan" class="input-block-level form-control"  type="text"/></td>
+							<td><input name="kegiatan" class="input-block-level form-control" required type="text"/></td>
 						</div>
 						
 						<td><input
@@ -78,27 +78,27 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 					<!-- BAGIAN INI HANYA MUNCUL JIKA OPSI BANYAK TEMPAT TIDAK DI PILIH. -->
 					<tbody id="itemgeneral" style="display: block">
 					<tr>
-						<td><label>Tanggal Mulai</label><br/><input name="mulai" value="<?php echo $def_start_date ?>" class="input-block-level form-control"
+						<td><label>Tanggal Mulai*</label><br/><input name="mulai" value="<?php echo $def_start_date ?>" class="input-block-level form-control"
 																	 type="date"/></td>
-						<td><label>Tanggal Akhir</label><br/><input name="akhir" value="<?php echo $def_end_date ?>" class="input-block-level form-control"
+						<td><label>Tanggal Akhir*</label><br/><input name="akhir" value="<?php echo $def_end_date ?>" class="input-block-level form-control"
 																	type="date" /></td>
 						<td style="display: block" id="moxspoy">
-							<label>Nama Pegawai yang di tugaskan</label><br/>
-							<select multiple="multiple" id="moxs" name="my-select[]">
+							<label>Nama Pegawai yang di tugaskan*</label><br/>
+							<select multiple="multiple" id="moxs"  name="my-select[]">
 								<?php foreach ($pegawai as $row) {
 									echo
 									"<option value='$row->id_pegawai'>$row->nama_pegawai</option>" ;
 								}
 								?>
 							</select></td>
-						<td><label>Nama Tempat</label><br/><input name="tempat" class="input-block-level form-control"
-																   type="text"/></td>
+						<td><label>Nama Tempat*</label><br/><input name="tempat"  class="input-block-level form-control"
+																  type="text"/></td>
 					</tr>
 					<tr>
 						<td>
 							<div class="form-group">
-								<label >Uang Harian: </label>
-								<select name="harian" class="form-control">
+								<label >Uang Harian* </label>
+								<select name="harian" class="form-control" >
 									<option value=''>Pilih Uang Harian</option>
 									<?php foreach ($harian as $row) {
 										echo
@@ -109,9 +109,9 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 							</div>
 						</td>
 						<td>
-							<label >Uang Penginapan: </label>
+							<label >Uang Penginapan* </label>
 							<div class="form-group">
-								<select name="penginapan" class="form-control">
+								<select name="penginapan" class="form-control" >
 									<option value=''>Pilih Uang Penginapan</option>
 									<?php foreach ($penginapan as $row) {
 										echo
@@ -123,7 +123,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 						</td>
 						<td>
 							<div class="form-group">
-								<label >Tiket Pesawat: </label>
+								<label >Tiket Pesawat* </label>
 								<select name="tiket" class="form-control">
 									<option value=''>Pilih Tiket</option>
 									<?php foreach ($tiket as $row) {
@@ -137,7 +137,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 					</tr>
 					<tr>
 						<td>
-							<label >Dari: </label>
+							<label >Dari* </label>
 							<div class="form-group">
 								<select name="transport" class="form-control">
 									<option value=''>Pilih Keberangkatan</option>
@@ -189,12 +189,13 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 					<!--elemet sebagai target append-->
 					<tbody id="itemlist" style="display: none;">
 					<tr>
-						<td><label>Tempat</label><input name="tempat_input[0]"  class="form-control" type="text"/></td>
-						<td><label>Tanggal Mulai</label><input name="mulai_input[0]"
+						<td><label>Tempat*</label><input name="tempat_input[0]" class="form-control" type="text"/></td>
+						<td><label>Tanggal Mulai*</label><input name="mulai_input[0]"
 															   value="<?php echo $def_start_date ?>" class="form-control"  type="date"/></td>
-						<td><label>Tanggal Akhir</label><input name="akhir_input[0]"
+						<td><label>Tanggal Akhir*</label><input name="akhir_input[0]"
 															   value="<?php echo $def_end_date ?>" class="form-control"  type="date"/></td>
-						<td><label>Pegawai</label><select  name="my-select-pegawai[0]" class="form-control"><option value=''>Pegawai</option>
+						<td><label>Pegawai*</label><select  name="my-select-pegawai[0]" class="form-control">
+								<option value=''>Pegawai</option>
 								<?php foreach ($pegawai as $row) {
 									echo
 									"<option value='$row->id_pegawai'>$row->nama_pegawai</option>" ;
@@ -202,7 +203,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 								?>
 							</select></td>
 						<td>
-							<label >Uang Harian: </label>
+							<label >Uang Harian* </label>
 							<div>
 								<select name="my-select-harian[0]" class="form-control" >
 									<option value=''>Harian</option>
@@ -215,9 +216,9 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 							</div>
 						</td>
 						<td>
-							<label >Uang Penginapan: </label>
+							<label >Uang Penginapan* </label>
 							<div>
-								<select name="my-select-penginapan[0]" class="form-control">
+								<select name="my-select-penginapan[0]" class="form-control" >
 									<option value=''>Penginapan</option>
 									<?php foreach ($penginapan as $row) {
 										echo
@@ -230,7 +231,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 					</tr>
 					<tr>
 						<td>
-							<label >Tiket Pesawat: </label>
+							<label >Tiket Pesawat* </label>
 							<div>
 								<select name="my-select-tiket[0]" class="form-control">
 									<option value=''>Tiket Pesawat</option>
@@ -243,7 +244,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 							</div>
 						</td>
 						<td>
-							<label>Dari: </label>
+							<label>Dari* </label>
 							<div>
 								<select name="my-select-transport[0]" class="form-control" >
 									<option value=''>Keberangkatan</option>
@@ -301,6 +302,9 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 
 	var i = 1;
 	function additem() {
+
+		//remove required attributes
+		// $("#my-select", "tiket", "tempat", "harian", "penginapan", "transport").setAttribute('reqired', 'false');
 //                menentukan target append
 		var itemlist = document.getElementById('itemlist');
 
