@@ -87,6 +87,7 @@
 //                membuat aksi delete element
 		hapus.onclick = function () {
 			row.parentNode.removeChild(row);
+			i--;
 		};
 
 		//Jika lebih dari jumlah malam maka tombol tambah gabisa di klik
