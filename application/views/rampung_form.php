@@ -19,7 +19,7 @@
 						<td>
 							<label for="validationCustom02">Uang Penginapan</label>
 							<input type="number" class="form-control" id="inap" name="inap"
-								   placeholder="Rp ">
+								   placeholder="Rp " required>
 						</td>
 						<td>
 							<label for="validationCustom02">Tiket Pesawat</label>
