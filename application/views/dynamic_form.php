@@ -487,6 +487,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 		hapus.onclick = function () {
 			row2.parentNode.removeChild(row2);
 			row.parentNode.removeChild(row);
+			i--;
 		};
 
 		i++;
