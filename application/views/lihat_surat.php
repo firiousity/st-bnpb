@@ -19,7 +19,7 @@
                               <th class="th-sm" scope="col">Print
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
-                              <th class="th-sm" scope="col">Hapus
+                              <th class="th-sm" scope="col">Opsi
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
                             </tr>
@@ -38,12 +38,12 @@
                               <td>$row->kegiatan</td>
                               <td>
                                 <a href='".base_url('C_PDF/print_biaya/'.$row->id)."'> 
-                                <button type=\"button\" class=\"btn btn-success btn-sm my-0\">LIHAT RINCIAN
+                                <button type=\"button\" class=\"btn btn-indigo btn-sm my-0\">LIHAT RINCIAN
                                 </button></a>
                               </td>
                               <td>
                                 <a href='".base_url('C_PDF/print/'.$row->id)."' target='_blank'> 
-                                <button type=\"button\" class=\"btn btn-success btn-sm my-0\"><i class=\"fa fa-print\" aria-hidden=\"true\"></i> PRINT SURAT
+                                <button type=\"button\" class=\"btn btn-indigo btn-sm my-0\"><i class=\"fa fa-print\" aria-hidden=\"true\"></i> PRINT SURAT
                                 </button></a>
                               </td>
                               <td>
@@ -57,7 +57,7 @@
 							  echo "
                                 <span><a  data-toggle='modal' 
                                 data-target='#modalEdit'><button
-                                type='button' class='btn btn-danger btn-sm my-0' id='edit_surat'>
+                                type='button' class='btn btn-warning btn-sm my-0' id='edit_surat'>
                                 <i class='fa fa-edit' aria-hidden='true'></i></button></span>
                                 </td>
                             </tr>";

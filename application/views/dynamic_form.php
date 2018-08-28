@@ -125,7 +125,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 							<div class="form-group">
 								<label >Tiket Pesawat: </label>
 								<select name="tiket" class="form-control">
-									<option value=''>Pilih Tiket</option>
+									<option value=''>Pilih Tiket Pesawat</option>
 									<?php foreach ($tiket as $row) {
 										echo
 										"<option value='$row->id'>$row->rute</option>" ;
@@ -215,7 +215,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 							</div>
 						</td>
 						<td>
-							<label >Uang Penginapan: </label>
+							<label >Penginapan: </label>
 							<div>
 								<select name="my-select-penginapan[0]" class="form-control">
 									<option value=''>Penginapan</option>
@@ -465,7 +465,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 
 		var hapus = document.createElement('span');
 
-//                meng append element input
+		//meng append element input
 		tempat.appendChild(tempat_input);
 		mulai.appendChild(mulai_input);
 		akhir.appendChild(akhir_input);
@@ -479,7 +479,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 		aksi.appendChild(hapus);
 
 		hapus.innerHTML = '<button class="btn btn-small btn-default"><i class="fas fa-trash-alt"></i></button>';
-//                membuat aksi delete element
+		//membuat aksi delete element
 		hapus.onclick = function () {
 			row2.parentNode.removeChild(row2);
 			row.parentNode.removeChild(row);
