@@ -71,6 +71,14 @@
 						</table>
 			  <script>
 
+				  if(<?php echo empty($nomor_surat) ?>) {
+					  swal(
+						  'Perhatian!',
+						  'Nomor surat harap untuk diisi!',
+						  'warning'
+					  )
+				  }
+
 
 				  function hapus(id) {
                       const swalWithBootstrapButtons = swal.mixin({
