@@ -1162,8 +1162,13 @@ class C_PDF extends CI_Controller {
 
 		$var_tgl_rampung = $this->db->get_where('spd_rampung',
 			array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
-		$var_tgl_rampung = $this->tanggal_indo($var_tgl_rampung['0']->tgl,'/');
+		$var_tgl_rampung = $var_tgl_rampung != NULL ? $this->tanggal_indo($var_tgl_rampung['0']->tgl,'/') : 0;
 
+		if (empty($var_tgl_rampung)) {
+			echo "<script>         	
+         	alert('Anda harus mengisi SPD Rampung Dulu!');
+         	window.location.href='".base_url('C_PDF/print_biaya/').$arr_slug[0]."';</script>";
+		}
 		$pdf = new FPDF('p','mm','A4');
 		$pdf->AddPage();
 		$pdf->SetFont('Arial','B',8);
