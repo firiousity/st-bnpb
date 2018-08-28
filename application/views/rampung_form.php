@@ -42,6 +42,8 @@
 	</div>
 <script>
 	var i = 1;
+	//j sebagai counter klik cek()
+	var j = 0;
 	function additem() {
 //                menentukan target append
 		var itemlist = document.getElementById('itemlist');
@@ -110,6 +112,12 @@
 			inap.style.display = "block";
 			inap.disabled = false;
 		}
+
+		//add item  hanya bisa dilakukan sekali
+		if(j < 1) {
+			additem();
+		}
+		j++;
 	}
 
 </script>

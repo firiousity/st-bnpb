@@ -12,6 +12,12 @@
 $tanggal = date("m");
 $tahun = date("Y");
 
+//create default value for tanggal
+$def_start_date = date('Y-m-d',
+	mktime(0, 0, 0, date('m'), date('d') + 2, date('Y')));
+$def_end_date = date('Y-m-d',
+	mktime(0, 0, 0, date('m'), date('d') + 5, date('Y')));
+
 //cek jika nomor ada nilainya untuk menghindari ofset error
 if ($nomor != NULL) {
 	$json = $nomor[0]->nomor;
@@ -72,9 +78,9 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 					<!-- BAGIAN INI HANYA MUNCUL JIKA OPSI BANYAK TEMPAT TIDAK DI PILIH. -->
 					<tbody id="itemgeneral" style="display: block">
 					<tr>
-						<td><label>Tanggal Mulai</label><br/><input name="mulai" class="input-block-level form-control"
+						<td><label>Tanggal Mulai</label><br/><input name="mulai" value="<?php echo $def_start_date ?>" class="input-block-level form-control"
 																	 type="date"/></td>
-						<td><label>Tanggal Akhir</label><br/><input name="akhir" class="input-block-level form-control"
+						<td><label>Tanggal Akhir</label><br/><input name="akhir" value="<?php echo $def_end_date ?>" class="input-block-level form-control"
 																	type="date" /></td>
 						<td style="display: block" id="moxspoy">
 							<label>Nama Pegawai yang di tugaskan</label><br/>
@@ -183,9 +189,11 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 					<!--elemet sebagai target append-->
 					<tbody id="itemlist" style="display: none;">
 					<tr>
-						<td><label>Tempat</label><input name="tempat_input[0]" class="form-control" type="text"/></td>
-						<td><label>Tanggal Mulai</label><input name="mulai_input[0]" class="form-control"  type="date"/></td>
-						<td><label>Tanggal Akhir</label><input name="akhir_input[0]" class="form-control"  type="date"/></td>
+						<td><label>Tempat</label><input name="tempat_input[0]"  class="form-control" type="text"/></td>
+						<td><label>Tanggal Mulai</label><input name="mulai_input[0]"
+															   value="<?php echo $def_start_date ?>" class="form-control"  type="date"/></td>
+						<td><label>Tanggal Akhir</label><input name="akhir_input[0]"
+															   value="<?php echo $def_end_date ?>" class="form-control"  type="date"/></td>
 						<td><label>Pegawai</label><select  name="my-select-pegawai[0]" class="form-control"><option value=''>Pegawai</option>
 								<?php foreach ($pegawai as $row) {
 									echo
