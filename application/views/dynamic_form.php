@@ -284,16 +284,12 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 							</div>
 						</td>
 					</tr>
-					</tbody>
-					<tfoot>
-					<tr>
-						<td>
+					</tbody>					
+				</table>
+				<div style="float: right;">
 							<button class="btn btn-primary" id="btn_tambah" disabled onclick="additem(); return false"><i class="fas fa-plus-square"></i></i></button>
 							<button name="submit" type="submit" class="btn btn-indigo"><i class="fas fa-check-circle"></i> Buat</button>
-						</td>
-					</tr>
-					</tfoot>
-				</table>
+						</div>
 			</form>
 	</div>
 	
