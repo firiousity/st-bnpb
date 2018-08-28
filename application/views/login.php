@@ -34,7 +34,7 @@
 					</div>
 				</div>
     <!-- Sign in button -->
-				<button class="btn btn-indigo my-4">Sign in</button>
+				<button class="btn btn-indigo my-4 animated rubberBand">Sign in</button>
 			</form>
 	</section>
 <!-- Default form login -->

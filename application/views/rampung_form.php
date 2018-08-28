@@ -29,13 +29,11 @@
 							<button class="btn btn-primary" id="btn_tambah" disabled onclick="additem(); return false"><i class="fas fa-plus-square"></i></i></button>
 						</td>
 					</tr>
-					
 					</tbody>
 				</table>
 				<div style="float: right; padding-right: 20px;">
 						<p>*Pastikan jumlah malam tidak lebih dari <?php echo $malam ?> malam </p>	
 						<div style="float: right;"><button class="btn btn-indigo" type="submit" name="rsubmit">Print Surat</button>	</div>
-						
 					</div>
 				</div>
 			</form>
