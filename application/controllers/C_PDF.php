@@ -1740,11 +1740,22 @@ class C_PDF extends CI_Controller {
 		$transport_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport))->result();
 		$transport = $transport_result['0']->besaran*2;
 		//get data uang transport2
-		$transport2_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport2))->result();
-		$transport2 = $transport2_result['0']->besaran*2;
-		//get data uang transport lokal
-		$lokal_result	= $this->db->get_where('transportasi_lokal',array('id' => $id_lokal))->result();
-		$biaya_lokal= $lokal_result['0']->besaran;
+
+		//handle jika transport tujuan tidak diisi, otomatis nilainya 0
+		if ($id_transport2 == 0) {
+			$transport2 = 0;
+		} else {
+			$transport2_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport2))->result();
+			$transport2 = $transport2_result['0']->besaran*2;
+		}
+		if ($id_lokal == 0) {
+			$biaya_lokal = 0;
+		} else {
+			//get data uang transport lokal
+			$lokal_result	= $this->db->get_where('transportasi_lokal',array('id' => $id_lokal))->result();
+			$biaya_lokal= $lokal_result['0']->besaran;
+		}
+
 		$total_transport = $transport + $transport2 + $biaya_lokal;
 		$jenis = $data_rinci_all['0'] -> jenis;
 
