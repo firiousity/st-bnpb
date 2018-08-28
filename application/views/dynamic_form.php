@@ -181,7 +181,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 					</tbody>
 				</table>
 
-				<table class="table table-responsive" width="100%">
+				<table class="table table-responsive table-striped" width="100%">
 					<!-- BAGIAN FORM DINAMIS INI AKAN MUNCUL JIKA USER MENGKLIK OPSI BANYAK TEMPAT-->
 					<thead id="labelitemlist" class="mdb-color darken-3 white-text" style="display: none">
 					</thead>
