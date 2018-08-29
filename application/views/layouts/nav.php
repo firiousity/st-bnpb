@@ -18,8 +18,12 @@
               <li class="nav-item">
                 <a class="nav-link" href="http://dibi.bnpb.go.id/dibi/">DIBI</a>
             </li>
-            <li class="nav-item">
+				<li class="nav-item">
                 <a class="nav-link" onclick="keluar()">Logout</a>
+            </li>
+				<li class="nav-item">
+                <a class="nav-link" href="http://dibi.bnpb.go.id/dibi/"><i class="fa fa-gear"
+					style="padding-top: 10pxd"></i> </a>
             </li>
         </ul>    
         </span>
