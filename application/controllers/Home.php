@@ -524,4 +524,36 @@ class Home extends CI_Controller {
 		$this->db->update('pegawai', $data);
 		$this->href('home/pegawai');
 	}
+
+
+	//Edit PPK
+	public function ppk() 
+	{
+		$data['ppk'] = $this->home_model->get_ppk();
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
+		$this->load->view('pejabat', $data);
+	}
+
+	function edit_ppk_page($id){
+		$data['ppk'] = $this->db->get_where('pejabat_administratif', array('id' => $id))->result();
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
+		$this->load->view('edit_ppk', $data);
+	}
+
+	function edit_ppk($id) {
+		$jabatan = $this ->input->post('jabatan');
+		$nama = $this->input->post('nama');
+		$nip = $this ->input->post('nip');
+		$data = array(
+			'jabatan' => $jabatan,
+			'nama' => $nama,
+			'nip' => $nip
+		);
+		$this->db->where('id', $id);
+		$this->db->update('pejabat_administratif', $data);
+		$this->href('home/ppk');
+	}
+
 }
