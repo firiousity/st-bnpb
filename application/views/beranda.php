@@ -7,11 +7,9 @@
   <div class="card mb-12 animated zoomInLeft">
 
     <!--Card image-->
-    <div class="view overlay">
+    <div class="view zoom">
       <img class="card-img-top" src="https://2.bp.blogspot.com/-5Cjiw_fBupA/VvtLwCJS7RI/AAAAAAAABXI/iHdlxIXLlMkzhHQQq4WwP5PCRSLHi-N9w/s1600/writing.jpg" alt="Card image cap">
-      <a href="#!">
-        <div class="mask rgba-white-slight"></div>
-      </a>
+        <div class="mask flex-center"></div>
     </div>
 
     <!--Card content-->
@@ -36,11 +34,9 @@
   <div class="card mb-12 animated zoomInUp">
 
     <!--Card image-->
-    <div class="view overlay">
+    <div class="view zoom">
       <img class="card-img-top" src="https://si.wsj.net/public/resources/images/BN-CD671_0331AS_G_20140331072802.jpg" alt="Card image cap">
-      <a href="#!">
-        <div class="mask rgba-white-slight"></div>
-      </a>
+        <div class="mask flex-center"></div>
     </div>
 
     <!--Card content-->
@@ -74,11 +70,9 @@
   <div class="card mb-12 animated zoomInRight">
 
     <!--Card image-->
-    <div class="view overlay">
+    <div class="view zoom">
       <img class="card-img-top" src="https://www.menpan.go.id/site/images/berita_foto/20180222_BNPB_di_Bali_3.jpeg" alt="Card image cap">
-      <a href="#!">
-        <div class="mask rgba-white-slight"></div>
-      </a>
+        <div class="mask flex-center"></div>
     </div>
 
     <!--Card content-->

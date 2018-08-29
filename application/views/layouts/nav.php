@@ -23,7 +23,7 @@
             </li>
 				<li class="nav-item">
                 <a class="nav-link" href="http://dibi.bnpb.go.id/dibi/"><i class="fa fa-gear"
-					style="padding-top: 10pxd"></i> </a>
+					style="padding-top: 0.5vh"></i> </a>
             </li>
         </ul>    
         </span>
