@@ -21,10 +21,6 @@
 				<li class="nav-item">
                 <a class="nav-link" onclick="keluar()">Logout</a>
             </li>
-				<li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url('home/hukum')?>"><i class="fa fa-gear"
-					style="padding-top: 0.5vh"></i> </a>
-            </li>
         </ul>    
         </span>
     </div>

@@ -89,6 +89,8 @@
         <div class="dropdown-menu" aria-labelledby="pegawai">
           <a class="dropdown-item" href="<?php echo base_url('home/pegawai')?>">Pegawai Pusdatinmas</a>
           <a class="dropdown-item" href="<?php echo base_url('home/ppk')?>">Pejabat Pembuat Komitmen</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="<?php echo base_url('home/hukum')?>">Dasar Hukum</a>
         </div>
       </div>
     </div>
