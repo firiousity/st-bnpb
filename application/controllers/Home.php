@@ -526,7 +526,7 @@ class Home extends CI_Controller {
 	}
 
 
-	//Edit PPK
+	//PPK Management
 	public function ppk() 
 	{
 		$data['ppk'] = $this->home_model->get_ppk();
@@ -554,6 +554,32 @@ class Home extends CI_Controller {
 		$this->db->where('id', $id);
 		$this->db->update('pejabat_administratif', $data);
 		$this->href('home/ppk');
+	}
+
+	//Hukum Management
+	public function hukum() 
+	{
+		$data['hukum'] = $this->home_model->get_hukum();
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
+		$this->load->view('hukum', $data);
+	}
+
+	function edit_hukum_page($id){
+		$data['hukum'] = $this->db->get_where('dasar_hukum', array('id' => $id))->result();
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
+		$this->load->view('edit_hukum', $data);
+	}
+
+	function edit_hukum($id) {
+		$hukum = $this ->input->post('hukum');
+		$data = array(
+			'hukum' => $hukum
+		);
+		$this->db->where('id', $id);
+		$this->db->update('dasar_hukum', $data);
+		$this->href('home/hukum');
 	}
 
 }

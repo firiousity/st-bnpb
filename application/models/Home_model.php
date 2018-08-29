@@ -83,11 +83,16 @@ class Home_model extends CI_Model {
 	   return $query->result();
    }
 
-
    function get_ppk() {
 	   $this->db->from('pejabat_administratif');
 	   $query = $this->db->get();
 	   return $query->result();
+   }
+
+   function get_hukum() {
+   	$this->db->from('dasar_hukum');
+   	$query = $this->db->get();
+   	return $query->result();
    }
 
   /* function get_harian($slug) {
