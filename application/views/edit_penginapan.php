@@ -37,15 +37,17 @@
 			<label data-error=\"wrong\" data-success=\"right\">Golongan I/II</label>
 			</div>
 
+			<div class=\"d-flex row\">
+			<a href=\"../biaya_penginapan\"><button class=\"btn btn-indigo\"><i class=\"fa fa-angle-left\" arria-hidden=\"true\"></i>  Kembali</button></a>
+			<div class=\"col\"></div>
+			<button class=\"btn btn-indigo\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i>  Edit</button>
 			</div>
-			<div class=\"d-flex justify-content-center\">
-			<button class=\"btn btn-indigo\">Edit</button>
 			</div>
+
 		</form>";
 	}
 	?>		
 		</div>
 	</div>
-	<a href="../biaya_penginapan"><button class="btn btn-indigo"><i class="fa fa-angle-left" arria-hidden="true"></i> Kembali</button></a>
 </div>
 </body>

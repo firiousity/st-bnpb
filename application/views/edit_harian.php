@@ -27,15 +27,16 @@
 			<label data-error=\"wrong\" data-success=\"right\">Diklat</label>
 			</div>
 
+			<div class=\"d-flex row\">
+			<a href=\"../uang_harian\"><button class=\"btn btn-indigo\"><i class=\"fa fa-angle-left\" arria-hidden=\"true\"></i>  Kembali</button></a>
+			<div class=\"col\"></div>
+			<button class=\"btn btn-indigo\"><i class=\"fa fa-check\" aria-hidden=\"true\"></i>  Edit</button>
 			</div>
-			<div class=\"d-flex justify-content-center\">
-			<button class=\"btn btn-indigo\">Edit</button>
 			</div>
 		</form>";
 	}
 	?>
 		</div>
 	</div>
-	<a href="../uang_harian"><button class="btn btn-indigo"><i class="fa fa-angle-left" arria-hidden="true"></i> Kembali</button></a>
 </div>
 </body>
