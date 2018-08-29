@@ -696,62 +696,69 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 
 		//here is table
-		$pdf->Cell(20,7,'',0,0);
-		$pdf->SetFont('Arial','B',10);
-		$pdf->Cell(10,5,'No.',1,0,'C',0);
-		$pdf->Cell(100,5,'Uraian',1,0,'C',0);
-		$pdf->Cell(40,5,'Jumlah',1,0,'C',0);
-        $pdf->Ln();
-        $pdf->Cell(10,7,'',0,0);
-        $pdf->Cell(10,7,'',0,0);
-        $pdf->SetFont('Arial','',10);
-		$pdf->Cell(10,6,'1','L',0,'R',0);
-		$pdf->Cell(70,6,'Transport Bandara '.$berangkat.' (PP)','L',0,'L',0);
-		$pdf->Cell(30,6,'2 x '.number_format($sbu_transport,2,',','.'),'R',0,'R',0);
-		$pdf->Cell(40,6,number_format($total1,2,',','.'),'R',0,'R',0);
-        $pdf->Ln();
-        $pdf->Cell(10,7,'',0,0);
-        $pdf->Cell(10,7,'',0,0);
-        $pdf->Cell(10,5,'2','L',0,'R',0);
-		$pdf->Cell(70,5,'Transport Bandara '.$tujuan.' (PP)','L',0,'L',0);
-		$pdf->Cell(30,5,'2 x '.number_format($sbu_transport2,2,',','.'),'R',0,'R',0);
-		$pdf->Cell(40,5,number_format($total2,2,',','.'),'R',0,'R',0);
-        $pdf->Ln();
-
-        /* Baris ini hanya muncul jika transport lokal ada nilainya */
 		if (empty($lokal_result) ) {
-			/* This is assignment for forly. Make this table auto height plz*/
-//		$pdf->SetWidths(array(10, 10, 10, 70, 30, 40));
-//		for($i=0;$i<1;$i++)
-//			$pdf->Row(array("","","3","Transport Lokal ".$rute_lokal, '1 x '.$this->rupiah($besaran_lokal),
-//				$this->rupiah($besaran_lokal)));
-
-			$pdf->Cell(10,7,'',0,0);
-			$pdf->Cell(10,7,'',0,0);
-			$pdf->Cell(10,5,'','LB',0,'R',0);
-			$pdf->Cell(70,5,'','LB',0,'L',0);
-			$pdf->Cell(30,5,'','RB',0,'R',0);
-			$pdf->Cell(40,5,'','RB',0,'R',0);
-			$pdf->Ln();
+			$pdf->Cell(20,7,'',0,0);
+			$pdf->SetFont('Arial','B',10);
+			$pdf->Cell(10,5,'No.',1,0,'C',0);
+			$pdf->Cell(110,5,'Uraian',1,0,'C',0);
+			$pdf->Cell(30,5,'Jumlah',1,0,'C',0);
+	        $pdf->Ln();
+	        $pdf->Cell(20,7,'',0,0);
+	        $pdf->SetFont('Arial','',10);
+			$pdf->Cell(10,6,'1','L',0,'R',0);
+			$pdf->Cell(83,6,'Transport Bandara '.$berangkat.' (PP)','L',0,'L',0);
+			$pdf->Cell(5,5,'2 x','',0,'L',0);
+			$pdf->Cell(22,6,number_format($sbu_transport,2,',','.'),'R',0,'R',0);
+			$pdf->Cell(30,6,number_format($total1,2,',','.'),'R',0,'R',0);
+	        $pdf->Ln();
+	        $pdf->Cell(20,7,'',0,0);
+	        $pdf->Cell(10,5,'2','LB',0,'R',0);
+	        $pdf->Cell(83,5,'Transport Bandara '.$tujuan.' (PP)','LB',0,'L',0);
+			$pdf->Cell(5,5,'2 x','B',0,'L',0);
+			$pdf->Cell(22,5,number_format($sbu_transport2,2,',','.'),'BR',0,'R',0);
+			$pdf->Cell(30,5,number_format($total2,2,',','.'),'BR',0,'R',0);
+	        $pdf->Ln();
+	        $pdf->Cell(20,7,'',0,0);
+	        $pdf->SetFont('Arial','B',10);
+			$pdf->Cell(10,5,'','LB',0,'L',0);
+			$pdf->Cell(110,5,'Jumlah','RB',0,'C',0);
+			$pdf->Cell(30,5,number_format($total_transport,2,',','.'),'RB',0,'R',0);
+	        $pdf->Ln();
 		} else {
-
-			$pdf->Cell(10,7,'',0,0);
-			$pdf->Cell(10,7,'',0,0);
-			$pdf->Cell(10,5,'3','LB',0,'R',0);
-			$pdf->Cell(70,5,'Transport Lokal '.$rute_lokal,'LB',0,'L',0);
-			$pdf->Cell(30,5,'1 x '.number_format($besaran_lokal,2,',','.'),'RB',0,'R',0);
-			$pdf->Cell(40,5,number_format($besaran_lokal,2,',','.'),'RB',0,'R',0);
-			$pdf->Ln();
+			$pdf->Cell(20,7,'',0,0);
+			$pdf->SetFont('Arial','B',10);
+			$pdf->Cell(10,5,'No.',1,0,'C',0);
+			$pdf->Cell(110,5,'Uraian',1,0,'C',0);
+			$pdf->Cell(30,5,'Jumlah',1,0,'C',0);
+	        $pdf->Ln();
+	        $pdf->Cell(20,7,'',0,0);
+	        $pdf->SetFont('Arial','',10);
+			$pdf->Cell(10,6,'1','LB',0,'L',0);
+			$pdf->Cell(80,6,'Transport Bandara '.$berangkat.' (PP)','LB',0,'L',0);
+			$pdf->Cell(30,6,'2 x '.number_format($sbu_transport,2,',','.'),'LBR',0,'L',0);
+			$pdf->Cell(30,6,number_format($total1,2,',','.'),'BR',0,'L',0);
+	        $pdf->Ln();
+	        $pdf->Cell(20,7,'',0,0);
+	        $pdf->Cell(10,5,'2','L',0,'L',0);
+			$pdf->Cell(80,5,'Transport Bandara '.$tujuan.' (PP)','L',0,'L',0);
+			$pdf->Cell(30,5,'2 x '.number_format($sbu_transport2,2,',','.'),'LR',0,'L',0);
+			$pdf->Cell(30,5,number_format($total2,2,',','.'),'R',0,'L',0);
+	        $pdf->Ln();
+			$pdf->Cell(20,7,'',0,0);
+			$pdf->SetFont('Arial','',10);
+				$pdf->SetWidths(array(10, 80, 30, 30));
+				for($i=0;$i<1;$i++) {
+					$pdf->Row(array("3","Transport Lokal ".$rute_lokal,"1 x ".number_format($besaran_lokal,2,',','.'), number_format($besaran_lokal,2,',','.')));
+				}
+			$pdf->Cell(20,7,'',0,0);
+	        $pdf->SetFont('Arial','B',10);
+			$pdf->Cell(10,5,'','LB',0,'L',0);
+			$pdf->Cell(110,5,'Jumlah','RB',0,'C',0);
+			$pdf->Cell(30,5,number_format($total_transport,2,',','.'),'RB',0,'L',0);
+	        $pdf->Ln();
 		}
-
-        $pdf->Cell(10,7,'',0,0);
-        $pdf->Cell(10,7,'',0,0);
-        $pdf->SetFont('Arial','B',10);
-		$pdf->Cell(10,5,'','LB',0,'L',0);
-		$pdf->Cell(100,5,'Jumlah','RB',0,'C',0);
-		$pdf->Cell(40,5,number_format($total_transport,2,',','.'),'RB',0,'R',0);
-        $pdf->Ln();
-        //end of table
+		//end of table
+		
 		$pdf->Ln();
 		$pdf->SetFont('Arial','',10);
 		$pdf->Cell(15,7,'',0,0);
@@ -887,7 +894,6 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(20,7,'',0,0);
 			$pdf->SetFont('Arial','',12);
 			$counterrr = 1;
-			//$pdf->Ln();
 				$pdf->SetWidths(array(10, 70, 40, 40));
 				for($i=0;$i<1;$i++) {
 					$pdf->Row(array($counterrr,"Tiket Pesawat ".$rute. " (PP)","Rp ".number_format($sbu_tiket,2,',','.'), "Rp ".number_format($r_tiket,2,',','.')));
@@ -1050,7 +1056,6 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(20,7,'',0,0);
 			$pdf->SetFont('Arial','',12);
 			$counterrr = 1;
-			//$pdf->Ln();
 			$pdf->SetWidths(array(10, 70, 40, 40));
 			for($i=0;$i<1;$i++) {
 				$pdf->Row(array($counterrr,"Tiket Pesawat ".$rute,"Rp ".number_format($sbu_tiket,2,',','.'), "Rp ".number_format($r_tiket,2,',','.')));
