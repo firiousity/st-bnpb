@@ -48,7 +48,7 @@
       <p class="card-text">Mengelola anggaran SBU Pusdatinmas</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
       <div class="dropup">
-    <button id="anggaran" data-target="#" href="https://example.com" class="btn btn-indigo btn-md dropdown-toggle dropena" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button id="anggaran" data-target="#" class="btn btn-indigo btn-md dropdown-toggle dropena" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Pilih
     </button>
     <div class="dropdown-menu" aria-labelledby="anggaran">
@@ -82,9 +82,15 @@
       <h4 class="card-title">Pegawai</h4>
       <!--Text-->
       <p class="card-text">Data pegawai Pusdatinmas BNPB</p>
-      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <a href="<?php echo base_url('home/pegawai')?>"><button type="button" class="btn btn-indigo btn-md">kelola</button></a>
-
+      <div class="dropdown">
+        <button id="pegawai" data-target="#" class="btn btn-indigo btn-md dropdown-toggle dropena" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Kelola
+        </button>
+        <div class="dropdown-menu" aria-labelledby="pegawai">
+          <a class="dropdown-item" href="<?php echo base_url('home/pegawai')?>">Pegawai Pusdatinmas</a>
+          <a class="dropdown-item" href="<?php echo base_url('home/ppk')?>">Pejabat Pembuat Komitmen</a>
+        </div>
+      </div>
     </div>
 
   </div>

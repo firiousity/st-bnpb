@@ -1,7 +1,7 @@
 <body>
   <div class="container" style="padding-top: 10vh; padding-bottom: 15vh">
-        <p style="font-size: 27px; text-align: center; padding-top: 50px;">Pejabat Pengurus K</p>
-            <table id="pejabat" class="table" cellspacing="0">
+        <p style="font-size: 27px; text-align: center; padding-top: 50px;">Pejabat Pembuat Komitmen</p>
+            <table class="table" cellspacing="0">
                           <thead class="mdb-color darken-3 white-text">
                             <tr>
                               <th scope="col">No
