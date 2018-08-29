@@ -536,10 +536,10 @@ class Home extends CI_Controller {
 	}
 
 	function edit_ppk_page($id){
-		$data['ppk'] = $this->db->get_where('ppk', array('id' => $id))->result();
+		$data['ppk'] = $this->db->get_where('pejabat_administratif', array('id' => $id))->result();
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
-		$this->load->view('edit_pejabat', $data);
+		$this->load->view('edit_ppk', $data);
 	}
 
 	function edit_ppk($id) {
@@ -552,8 +552,8 @@ class Home extends CI_Controller {
 			'nip' => $nip
 		);
 		$this->db->where('id', $id);
-		$this->db->update('ppk', $data);
-		$this->href('home/pejabat');
+		$this->db->update('pejabat_administratif', $data);
+		$this->href('home/ppk');
 	}
 
 }
