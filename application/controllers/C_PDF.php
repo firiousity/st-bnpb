@@ -237,7 +237,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Cell(0,3,'SURAT TUGAS',0,1,'C');
 		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(0,10,"NOMOR: ".$nomor,0,1,'C');
+		$pdf->Cell(0,10,"NOMOR:      ".$nomor,0,1,'C');
 		// Memberikan space kebawah agar tidak terlalu rapat
 		$pdf->Cell(10,7,'',0,1);
 		$pdf->SetFont('Arial','',10);
