@@ -116,15 +116,6 @@
 	#main{
 	  bottom: 30px;
 	}
-	#mail{
-	  bottom: 80px
-	}
-	#sms{
-	  bottom: 125px
-	}
-	#autre{
-	  bottom: 170px
-	}
 
 	.dropdown:hover>.dropdown-menu {
 		display: block;

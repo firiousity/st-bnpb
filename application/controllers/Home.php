@@ -618,20 +618,20 @@ class Home extends CI_Controller {
 	}
 
 	function edit_pos_kegiatan_page($id){
-		$data['pos_kegiatan'] = $this->db->get_where('pos_kegiatan', array('id' => $id))->result();
+		$data['kegiatan'] = $this->db->get_where('pos_kegiatan', array('id' => $id))->result();
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('edit_kegiatan', $data);
 	}
 
 	function edit_pos_kegiatan($id) {
-		$hukum = $this ->input->post('pos_kegiatan');
+		$kegiatan = $this ->input->post('pos_kegiatan');
 		$data = array(
 			'kegiatan' => $kegiatan
 		);
 		$this->db->where('id', $id);
 		$this->db->update('pos_kegiatan', $data);
-		$this->href('home/pos_kegiatan');
+		$this->href('home/hukum');
 	}
 
 	function delete_kegiatan($id) {
