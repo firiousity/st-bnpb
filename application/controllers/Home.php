@@ -478,6 +478,7 @@ class Home extends CI_Controller {
 		$this->load->view('pegawai', $data);
 		// $this->load->view('layouts/footer');
 	}
+
 	public function tambah_pegawai() {
 		$name = $this->input->post('nama');
 		$nip = $this->input->post('nip');
@@ -491,7 +492,6 @@ class Home extends CI_Controller {
 		);
 		$this->db->insert('pegawai', $data);
 		$this->href('home/pegawai');
-
 	}
 
 	function delete_pegawai($id) {
@@ -559,10 +559,20 @@ class Home extends CI_Controller {
 	//Hukum Management
 	public function hukum() 
 	{
+		$data['pos_kegiatan'] = $this->home_model->get_pos_kegiatan();
 		$data['hukum'] = $this->home_model->get_hukum();
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('hukum', $data);
+	}
+
+	public function tambah_hukum() {
+		$hukum = $this->input->post('hukum');
+		$data = array(
+			'hukum' => $hukum,
+		);
+		$this->db->insert('dasar_hukum', $data);
+		$this->href('home/hukum');
 	}
 
 	function edit_hukum_page($id){
@@ -579,6 +589,55 @@ class Home extends CI_Controller {
 		);
 		$this->db->where('id', $id);
 		$this->db->update('dasar_hukum', $data);
+		$this->href('home/hukum');
+	}
+
+	function delete_hukum($id) {
+		$where = array('id' => $id );
+		$this->db->delete('dasar_hukum', $where);
+		$_SESSION['berhasil'] = "Berhasil menghapus";
+		$this->href('home/hukum');
+	}
+
+	//Pos Kegiatan Management
+	public function pos_kegiatan() 
+	{
+		$data['pos_kegiatan'] = $this->home_model->get_pos_kegiatan();
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
+		$this->load->view('pos_kegiatan', $data);
+	}
+
+	public function tambah_kegiatan() {
+		$kegiatan = $this->input->post('kegiatan');
+		$data = array(
+			'kegiatan' => $kegiatan,
+		);
+		$this->db->insert('pos_kegiatan', $data);
+		$this->href('home/hukum');
+	}
+
+	function edit_pos_kegiatan_page($id){
+		$data['pos_kegiatan'] = $this->db->get_where('pos_kegiatan', array('id' => $id))->result();
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
+		$this->load->view('edit_kegiatan', $data);
+	}
+
+	function edit_pos_kegiatan($id) {
+		$hukum = $this ->input->post('pos_kegiatan');
+		$data = array(
+			'kegiatan' => $kegiatan
+		);
+		$this->db->where('id', $id);
+		$this->db->update('pos_kegiatan', $data);
+		$this->href('home/pos_kegiatan');
+	}
+
+	function delete_kegiatan($id) {
+		$where = array('id' => $id );
+		$this->db->delete('pos_kegiatan', $where);
+		$_SESSION['berhasil'] = "Berhasil menghapus";
 		$this->href('home/hukum');
 	}
 

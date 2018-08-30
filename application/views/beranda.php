@@ -25,8 +25,9 @@
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pilih</button>
 			<div class="dropdown-menu" aria-labelledby="surat">
 				<a class="dropdown-item" href="<?php echo base_url('surat/buat_surat_dinas')?>">Buat Surat</a>
-				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="<?php echo base_url('home/lihat_surat')?>">Daftar Surat</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="<?php echo base_url('home/hukum')?>">Lainnya</a>
 			</div>
 		</div>
     </div>
@@ -79,7 +80,7 @@
     <div class="card-body">
 
       <!--Title-->
-      <h4 class="card-title">Pegawai</h4>
+      <h4 class="card-title">Kepegawaian</h4>
       <!--Text-->
       <p class="card-text">Data pegawai Pusdatinmas BNPB</p>
       <div class="dropdown">
@@ -87,10 +88,8 @@
         Kelola
         </button>
         <div class="dropdown-menu" aria-labelledby="pegawai">
-          <a class="dropdown-item" href="<?php echo base_url('home/pegawai')?>">Pegawai Pusdatinmas</a>
+          <a class="dropdown-item" href="<?php echo base_url('home/pegawai')?>">Daftar Pegawai</a>
           <a class="dropdown-item" href="<?php echo base_url('home/ppk')?>">Pejabat Pembuat Komitmen</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="<?php echo base_url('home/hukum')?>">Dasar Hukum</a>
         </div>
       </div>
     </div>
