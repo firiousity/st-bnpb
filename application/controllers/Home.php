@@ -617,15 +617,15 @@ class Home extends CI_Controller {
 		$this->href('home/hukum');
 	}
 
-	function edit_pos_kegiatan_page($id){
+	function edit_kegiatan_page($id){
 		$data['kegiatan'] = $this->db->get_where('pos_kegiatan', array('id' => $id))->result();
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('edit_kegiatan', $data);
 	}
 
-	function edit_pos_kegiatan($id) {
-		$kegiatan = $this ->input->post('pos_kegiatan');
+	function edit_kegiatan($id) {
+		$kegiatan = $this ->input->post('kegiatan');
 		$data = array(
 			'kegiatan' => $kegiatan
 		);
