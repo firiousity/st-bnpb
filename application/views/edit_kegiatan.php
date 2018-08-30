@@ -3,7 +3,7 @@
 	<div class="card mb-4">
 		<div class="card-body">
 			<?php foreach ($kegiatan as $row) {
-		$url = "home/edit_pos_kegiatan/".$row->id;
+		$url = "home/edit_kegiatan/".$row->id;
 		echo "
 			<form action=".base_url($url)." method=\"post\">
 			<div class=\"card-body mx-5\">

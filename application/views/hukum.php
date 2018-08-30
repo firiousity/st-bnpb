@@ -154,7 +154,7 @@
                               <td>".$counter."</td>
                               <td>".$row->kegiatan."</td>
                               <td>
-                                <span class='table-remove'><a href='".base_url("home/edit_pos_kegiatan_page/$row->id")."'><button type='button'  class='btn btn-warning btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
+                                <span class='table-remove'><a href='".base_url("home/edit_kegiatan_page/$row->id")."'><button type='button'  class='btn btn-warning btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
                               </td>
                               <td>
                                  <span class='table-remove'><button onclick='delete_kegiatan($row->id)' type='button' class='btn btn-danger btn-sm my-0'><i class='fa fa-times' aria-hidden='true'></i></button></span>
