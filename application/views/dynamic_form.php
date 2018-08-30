@@ -170,7 +170,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 									<?php foreach ($lokal as $row) {
 										echo
 										"
-										<option value='$row->id'>$row->ibukota - $row->kabupaten</option>" ;
+										<option value='$row->id'>$row->provinsi - $row->kabupaten</option>" ;
 									}
 									?>
 								</select>
@@ -277,7 +277,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 									<?php foreach ($lokal as $row) {
 										echo
 										"
-										<option value='$row->id'>$row->ibukota - $row->kabupaten</option>" ;
+										<option value='$row->id'>$row->provinsi - $row->kabupaten</option>" ;
 									}
 									?>
 								</select>
@@ -461,7 +461,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 		<?php foreach ($lokal as $row) { ?>
 		var option_transport_lokal = document.createElement('option');
 		option_transport_lokal.setAttribute('value', '<?php echo $row->id?>' );
-		option_transport_lokal.innerHTML = "<?php echo $row->ibukota."-".$row->kabupaten ?>";
+		option_transport_lokal.innerHTML = "<?php echo $row->provinsi."-".$row->kabupaten ?>";
 		transport_lokal_input.appendChild(option_transport_lokal);
 		<?php }
 		?>

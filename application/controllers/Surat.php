@@ -41,6 +41,12 @@ class Surat extends CI_Controller
 		// $this->load->view('layouts/footer');
 	}
 
+	function add(){
+		for ($i=21; $i<35; $i++) {
+			$this->db->where('id', $i);
+			$this->db->update('transportasi_lokal', array('provinsi' => 'Sumatera Utara'));
+		}
+	}
 	function exec_surat() {
 		if (isset($_POST['submit'])) {
 			$nomor = $this->input->post('nomor');

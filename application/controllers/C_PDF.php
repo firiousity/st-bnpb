@@ -2006,7 +2006,7 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(25,6,$this->rupiah($harian),'R',0,'R',0);
 			$pdf->Cell(10,6,'Rp',0,0,'L',0);
 			$pdf->Cell(30,6,$this->rupiah($jml_harian),'R',0,'R',0);
-			$pdf->Cell(55,6,'Perjalanan dinas ke :','R',0,'L',0);
+			$pdf->Cell(55,6,'Perjalanan dinas :','R',0,'L',0);
 			$counterx = 2;
 			for ($a = 1; $a <= count($penginapan_d); $a++) {
 				$jml_penginapan = $malam_d[$a]*$penginapan_d[$a];
