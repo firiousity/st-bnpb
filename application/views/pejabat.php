@@ -7,10 +7,10 @@
                               <th scope="col">No
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
-                              <th class="th-sm" scope="col">Jabatan
+                              <th class="th-sm" scope="col">Nama
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
-                              <th class="th-sm" scope="col">Nama I
+                              <th class="th-sm" scope="col">Jabatan
                                 <i class="fa fa-sort float-right" aria-hidden="true"></i>
                               </th>
                               <th class="th-sm" scope="col">NIP
@@ -28,8 +28,8 @@
                 echo "
                 <tr>
                               <td>".$counter."</td>
-                              <td>".$row->jabatan."</td>
                               <td>".$row->nama."</td>
+                              <td>".$row->jabatan."</td>
                               <td>".$row->nip."</td>
                               <td>
                                 <span class='table-remove'><a href='".base_url("home/edit_ppk_page/$row->id")."'><button type='button'  class='btn btn-warning btn-sm my-0'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button></a>
