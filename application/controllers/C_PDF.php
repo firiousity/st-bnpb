@@ -874,7 +874,7 @@ class C_PDF extends CI_Controller {
 			$pdf->SetFont('Arial','',12);
 			$pdf->Cell(20,7,'Berdasarkan Surat Tugas Nomor:'.$nomor.' tanggal '.$var_tgl_surat.' dengan',0,1);
 			$pdf->Cell(15,7,'',0,0);
-			$pdf->Cell(20,7,'sesungguhnya bahwa :',0,1);
+			$pdf->Cell(20,7,'sesungguhnya bahwa : input alasan lebih here',0,1);
 			$pdf->Ln();
 			$pdf->Cell(15,7,'',0,0);
 			$pdf->Cell(20,7,'1. Tiket '.$rute.' (PP) dengan jumlah tiket pesawat di bawah ini melebihi dengan',0,1);
@@ -1251,7 +1251,7 @@ class C_PDF extends CI_Controller {
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'5','LB',0,'C',0);
 		$pdf->Cell(70,5,'Alat angkutan yang dipergunakan','LBR',0,'L',0);
-		$pdf->Cell(90,5,'Udara','BR',0,'L',0);
+		$pdf->Cell(90,5,'Udara dan Darat','BR',0,'L',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'6.','L',0,'C',0);
@@ -1550,7 +1550,7 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(25,6,number_format($harian,2,',','.'),'R',0,'R',0);
 			$pdf->Cell(10,6,'Rp',0,0,'L',0);
 			$pdf->Cell(30,6,number_format($total_harian,2,',','.'),'R',0,'R',0);
-			$pdf->Cell(55,6,'Perjalanan dinas ke :','R',0,'L',0);
+			$pdf->Cell(55,6,'Perjalanan dinas ke','R',0,'L',0);
 			$pdf->Ln();
 			$pdf->Cell(5,7,'',0,0);
 			$pdf->Cell(10,6,'2','L',0,'C',0);
