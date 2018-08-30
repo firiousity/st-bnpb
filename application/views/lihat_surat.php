@@ -120,10 +120,10 @@
 				  <?php unset($_SESSION['berhasil']) ?>
 			  </script>
 
-<div class="container-fluid">
+    <div class="container-fluid">
       <div class="btn-group">
         <a href="<?php  echo base_url('surat/buat_surat_dinas')?>"> <button class="btn animated bounceInLeft btn-indigo btn-fab" type="button" data-toggle="modal" data-target="#modalRegisterForm" id="main"><i class="fa fa-plus" aria-hidden="true">
-          </i> Tambah</button> 
+          </i> Baru</button> 
         </a>
       </div>
     </div>

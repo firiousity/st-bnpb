@@ -95,6 +95,12 @@ class Home_model extends CI_Model {
    	return $query->result();
    }
 
+   function get_pos_kegiatan() {
+   	$this->db->from('pos_kegiatan');
+   	$query = $this->db->get();
+   	return $query->result();
+   }
+
   /* function get_harian($slug) {
 	   $arr_slug = explode('_', $slug);
 	   $id_surat = $arr_slug[0];
