@@ -30,6 +30,8 @@ class C_PDF extends CI_Controller {
     function rupiah($n) {
 		return number_format($n,2,',','.');
 	}
+
+	/* Converting php date format into String */
 	function tanggal_indo($tanggal, $delimiter)
 	{
 		$bulan = array (1 =>   'Januari',
@@ -51,18 +53,13 @@ class C_PDF extends CI_Controller {
 		} elseif ($delimiter == '-') {
 			return $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
 		}
-
-		//echo tanggal_indo('2016-03-20'); // 20 Maret 2016
 	}
 
 	function reverse_tanggal($tanggal) {
 		implode('-', array_reverse(explode('-', $tanggal[0])));
 	}
 
-	 function buat_erik($n) {
-		echo $this->terbilang($n);
-	 }
-
+	/* This function will generate number into string sentence */
 	function terbilang($bilangan) {
 
 		$angka = array('0','0','0','0','0','0','0','0','0','0',
@@ -153,6 +150,7 @@ class C_PDF extends CI_Controller {
 
 	}
 
+	/* How many days between two input date */
 	function hitung_hari($awal,$akhir){
 		$tglAwal = strtotime($awal);
 		$tglAkhir = strtotime($akhir);
@@ -160,11 +158,13 @@ class C_PDF extends CI_Controller {
 		return floor($jeda/(60*60*24));
 	}
 
+	/* Just show you alert, you only need to pass the parameters*/
 	function alert ($message) {
 		echo "<script>         	
          	alert($message);</script>";
 	}
 
+	/* This funtion will automatically redirect to another input route */
     function href($route) {
 		echo "<script>
          	window.location.href='".base_url()."$route';</script>";
@@ -184,8 +184,8 @@ class C_PDF extends CI_Controller {
 	/* PRINT SURAT DINAS (2 LEMBAR) */
 
 	function print($id) {
-		/* DEFINE VARIABLE WE WILL USED */
 
+		/* DEFINE VARIABLE WE WILL USED */
 		$surat_tugas	= $this->db->get_where('surat_dinas',
 			array('id' => $id))->result();
 		$pegawai 		= $this->db->get_where('pegawai',
