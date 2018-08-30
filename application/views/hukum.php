@@ -44,7 +44,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="btn-group">
-        <a href="#"> <button class="btn animated bounceInLeft btn-indigo" type="button" data-toggle="modal" data-target="#modalRegisterForm1" id="main"><i class="fa fa-plus" aria-hidden="true">
+        <a href="#"> <button class="btn animated zoomInUp btn-indigo" type="button" data-toggle="modal" data-target="#modalRegisterForm1" id="main"><i class="fa fa-plus" aria-hidden="true">
           </i> Tambah</button> 
         </a>
       </div>
