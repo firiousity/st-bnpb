@@ -218,6 +218,8 @@ class C_PDF extends CI_Controller {
 
 		$kapusdatin 			= $pegawai['0']->nama_pegawai;
 		$tgl_sekarang 			= date('d')."-".date('m')."-".date('Y');
+		$arr_nomor = explode('/', $nomor);
+		$nomor_surat = trim($arr_nomor[0], " ");
 
 		$pdf = new PDF_MC_Table('p','mm','A4');
 
@@ -237,7 +239,7 @@ class C_PDF extends CI_Controller {
 		$pdf->Ln();
 		$pdf->Cell(0,3,'SURAT TUGAS',0,1,'C');
 		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(0,10,"NOMOR: ".$nomor,0,1,'C');
+		$pdf->Cell(0,10,"NOMOR:    ".$nomor,0,1,'C');
 		// Memberikan space kebawah agar tidak terlalu rapat
 		$pdf->Cell(10,7,'',0,1);
 		$pdf->SetFont('Arial','',10);
@@ -308,7 +310,17 @@ class C_PDF extends CI_Controller {
 		$arr_tgl = explode(' ', $tanggal_sekarang);
 
 		$pdf->Cell(85, 6, "", 0,0);
-		$pdf->MultiCell(0,6,"Jakarta,       ".$arr_tgl[1]." ".$arr_tgl[2],0,'C');
+
+		//kalo nomor belum diisi maka tanggal juga ga diisi
+		if(empty($nomor_surat)) {
+			$pdf->MultiCell(0,6,"Jakarta,       ".$arr_tgl[1]." ".$arr_tgl[2],0,'C');
+		} else {
+			//get tanggal spd rampung
+			$rampung_result = $this->db->get_where('spd_rampung', array('id_surat' => $id))->result();
+			$tgl = $rampung_result['0']->tgl;
+			$tgl_surat = $this->tanggal_indo($tgl, '/');
+			$pdf->MultiCell(0,6,"Jakarta, ".$tgl_surat,0,'C');
+		}
 		$pdf->Cell(85, 6, "", 0,0);
 		$pdf->MultiCell(0,6,"Kepala Pusat Data Informasi dan Humas",0,'C');
 		$pdf->Ln();
