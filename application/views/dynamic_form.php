@@ -65,11 +65,10 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 								onClick="toggle('check', 'labelitemlist', 'itemlist')"
 								type="checkbox" value="0"/> Banyak tempat ? <br/></td>
 						<td><select name="pos" class="form-control	">
-								<option value="1">
-									Melakukan Monitoring dan Evaluasi Teknologi
-									Informasi dan Komunikasi</option>
-								<option value="2">
-									Menyediakan Akses Sistem Informasi Kebencanaan</option>
+								<?php foreach ($pos as $row) {
+									echo "<option value='$row->idi'>$row->kegiatan</option>";
+								}?>
+
 						</td>
 					</tr>
 					</tbody>

@@ -191,9 +191,13 @@ class C_PDF extends CI_Controller {
 		$pegawai 		= $this->db->get_where('pegawai',
 			array('jabatan_pegawai' => 'Kepala Pusat Data Informasi dan Humas'))->result();
 		$nomor 			= $surat_tugas['0']->nomor;
-		$pos_num 			= $surat_tugas['0']->pos;
-		$pos = ($pos_num == "1") ? "Melakukan Monitoring dan Evaluasi Teknologi Informasi dan Komunikasi" : "Menyediakan Akses Sistem Informasi Kebencanaan";
+		$id_pos 			= $surat_tugas['0']->pos;
 		$var_kegiatan 	= $surat_tugas['0']->kegiatan;
+
+		//get pos kegiatan
+		$pos_result = $this->db->get_where('pos_kegiatan',
+			array('id' => $id_pos))->result();
+		$pos = $pos_result['0']->kegiatan;
 
 		//Get data only one from data_rinci table
 		$data_rinci	= $this->db->limit(1)->get_where('data_rinci',

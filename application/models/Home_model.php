@@ -50,6 +50,7 @@ class Home_model extends CI_Model {
 		return $query->result();
 	}
 
+
 	function get_nomor() {
 		$this->db->select('nomor');
 		$this->db->from('surat_dinas');
@@ -69,6 +70,17 @@ class Home_model extends CI_Model {
 	   $query = $this->db->get();
 	   return $query->result();
    }
+
+	function get_pos_from_surat_dinas ($id){
+		//get form db
+		$this->db->select('*');
+		$this->db->from('pos_kegiatan');
+		$this->db->join('surat_dinas', 'surat_dinas.pos = pos_kegiatan.id', 'inner')->where( array(
+			'id_surat' => $id
+		));
+		$query = $this->db->get();
+		return $query->result();
+	}
 
    function get_data_rinci_pegawai($id) {
 	   //get form db
