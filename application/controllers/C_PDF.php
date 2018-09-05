@@ -1394,8 +1394,9 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(25,6,number_format($penginapan,2,',','.'),'R',0,'R',0);
 			$pdf->Cell(10,6,'Rp',0,0,'L',0);
 			$pdf->Cell(30,6,number_format($total_penginapan,2,',','.'),'R',0,'R',0);
-			$pdf->Cell(55,6,"Kab. Bolaang Mongondow Selatan",'R',0,'L',0);
+			$pdf->Cell(55,6,$var_tempat,'R',0,'L',0);
 			$pdf->Ln();
+			//crot
 
 //			$pdf->SetWidths(array(55));
 //			$pdf->SetAligns(array('L') );
