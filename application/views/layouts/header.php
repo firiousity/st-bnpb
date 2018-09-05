@@ -28,8 +28,8 @@
     <!-- JQuery -->
 
     <!-- Sweetalert2 -->
-	<!-- <link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/sweetalert2.css"> -->
-    <script src="<?php echo base_url() ?>assets/js/sweetalert2.js"></script>
+	<link rel="stylesheet" href="<?php echo base_url('assets/css/sweetalert2.css') ?>">
+    <script src="<?php echo base_url('assets/js/sweetalert2.js')?>"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/package.json"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.11/sweetalert2.d.ts"></script>
