@@ -636,6 +636,8 @@ class C_PDF extends CI_Controller {
 		$sbu_tiket = $tiket_result['0']->biaya_tiket;
 		$rute			= $tiket_result['0']->rute;
 
+		$sbu_tiket_ena = $sbu_tiket == 0 ? '-' : $this->rupiah($sbu_tiket);
+
 		//get real pengeluaran untuk tiket
 		$r_tiket_result = $this->db->get_where('spd_rampung', array('id_surat' => $arr_slug[0], 'id_pegawai' => $arr_slug[1]))->result();
 		$r_tiket = $r_tiket_result != NULL ? $r_tiket_result['0']->tiket : 0;
@@ -707,10 +709,11 @@ class C_PDF extends CI_Controller {
 			$pdf->Ln();
 			$pdf->Cell(20,7,'',0,0);
 			$pdf->SetFont('Arial','',12);
+
 			$counterrr = 1;
 				$pdf->SetWidths(array(10, 70, 40, 40));
 				for($i=0;$i<1;$i++) {
-					$pdf->Row(array($counterrr,"Tiket Pesawat ".$rute. " (PP)","Rp ".number_format($sbu_tiket,2,',','.'), "Rp ".number_format($r_tiket,2,',','.')));
+					$pdf->Row(array($counterrr,"Tiket Pesawat ".$rute. " (PP)","Rp ".$sbu_tiket_ena, "Rp ".number_format($r_tiket,2,',','.')));
 					$counterrr++;
 				}
 			$pdf->Cell(20,7,'',0,0);
@@ -718,9 +721,9 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(10,5,'','LB',0,'L',0);
 			$pdf->Cell(70,5,'Jumlah','LRB',0,'C',0);
 			$pdf->Cell(7,5,'Rp ','B',0,'L',0);
-			$pdf->Cell(33,5,''.number_format($sbu_tiket,2,',','.'),'RB',0,'L',0);
+			$pdf->Cell(33,5,''.$sbu_tiket_ena,'RB',0,'L',0);
 			$pdf->Cell(7,5,'Rp ','B',0,'L',0);
-			$pdf->Cell(33,5,''.number_format($r_tiket,2,',','.'),'RB',0,'L',0);
+			$pdf->Cell(33,5,''.$sbu_tiket_ena,'RB',0,'L',0);
 			$pdf->Ln();
 			
 			//end of table
@@ -798,6 +801,7 @@ class C_PDF extends CI_Controller {
 		//get data uang tiket
 		$tiket_result	= $this->db->get_where('tiket_pesawat',array('id' => $id_tiket))->result();
 		$sbu_tiket = $tiket_result['0']->biaya_tiket;
+		$sbu_tiket_ena = $sbu_tiket == 0 ? '-' : $this->rupiah($sbu_tiket);
 		$rute			= $tiket_result['0']->rute;
 
 		//get real pengeluaran untuk tiket
@@ -872,7 +876,7 @@ class C_PDF extends CI_Controller {
 			$counterrr = 1;
 			$pdf->SetWidths(array(10, 70, 40, 40));
 			for($i=0;$i<1;$i++) {
-				$pdf->Row(array($counterrr,"Tiket Pesawat ".$rute,"Rp ".number_format($sbu_tiket,2,',','.'), "Rp ".number_format($r_tiket,2,',','.')));
+				$pdf->Row(array($counterrr,"Tiket Pesawat ".$rute,"Rp ".$sbu_tiket_ena, "Rp ".number_format($r_tiket,2,',','.')));
 				$counterrr++;
 			}
 			$pdf->Cell(20,7,'',0,0);
@@ -880,9 +884,9 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(10,5,'','LB',0,'L',0);
 			$pdf->Cell(70,5,'Jumlah','LRB',0,'C',0);
 			$pdf->Cell(7,5,'Rp','B',0,'L',0);
-			$pdf->Cell(33,5,''.number_format($sbu_tiket,2,',','.'),'RB',0,'L',0);
+			$pdf->Cell(33,5,''.$sbu_tiket_ena,'RB',0,'L',0);
 			$pdf->Cell(7,5,'Rp','B',0,'L',0);
-			$pdf->Cell(33,5,''.number_format($r_tiket,2,',','.'),'RB',0,'L',0);
+			$pdf->Cell(33,5,''.$sbu_tiket_ena,'RB',0,'L',0);
 			$pdf->Ln();
 			//end of table
 
@@ -1276,6 +1280,7 @@ class C_PDF extends CI_Controller {
 			array('id_surat' => $id_surat, 'id_pegawai' => $id_pegawai))->result();
 		$rampung_result	= $this->db->limit(1)->order_by('total', 'DESC')->get_where('spd_rampung',
 			array('id_surat' => $id_surat, 'id_pegawai' => $id_pegawai))->result();
+
 		$pegawai 		= $this->db->get_where('pegawai',
 			array('id_pegawai' => $id_pegawai))->result();
 		$bendahara 			= $this->db->get_where('pejabat_administratif',
@@ -1289,7 +1294,14 @@ class C_PDF extends CI_Controller {
 		$hari = $malam + 1;
 
 		$nomor 			= $surat_tugas['0']->nomor;
-		$var_tempat 	= $surat_tugas['0']->tempat;
+		$id_lokal = $surat_tugas['0']->id_lokal;
+		$lokal_result	= $this->db->limit(1)->get_where('transportasi_lokal', array(
+			'id' => $id_lokal))->result();
+		if($id_lokal>0) {
+			$var_tempat = $lokal_result['0'] -> kabupaten . " Provinsi " . $lokal_result['0'] -> provinsi;
+		} else {
+			$var_tempat 	= $surat_tugas['0']->tempat;
+		}
 		$var_tgl_mulai 	= $this->tanggal_indo($surat_tugas['0']->tgl_mulai, '-');
 		$var_tgl_akhir 	= $this->tanggal_indo($surat_tugas['0']->tgl_akhir, '-');
 
@@ -1366,6 +1378,13 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(30,6,number_format($total_harian,2,',','.'),'R',0,'R',0);
 			$pdf->Cell(55,6,'Perjalanan dinas ke','R',0,'L',0);
 			$pdf->Ln();
+//			$pdf->Cell(5,6,'','R',0,'L',0);
+//			$pdf->SetWidths(array(10,25,17,3,7,23,10,30,55));
+//			$pdf->SetAligns(array('C','L','L','R','L', 'R', 'L', 'R', 'L') );
+//			for($i=0;$i<1;$i++) //enaena
+//				$pdf->Row2(array('2','Penginapan', $malam." Malam",'x', 'Rp', $this->rupiah($penginapan),
+//					'Rp', $this->rupiah($total_penginapan), $var_tempat));
+
 			$pdf->Cell(5,7,'',0,0);
 			$pdf->Cell(10,6,'2','L',0,'C',0);
 			$pdf->Cell(25,6,'Penginapan','L',0,'L',0);
@@ -1375,8 +1394,14 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(25,6,number_format($penginapan,2,',','.'),'R',0,'R',0);
 			$pdf->Cell(10,6,'Rp',0,0,'L',0);
 			$pdf->Cell(30,6,number_format($total_penginapan,2,',','.'),'R',0,'R',0);
-			$pdf->Cell(55,6,$var_tempat,'R',0,'L',0);
+			$pdf->Cell(55,6,"Kab. Bolaang Mongondow Selatan",'R',0,'L',0);
 			$pdf->Ln();
+
+//			$pdf->SetWidths(array(55));
+//			$pdf->SetAligns(array('L') );
+//			for($i=0;$i<1;$i++)
+//				$pdf->Row2(array($var_tempat));
+
 			$pdf->Cell(5,7,'',0,0);
 			$pdf->Cell(10,6,'3','L',0,'C',0);
 			$pdf->Cell(25,6,'Tiket Pesawat','L',0,'L',0);
@@ -1402,8 +1427,9 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(5,7,'',0,0);
 			$pdf->Cell(10,6,'','L',0,'C',0);
 			$pdf->Cell(75,6,'','LR',0,'L',0);
-			$pdf->Cell(40,6,'','R',0,'R',0);
-			$pdf->Cell(55,6,$var_tgl_akhir,'R',0,'L',0);
+			$pdf->Cell(40,6,'','LR',0,'L',0);
+			$pdf->Cell(55,6,'','R',0,'L',0);
+			$pdf->Cell(8,6,'','L',0,'L',0);
 			$pdf->Ln();
 			$pdf->Cell(5,7,'',0,0);
 			$pdf->SetFont('Arial','B',10);
@@ -1417,6 +1443,7 @@ class C_PDF extends CI_Controller {
 			$pdf->SetFont('Arial','B',10);
 			//terbilang
 			$pdf->SetWidths(array(10, 75, 95));
+
 			//srand(microtime()*1000000);
 			for($i=0;$i<1;$i++)
 				$pdf->Row(array("",
@@ -1608,7 +1635,13 @@ class C_PDF extends CI_Controller {
 		$surat_result = $this->db->get_where('data_rinci',
 			array('id_surat' => $id_surat, 'id_pegawai' => $id_pegawai))->result();
 		$nomor = $surat_result['0']->nomor;
-		$tempat = $surat_result['0']->tempat;
+		$lokal_result	= $this->db->limit(1)->get_where('transportasi_lokal', array(
+			'id' => $id_lokal))->result();
+		if($id_lokal>0) {
+			$tempat = $lokal_result['0'] -> kabupaten . " Provinsi " . $lokal_result['0'] -> provinsi;
+		} else {
+			$tempat 	= $surat_tugas['0']->tempat;
+		}
 		$var_tgl_mulai = $this->tanggal_indo($surat_result['0']->tgl_mulai, '-');
 		$var_tgl_akhir = $this->tanggal_indo($surat_result['0']->tgl_akhir, '-');
 		$var_tgl_surat = $this->tanggal_indo($surat_result['0']->tgl_surat, '/');
@@ -1760,6 +1793,7 @@ class C_PDF extends CI_Controller {
 		} else {
 			$keterangan = "";
 		}
+		$tiket_ena = $tiket == 0 ? '-' : $this->rupiah($tiket);
 
 		/* Print PDF */
 		$pdf = new PDF_MC_Table('p','mm','A4');
@@ -1841,9 +1875,10 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(10,6,'',0,0,'L',0);
 			$pdf->Cell(10,6,'',0,0,'R',0);
 			$pdf->Cell(5,6,'Rp',0,0,'L',0);
-			$pdf->Cell(25,6,$this->rupiah($tiket),'R',0,'R',0);
+		
+			$pdf->Cell(25,6,$tiket_ena,'R',0,'R',0);
 			$pdf->Cell(10,6,'Rp',0,0,'L',0);
-			$pdf->Cell(30,6,$this->rupiah($tiket),'R',0,'R',0);
+			$pdf->Cell(30,6,$tiket_ena,'R',0,'R',0);
 			$pdf->Cell(55,6,'selama '.$hari.' ('. $this->terbilang($hari).') hari','R',0,'L',0);
 			$pdf->Ln();
 			$pdf->Cell(5,7,'',0,0);
@@ -1911,9 +1946,9 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(10,6,'',0,0,'L',0);
 			$pdf->Cell(10,6,'',0,0,'R',0);
 			$pdf->Cell(5,6,'Rp',0,0,'L',0);
-			$pdf->Cell(25,6,$this->rupiah($tiket),'R',0,'R',0);
+			$pdf->Cell(25,6,$tiket_ena,'R',0,'R',0);
 			$pdf->Cell(10,6,'Rp',0,0,'L',0);
-			$pdf->Cell(30,6,$this->rupiah($tiket),'R',0,'R',0);
+			$pdf->Cell(30,6,$tiket_ena,'R',0,'R',0);
 			$pdf->Cell(55,6,'selama '.$hari.' ('. $this->terbilang($hari).') hari','R',0,'L',0);
 			$pdf->Ln();
 			$pdf->Cell(5,7,'',0,0);
@@ -1986,9 +2021,9 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(10,6,'',0,0,'L',0);
 			$pdf->Cell(10,6,'',0,0,'R',0);
 			$pdf->Cell(5,6,'Rp',0,0,'L',0);
-			$pdf->Cell(25,6,$this->rupiah($tiket),'R',0,'R',0);
+			$pdf->Cell(25,6,$tiket_ena,'R',0,'R',0);
 			$pdf->Cell(10,6,'Rp',0,0,'L',0);
-			$pdf->Cell(30,6,$this->rupiah($tiket),'R',0,'R',0);
+			$pdf->Cell(30,6,$tiket_ena,'R',0,'R',0);
 			$pdf->Cell(55,6,'selama '.$hari.' ('. $this->terbilang($hari).') hari','R',0,'L',0);
 			$pdf->Ln();
 			$pdf->Cell(5,7,'',0,0);
@@ -2077,9 +2112,9 @@ class C_PDF extends CI_Controller {
 			$pdf->Cell(10,6,'',0,0,'L',0);
 			$pdf->Cell(10,6,'',0,0,'R',0);
 			$pdf->Cell(5,6,'Rp',0,0,'L',0);
-			$pdf->Cell(25,6,$this->rupiah($tiket),'R',0,'R',0);
+			$pdf->Cell(25,6,$tiket_ena,'R',0,'R',0);
 			$pdf->Cell(10,6,'Rp',0,0,'L',0);
-			$pdf->Cell(30,6,$this->rupiah($tiket),'R',0,'R',0);
+			$pdf->Cell(30,6,$tiket_ena,'R',0,'R',0);
 			$pdf->Cell(55,6,'selama '.$hari.' ('. $this->terbilang($hari).') hari','R',0,'L',0);
 			$pdf->Ln();
 			$pdf->Cell(5,7,'',0,0);
@@ -2145,9 +2180,10 @@ class C_PDF extends CI_Controller {
 		$pdf->Cell(10,6,'',0,0,'L',0);
 		$pdf->Cell(10,6,'',0,0,'R',0);
 		$pdf->Cell(5,6,'Rp',0,0,'L',0);
-		$pdf->Cell(25,6,$this->rupiah($s_tiket),'R',0,'R',0);
+		$s_tiket_ena = $s_tiket == 0 ? '-' : $this->rupiah($s_tiket);
+		$pdf->Cell(25,6,$s_tiket_ena,'R',0,'R',0);
 		$pdf->Cell(10,6,'Rp',0,0,'L',0);
-		$pdf->Cell(30,6,$this->rupiah($s_tiket),'R',0,'R',0);
+		$pdf->Cell(30,6,$s_tiket_ena,'R',0,'R',0);
 		$pdf->Cell(55,6,'','R',0,'L',0);
 		$pdf->Ln();
 		$pdf->Cell(5,7,'',0,0);
@@ -2231,6 +2267,7 @@ class PDF_MC_Table extends FPDF
 {
 	var $widths;
 	var $aligns;
+	private $ena=0;
 
 	function SetWidths($w)
 	{
@@ -2250,7 +2287,7 @@ class PDF_MC_Table extends FPDF
 		$nb=0;
 		for($i=0;$i<count($data);$i++)
 			$nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
-		$h=5*$nb;
+		$h=6*$nb;
 		//Issue a page break first if needed
 		$this->CheckPageBreak($h);
 		//Draw the cells of the row
@@ -2261,11 +2298,44 @@ class PDF_MC_Table extends FPDF
 			//Save the current position
 			$x=$this->GetX();
 			$y=$this->GetY();
+
+			//Berder semua
 			//Draw the border
 			$this->Rect($x,$y,$w,$h);
 			//Print the text
-			$this->MultiCell($w,5,$data[$i],0,$a);
-			//Put the position to the right of the cell
+			$this->MultiCell($w,6,$data[$i],0,$a);
+			//Put the position to the right of the cell enaena
+			$this->SetXY($x+$w,$y);
+		}
+		//Go to the next line
+		$this->Ln($h);
+	}
+
+	function Row2($data)
+	{
+		//Calculate the height of the row
+		$nb=0;
+		$this->ena = 0;
+		for($i=0;$i<count($data);$i++)
+			$nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
+		$h=6*$nb;
+		//Issue a page break first if needed
+		$this->CheckPageBreak($h);
+		//Draw the cells of the row
+		for($i=0;$i<count($data);$i++)
+		{
+			$w=$this->widths[$i];
+			$a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'L';
+			//Save the current position
+			$x=$this->GetX();
+			$y=$this->GetY();
+
+			//Berder semua
+			//Draw the border
+			//$this->Rect($x,$y,$w,$h);
+			//Print the text
+			$this->MultiCell($w,6,$data[$i],0,$a);
+			//Put the position to the right of the cell enaena
 			$this->SetXY($x+$w,$y);
 		}
 		//Go to the next line
