@@ -40,9 +40,6 @@
 
 	<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
 	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-	<script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" 
-			integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
-		   	crossorigin=""></script>
 	<script
 		src="https://code.jquery.com/jquery-3.3.1.js"
 		integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -63,9 +60,9 @@
 	<script type="text/javascript" src="<?php echo base_url('assets/js/jquery.multi-select.js')?>"></script>
     <!-- Initializations -->
 	<!-- Custom js	-->
-	<script type=”text/javascript” src=”js/popper.min.js”></script>
-	<script type=”text/javascript” src=”js/bootstrap.min.js”></script>
-	<script type=”text/javascript” src=”js/mdb.min.js”></script>
+	<script type="text/javascript" src="<?php echo base_url('assets/js/popper.min.js')?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js')?>"></script>
+	<script type=”text/javascript” src="<?php echo base_url('assets/js/mdb.min.js')?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('assets/js/custom.js')?>"></script>
 	<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
