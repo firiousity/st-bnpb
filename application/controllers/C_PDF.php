@@ -187,17 +187,18 @@ class C_PDF extends CI_Controller {
 
 		/* DEFINE VARIABLE WE WILL USED */
 		$surat_tugas	= $this->db->get_where('surat_dinas',
-			array('id' => $id))->result();
+			array('id' => $id))->row_array();
 		$pegawai 		= $this->db->get_where('pegawai',
 			array('jabatan_pegawai' => 'Kepala Pusat Data Informasi dan Humas'))->result();
-		$nomor 			= $surat_tugas['0']->nomor;
-		$id_pos 			= $surat_tugas['0']->pos;
-		$var_kegiatan 	= $surat_tugas['0']->kegiatan;
+		$nomor 			= $surat_tugas['nomor'];
+		$id_pos 		= $surat_tugas['pos'];
+		$var_kegiatan 	= $surat_tugas['kegiatan'];
 
 		//get pos kegiatan
 		$pos_result = $this->db->get_where('pos_kegiatan',
-			array('id' => $id_pos))->result();
-		$pos = $pos_result['0']->kegiatan;
+			array('id' => $id_pos))->row_array();
+
+		$pos = $pos_result['kegiatan'];
 
 		//Get data only one from data_rinci table
 		$data_rinci	= $this->db->limit(1)->get_where('data_rinci',
@@ -1427,10 +1428,14 @@ class C_PDF extends CI_Controller {
 			$pdf->Ln();
 			$pdf->Cell(5,7,'',0,0);
 			$pdf->Cell(10,6,'','L',0,'C',0);
-			$pdf->Cell(75,6,'','LR',0,'L',0);
-			$pdf->Cell(40,6,'','LR',0,'L',0);
-			$pdf->Cell(55,6,'','R',0,'L',0);
-			$pdf->Cell(8,6,'','L',0,'L',0);
+			$pdf->Cell(25,6,'','L',0,'L',0);
+			$pdf->Cell(10,6,'',0,0,'L',0);
+			$pdf->Cell(10,6,'',0,0,'R',0);
+			$pdf->Cell(5,6,'',0,0,'L',0);
+			$pdf->Cell(25,6,'','R',0,'R',0);
+			$pdf->Cell(10,6,'',0,0,'L',0);
+			$pdf->Cell(30,6,'','R',0,'R',0);
+			$pdf->Cell(55,6,$var_tgl_akhir,'R',0,'L',0);
 			$pdf->Ln();
 			$pdf->Cell(5,7,'',0,0);
 			$pdf->SetFont('Arial','B',10);

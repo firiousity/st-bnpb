@@ -66,7 +66,7 @@ $nomor_surat = " /KADIH/".$tanggal."/".$tahun;
 								type="checkbox" value="0"/> Banyak tempat ? <br/></td>
 						<td><select name="pos" class="form-control	">
 								<?php foreach ($pos as $row) {
-									echo "<option value='$row->idi'>$row->kegiatan</option>";
+									echo "<option value='$row->id'>$row->kegiatan</option>";
 								}?>
 
 						</td>
