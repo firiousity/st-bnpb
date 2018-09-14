@@ -8,7 +8,7 @@
 
     <!--Card image-->
     <div class="view zoom">
-      <img class="card-img-top" src="<?php echo base_url('assets/img/surat.jpg')?>" alt="Card image cap">
+      <img class="card-img-top" src="<?php echo base_url('assets/img/surat.jpg')?>" alt="Surat img">
         <div class="mask flex-center"></div>
     </div>
 
@@ -36,7 +36,7 @@
 
     <!--Card image-->
     <div class="view zoom">
-      <img class="card-img-top" src="<?php echo base_url('assets/img/anggaran.jpg')?>" alt="Card image cap">
+      <img class="card-img-top" src="<?php echo base_url('assets/img/anggaran.jpg')?>" alt="Anggaran img">
         <div class="mask flex-center"></div>
     </div>
 
@@ -72,7 +72,7 @@
 
     <!--Card image-->
     <div class="view zoom">
-      <img class="card-img-top" src="https://www.menpan.go.id/site/images/berita_foto/20180222_BNPB_di_Bali_3.jpeg" alt="Card image cap">
+      <img class="card-img-top" src="<?php echo base_url('assets/img/pegawai.jpg')?>" alt="Pegawai img">
         <div class="mask flex-center"></div>
     </div>
 
