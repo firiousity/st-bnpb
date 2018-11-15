@@ -82,6 +82,9 @@ class C_PDF extends CI_Controller {
 			$angka[$i] = substr($bilangan,-($i),1);
 		}
 
+		//only for debugging
+		//var_dump ($angka);
+
 		$i = 1;
 		$j = 0;
 		$kalimat = "";
@@ -1646,7 +1649,7 @@ class C_PDF extends CI_Controller {
 		if($id_lokal>0) {
 			$tempat = $lokal_result['0'] -> kabupaten . " Provinsi " . $lokal_result['0'] -> provinsi;
 		} else {
-			$tempat 	= $surat_tugas['0']->tempat;
+			$tempat 	= $surat_result['0']->tempat;
 		}
 		$var_tgl_mulai = $this->tanggal_indo($surat_result['0']->tgl_mulai, '-');
 		$var_tgl_akhir = $this->tanggal_indo($surat_result['0']->tgl_akhir, '-');
