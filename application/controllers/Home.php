@@ -41,17 +41,46 @@ class Home extends CI_Controller {
          	alert($message);</script>";
 	}
 
-	public function login() {
-		$sql = "select * from admin where nama = ? and password = ?";
-		$query = $this->db->query($sql, array($this->input->post('name'), $this->input->post('password')));
-		if($query->num_rows()> 0) {
-			$_SESSION['success'] = [ 'Berhasil login!', 'Selamat datang'];
-			$this->href("home/beranda/");
-		} else {
-			$_SESSION['error'] = 'Username atau password salah';
-         	$this->href("");
-		}
-	}
+	// public function login() {
+	// 	$sql = "SELECT * FROM admin WHERE nama = ? and password = ?";
+	// 	$query = $this->db->query($sql, array($this->input->post('name'), $this->input->post('password')));
+	// 	if($query->num_rows()> 0) {
+	// 		$_SESSION['success'] = [ 'Berhasil login!', 'Selamat datang'];
+	// 		$_SESSION['login'] = true;
+	// 		$this->href("home/beranda/");
+	// 	} else {
+	// 		$_SESSION['error'] = 'Username atau password salah';
+ //         	$this->href("");
+	// 	}
+	// }
+
+	// public function logout() {
+	// 	$this->session->sess_destroy();
+ //    	redirect(base_url(''));
+	// }
+
+	public function login()
+	{
+	    if(isset($_POST['submit'])){
+	      $username = $this->input->post('username');
+	      $password = $this->input->post('password');
+	      $berhasil = $this->home_model->cek_login($username,$password);
+	      if($berhasil == 1){
+	        $this->session->set_userdata(array('status_login'=>'sukses'));
+	        redirect('home/beranda');
+	      }else{
+	      	$_SESSION['error'] = 'Username atau password salah';
+	        redirect(base_url(''));
+	      }
+	    }else {
+	        $this->load->view('login');
+	    }
+	  }
+
+	public function logout() {
+	    $this->session->sess_destroy();
+	    redirect(base_url(''));
+	  }
 
 	/*
 	 * Main Funtion Mnagement
@@ -68,13 +97,16 @@ class Home extends CI_Controller {
 
 	public function beranda()
 	{
-			$this->load->view('layouts/nav');
-			$this->load->view('layouts/header');
-	        $this->load->view('beranda');
-	        $this->load->view('layouts/footer2');
-
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
+        $this->load->view('beranda');
+        $this->load->view('layouts/footer2');
+        if ($_SESSION['status_login'] != 'sukses') {
+        	$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
     } 	
-
+ 
 	/*
 	 * Surat Management
 	 */
@@ -84,6 +116,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/header');
 		$this->load->view('lihat_surat', $data);
 		// $this->load->view('layouts/footer');
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	/*
@@ -98,6 +134,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/header');
 		$this->load->view('biaya_penginapan', $data);
 		// $this->load->view('layouts/footer');
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	public function tambah_penginapan() {
@@ -125,6 +165,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/header');
 		$this->load->view('edit_penginapan', $data);
 		$this->load->view('layouts/footer');
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	function edit_penginapan($id) {
@@ -141,7 +185,7 @@ class Home extends CI_Controller {
 			'eselon_3' => $eselon_3,
 			'eselon_4' => $eselon_4,
 			'eselon_5' => $eselon_5,
-		);
+		); 
 		$this->db->where('id', $id);
 		$this->db->update('biaya_penginapan', $data);
 		$this->href('home/biaya_penginapan');
@@ -166,6 +210,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/header');
 		$this->load->view('biaya_transport', $data);
 		// $this->load->view('layouts/footer');
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	public function tambah_transport() {
@@ -190,6 +238,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/header');
 		$this->load->view('edit_transport', $data);
 		$this->load->view('layouts/footer2');
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }	
 	}
 
 	function edit_transport($id) {
@@ -223,6 +275,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/header');
 		$this->load->view('transport_lokal', $data);
 		// $this->load->view('layouts/footer');
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	public function tambah_transport_lokal() {
@@ -249,6 +305,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/header');
 		$this->load->view('edit_lokal', $data);
 		// $this->load->view('layouts/footer2');
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	function edit_transport_lokal($id) {
@@ -284,6 +344,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/header');
 		$this->load->view('tiket_pesawat', $data);
 		// $this->load->view('layouts/footer');
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	public function tambah_tiket() {
@@ -308,6 +372,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/header');
 		$this->load->view('edit_tiket', $data);
 		$this->load->view('layouts/footer2');
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	function edit_tiket($id) {
@@ -341,6 +409,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/header');
 		$this->load->view('uang_harian', $data);
 		// $this->load->view('layouts/footer');
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	public function tambah_harian() {
@@ -369,6 +441,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/header');
 		$this->load->view('edit_harian', $data);
 		// $this->load->view('layouts/footer');
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	function edit_harian($id) {
@@ -406,6 +482,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/header');
 		$this->load->view('uang_representasi', $data);
 		// $this->load->view('layouts/footer2');
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	public function tambah_representasi() {
@@ -431,6 +511,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/header');
 		$this->load->view('edit_representasi', $data);
 		$this->load->view('layouts/footer2');
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	function edit_representasi($id) {
@@ -477,6 +561,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/header');
 		$this->load->view('pegawai', $data);
 		// $this->load->view('layouts/footer');
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	public function tambah_pegawai() {
@@ -507,6 +595,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/header');
 		$this->load->view('edit_pegawai', $data);
 		// $this->load->view('layouts/footer');
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	function edit_pegawai($id) {
@@ -533,6 +625,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('pejabat', $data);
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	function edit_ppk_page($id){
@@ -540,6 +636,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('edit_ppk', $data);
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	function edit_ppk($id) {
@@ -564,6 +664,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('hukum', $data);
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	public function tambah_hukum() {
@@ -580,6 +684,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('edit_hukum', $data);
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	function edit_hukum($id) {
@@ -606,6 +714,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('pos_kegiatan', $data);
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	public function tambah_kegiatan() {
@@ -622,6 +734,10 @@ class Home extends CI_Controller {
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('edit_kegiatan', $data);
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
 	}
 
 	function edit_kegiatan($id) {

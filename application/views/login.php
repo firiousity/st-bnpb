@@ -21,7 +21,7 @@
 			<form class="text-center p-4" method="post" action="<?php  echo base_url('home/login')?>">
 				<p class="h4 mb-4">Sign in</p>
 				<!-- Email -->
-				<input type="text" id="defaultLoginFormEmail" class="form-control mb-4" name='name' placeholder="username" required>
+				<input type="text" id="defaultLoginFormEmail" class="form-control mb-4" name='username' placeholder="username" required>
 				<!-- Password -->
 				<input type="password" id="defaultLoginFormPassword" class="form-control mb-4" name='password' placeholder="password" required>
 				<div class="d-flex justify-content-around">
@@ -34,7 +34,7 @@
 					</div>
 				</div>
     <!-- Sign in button -->
-				<button class="btn btn-indigo my-4 animated rubberBand">Sign in</button>
+				<button class="btn btn-indigo my-4 animated rubberBand" name="submit">Sign in</button>
 			</form>
 	</section>
 <!-- Default form login -->

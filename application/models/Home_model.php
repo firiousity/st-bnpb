@@ -1,5 +1,14 @@
 <?php
 class Home_model extends CI_Model {
+	
+	function cek_login($username,$password) {
+	  	$periksa = $this->db->get_where('admin',array('nama'=>$username,'password'=>($password)));
+	  	if($periksa->num_rows()>0){
+	    	return 1;
+	  	}else {
+	    	return 0;
+	  }
+	}	
 	function get_pegawai() {
 		$this->db->from('pegawai');
 		$this->db->order_by('nama_pegawai','asc' );
@@ -184,8 +193,6 @@ class Home_model extends CI_Model {
 		$query = $this->db->get_where('pembayaran_awal', $data);
 		return $query->result();
 	}
-
-
 
 }
 ?>

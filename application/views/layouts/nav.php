@@ -19,7 +19,7 @@
                 <a class="nav-link" href="http://dibi.bnpb.go.id/dibi/">DIBI</a>
             </li>
 				<li class="nav-item">
-                <a class="nav-link" onclick="keluar()">Logout</a>
+                <a class="nav-link" onclick="logout()">Logout</a>
             </li>
         </ul>    
         </span>
@@ -27,43 +27,33 @@
 </div>
 </nav>
 <script>
-                      function keluar() {
-                      const swalWithBootstrapButtons = swal.mixin({
-                      confirmButtonClass: 'btn btn-success',
-                      cancelButtonClass: 'btn btn-danger',
-                      buttonsStyling: false,
-                    })
+      function logout() {
+        const swalWithBootstrapButtons = swal.mixin({
+        confirmButtonClass: 'btn btn-success',
+        cancelButtonClass: 'btn btn-danger',
+        buttonsStyling: false,
+      })
 
-                    swalWithBootstrapButtons({
-                      title: 'Are you sure?',
-                      text: "Recheck your work might help!",
-                      type: 'warning',
-                      showCancelButton: true,
-                      confirmButtonText: 'Yes, im sure!',
-                      cancelButtonText: 'No, cancel!',
-                      reverseButtons: true
-                    }).then((result) => {
-                      if (result.value) {
-                        window.location = '<?php echo base_url() ?>'
-                      } else if (
-                        // Read more about handling dismissals
-                        result.dismiss === swal.DismissReason.cancel
-                      ) {
-                        swalWithBootstrapButtons(
-                          'Cancelled',
-                          'Remember to never tired yourself out! :)',
-                          'error'
-                        )
-                      }
-                    })
-                      }
-          <?php if  (isset($_SESSION["berhasil"])) {?>
-
-            swal({
-              title: "Berhasil",
-              text: "Thanks for your hardwork!",
-              type: "success",
-            });
+      swalWithBootstrapButtons({
+        title: 'Are you sure?',
+        text: "Recheck your work might help!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, im sure!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.value) {
+          window.location = '<?php echo base_url('home/logout') ?>'
+        } else if (
+          // Read more about handling dismissals
+          result.dismiss === swal.DismissReason.cancel
+        ) {
+        }
+      })
+        }
+          <?php if  (isset($_SESSION["berhasil"])) {
+            ?> swal({ type: "success"});
           <?php } ?>
           <?php unset($_SESSION['berhasil']) ?>
                     </script>
