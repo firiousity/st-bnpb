@@ -68,7 +68,11 @@ class Home extends CI_Controller {
 	      if($berhasil == 1){
 	        $this->session->set_userdata(array('status_login'=>'sukses'));
 	        redirect('home/beranda');
-	      }else{
+	      }else if($berhasil == 2){
+	      	$this->session->set_userdata(array('status_login'=>'berhasil'));
+	        redirect('home/admin_master');
+	      }
+	      else{
 	      	$_SESSION['error'] = 'Username atau password salah';
 	        redirect(base_url(''));
 	      }
@@ -106,6 +110,61 @@ class Home extends CI_Controller {
         	redirect(base_url(''));
         }
     } 	
+
+    /* Admin Master */
+    public function admin_master() {
+		$data['admin'] = $this->home_model->get_admin();
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
+		$this->load->view('admin_master', $data);
+		// $this->load->view('layouts/footer');
+		if ($_SESSION['status_login'] != 'berhasil') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
+	}
+
+	public function tambah_admin() {
+		$username = $this->input->post('nama');
+		$password = $this->input->post('password');
+		$data = array(
+			'nama' => $username,
+			'password' => $password,
+		);
+		$this->db->insert('admin', $data);
+		$this->href('home/admin_master');
+	}
+
+	function edit_admin_page($id) {
+		$data['admin_master'] = $this->db->get_where('admin',  array('id' => $id) )->result();
+		$this->load->view('layouts/nav');
+		$this->load->view('layouts/header');
+		$this->load->view('edit_admin', $data);
+		$this->load->view('layouts/footer');
+		if ($_SESSION['status_login'] != 'sukses') {
+			$_SESSION['error'] = 'Masukkan username dan password';
+        	redirect(base_url(''));
+        }
+	}
+
+	function edit_admin($id) {
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		$data = array(
+			'username' => $nama,
+			'password' => $password,
+		); 
+		$this->db->where('id', $id);
+		$this->db->update('admin', $data);
+		$this->href('home/admin_master');
+	}
+
+	function delete_admin($id) {
+		$where = array('id' => $id );
+		$this->db->delete('admin', $where);
+		$_SESSION['berhasil'] = "Berhasil menghapus";
+		$this->href('home/admin_master');
+	}
  
 	/*
 	 * Surat Management

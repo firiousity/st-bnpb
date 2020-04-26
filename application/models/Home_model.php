@@ -3,12 +3,23 @@ class Home_model extends CI_Model {
 	
 	function cek_login($username,$password) {
 	  	$periksa = $this->db->get_where('admin',array('nama'=>$username,'password'=>($password)));
+	  	$periksa2 = $this->db->get_where('master',array('username'=>$username,'password'=>($password)));
 	  	if($periksa->num_rows()>0){
 	    	return 1;
-	  	}else {
-	    	return 0;
+	  	}else if($periksa2->num_rows()>0) {
+	    	return 2;
+	  }else {
+	  	return 0;
 	  }
-	}	
+	}
+
+	function get_admin() {
+		$this->db->from('admin');
+		$this->db->order_by('nama','asc' );
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	function get_pegawai() {
 		$this->db->from('pegawai');
 		$this->db->order_by('nama_pegawai','asc' );
