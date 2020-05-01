@@ -1,3 +1,4 @@
+<?php $edited_number = null ?>
 <body>
           <div class="container-fluid" style="padding-top: 10vh; padding-bottom: 15vh;">
                 <p style="font-size: 27px; text-align: center; padding-top: 50px;">Daftar Surat</p>
@@ -29,7 +30,8 @@
 						  $i = 1;
 						  foreach ($surat as $row) {
 							  $nomor = $row->nomor;
-							  $arr_nomor = explode('/', $nomor);
+                $arr_nomor = explode('/', $nomor);
+                $json_nomor = json_encode($arr_nomor);
 							  $nomor_surat = trim($arr_nomor[0], " ");
 						  	echo "
 						  	<tr>
@@ -52,13 +54,15 @@
                                 <i class='fa fa-times' aria-hidden='true'></i></button>
                                 
     						  	";
-						  	//edit button hanya muncul kalo nomornya belum ada
+                //edit button hanya muncul kalo nomornya belum ada
 						  if(empty($nomor_surat)) {
 							  echo "
-                                <span><a  data-toggle='modal' 
+                                <span>
+                                <a  data-toggle='modal' 
                                 data-target='#modalEdit'><button
-                                type='button' class='btn btn-warning btn-sm my-0' id='edit_surat'>
-                                <i class='fa fa-edit' aria-hidden='true'></i></button></span>
+                                type='button' class='btn btn-warning btn-sm my-0' id='edit_surat' onclick='setTempId($row->id, $json_nomor)'>
+                                <i class='fa fa-edit' aria-hidden='true'></i></button></a>
+                                </span>
                                 </td>
                             </tr>";
 						  }
@@ -132,22 +136,23 @@
 		  <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			  <div class="modal-dialog" role="document">
 				  <div class="modal-content">
-					  <form action="<?php echo base_url('Surat/edit/'.$row->id)?>" method="post">
+					  <form action="<?php  echo base_url('surat/edit/')?>" method="post" id="editSuratForm">
 						  <div class="modal-header text-center">
 							  <h4 class="modal-title w-100 font-weight-bold">Edit nomor surat</h4>
 							  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								  <span aria-hidden="true">&times;</span>
 							  </button>
 						  </div>
+
 						  <div class="modal-body mx-3">
 							  <div class="md-form mb-5">
 								  <i class="fa fa-sort-numeric-asc prefix grey-text"></i>
 								  <input type="text" id="form3" class="form-control validate" name="nomor"
-										 value="<?php  echo $row->nomor?>">
-								  <label data-error="wrong" data-success="right" for="form3">Nomor surat</label>
+										 >
+						
 							  </div>
-
 						  </div>
+
 						  <div class="modal-footer d-flex justify-content-center">
 							  <button class="btn btn-indigo">Send <i class="fa fa-edit ml-1"></i></button>
 						  </div>
@@ -165,6 +170,31 @@ $(document).ready(function () {
 });
 $("#main").click(function() {
   $("#mini-fab").toggleClass('hidden');
+});
+
+var url="<?php echo base_url();?>";
+
+function setTempId(id, nomor){
+  localStorage.setItem('id',id);
+  document.getElementById('form3').value = "/" + nomor[1] + "/" + nomor[2] + "/" + nomor[3];
+}
+
+$("#editSuratForm").submit(function(e) {
+
+  e.preventDefault();
+
+  var form = $(this);
+  var url = form.attr('action') + localStorage.getItem('id');
+
+  $.ajax({
+        type: "POST",
+        url: url,
+        data: form.serialize(),
+        success: function(data)
+        {
+          window.location.reload(true);
+        }
+      });
 });
 </script>
 </html>
