@@ -192,7 +192,8 @@ class C_PDF extends CI_Controller {
 		$surat_tugas	= $this->db->get_where('surat_dinas',
 			array('id' => $id))->row_array();
 		$pegawai 		= $this->db->get_where('pegawai',
-			array('jabatan_pegawai' => 'Kepala Pusat Data Informasi dan Humas'))->result();
+			array('jabatan_pegawai' => 'Kepala Pusat Data Informasi dan Komunikasi Kebencanaan'))->result();
+		// var_dump($pegawai);
 		$nomor 			= $surat_tugas['nomor'];
 		$id_pos 		= $surat_tugas['pos'];
 		$var_kegiatan 	= $surat_tugas['kegiatan'];
@@ -323,11 +324,17 @@ class C_PDF extends CI_Controller {
 		if(empty($nomor_surat)) {
 			$pdf->MultiCell(0,6,"Jakarta,       ".$arr_tgl[1]." ".$arr_tgl[2],0,'C');
 		} else {
+			
 			//get tanggal spd rampung
-			$rampung_result = $this->db->get_where('spd_rampung', array('id_surat' => $id))->result();
-			$tgl = $rampung_result['0']->tgl;
-			$tgl_surat = $this->tanggal_indo($tgl, '/');
-			$pdf->MultiCell(0,6,"Jakarta, ".$tgl_surat,0,'C');
+		$rampung_result = $this->db->get_where('spd_rampung', array('id_surat' => $id))->result();
+		if(empty($rampung_result)) {
+				$pdf->MultiCell(0,6,"Jakarta,       ".$arr_tgl[1]." ".$arr_tgl[2],0,'C');
+			} else {
+				
+				$tgl = $rampung_result['0']->tgl;
+				$tgl_surat = $this->tanggal_indo($tgl, '/');
+				$pdf->MultiCell(0,6,"Jakarta, ".$tgl_surat,0,'C');
+			}
 		}
 		$pdf->Cell(85, 6, "", 0,0);
 		$pdf->MultiCell(0,6,"Kepala Pusat Data Informasi dan Humas",0,'C');
